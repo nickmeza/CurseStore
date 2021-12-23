@@ -32,17 +32,14 @@ require_once("./controlador/Cliente_Controlador.php");
 require_once("./controlador/Curso_Controlador.php");
 require_once("./controlador/Descuento_Controlador.php");
 require_once("./controlador/DetalleDescuento_Controlador.php");
-require_once("./controlador/modulo.php");
 require_once("./controlador/Modulo_Controlador.php");
 require_once("./controlador/OrdenDetalle_Controlador.php");
 require_once("./controlador/Orden_Controlador.php");
 require_once("./controlador/Persona_Controlador.php");
 require_once("./controlador/Profesor_Controlador.php");
 require_once("./controlador/Rol_Controlador.php");
-require_once("./controlador/Route.php");
 require_once("./controlador/SubModulo_Controlador.php");
 require_once("./controlador/usuario.php");
-require_once("./controlador/UsuarioSession.php");
 require_once("./controlador/Usuario_Controlador.php");
 require_once("./controlador/Video_Controlador.php");
 
