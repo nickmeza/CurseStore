@@ -20,5 +20,10 @@ class Routes
         include_once "./vistas/cliente/views/Inicio.php";
         var_dump($buscador);
     }
+    public static function detalle($buscador)
+    {
+        include_once "./vistas/cliente/views/Inicio.php";
+        var_dump($buscador);
+    }
     
 }
