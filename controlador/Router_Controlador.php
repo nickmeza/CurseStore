@@ -19,4 +19,5 @@ class Routes
         include_once "./vistas/cliente/Inicio.php";
         var_dump($buscador);
     }
+    
 }

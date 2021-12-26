@@ -19,7 +19,7 @@
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/fancybox/js/jquery.fancybox.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/fancybox/js/jquery.fancybox-buttons.js"></script>
 <!-- MAIN JS-->
-<script src="assets/js/main.js"></script>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/js/main.js"></script>
 <!-- LOADING SCRIPTS FOR PAGE-->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/isotope/isotope.pkgd.min.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/isotope/fit-columns.js"></script>
