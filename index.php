@@ -58,7 +58,8 @@ $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 $ruta = $parsed_url['path'];
 $ruta_split = explode("/", $ruta);
 if (isset($ruta_split[1])) {
-    if (!$ruta_split[1] == "admin") {
+    if ($ruta_split[1] != "admin") {
+        echo "categoria here";
         var_dump($ruta_split);
         if (count($ruta_split) == 2 && $ruta_split[1] == "") {
             Routes::index();
@@ -71,6 +72,7 @@ if (isset($ruta_split[1])) {
             }
             switch ($controlador) {
                 case 'categoria':
+
                     if (method_exists(new Routes(), $controlador)) {
                         Routes::$controlador($ruta_split);
                     } else {
@@ -219,33 +221,37 @@ if (isset($ruta_split[1])) {
                         }
                         break;
                     case 'usuario':
+                        $submetodo = "crear";
                         if (isset($ruta_split[4])) {
                             $submetodo = $ruta_split[4];
                         }
                         switch ($metodo) {
                             case 'profesor':
-                                if (method_exists(new Usuario(), $metodo)) {
-                                    Usuario::$metodo($ruta_split);
-                                } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
-                                    RoutesAdmin::$controlador($ruta_split);
+                                
+                                if (method_exists(new Usuario(), $submetodo)) {
+                                    Usuario::$submetodo($ruta_split);
+                                } else if (method_exists(new RoutesAdmin(), $metodo) && !isset($ruta_split[4])) {
+                                    RoutesAdmin::$metodo($ruta_split);
                                 } else {
                                     echo "error 404";
                                 }
                                 break;
                             case 'cliente':
-                                if (method_exists(new Usuario(), $metodo)) {
-                                    Usuario::$metodo($ruta_split);
-                                } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
-                                    RoutesAdmin::$controlador($ruta_split);
+                                if (method_exists(new Usuario(), $submetodo)) {
+                                    Usuario::$submetodo($ruta_split);
+                                } else if (method_exists(new RoutesAdmin(), $metodo) && !isset($ruta_split[4])) {
+                                    RoutesAdmin::$metodo($ruta_split);
                                 } else {
                                     echo "error 404";
                                 }
                                 break;
                             default:
-                            RoutesAdmin::index();
+                                //echo "error 404";
+                                RoutesAdmin::index();
                                 break;
                         }
-                    /* case 'tienda':
+                        break;
+                        /* case 'tienda':
                         if (method_exists(new Categoria(), $metodo)) {
                             Categoria::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
@@ -256,6 +262,7 @@ if (isset($ruta_split[1])) {
                         break; */
                     default:
                         RoutesAdmin::index();
+                        break;
                 }
             }
         } else {

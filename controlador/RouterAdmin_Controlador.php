@@ -42,9 +42,20 @@ class RoutesAdmin
     public static function admin()
     {
         include_once "./vistas/cliente/views/Inicio.php";
+        echo "admin";
     }
     public static function nick()
     {
+        include_once "./vistas/cliente/curso/Categoria.php";
+    }
+    public static function profesor()
+    {
+        echo "profe";
+        include_once "./vistas/cliente/curso/Categoria.php";
+    }
+    public static function cliente()
+    {
+        echo "client";
         include_once "./vistas/cliente/curso/Categoria.php";
     }
 }

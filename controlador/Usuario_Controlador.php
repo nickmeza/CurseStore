@@ -5,6 +5,7 @@ class Usuario
 {
     public static function create()
     {
+        echo "create";
         include_once "./vistas/cliente/curso/Categoria.php";
     }
     public static function delete()
@@ -14,7 +15,8 @@ class Usuario
     public static function update()
     {
         include_once "./vistas/cliente/curso/Categoria.php";
-    }/* 
+    }
+    /* 
     public static function Login($args = array())
     {
         $message_error = "";
