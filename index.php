@@ -54,32 +54,69 @@ require_once("./controlador/Router_Controlador.php");
 //     }
 // });
 $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-$ruta= $parsed_url['path'];
-$ruta_split=explode("/",$ruta);
-if (isset($ruta_split[1]) ) {
-    if(count($ruta_split)==2 && $ruta_split[1] =="" ){
+$ruta = $parsed_url['path'];
+$ruta_split = explode("/", $ruta);
+if (isset($ruta_split[1])) {
+    
+    var_dump($ruta_split);
+    if (count($ruta_split) == 2 && $ruta_split[1] == "") {
         Routes::index();
-    }else{
-        $controlador=$ruta_split[1];
-        if(isset($ruta_split[2])){
-            $metodo=$ruta_split[2];
-        }else{
-            $metodo="defecto";
+    } else {
+        $controlador = $ruta_split[1];
+        if (isset($ruta_split[2])) {
+            $metodo = $ruta_split[2];
+        } else {
+            $metodo = "defecto";
         }
-        switch($controlador){
-            case 'value':
-                # code...
+        switch ($controlador) {
+            case 'categoria':
+                if (method_exists(new Routes(), $controlador)) {
+                    Routes::$controlador($ruta_split);
+                } else {
+                    echo "error 404";
+                }
+                break;
+            case 'curso':
+                switch ($metodo) {
+                    case 'buscar':
+                        if (isset($ruta_split[3])) {
+                            Routes::$metodo($ruta_split[3]);
+                        }
+                        else{
+                            Routes::$metodo("nada");
+                        }
+                        break;
+                    case 'detalle':
+                        if (isset($ruta_split[3])) {
+                            Routes::$metodo($ruta_split[3]);
+                        }
+                        else{
+                            echo "no se busca por id";
+                        }
+                        break;
+                    default:
+                        echo "error 404";
+                        break;
+                }
+                break;
+            case 'perfil':
+                if (method_exists(new Routes(), $controlador)) {
+                    Routes::$controlador($ruta_split);
+                } else {
+                    echo "error 404";
+                }
+                break;
+            case 'tienda':
+                if (method_exists(new Routes(), $controlador)) {
+                    Routes::$controlador($ruta_split);
+                } else {
+                    echo "error 404";
+                }
                 break;
             default:
-            Routes::index();
-
+                Routes::index();
         }
     }
-}else{
+} else {
     Routes::index();
 }
-
-
-
-
-?>
