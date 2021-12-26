@@ -1,1 +1,1 @@
-var url = 'http://pw_multispac.test/';
+var url = 'http://tiendacursos.test/';

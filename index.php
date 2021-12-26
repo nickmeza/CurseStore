@@ -42,7 +42,7 @@ require_once("./controlador/SubModulo_Controlador.php");
 require_once("./controlador/usuario.php");
 require_once("./controlador/Usuario_Controlador.php");
 require_once("./controlador/Video_Controlador.php");
-
+require_once("./controlador/Router_Controlador.php");
 
 
 
@@ -56,15 +56,11 @@ require_once("./controlador/Video_Controlador.php");
 $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 $ruta= $parsed_url['path'];
 $ruta_split=explode("/",$ruta);
- var_dump($ruta_split);
 if (isset($ruta_split[1]) ) {
-    echo('asd 2');
-    Modulo::admin_modulo_get_all();
     if(count($ruta_split)==2 && $ruta_split[1] =="" ){
-        echo('asd 2');
+        Routes::index();
     }else{
         $controlador=$ruta_split[1];
-
         if(isset($ruta_split[2])){
             $metodo=$ruta_split[2];
         }else{
@@ -75,15 +71,12 @@ if (isset($ruta_split[1]) ) {
                 # code...
                 break;
             default:
-
+            Routes::index();
 
         }
     }
-
-
-
 }else{
-    echo('asd');
+    Routes::index();
 }
 
 

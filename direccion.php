@@ -1,3 +1,3 @@
 <?php
-   $GLOBALS['BASE_URL'] = 'http://pw_multispac.test/';
+   $GLOBALS['BASE_URL'] = 'http://tiendacursos.test/';
    ?>
