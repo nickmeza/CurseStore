@@ -12,10 +12,11 @@ class Routes
     }
     public static function categoria()
     {
-        include_once "./vistas/cliente/Inicio.php";
+        include_once "./vistas/cliente/Categoria.php";
     }
-    public static function curso_buscador()
+    public static function buscar($buscador)
     {
         include_once "./vistas/cliente/Inicio.php";
+        var_dump($buscador);
     }
 }
