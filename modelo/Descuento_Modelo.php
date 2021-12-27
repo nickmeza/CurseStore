@@ -1,7 +1,7 @@
 <?php 
 class Descuento_Modelo{
     public static function getAll(){
-        return $data=Database::query("select * from elemento ",array());
+        return $data=Database::query("select * from elemento",array());
     }
     public static function getOne($id){
         return $data=Database::queryOne("select * from elemento where idelemento=?",array($id));

@@ -60,7 +60,6 @@ $ruta_split = explode("/", $ruta);
 if (isset($ruta_split[1])) {
     if ($ruta_split[1] != "admin") {
         echo "categoria here";
-        var_dump($ruta_split);
         if (count($ruta_split) == 2 && $ruta_split[1] == "") {
             Routes::index();
         } else {
@@ -151,6 +150,7 @@ if (isset($ruta_split[1])) {
                     break;
                 default:
                     Routes::index();
+                    echo "error 404";
             }
         }
     } else {
@@ -164,7 +164,6 @@ if (isset($ruta_split[1])) {
                 } else {
                     $metodo = "defecto";
                 }
-                var_dump($ruta_split);
                 switch ($controlador) {
                     case 'categoria':
                         if (method_exists(new Categoria(), $metodo)) {
@@ -220,6 +219,15 @@ if (isset($ruta_split[1])) {
                             echo "error 404";
                         }
                         break;
+                    case 'modulo':
+                        if (method_exists(new Modulo(), $metodo)) {
+                            Modulo::$metodo($ruta_split);
+                        } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
+                            RoutesAdmin::$controlador($ruta_split);
+                        } else {
+                            echo "error 404";
+                        }
+                        break;
                     case 'usuario':
                         $submetodo = "crear";
                         if (isset($ruta_split[4])) {
@@ -227,7 +235,7 @@ if (isset($ruta_split[1])) {
                         }
                         switch ($metodo) {
                             case 'profesor':
-                                
+
                                 if (method_exists(new Usuario(), $submetodo)) {
                                     Usuario::$submetodo($ruta_split);
                                 } else if (method_exists(new RoutesAdmin(), $metodo) && !isset($ruta_split[4])) {

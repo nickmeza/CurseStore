@@ -5,7 +5,7 @@ include_once "./vistas/cliente/component/header.php";
 <div class="section slider-logo">
     <?php
     $datos = array();
-    if (isset($var_require)) {
+    if (isset($categoria)) {
         $datos = $var_require;
     ?>
         <div class="container">

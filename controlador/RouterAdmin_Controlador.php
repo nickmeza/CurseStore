@@ -6,10 +6,6 @@ class RoutesAdmin
     {
         include_once "./vistas/cliente/views/Inicio.php";
     }
-    public static function curso_detalle()
-    {
-        include_once "./vistas/cliente/curso/Categoria.php";
-    }
     public static function curso()
     {
         include_once "./vistas/cliente/curso/Categoria.php";
@@ -44,10 +40,6 @@ class RoutesAdmin
         include_once "./vistas/cliente/views/Inicio.php";
         echo "admin";
     }
-    public static function nick()
-    {
-        include_once "./vistas/cliente/curso/Categoria.php";
-    }
     public static function profesor()
     {
         echo "profe";
@@ -56,6 +48,10 @@ class RoutesAdmin
     public static function cliente()
     {
         echo "client";
+        include_once "./vistas/cliente/curso/Categoria.php";
+    }
+    public static function modulo()
+    {
         include_once "./vistas/cliente/curso/Categoria.php";
     }
 }

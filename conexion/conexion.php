@@ -1,12 +1,11 @@
 <?php
 class Database
 {
-
-  private static $dbName = 'heroku_123b31a503faa8c' ;
-  private static $dbHost = 'us-cdbr-east-03.cleardb.com' ;
+  private static $dbName = 'heroku_1a308691371c7e0' ;
+  private static $dbHost = 'us-cdbr-east-05.cleardb.net' ;
   private static $port = "3306";
-  private static $dbUsername = 'b9a9a9abb0ae74';
-  private static $dbUserPassword = 'adf6ff84';
+  private static $dbUsername = 'b7458002a11c09';
+  private static $dbUserPassword = 'eb4dc553';
 
     // private static $dbName = 'bd_pwabpromed' ;
     // private static $dbHost = 'localhost' ;

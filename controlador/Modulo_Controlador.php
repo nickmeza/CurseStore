@@ -50,9 +50,8 @@ class Modulo {
         }
     }
     public static function admin_modulo_get_all(){
-        $Session = new UsuarioSession();
-            $modulos = Modulo_Modelo::getAll();
-            include_once "./vistas/cliente/Inicio.php";
+        $modulos = Modulo_Modelo::getAll();
+        echo json_encode($modulos);
     }
     
 }

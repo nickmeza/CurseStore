@@ -8,15 +8,16 @@ class Routes
     }
     public static function curso_detalle()
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/curso/DetalleCurso.php";
     }
-    public static function categoria()
+    public static function categoria($buscador)
     {
-        echo "categoria";
+        echo "$buscador[2]";
         include_once "./vistas/cliente/curso/Categoria.php";
     }
     public static function buscar($buscador)
     {
+
         include_once "./vistas/cliente/views/Inicio.php";
         var_dump($buscador);
     }
