@@ -94,6 +94,13 @@ if (isset($ruta_split[1])) {
                                 echo "no se busca por id";
                             }
                             break;
+                        case 'progreso':
+                            if (isset($ruta_split[3])) {
+                                Routes::$metodo($ruta_split);
+                            } else {
+                                echo "no se busca por id";
+                            }
+                            break;
                         default:
                             echo "error 404";
                             break;
@@ -177,7 +184,7 @@ if (isset($ruta_split[1])) {
                     case 'curso':
                         if (method_exists(new Curso(), $metodo)) {
                             Curso::$metodo($ruta_split);
-                        } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
+                        } else if (method_exists(new RoutesAdmin(), $controlador) ) {
                             RoutesAdmin::$controlador($ruta_split);
                         } else {
                             echo "error 404";
@@ -213,15 +220,6 @@ if (isset($ruta_split[1])) {
                     case 'perfil':
                         if (method_exists(new Usuario(), $metodo)) {
                             Usuario::$metodo($ruta_split);
-                        } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
-                            RoutesAdmin::$controlador($ruta_split);
-                        } else {
-                            echo "error 404";
-                        }
-                        break;
-                    case 'modulo':
-                        if (method_exists(new Modulo(), $metodo)) {
-                            Modulo::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
                             RoutesAdmin::$controlador($ruta_split);
                         } else {

@@ -6,9 +6,16 @@ class RoutesAdmin
     {
         include_once "./vistas/cliente/views/Inicio.php";
     }
-    public static function curso()
+    public static function curso($codigocurso)
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
+        if (isset($codigocurso[3]) && strlen($codigocurso[3])>0 ) {
+            var_dump($codigocurso[3]);
+            echo "detalle";
+            include_once "./vistas/cliente/curso/Categoria.php";
+        }else {
+            echo "curso list";
+            include_once "./vistas/cliente/curso/Categoria.php";
+        }
     }
     public static function ventas()
     {

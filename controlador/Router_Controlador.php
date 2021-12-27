@@ -26,5 +26,14 @@ class Routes
         include_once "./vistas/cliente/views/Inicio.php";
         var_dump($buscador);
     }
+    public static function progreso($data)
+    {
+        include_once "./vistas/cliente/views/Inicio.php";
+        var_dump($data[3]);
+        if (isset($data[4])) {
+            var_dump($data[4]);
+        }
+        
+    }
     
 }
