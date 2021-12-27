@@ -26,6 +26,7 @@ class Routes
         include_once "./vistas/cliente/curso/DetalleCurso.php";
         var_dump($buscador);
     }
+    //videos
     public static function progreso($data)
     {
         include_once "./vistas/cliente/curso/Progreso.php";
@@ -33,7 +34,21 @@ class Routes
         if (isset($data[4])) {
             var_dump($data[4]);
         }
-        
     }
-    
+    public static function perfil()
+    {
+        include_once "./vistas/cliente/views/Inicio.php";
+    }
+    public static function cuenta()
+    {
+        include_once "./vistas/cliente/views/Inicio.php";
+    }
+    public static function aprendizaje()
+    {
+        include_once "./vistas/cliente/views/Inicio.php";
+    }
+    public static function favoritos()
+    {
+        include_once "./vistas/cliente/views/Inicio.php";
+    }
 }
