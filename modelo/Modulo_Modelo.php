@@ -10,10 +10,10 @@ class Modulo_Modelo{
         Database::queryChange("INSERT INTO modulo (CURS_ID, MOD_NOMBRE, MOD_DESCRIPCION, MOD_ESTADO) VALUES (?, ?, ?, ?);",array($modulo["CURS_ID"],$modulo["MOD_NOMBRE"],$modulo["MOD_DESCRIPCION"],1));
     }
     public static function updateModulo($modulo,$id){
-        Database::queryChange("update elemento set nombre=? where idelemento=?",array(array($modulo["CURS_ID"],$modulo["MOD_NOMBRE"],$modulo["MOD_DESCRIPCION"],$modulo["MOD_ESTADO"],1)));
+        Database::queryChange("UPDATE modulo SET CURS_ID=?, MOD_NOMBRE=?, MOD_DESCRIPCION=?, MOD_ESTADO=? WHERE  MOD_ID=?;",array(array($modulo["CURS_ID"],$modulo["MOD_NOMBRE"],$modulo["MOD_DESCRIPCION"],$modulo["MOD_ESTADO"],$id)));
     }
     public static function delete($id){
-        Database::queryChange("delete from elemento  where idelemento=?",array($id));
+        Database::queryChange("DELETE FROM modulo WHERE  MOD_ID=?;",array($id));
     }
 
 }
