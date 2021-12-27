@@ -18,17 +18,17 @@ class Routes
     public static function buscar($buscador)
     {
 
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/curso/Buscador.php";
         var_dump($buscador);
     }
     public static function detalle($buscador)
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/curso/DetalleCurso.php";
         var_dump($buscador);
     }
     public static function progreso($data)
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/curso/Progreso.php";
         var_dump($data[3]);
         if (isset($data[4])) {
             var_dump($data[4]);
