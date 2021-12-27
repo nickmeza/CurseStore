@@ -1,21 +1,20 @@
 <?php 
 class SubModulo_Modelo{
     public static function getAll(){
-        return $data=Database::query("select * from elemento ",array());
+        return $data=Database::query("SELECT * FROM submodulo",array());
     }
     public static function getOne($id){
-        return $data=Database::queryOne("select * from elemento where idelemento=?",array($id));
+        return $data=Database::queryOne("SELECT * FROM submodulo WHERE SMOD_ID=?",array($id));
     }
-    public static function insertModulo($nombre){
-        Database::queryChange("insert into elemento(nombre,estado) values(?,?)",array($nombre,1));
+    public static function insertSubmodulo($submodulo){
+        Database::queryChange("INSERT INTO submodulo (MOD_ID, SMOD_NOMBRE,SMOD_DESCRIPCION,SMOD_ESTADO) VALUES (?, ?, ?, ?);",array($submodulo["MOD_ID"],$submodulo["SMOD_NOMBRE"],$submodulo["SMOD_DESCRIPCION"],1));
     }
-    public static function updateModulo($nombre,$id){
-        Database::queryChange("update elemento set nombre=? where idelemento=?",array($nombre,$id));
+    public static function updateSubmodulo($submodulo,$id){
+        Database::queryChange("UPDATE submodulo SET MOD_ID=?, SMOD_NOMBRE=?, SMOD_DESCRIPCION=?, SMOD_ESTADO=? WHERE  SMOD_ID=?;",array(array($submodulo["MOD_ID"],$submodulo["SMOD_NOMBRE"],$submodulo["SMOD_DESCRIPCION"],$submodulo["SMOD_ESTADO"],$id)));
     }
     public static function delete($id){
-        Database::queryChange("delete from elemento  where idelemento=?",array($id));
+        Database::queryChange("DELETE FROM submodulo WHERE  SMOD_ID=?;",array($id));
     }
-
 }
 
 ?>

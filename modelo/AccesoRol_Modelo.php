@@ -18,7 +18,5 @@ class AccesoRol_Modelo{
     public static function delete($id){
         Database::queryChange("DELETE from acceso_rol  where idelemento=?",array($id));
     }
-
 }
-
 ?>
