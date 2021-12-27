@@ -108,13 +108,6 @@ if (isset($ruta_split[1])) {
                     break;
                 case 'perfil':
                     switch ($metodo) {
-                        case 'mi-perfil':
-                            if (isset($ruta_split[3])) {
-                                Routes::$metodo($ruta_split[3]);
-                            } else {
-                                Routes::$metodo("nada");
-                            }
-                            break;
                         case 'cuenta':
                             if (isset($ruta_split[3])) {
                                 Routes::$metodo($ruta_split[3]);
@@ -122,7 +115,7 @@ if (isset($ruta_split[1])) {
                                 echo "no se busca por id";
                             }
                             break;
-                        case 'mi-aprendizaje':
+                        case 'aprendizaje':
                             if (isset($ruta_split[3])) {
                                 Routes::$metodo($ruta_split[3]);
                             } else {
@@ -137,8 +130,13 @@ if (isset($ruta_split[1])) {
                             }
                             break;
                         default:
-                            echo "error 404";
-                            break;
+
+                        if ($ruta_split[1]=='perfil') {
+                            Routes::$controlador($ruta_split);
+                        } else {
+                            echo "no se busca por id";
+                        }
+                        break;
                     }
                     break;
                 case 'carrito':
