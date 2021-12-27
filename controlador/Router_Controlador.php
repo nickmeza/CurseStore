@@ -37,18 +37,37 @@ class Routes
     }
     public static function perfil()
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/perfil/Perfil.php";
     }
     public static function cuenta()
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/perfil/Cuenta.php";
     }
     public static function aprendizaje()
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/perfil/Aprendizaje.php";
     }
     public static function favoritos()
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/cliente/perfil/Favoritos.php";
     }
+
+    public static function metodo_pago()
+    {
+        include_once "./vistas/cliente/pago/MetodoPago.php";
+    }
+    
+    public static function carrito()
+    {
+        include_once "./vistas/cliente/views/Carrito.php";
+    }
+
+    public static function Nosotros()
+    {
+        include_once "./vistas/cliente/views/Nosotros.php";
+    }
+
+
+
+    
 }
