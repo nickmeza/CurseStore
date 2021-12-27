@@ -1,19 +1,19 @@
 <?php 
 class DetalleDescuento_Modelo{
     public static function getAll(){
-        return $data=Database::query("select * from elemento ",array());
+        return $data=Database::query("SELECT * FROM detalle_descuento;",array());
     }
     public static function getOne($id){
-        return $data=Database::queryOne("select * from elemento where idelemento=?",array($id));
+        return $data=Database::queryOne("SELECT * FROM detalle_descuento WHERE  DSC_ID=?;",array($id));
     }
-    public static function insertModulo($nombre){
-        Database::queryChange("insert into elemento(nombre,estado) values(?,?)",array($nombre,1));
+    public static function insertModulo($detalledescuento){
+        Database::queryChange("INSERT INTO detalle_descuento (CURS_ID, DESC_ID) VALUES (?, ?);",array($detalledescuento['CURS_ID'],$detalledescuento['DESC_ID']));
     }
-    public static function updateModulo($nombre,$id){
-        Database::queryChange("update elemento set nombre=? where idelemento=?",array($nombre,$id));
+    public static function updateModulo($detalledescuento,$id){
+        Database::queryChange("UPDATE detalle_descuento SET CURS_ID=?,DESC_ID=? WHERE  DSC_ID=?;",array($detalledescuento['CURS_ID'],$detalledescuento['DESC_ID'],$id));
     }
     public static function delete($id){
-        Database::queryChange("delete from elemento  where idelemento=?",array($id));
+        Database::queryChange("DELETE FROM detalle_descuento WHERE  DSC_ID=?;",array($id));
     }
 
 }
