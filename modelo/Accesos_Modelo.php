@@ -1,19 +1,21 @@
 <?php 
 class Accesos_Modelo{
     public static function getAll(){
-        return $data=Database::query("select * from elemento ",array());
+        return $data=Database::query("SELECT * FROM accesos ",array());
     }
     public static function getOne($id){
-        return $data=Database::queryOne("select * from elemento where idelemento=?",array($id));
+        return $data=Database::queryOne("SELECT * FROM accesos where ACC_ID=?",array($id));
     }
-    public static function insertModulo($nombre){
-        Database::queryChange("insert into elemento(nombre,estado) values(?,?)",array($nombre,1));
+    public static function insertAcceso($acceso){
+        Database::queryChange("INSERT INTO accesos (ACC_URL,ACC_STATUS) values(?,?);",
+        array($acceso["ACC_URL"],1));
     }
-    public static function updateModulo($nombre,$id){
-        Database::queryChange("update elemento set nombre=? where idelemento=?",array($nombre,$id));
+    public static function updateAcceso($acceso,$id){
+        Database::queryChange("UPDATE accesos set ACC_URL=?,ACC_STATUS=? where ACC_ID=?",
+        array(array($acceso["ACC_URL"],$acceso["ACC_STATUS"],$id)));
     }
     public static function delete($id){
-        Database::queryChange("delete from elemento  where idelemento=?",array($id));
+        Database::queryChange("DELETE FROM accesos  where ACC_ID=?",array($id));
     }
 
 }
