@@ -1,10 +1,18 @@
 
+<style>
+.pie{
+    background-color: black;
+}
+</style>
 
-<footer>
-    
+
+<footer class="pie row ">
+    s
 </footer>
 
+<script>
 
+</script>
 
 
 
