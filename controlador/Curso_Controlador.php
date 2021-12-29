@@ -7,6 +7,11 @@ class Curso
         echo "json";
         include_once "./vistas/cliente/curso/Categoria.php";
     }
+    public static function getCursosDescuento()
+    {
+        $cursosdescuento = Curso_Modelo::getCursosDescuento();
+        echo json_encode($cursosdescuento);
+    }
     public static function getById($id)
     {
         var_dump($id[4]);

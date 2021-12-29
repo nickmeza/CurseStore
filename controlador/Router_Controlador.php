@@ -4,6 +4,7 @@ class Routes
 {
     public static function index()
     {
+        $banner = Banner_Modelo::getAll();
         include_once "./vistas/cliente/views/Inicio.php";
     }
     public static function curso_detalle()
