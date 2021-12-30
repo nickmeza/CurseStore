@@ -18,6 +18,8 @@
 
 .img__ofert {
     width: 100%;
+    height: 250px;
+    object-fit: cover;
     display: block;
     border-radius: 20px 20px 0 0;
 }
@@ -31,18 +33,6 @@
     left: 0;
     border-radius: 20px 20px 0 0;
     opacity: 0.7;
-}
-
-.card1__ofert>.container__ofert:after {
-    background-image: linear-gradient( 135deg, #0100ec, #fb36f4);
-}
-
-.card2__ofert>.container__ofert:after {
-    background-image: linear-gradient( 135deg, #2bdce3, #42ffdb);
-}
-
-.card3__ofert>.container__ofert:after {
-    background-image: linear-gradient( 135deg, #ffab1d, #f8501c);
 }
 
 .details__ofert {
@@ -61,4 +51,94 @@
     font-size: 15px;
     line-height: 30px;
     font-weight: 400;
+}
+
+
+/* Categoria Style */
+
+.main__categoria {
+    display: flex;
+    padding: 0px;
+    margin: 20px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card__categoria {
+    position: relative;
+    width: 350px;
+    /* height: 400px; */
+    overflow: hidden;
+    height: 120px;
+    background: white;
+    box-shadow: 0 25px 25px rgba(0, 8, 0, 0.2);
+    padding: 20px;
+    transition: height 1s;
+}
+
+.content__categoria::after {
+    transition: all 1s;
+    content: "";
+    height: 120px;
+    width: 100%;
+    background-image: var(--urlimg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px 20px 0 0;
+    opacity: 0;
+}
+
+.content__categoria:hover::after {
+    opacity: 0.2;
+}
+
+.content__categoria {
+    display: flex;
+    align-items: center;
+}
+
+.card__categoria.active {
+    height: 400px;
+}
+
+.navigation__categoria {
+    position: relative;
+    top: 25px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+}
+
+.navigation__categoria li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.navigation__categoria li a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+.navigation__categoria li a:hover {
+    color: #36b3ff;
+}
+
+.toggle__categoria {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: #36b3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100;
 }

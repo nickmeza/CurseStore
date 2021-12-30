@@ -1,8 +1,8 @@
 <?php
 include_once "./vistas/cliente/component/header.php";
 ?>
-
-<div class="section slider-logo">
+<!-- slider -->
+<div class="section slider-logo" style="margin-top: 80px;">
     <?php
     $datos = array();
 
@@ -78,12 +78,17 @@ include_once "./vistas/cliente/component/header.php";
         </div>
     <?php } ?>
 </div>
+<!-- Categorias -->
+<div class="main__categoria">
+    
+</div>
+<!-- Ofertas -->
 <div class="cards__ofert">
-    <div class="card card1">
-        <div class="container">
-            <img class="img__propio" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png" alt="las vegas">
+    <div class="card__ofert card1__ofert">
+        <div class="container__ofert">
+            <img class="img__ofert" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png" alt="las vegas">
         </div>
-        <div class="details">
+        <div class="details__ofert">
             <h3>Tecnología</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam adipisci exercitationem.</p>
         </div>
@@ -94,6 +99,9 @@ include_once "./vistas/cliente/component/header.php";
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     const slider = document.querySelector('.cards__ofert')
+    const card_categoria = document.querySelector('.card__categoria')
+    const toggle_categoria = document.querySelector('.toggle__categoria')
+    //Descuento
     $.ajax({
         url: url + 'admin/curso/getCursosDescuento',
         type: 'GET',
@@ -101,17 +109,46 @@ include_once "./vistas/cliente/component/header.php";
         success: function(json) {
             json.map((valores) => {
                 $(".cards__ofert").append(`
-                <div class="card card2">
-                    <div class="container">
-                        <img class="img__propio" src="${valores.CURS_IMAGEN}" alt="las vegas">
+                <div class="card__ofert card2__ofert">
+                <div class="container__ofert">
+                <img class="img__ofert"  src="${valores.CURS_IMAGEN}" alt="las vegas">
                     </div>
-                    <div class="details">
-                        <h3>${valores.CURS_NOMBRE}</h3>
+                    <div class="details__ofert">
+                    <h3>${valores.CURS_NOMBRE}</h3>
                         <p>${valores.CURS_DESCRIPCION}</p>
-                    </div>
-                </div>`)
+                        </div>
+                        </div>`)
             })
 
+            console.log(json)
+        }
+    })
+    //Categoria
+    $.ajax({
+        url: url + 'admin/categoria/getAll',
+        type: 'GET',
+        dataType: 'json',
+        success: function(json) {
+            json.map((valores, idx) => {
+                $(".main__categoria").append(`
+                <div class="card__categoria">
+                    <div class="content__categoria cat${idx}" style="--urlimg: url('${valores.CAT_IMAGEN}');">
+                        <h2> ${valores.CAT_NAME} <br><span>${valores.CAT_DESCRIPCION}</span></h2>
+                    </div>
+                    <ul class="navigation__categoria">
+                        <li>
+                            <a href="#">
+                                Edit Profile
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="toggle__categoria togcat${idx}">↓</div>
+                </div>
+                `)
+            })
+            toggle_categoria.onclick = function() {
+                card_categoria.classList.toggle('active');
+            }
             console.log(json)
         }
     })
