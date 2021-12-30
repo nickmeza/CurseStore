@@ -44,7 +44,7 @@
         <div class="search">
             <div class="icon"><i class="bi bi-search search-icon"></i></div>
             <div class="input">
-                <input type="text" name="" id="mysearch" placeholder="Escriba el curso que desea buscar">
+                <input type="text" name="" id="mysearch" placeholder="Escriba aqui lo que buscara">
             </div>
             <span class="clean" onclick="input_clear()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">

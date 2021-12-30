@@ -93,10 +93,10 @@ include_once "./vistas/cliente/component/header.php";
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam adipisci exercitationem.</p>
         </div>
     </div>
-
 </div>
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+
 <script>
     const slider = document.querySelector('.cards__ofert')
     const card_categoria = document.querySelector('.card__categoria')
