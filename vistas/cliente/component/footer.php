@@ -35,5 +35,7 @@
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/isotope/isotope.pkgd.min.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/isotope/fit-columns.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/js/pages/homepage.js"></script>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/js/views/header.js"></script>
+
 </body>
 </html>
