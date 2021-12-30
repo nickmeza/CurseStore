@@ -94,13 +94,20 @@ include_once "./vistas/cliente/component/header.php";
         </div>
     </div>
 </div>
-
+<div style="display:flex; width: 100%;">
+    <img style="width: 30%;" src="https://i.blogs.es/e1feab/google-fotos/450_1000.jpg" alt="">
+    <div style="width: 70%;">
+        <h3>Titulo Curso</h3>
+        <p>Descripcion del Curso</p>
+    </div>
+</div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
     const slider = document.querySelector('.cards__ofert')
     const card_categoria = document.getElementsByClassName('card__categoria')
     const toggle_categoria = document.querySelector('.toggle__categoria')
+    var curseCategoria = [];
     //Descuento
     $.ajax({
         url: url + 'admin/curso/getCursosDescuento',
@@ -137,22 +144,49 @@ include_once "./vistas/cliente/component/header.php";
                     </div>
                     <ul class="navigation__categoria">
                         <li>
-                            <a href="#">
-                                Edit Profile
-                            </a>
+                            <div style="display:flex; width: 100%;">
+                                <img style="width: 30%;" src="https://i.blogs.es/e1feab/google-fotos/450_1000.jpg" alt="">
+                                <div style="width: 70%;">
+                                    <h3>Titulo Curso</h3>
+                                    <p>Descripcion del Curso</p>
+                                </div>
+                            </div>
                         </li>
                     </ul>
-                    <div class="toggle__categoria" onclick="aparecerCursos(${idx})">↓</div>
+                    <div class="toggle__categoria" onclick="aparecerCursos(${idx} , ${valores.CAT_ID})">↓</div>
                 </div>
                 `)
+            })
+            console.log(json)
+            curseCategoria = document.getElementsByClassName("navigation__categoria")
+        }
+    })
+
+    function aparecerCursos(idx, cat_id) {
+        card_categoria[idx].classList.toggle('active');
+        $.ajax({
+        url: url + 'admin/curso/getCursosDescuento',
+        type: 'GET',
+        dataType: 'json',
+        success: function(json) {
+            json.map((valores) => {
+                const li = document.createElement('li')
+                const HTMLstring = `
+                <div style="display:flex; width: 100%;">
+                    <img style="width: 30%;" src="https://i.blogs.es/e1feab/google-fotos/450_1000.jpg" alt="">
+                    <div style="width: 70%;">
+                        <h3>${valores.CURS_NOMBRE + cat_id}</h3>
+                        <p>${valores.CURS_DESCRIPCION}</p>
+                    </div>
+                </div>
+                `;
+                li.innerHTML = HTMLstring;
+                curseCategoria[idx].append(li)
             })
 
             console.log(json)
         }
     })
-
-    function aparecerCursos(idx) {
-        card_categoria[idx].classList.toggle('active');
     }
 </script>
 <?php
