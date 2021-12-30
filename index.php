@@ -77,6 +77,14 @@ if (isset($ruta_split[1])) {
                         echo "error 404";
                     }
                     break;
+                case 'nosotros':
+
+                    if (method_exists(new Routes(), $controlador)) {
+                        Routes::$controlador($ruta_split);
+                    } else {
+                        echo "error 404";
+                    }
+                    break;
                 case 'curso':
                     switch ($metodo) {
                         case 'buscar':
@@ -130,12 +138,12 @@ if (isset($ruta_split[1])) {
                             break;
                         default:
 
-                        if ($ruta_split[1]=='perfil') {
-                            Routes::$controlador($ruta_split);
-                        } else {
-                            echo "no se busca por id";
-                        }
-                        break;
+                            if ($ruta_split[1] == 'perfil') {
+                                Routes::$controlador($ruta_split);
+                            } else {
+                                echo "no se busca por id";
+                            }
+                            break;
                     }
                     break;
                 case 'carrito':
@@ -152,14 +160,14 @@ if (isset($ruta_split[1])) {
                         echo "error 404";
                     }
                     break;
-                 case 'nosotros':
-                     if (method_exists(new Routes(), $controlador)) {
-                         Routes::$controlador($ruta_split);
+                case 'nosotros':
+                    if (method_exists(new Routes(), $controlador)) {
+                        Routes::$controlador($ruta_split);
                     } else {
-                         echo "error 404";
+                        echo "error 404";
                     }
-                       break;
-                    
+                    break;
+
                 default:
                     Routes::index();
                     echo "error 404";
@@ -189,7 +197,7 @@ if (isset($ruta_split[1])) {
                     case 'curso':
                         if (method_exists(new Curso(), $metodo)) {
                             Curso::$metodo($ruta_split);
-                        } else if (method_exists(new RoutesAdmin(), $controlador) ) {
+                        } else if (method_exists(new RoutesAdmin(), $controlador)) {
                             RoutesAdmin::$controlador($ruta_split);
                         } else {
                             echo "error 404";

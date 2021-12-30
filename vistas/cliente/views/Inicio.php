@@ -80,7 +80,7 @@ include_once "./vistas/cliente/component/header.php";
 </div>
 <!-- Categorias -->
 <div class="main__categoria">
-    
+
 </div>
 <!-- Ofertas -->
 <div class="cards__ofert">
@@ -99,7 +99,7 @@ include_once "./vistas/cliente/component/header.php";
 
 <script>
     const slider = document.querySelector('.cards__ofert')
-    const card_categoria = document.querySelector('.card__categoria')
+    const card_categoria = document.getElementsByClassName('card__categoria')
     const toggle_categoria = document.querySelector('.toggle__categoria')
     //Descuento
     $.ajax({
@@ -132,7 +132,7 @@ include_once "./vistas/cliente/component/header.php";
             json.map((valores, idx) => {
                 $(".main__categoria").append(`
                 <div class="card__categoria">
-                    <div class="content__categoria cat${idx}" style="--urlimg: url('${valores.CAT_IMAGEN}');">
+                    <div class="content__categoria" style="--urlimg: url('${valores.CAT_IMAGEN}');">
                         <h2> ${valores.CAT_NAME} <br><span>${valores.CAT_DESCRIPCION}</span></h2>
                     </div>
                     <ul class="navigation__categoria">
@@ -142,16 +142,18 @@ include_once "./vistas/cliente/component/header.php";
                             </a>
                         </li>
                     </ul>
-                    <div class="toggle__categoria togcat${idx}">↓</div>
+                    <div class="toggle__categoria" onclick="aparecerCursos(${idx})">↓</div>
                 </div>
                 `)
             })
-            toggle_categoria.onclick = function() {
-                card_categoria.classList.toggle('active');
-            }
+
             console.log(json)
         }
     })
+
+    function aparecerCursos(idx) {
+        card_categoria[idx].classList.toggle('active');
+    }
 </script>
 <?php
 include_once "./vistas/cliente/component/footer.php";
