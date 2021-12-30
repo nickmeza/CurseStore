@@ -78,6 +78,7 @@ include_once "./vistas/cliente/component/header.php";
         </div>
     <?php } ?>
 </div>
+
 <div class="cards__ofert">
     <div class="card card1">
         <div class="container">
@@ -88,10 +89,10 @@ include_once "./vistas/cliente/component/header.php";
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam adipisci exercitationem.</p>
         </div>
     </div>
-
 </div>
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+
 <script>
     const slider = document.querySelector('.cards__ofert')
     $.ajax({
@@ -101,11 +102,11 @@ include_once "./vistas/cliente/component/header.php";
         success: function(json) {
             json.map((valores) => {
                 $(".cards__ofert").append(`
-                <div class="card card2">
-                    <div class="container">
-                        <img class="img__propio" src="${valores.CURS_IMAGEN}" alt="las vegas">
+                <div class="card card2__ofert">
+                    <div class="container__ofert">
+                        <img class="img__ofert" src="${valores.CURS_IMAGEN}" alt="las vegas">
                     </div>
-                    <div class="details">
+                    <div class="details__ofert">
                         <h3>${valores.CURS_NOMBRE}</h3>
                         <p>${valores.CURS_DESCRIPCION}</p>
                     </div>
