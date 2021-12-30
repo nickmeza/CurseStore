@@ -2,6 +2,10 @@
 
 class Banner
 {
+    public static function get_all(){
+        $banner = Banner_Modelo::getAll();
+        echo json_encode($banner);
+    }
     public static function create()
     {
         include_once "./vistas/cliente/curso/Categoria.php";

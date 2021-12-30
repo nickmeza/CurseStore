@@ -59,7 +59,6 @@ $ruta = $parsed_url['path'];
 $ruta_split = explode("/", $ruta);
 if (isset($ruta_split[1])) {
     if ($ruta_split[1] != "admin") {
-        echo "categoria here";
         if (count($ruta_split) == 2 && $ruta_split[1] == "") {
             Routes::index();
         } else {
