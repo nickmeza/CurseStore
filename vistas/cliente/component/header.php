@@ -38,7 +38,8 @@
 
 <body>
     <!-- HEADER-->
-    <div class="header">
+    
+    <header class="header navbar-expand-lg navbar-light bg-light">
         <div class="space"></div>
         <a href="#" class="logo"><img src="https://images.squarespace-cdn.com/content/v1/5f62b687cae73d2408a06539/1602807735303-4W086W30YX6B3D23N04L/image-asset.png" alt="" class="logo_cursos" style="width:100px"></a>
         <div class="search">
@@ -63,6 +64,6 @@
         <a href="#" class="nav-link nav-link-border nav-link-border-signin"><span class="nav-link-letter signin">Iniciar sesión</span></a>
         <a href="#" class="nav-link nav-link-border nav-link-border-register"><span class="nav-link-letter register">Regístrate</span></a>
         <div class="space"></div>
-    </div>
+    </header>
 
-    <!-- <div style="height: 5000000px;"></div> -->
+    <div style="height: 81px;"></div>
