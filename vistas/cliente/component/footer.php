@@ -274,6 +274,8 @@ ul {
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/isotope/fit-columns.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/js/pages/homepage.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/js/views/header.js"></script>
+<!-- Direccion js -->
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>./direccion.js"></script>
 
 </body>
 </html>

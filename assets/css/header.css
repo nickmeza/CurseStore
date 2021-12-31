@@ -1,11 +1,12 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+/* * {
     margin: 0;
-    padding: 0;    
+    padding: 0;
 }
 
 .header {
     position: fixed;
-    top: 0;   
+    top: 0;
     width: 100vw;
     height: 80px;
     display: flex;
@@ -15,16 +16,19 @@
     background: #fff;
     box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     z-index: 1010;
+    transition: all 0.5s;
 }
 
-.logo{
+.logo {
     margin-right: 15px;
 }
 
 .nav-link-border {
     border: 1px solid black;
     font-weight: bold;
+    width: 8%;
     padding: 10px;
+    text-align: center;
 }
 
 .nav-link-border-register {
@@ -90,7 +94,7 @@
     font-size: 15px;
 }
 
-.clear{
+.clear {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -101,4 +105,224 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.header_toggle, .header__close {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        height: 48px;
+    }
+
+    .nav-link, .nav-link-letter {
+        font-size: 0.9rem;
+    }
+    .nav-link-border{
+        width:20%;
+    }
+    .search {        
+        display:flex;
+    }
+
+    .header_toggle {
+        display: inline;
+        color: #eeee;
+        font-size: 24px;
+    }
+
+    .header__close {
+        position: absolute;
+        display:block;
+        font-size: 24px;
+        border-radius: 50%;
+    }
+
+    .header__close:hover{
+        background-color: #00adb5;
+    }
+    .asd{
+        position:fixed;
+        top: 0;
+        right:-100%;
+        background-color: #222831;
+        color: #eee;
+        width:60%;
+        height: 100vh;
+        padding: 24px 0;
+        z-index: 100;
+        transition: 0.5s;
+        border-radius:0 0 0 50%;
+    }
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    display: flex;
+    background-color: #fff;
+    background: #fff;
+    justify-content: space-around;
+    padding: 1rem 0;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    z-index: 1010;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 90px;
+    margin-right: 10px;
+}
+
+.header_logo {
+    color: black;
+    font-size: 2.1rem;
+}
+
+.nav_list {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.nav_item {
+    margin: 0 8px;
+}
+
+.nav_link {
+    padding: 10px;
+    color: black;
+    font-size: 1.6rem;
+    border-radius: 5px;
+}
+
+.nav_item_login {
+    border: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.nav_item_register {
+    background-color: black;
+}
+
+.nav_link_register {
+    color: #fff;
+}
+
+.nav_item_iniciar:hover {
+    background: black;
+}
+
+.nav_item_register:hover {
+    background: #fff;
+}
+
+
+.nav_link_iniciar:hover {
+    color: white;
+}
+
+.nav_link_register:hover {
+    color: black;
+}
+
+.header__close, .header__toggle {
+    display: none;
+}
+
+
+@media screen and (max-width: 800px) {
+    header {
+        height: 70px;
+        justify-content: space-between;
+        padding: 0 28px;
+    }
+
+    .nav_link svg {
+        height: 20px;
+        width: 20px;
+    }
+
+    .logo a {
+        font-size: 2.5rem;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+
+    .header__toggle {
+        display: inline;
+        color: rgba(37, 34, 34, 0.933);
+        font-size: 24px;
+    }
+
+    .header__close {
+        position: absolute;
+        right: 24px;
+        display: block;
+        font-size: 24px;
+        border-radius: 20%;
+        color: rgba(37, 34, 34, 0.933);
+    }
+
+    .header__close:hover {
+        background-color: rgb(53, 50, 50);
+        color: white;
+    }
+
+    .nav_menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background-color: #fff;
+        color: #eeee;
+        width: 40%;
+        height: 65vh;
+        padding: 24px 0;
+        z-index: 100;
+        transition: 0.5s;
+        border-radius: 0 0 0 5%;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+
+    }
+
+    .nav_list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav_item{
+        margin: 2rem 0;
+    }
+
+    .nav_item_login{
+        width:50%;
+    }
+
+    .show{
+        right:0;
+    }
 }
