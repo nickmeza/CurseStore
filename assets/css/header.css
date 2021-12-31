@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: #fff;
     box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     z-index: 1010;
     transition: all 0.5s;
@@ -173,6 +172,8 @@ ul {
 
 header {
     display: flex;
+    position: fixed;
+    width: 100vw;
     background-color: #fff;
     background: #fff;
     justify-content: space-around;

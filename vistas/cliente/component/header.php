@@ -62,4 +62,4 @@
         <i class="bi bi-list header__toggle" id="toggle-menu"></i>
     </header>
 
-    <div style="height: 10px;"></div>
+    <div style="height: 80px;"></div>

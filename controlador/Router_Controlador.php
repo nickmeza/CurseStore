@@ -63,7 +63,7 @@ class Routes
         include_once "./vistas/cliente/views/Carrito.php";
     }
 
-    public static function Nosotros()
+    public static function nosotros()
     {
         include_once "./vistas/cliente/views/Nosotros.php";
     }
