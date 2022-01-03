@@ -9,9 +9,12 @@ class RoutesAdmin
     public static function curso($codigocurso)
     {
         if (isset($codigocurso[3]) && strlen($codigocurso[3])>0 ) {
-            var_dump($codigocurso[3]);
-            echo "detalle";
-            include_once "./vistas/administrador/cursos/DetalleCurso.php";
+            if ($codigocurso[3]=="buscar") {
+                echo "detalle";
+            }else {
+                var_dump($codigocurso[3]);
+                include_once "./vistas/administrador/cursos/DetalleCurso.php";
+            }
         }else {
             echo "curso list";
             include_once "./vistas/administrador/cursos/Curso.php";
