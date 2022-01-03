@@ -1,6 +1,8 @@
 const navMenu = document.getElementById('nav-menu'),
 toggleMenu = document.getElementById('toggle-menu'),
 closeMenu = document.getElementById('close-menu');
+search__header = document.getElementById('header__search');
+header__container__search = document.getElementById('container_real_time');
 
 toggleMenu.addEventListener('click',()=>{
     navMenu.classList.toggle('show');
@@ -8,6 +10,9 @@ toggleMenu.addEventListener('click',()=>{
 
 closeMenu.addEventListener('click',()=>{
     navMenu.classList.remove('show');
+})
+search__header.addEventListener('click',()=>{
+    header__container__search.classList.toggle('container_real_time');
 })
 // const search = document.querySelector('.search');
 // const icon = document.querySelector('.icon');

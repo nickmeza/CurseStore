@@ -327,3 +327,23 @@ header {
         right:0;
     }
 }
+
+
+
+/* Input search - header */
+
+/* .container_real_time{
+    
+} */
+
+.container_real_time{
+    top: 60px;
+    position:fixed;
+    background-color:white;
+    height:500px;
+    width:50vw;
+    z-index: 100;
+    border: 1px solid #2F374C;
+    border-top: none;
+    border-radius: 10px;
+}

@@ -276,6 +276,8 @@ ul {
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/js/views/header.js"></script>
 <!-- Direccion js -->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>./direccion.js"></script>
+<!-- HEADER JS -->
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>publico/js/search.js"></script>
 
 </body>
 </html>

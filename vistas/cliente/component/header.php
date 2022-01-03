@@ -47,7 +47,7 @@
         <nav class="nav_menu" id="nav-menu">
             <i class="bi bi-x header__close" id="close-menu"></i>
             <ul class="nav_list">
-                <li class="nav_item"><a href="#" class="nav_link">Search</a></li>
+                <li class="nav_item"><a href="#" class="nav_link" id="header__search">Search</a></li>
                 <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>views/Inicio.php" class="nav_link">Inicio</a></li>
                 <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>views/Nosotros.php" class="nav_link">Nosotros</a></li>
                 <li class="nav_item"><a href="#" class="nav_link">
@@ -60,6 +60,9 @@
             </ul>
         </nav>
         <i class="bi bi-list header__toggle" id="toggle-menu"></i>
-    </header>
+        <div class="" id="container_real_time">
+            <div class="datos">
 
-    <div style="height: 80px;"></div>
+            </div>
+        </div>
+    </header>
