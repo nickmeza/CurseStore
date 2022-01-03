@@ -23,8 +23,11 @@
     <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>assets/css/header.css">
     <!--link(type="text/css", rel='stylesheet', href='assets/css/color-1.css', id="color-skins")-->
     <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/style.css">
-    <!-- STYLE CSS    -->
-    <!--link(type="text/css", rel='stylesheet', href='assets/css/color-1.css', id="color-skins")-->
+    <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/card-ofert.css">
+    <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/nosotros.css">
+    <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/carrito.css">
+    <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/product.css">
+    <!-- STYLE CSS    --><!--link(type="text/css", rel='stylesheet', href='assets/css/color-1.css', id="color-skins")-->
     <link type="text/css" rel="stylesheet" href="#" id="color-skins">
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/jquery/jquery-2.1.4.min.js"></script>
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/js-cookie/js.cookie.js"></script>
@@ -47,9 +50,9 @@
         <nav class="nav_menu" id="nav-menu">
             <i class="bi bi-x header__close" id="close-menu"></i>
             <ul class="nav_list">
-                <li class="nav_item"><a href="#" class="nav_link" id="header__search">Search</a></li>
-                <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>views/Inicio.php" class="nav_link">Inicio</a></li>
-                <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>views/Nosotros.php" class="nav_link">Nosotros</a></li>
+                <li class="nav_item"><a href="#" class="nav_link">Search</a></li>
+                <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>" class="nav_link">Inicio</a></li>
+                <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>nosotros" class="nav_link">Nosotros</a></li>
                 <li class="nav_item"><a href="#" class="nav_link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />

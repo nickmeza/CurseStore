@@ -12,6 +12,13 @@ class Curso
         $cursosdescuento = Curso_Modelo::getCursosDescuento();
         echo json_encode($cursosdescuento);
     }
+
+    public static function getByName($codigocurso)
+    {
+        $cursoname = Curso_Modelo::getByName($codigocurso[4]);
+        echo json_encode($cursoname);
+    }
+  
     public static function getById($id)
     {
         var_dump($id[4]);

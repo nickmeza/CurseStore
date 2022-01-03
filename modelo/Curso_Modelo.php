@@ -3,6 +3,9 @@ class Curso_Modelo{
     public static function getAll(){
         return $data=Database::query("SELECT * FROM curso ",array());
     }
+    public static function getByName($buscador){
+        return $data=Database::query("SELECT * FROM curso where CURS_NOMBRE LIKE '%$buscador%' ",array());
+    }
     public static function getCursosDescuento(){
         return $data=Database::query("SELECT c.*, c.CURS_PRECIO - (c.CURS_PRECIO * (d.DESC_PORCENT/100)) as CURS_DISCOUNT FROM detalle_descuento dd, descuento d,curso c WHERE dd.DESC_ID=d.DESC_ID AND dd.CURS_ID=c.CURS_ID AND d.DESC_STATUS=1 AND c.CURS_ESTADO=1;",array());
     }

@@ -7,9 +7,13 @@ class Routes
         $banner = Banner_Modelo::getAll();
         include_once "./vistas/cliente/views/Inicio.php";
     }
-    public static function curso_detalle()
+    public static function login()
     {
-        include_once "./vistas/cliente/curso/DetalleCurso.php";
+        include_once "./vistas/cliente/views/Login.php";
+    }
+    public static function registrar()
+    {
+        include_once "./vistas/cliente/views/Registrar.php";
     }
     public static function categoria($buscador)
     {
