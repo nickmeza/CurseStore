@@ -77,6 +77,22 @@ if (isset($ruta_split[1])) {
                         echo "error 404";
                     }
                     break;
+                case 'login':
+
+                    if (method_exists(new Routes(), $controlador)) {
+                            Routes::$controlador($ruta_split);
+                    } else {
+                        echo "error 404";
+                     }
+                    break;
+                case 'registrar':
+
+                if (method_exists(new Routes(), $controlador)) {
+                  Routes::$controlador($ruta_split);
+                    } else {
+                            echo "error 404";
+                         }
+                        break;
                 case 'nosotros':
 
                     if (method_exists(new Routes(), $controlador)) {

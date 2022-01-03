@@ -11,6 +11,14 @@ class Routes
     {
         include_once "./vistas/cliente/curso/DetalleCurso.php";
     }
+    public static function login()
+    {
+        include_once "./vistas/cliente/views/Login.php";
+    }
+    public static function registrar()
+    {
+        include_once "./vistas/cliente/views/Registrar.php";
+    }
     public static function categoria($buscador)
     {
         echo "$buscador[2]";
