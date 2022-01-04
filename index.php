@@ -211,15 +211,19 @@ if (isset($ruta_split[1])) {
                         }
                         break;
                     case 'curso':
+                    case 'crear_curso':
                         if (method_exists(new Curso(), $metodo)) {
                             Curso::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador)) {
                             RoutesAdmin::$controlador($ruta_split);
                         } else {
+
                             echo "error 404";
                         }
                         break;
                     case 'ventas':
+                    case 'historial':
+                    case 'solicitud':
                         if (method_exists(new Orden(), $metodo)) {
                             Orden::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
@@ -252,7 +256,7 @@ if (isset($ruta_split[1])) {
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
                             RoutesAdmin::$controlador($ruta_split);
                         } else {
-                            echo "error 404";
+                            //echo "error 404";
                         }
                         break;
                     case 'usuario':
@@ -286,7 +290,7 @@ if (isset($ruta_split[1])) {
                                 break;
                         }
                         break;
-                        /* case 'tienda':
+                    case 'tienda':
                         if (method_exists(new Categoria(), $metodo)) {
                             Categoria::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
@@ -294,7 +298,7 @@ if (isset($ruta_split[1])) {
                         } else {
                             echo "error 404";
                         }
-                        break; */
+                        break;
                     default:
                         RoutesAdmin::index();
                         break;
