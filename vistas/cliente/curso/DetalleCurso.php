@@ -1,11 +1,10 @@
 <?php
 include_once "./vistas/cliente/component/header.php";
 ?>
-
-<div>
+<div style="height:80px"></div>
+<div class="detalleCurso__container">
 
 </div>
-
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
@@ -16,27 +15,57 @@ include_once "./vistas/cliente/component/header.php";
         dataType: 'json',
         success: function(json) {
             json.map((valores) => {
-                $(".cards__ofert").append(`
-                <div class="card__ofert card2__ofert">
-                <div class="container__ofert">
-                <div class="ribbon">OFERTA</div>
-                <img class="img__ofert"  src="${valores.CURS_IMAGEN}" alt="las vegas">
-                    </div>
-                    <div class="details__ofert">
-                    <h3>${valores.CURS_NOMBRE}</h3>
-                        <p>${valores.CURS_DESCRIPCION}</p>
-                        <p><span style="text-decoration:line-through">${valores.CURS_DISCOUNT}</span></p>
-                        <span style="font-size:14px; color:#AAA">Ahora:</span>
-                        <span style="color:#f8971d; font-size:20px"><strong> S/.${valores.CURS_PRECIO}</strong></span>
-                        <div class="table-buy">
-                        <a href="#" class="pricing-action">Ver Oferta</a>
-                        </div>    
-                        </div>
-                    </div>`)
+                var id__Yt = valores.CURS_URL_VIDEO;
+                var id_video_yt = id__Yt.slice(32,43)
+                console.log("hola = "+id_video_yt);
+                $(".detalleCurso__container").append(`
+
+                <div class="detalleCurso__header">
+        <div class="detalleCurso__Htitle_descripcion">
+            <h1>${valores.CURS_NOMBRE}</h1>
+            <span>${valores.CURS_DESCRIPCION}</span>
+        </div>
+        <div class="detalleCurso__Hcard">
+            <div class="dC__H_video">
+            <iframe  src="https://www.youtube.com/embed/${id_video_yt}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <h1>S/. ${valores.CURS_PRECIO}</h1>
+            <button class="dC__añadir_cesta"><span>Añadir a la cesta</span></button>
+            <button class="dc__comprar_ahora"><span>Comprar ahora</span></button>
+        </div>
+    </div>
+    <div class="dC__container__body">
+        <ul>
+            <li>
+                <span></span>
+                <div class="title">Title</div>
+                <div class="descripcion">descripcion</div>
+            </li>
+            <li>
+                <span></span>
+                <div class="title">Title</div>
+                <div class="descripcion">descripcion</div>
+            </li>
+            <li>
+                <span></span>
+                <div class="title">Title</div>
+                <div class="descripcion">descripcion</div>
+            </li>
+        </ul>
+    </div>`)
             })
             console.log(json)
         }
     })
+
+    // var tag = document.createElement('script');
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // var firstScriptTag = documento.getElementsByClassName('dC__H_video')[0];
+    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // var player;
+    // function onYouTubeIframeAPIReady() {
+    //     player = new YT.Player('dC__H_video')
 </script>
 <?php
 include_once "./vistas/cliente/component/footer.php";
