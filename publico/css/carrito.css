@@ -27,8 +27,6 @@
     flex: 6;
 }
 
-.titulo__carrito {}
-
 .content__carrito {
     display: flex;
 }
@@ -54,8 +52,6 @@
     object-fit: cover;
 }
 
-.descripcion__curso {}
-
 .carrito__izquierda {
     flex: 3;
 }
@@ -64,8 +60,6 @@
     overflow: hidden;
     white-space: nowrap;
 }
-
-.titulo__carrito {}
 
 .pago__carrito {
     display: flex;
