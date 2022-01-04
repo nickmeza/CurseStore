@@ -63,6 +63,9 @@
             </ul>
         </nav>
         <i class="bi bi-list header__toggle" id="toggle-menu"></i>
-    </header>
+        <div class="" id="container_real_time">
+            <div class="datos">
 
-    <div style="height: 80px;"></div>
+            </div>
+        </div>
+    </header>
