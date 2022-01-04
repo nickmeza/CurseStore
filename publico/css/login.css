@@ -1,11 +1,7 @@
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* BASIC */
-body {
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-}
+
 a {
     color: #92badd;
     display: inline-block;
@@ -22,6 +18,7 @@ h2 {
     margin: 40px 8px 10px 8px;
     color: #cccccc;
 }
+
 
 /* STRUCTURE */
 
@@ -287,31 +284,3 @@ input[type=text]:placeholder {
 * {
     box-sizing: border-box;
 }
-</style>
-
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-    <h2 onclick = "window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="inactive underlineHover"> Iniciar Sesión</h2>
-    <h2 class ="active">Registrarse </h2>
-
-    <!-- Icon -->
-    
-
-    <!-- Login Form -->
-    <form>
-    <input type="text" id="name" class="fadeIn second" name="login" placeholder="Nombre completo">
-      <input type="text" id="phone" class="fadeIn second" name="login" placeholder="Número de celular">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Repetir Contraseña">
-      <input type="submit" class="fadeIn fourth" value="Registrate">
-    </form>
-
-   <!-- -->
-   <div id="formFooter">
-      <a onclick = "window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="underlineHover" > ¿Ya tienes una cuenta? Inicia sesión</a>
-    </div>
-
-  </div>
-</div>
