@@ -120,7 +120,6 @@ input[type=text] {
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -301,21 +300,22 @@ input[type=text]:placeholder {
     <div class="fadeIn first">
       <img src="https://lh3.googleusercontent.com/proxy/w6SqQqgmBLuQWteMJQw_YajAga2Byo1RCUssgIC-LwLdKVtGD7l3g-Sw0UlMSgl0fDxqYyyrnYXEbjApovJDqv23" id="icon" alt="User Icon" />
     </div>
-
+ 
     <!-- Login Form -->
     <form>
-    
-        
-            
-    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
-      <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
+            <i class="fa fa-user"></i>
+            <i class="fa fa-lock"></i>
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">		
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+                <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
+            </div>
+        </div>               
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" href="#"> ¿Has olvidado la contraseña?</a>
     </div>
-
+    
   </div>
 </div>
