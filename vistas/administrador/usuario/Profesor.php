@@ -1,7 +1,7 @@
 <?php
 include_once "./vistas/administrador/component/header.php";
 ?>
-div class="container">
+<div class="container">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
