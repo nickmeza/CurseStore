@@ -208,7 +208,7 @@ include_once "./vistas/administrador/component/header.php";
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-5">
-                            <h2>User <b>Management</b></h2>
+                            <h2>Curso <b>Management</b></h2>
                         </div>
                         <div class="col-xs-7">
                             <a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -230,9 +230,9 @@ include_once "./vistas/administrador/component/header.php";
                         <tr>
                             <td>1</td>
                             <td>
-                                <a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt=""> Tecnologia</a>
+                                <a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt=""> Base de Datos</a>
                             </td>
-                            <td>04/10/2013</td>
+                            <td>Tecnologia</td>
 
                             <td><span class="status text-success">&bull;</span> Active</td>
                             <td>
@@ -243,9 +243,9 @@ include_once "./vistas/administrador/component/header.php";
                         <tr>
                             <td>2</td>
                             <td>
-                                <a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt=""> Marketing</a>
+                                <a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt=""> Ciencia</a>
                             </td>
-                            <td>05/08/2014</td>
+                            <td>Ciencia</td>
 
                             <td><span class="status text-success">&bull;</span> Active</td>
                             <td>
@@ -256,9 +256,9 @@ include_once "./vistas/administrador/component/header.php";
                         <tr>
                             <td>3</td>
                             <td>
-                                <a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt=""> Diseño Gráfico</a>
+                                <a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt=""> Adobe InDesing</a>
                             </td>
-                            <td>11/05/2015</td>
+                            <td>Diseño</td>
 
                             <td><span class="status text-danger">&bull;</span> Suspended</td>
                             <td>
@@ -269,9 +269,9 @@ include_once "./vistas/administrador/component/header.php";
                         <tr>
                             <td>4</td>
                             <td>
-                                <a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="">Desarrollo Personal</a>
+                                <a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="">Google</a>
                             </td>
-                            <td>06/09/2016</td>
+                            <td>Marketing</td>
 
                             <td><span class="status text-success">&bull;</span> Active</td>
                             <td>
@@ -279,19 +279,7 @@ include_once "./vistas/administrador/component/header.php";
                                 <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>
-                                <a href="#"><img src="/examples/images/avatar/5.jpg" class="avatar" alt=""> Martin Sommer</a>
-                            </td>
-                            <td>12/08/2017</td>
-
-                            <td><span class="status text-warning">&bull;</span> Inactive</td>
-                            <td>
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 <div class="clearfix">
