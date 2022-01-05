@@ -23,7 +23,8 @@ $.ajax({
                     <div class="product__description">
                         <h3 class="product_title"> ${valores.CURS_NOMBRE}</h3>
                         <span class="product_price">S/.${valores.CURS_PRECIO}</span>
-                    </div>
+                        
+                        </div>
                     <i class="product__icon fa fa-cart-plus"></i>
 
                 </div>`)

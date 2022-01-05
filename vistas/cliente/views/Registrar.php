@@ -118,7 +118,6 @@ input[type=text] {
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -301,9 +300,9 @@ input[type=text]:placeholder {
     <!-- Login Form -->
     <form>
     <input type="text" id="name" class="fadeIn second" name="login" placeholder="Nombre completo">
-      <input type="text" id="phone" class="fadeIn second" name="login" placeholder="Número de celular">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+    <input type="text" id="phone" class="fadeIn second" name="login" placeholder="Número de celular">
+    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">
+    <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
       <input type="text" id="password" class="fadeIn third" name="login" placeholder="Repetir Contraseña">
       <input type="submit" class="fadeIn fourth" value="Registrate">
     </form>
