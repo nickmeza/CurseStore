@@ -21,6 +21,7 @@ class Banner
     {
         if (isset($_REQUEST['BANNER_IMAGEN'])) {
             $banner["BANNER_IMAGEN"] = $_REQUEST['BANNER_IMAGEN'];
+            $banner["BANNER_TITULO"] = $_REQUEST['BANNER_TITULO'];
             Banner_Modelo::insertBanner($banner);
             echo "creado correctamente";
         } else {
@@ -42,6 +43,7 @@ class Banner
     {
         if (isset($_REQUEST['BANNER_IMAGEN']) && isset($_REQUEST['BANNER_STATUS'])) {
             $banner["BANNER_IMAGEN"] = $_REQUEST['BANNER_IMAGEN'];
+            $banner["BANNER_TITULO"] = $_REQUEST['BANNER_TITULO'];
             $banner["BANNER_STATUS"] = $_REQUEST['BANNER_STATUS'];
             $mensaje["mensaje"] = "correcto";
             $mensaje["statud"] = "200";
