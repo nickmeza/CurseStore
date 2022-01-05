@@ -1,10 +1,13 @@
-<?php
-include_once "./vistas/cliente/component/header.php";
-?>
-<div style="height:80px"></div>
-<div class="detalleCurso__container">
+<?php include_once "./vistas/cliente/component/header.php"; ?>
+<!-- <div style="height:80px"></div> -->
 
-</div>
+<body>
+    <main class="detalleCurso__container">
+        
+    </main>
+</body>
+
+<!-- <div class="detalleCurso__container"></div> -->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
@@ -16,24 +19,32 @@ include_once "./vistas/cliente/component/header.php";
         success: function(json) {
             json.map((valores) => {
                 var id__Yt = valores.CURS_URL_VIDEO;
-                var id_video_yt = id__Yt.slice(32,43)
-                console.log("hola = "+id_video_yt);
+                var id_video_yt = id__Yt.slice(32, 43)
+                console.log("hola = " + id_video_yt);
                 $(".detalleCurso__container").append(`
-
-                <div class="detalleCurso__header">
-        <div class="detalleCurso__Htitle_descripcion">
-            <h1>${valores.CURS_NOMBRE}</h1>
-            <span>${valores.CURS_DESCRIPCION}</span>
-        </div>
-        <div class="detalleCurso__Hcard">
-            <div class="dC__H_video">
-            <iframe  src="https://www.youtube.com/embed/${id_video_yt}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <section class="presentation">
+            <div class="introduction">
+                <div class="intro-text">
+                    <h1>${valores.CURS_NOMBRE}</h1>
+                    <p>
+                        ${valores.CURS_DESCRIPCION}
+                    </p>
+                </div>
+                <div class="coste">
+                    <p>S/. ${valores.CURS_PRECIO}</p>
+                </div>
+                <div class="cta">
+                    <button class="cta-select">Añadir a la cesta</button>
+                    <button class="cta-add">Comprar ahora</button>
+                </div>
             </div>
-            <h1>S/. ${valores.CURS_PRECIO}</h1>
-            <button class="dC__añadir_cesta"><span>Añadir a la cesta</span></button>
-            <button class="dc__comprar_ahora"><span>Comprar ahora</span></button>
-        </div>
-    </div>
+            <div class="cover"><img src="https://www.hn.cl/wp-content/uploads/2020/11/BDM-1.png" alt="matebook"></div>
+        </section>
+        <img class="big-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/big-eclipse.svg" alt="">
+        <img class="medium-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/mid-eclipse.svg" alt="">
+        <img class="small-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/small-eclipse.svg" alt="">
+
+
     <div class="dC__container__body">
         <ul>
             <li>
@@ -67,6 +78,4 @@ include_once "./vistas/cliente/component/header.php";
     // function onYouTubeIframeAPIReady() {
     //     player = new YT.Player('dC__H_video')
 </script>
-<?php
-include_once "./vistas/cliente/component/footer.php";
-?>
+<?php include_once "./vistas/cliente/component/footer.php"; ?>
