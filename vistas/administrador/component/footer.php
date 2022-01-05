@@ -9,11 +9,11 @@
         });
     }
 
-    let sidebar = document.querySelector(".sidebar");
+    let sidebar = document.querySelector(".sidebar__admin");
     let sidebarBtn = document.querySelector(".bx-menu");
     console.log(sidebarBtn);
     sidebarBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
+        sidebar.classList.toggle("close__admin");
     });
 </script>
 </body>

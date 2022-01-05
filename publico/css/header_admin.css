@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.sidebar {
+.sidebar__admin {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,18 +17,18 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.close {
+.sidebar__admin.close__admin {
     width: 78px;
 }
 
-.sidebar .logo-details {
+.sidebar__admin .logo-details {
     height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.sidebar .logo-details i {
+.sidebar__admin .logo-details i {
     font-size: 30px;
     color: #fff;
     height: 50px;
@@ -37,7 +37,7 @@
     line-height: 50px;
 }
 
-.sidebar .logo-details .logo_name {
+.sidebar__admin .logo-details .logo_name {
     font-size: 22px;
     color: #fff;
     font-weight: 600;
@@ -45,47 +45,47 @@
     transition-delay: 0.1s;
 }
 
-.sidebar.close .logo-details .logo_name {
+.sidebar__admin.close__admin .logo-details .logo_name {
     transition-delay: 0s;
     opacity: 0;
     pointer-events: none;
 }
 
-.sidebar .nav-links {
+.sidebar__admin .nav-links {
     height: 100%;
     padding: 30px 0 150px 0;
     overflow: auto;
 }
 
-.sidebar.close .nav-links {
+.sidebar__admin.close__admin .nav-links {
     overflow: visible;
 }
 
-.sidebar .nav-links::-webkit-scrollbar {
+.sidebar__admin .nav-links::-webkit-scrollbar {
     display: none;
 }
 
-.sidebar .nav-links li {
+.sidebar__admin .nav-links li {
     position: relative;
     list-style: none;
     transition: all 0.4s ease;
 }
 
-.sidebar .nav-links li:hover {
+.sidebar__admin .nav-links li:hover {
     background: #1d1b31;
 }
 
-.sidebar .nav-links li .iocn-link {
+.sidebar__admin .nav-links li .iocn-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.sidebar.close .nav-links li .iocn-link {
+.sidebar__admin.close__admin .nav-links li .iocn-link {
     display: block
 }
 
-.sidebar .nav-links li i {
+.sidebar__admin .nav-links li i {
     height: 50px;
     min-width: 78px;
     text-align: center;
@@ -96,44 +96,44 @@
     transition: all 0.3s ease;
 }
 
-.sidebar .nav-links li.showMenu i.arrow {
+.sidebar__admin .nav-links li.showMenu i.arrow {
     transform: rotate(-180deg);
 }
 
-.sidebar.close .nav-links i.arrow {
+.sidebar__admin.close__admin .nav-links i.arrow {
     display: none;
 }
 
-.sidebar .nav-links li a {
+.sidebar__admin .nav-links li a {
     display: flex;
     align-items: center;
     text-decoration: none;
 }
 
-.sidebar .nav-links li a .link_name {
+.sidebar__admin .nav-links li a .link_name {
     font-size: 18px;
     font-weight: 400;
     color: #fff;
     transition: all 0.4s ease;
 }
 
-.sidebar.close .nav-links li a .link_name {
+.sidebar__admin.close__admin .nav-links li a .link_name {
     opacity: 0;
     pointer-events: none;
 }
 
-.sidebar .nav-links li .sub-menu {
+.sidebar__admin .nav-links li .sub-menu {
     padding: 6px 6px 14px 80px;
     margin-top: -10px;
     background: #1d1b31;
     display: none;
 }
 
-.sidebar .nav-links li.showMenu .sub-menu {
+.sidebar__admin .nav-links li.showMenu .sub-menu {
     display: block;
 }
 
-.sidebar .nav-links li .sub-menu a {
+.sidebar__admin .nav-links li .sub-menu a {
     color: #fff;
     font-size: 15px;
     padding: 5px 0;
@@ -142,11 +142,11 @@
     transition: all 0.3s ease;
 }
 
-.sidebar .nav-links li .sub-menu a:hover {
+.sidebar__admin .nav-links li .sub-menu a:hover {
     opacity: 1;
 }
 
-.sidebar.close .nav-links li .sub-menu {
+.sidebar__admin.close__admin .nav-links li .sub-menu {
     position: absolute;
     left: 100%;
     top: -10px;
@@ -159,24 +159,24 @@
     transition: 0s;
 }
 
-.sidebar.close .nav-links li:hover .sub-menu {
+.sidebar__admin.close__admin .nav-links li:hover .sub-menu {
     top: 0;
     opacity: 1;
     pointer-events: auto;
     transition: all 0.4s ease;
 }
 
-.sidebar .nav-links li .sub-menu .link_name {
+.sidebar__admin .nav-links li .sub-menu .link_name {
     display: none;
 }
 
-.sidebar.close .nav-links li .sub-menu .link_name {
+.sidebar__admin.close__admin .nav-links li .sub-menu .link_name {
     font-size: 18px;
     opacity: 1;
     display: block;
 }
 
-.sidebar .nav-links li .sub-menu.blank {
+.sidebar__admin .nav-links li .sub-menu.blank {
     opacity: 1;
     pointer-events: auto;
     padding: 3px 20px 6px 16px;
@@ -184,12 +184,12 @@
     pointer-events: none;
 }
 
-.sidebar .nav-links li:hover .sub-menu.blank {
+.sidebar__admin .nav-links li:hover .sub-menu.blank {
     top: 50%;
     transform: translateY(-50%);
 }
 
-.sidebar .profile-details {
+.sidebar__admin .profile-details {
     position: fixed;
     bottom: 0;
     width: 260px;
@@ -201,20 +201,20 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.close .profile-details {
+.sidebar__admin.close__admin .profile-details {
     background: none;
 }
 
-.sidebar.close .profile-details {
+.sidebar__admin.close__admin .profile-details {
     width: 78px;
 }
 
-.sidebar .profile-details .profile-content {
+.sidebar__admin .profile-details .profile-content {
     display: flex;
     align-items: center;
 }
 
-.sidebar .profile-details img {
+.sidebar__admin .profile-details img {
     height: 52px;
     width: 52px;
     object-fit: cover;
@@ -224,38 +224,39 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.close .profile-details img {
+.sidebar__admin.close__admin .profile-details img {
     padding: 10px;
 }
 
-.sidebar .profile-details .profile_name,
-.sidebar .profile-details .job {
+.sidebar__admin .profile-details .profile_name,
+.sidebar__admin .profile-details .job {
     color: #fff;
     font-size: 18px;
     font-weight: 500;
     white-space: nowrap;
 }
 
-.sidebar.close .profile-details i,
-.sidebar.close .profile-details .profile_name,
-.sidebar.close .profile-details .job {
+.sidebar__admin.close__admin .profile-details i,
+.sidebar__admin.close__admin .profile-details .profile_name,
+.sidebar__admin.close__admin .profile-details .job {
     display: none;
 }
 
-.sidebar .profile-details .job {
+.sidebar__admin .profile-details .job {
     font-size: 12px;
 }
 
 .home-section {
     position: relative;
     background: #E4E9F7;
+    overflow-y: scroll;
     height: 100vh;
     left: 260px;
     width: calc(100% - 260px);
     transition: all 0.5s ease;
 }
 
-.sidebar.close~.home-section {
+.sidebar__admin.close__admin~.home-section {
     left: 78px;
     width: calc(100% - 78px);
 }
@@ -282,7 +283,7 @@
 }
 
 @media (max-width: 420px) {
-    .sidebar.close .nav-links li .sub-menu {
+    .sidebar__admin.close__admin .nav-links li .sub-menu {
         display: none;
     }
 }
