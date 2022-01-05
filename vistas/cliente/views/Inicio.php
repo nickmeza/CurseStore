@@ -104,13 +104,6 @@ include_once "./vistas/cliente/component/header.php";
         </div>
     </div>
 </div>
-<div style="display:flex; width: 100%;">
-    <img style="width: 30%;" src="https://i.blogs.es/e1feab/google-fotos/450_1000.jpg" alt="">
-    <div style="width: 70%;">
-        <h3>Titulo Curso</h3>
-        <p>Descripcion del Curso</p>
-    </div>
-</div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>

@@ -4,16 +4,13 @@ class RoutesAdmin
 {
     public static function index()
     {
-        include_once "./vistas/cliente/views/Inicio.php";
+        include_once "./vistas/administrador/Admin.php";
     }
     public static function curso($codigocurso)
     {
-        if (isset($codigocurso[3]) && strlen($codigocurso[3])>0 ) {
-            var_dump($codigocurso[3]);
-            echo "detalle";
+        if (isset($codigocurso[3]) && strlen($codigocurso[3]) > 0) {
             include_once "./vistas/administrador/cursos/DetalleCurso.php";
-        }else {
-            echo "curso list";
+        } else {
             include_once "./vistas/administrador/cursos/Curso.php";
         }
     }
@@ -29,29 +26,41 @@ class RoutesAdmin
     {
         include_once "./vistas/administrador/ventas/Descuento.php";
     }
+    public static function crear_curso()
+    {
+        include_once "./vistas/administrador/cursos/CrearCurso.php";
+    }
     public static function perfil()
     {
         include_once "./vistas/administrador/perfil/Cuenta.php";
     }
     public static function categoria()
     {
-        include_once "./vistas/administrador/cursos/Curso.php";
+        include_once "./vistas/administrador/cursos/Categoria.php";
     }
-    
+    public static function historial()
+    {
+        include_once "./vistas/administrador/cursos/Categoria.php";
+    }
+    public static function solicitudes()
+    {
+        include_once "./vistas/administrador/cursos/Categoria.php";
+    }
+
     public static function admin()
     {
         include_once "./vistas/administrador/Admin.php";
-        echo "admin";
     }
     public static function profesor()
     {
-        echo "profe";
         include_once "./vistas/administrador/usuario/Profesor.php";
     }
     public static function cliente()
     {
-        echo "client";
         include_once "./vistas/administrador/usuario/Cliente.php";
     }
-    
+    public static function tienda()
+    {
+        include_once "./vistas/administrador/tienda/Tienda.php";
+    }
 }
