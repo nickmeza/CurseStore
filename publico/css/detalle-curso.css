@@ -31,7 +31,7 @@ button {
 .intro-text h1 {
     font-size: 44px;
     font-weight: 500;
-    background: linear-gradient(to right, #494964, #6f6f89);
+    background: linear-gradient(to right, #151516, #6f6f89);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -52,10 +52,10 @@ button {
     padding: 20px 0px 0px 0px;
 }
 
-.cta-select {
-    border: 2px solid #c36cbb;
+.cta-anadir-cesta {
+    border: 2px solid #282735;
     background: transparent;
-    color: #c36cbb;
+    color: #1f1d1e;
     width: 150px;
     height: 50px;
     cursor: pointer;
@@ -63,7 +63,7 @@ button {
 }
 
 .cta-add {
-    background: #c36cbb;
+    background: #030303;
     width: 150px;
     height: 50px;
     cursor: pointer;
@@ -154,4 +154,65 @@ button {
     .big-circle {
         opacity: 0.2;
     }
+}
+
+.contenido__curso {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+}
+
+.intro-text--cc {
+    display: flex;
+    flex-direction: column;
+    color: #151516;
+}
+
+.intro-text--cc p {
+    font-size: 35px;
+}
+
+.curso__modulo {
+    border: 1px solid #151516
+}
+
+.curso__modulo_header {
+    display: flex;
+    justify-content: space-between;
+    color: #030303;
+    padding: 10px 10px 0 10px;
+    border-bottom: 1px solid #151516;
+}
+
+.curso__modulo_title {
+    font-size: 25px;
+    color: black;
+    align-items: center;
+    width: 50%;
+}
+
+.curso__modulo_title_container {
+    font-size: 25px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+
+.curso__modulo_body {
+    padding: 10px 10px 0 10px;
+}
+
+.curso__modulo_clase {
+    display: flex;
+    justify-content: space-between
+}
+
+.curso__modulo_descripcion {
+    width: 55%
 }
