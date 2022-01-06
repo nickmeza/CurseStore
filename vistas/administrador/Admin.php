@@ -78,13 +78,13 @@ include_once "./vistas/administrador/component/header.php";
     }
 </style>
 <div>
-    <!-- <h1>10 Richest People</h1>
+    <h1>10 Richest People</h1>
     <p>Drag and drop the items into their corresponding spots</p>
     <ul class="draggable-list" id="draggable-list"></ul>
     <button class="check-btn" id="check">
         Check Order
         <i class="fas fa-paper-plane"></i>
-    </button> -->
+    </button>
 </div>
 <script>
     const draggable_list = document.getElementById('draggable-list');

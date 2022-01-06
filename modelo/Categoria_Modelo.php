@@ -12,10 +12,11 @@ class Categoria_Modelo{
     }
     public static function updateCategoria($categoria,$id){
         Database::queryChange("UPDATE categoria set CAT_NAME=?,CAT_DESCRIPCION=?,CAT_ESTADO=?,CAT_IMAGEN=? where CAT_ID=?",
-        array($categoria["CAT_NAME"],$categoria["CAT_DESCRIPCION"],$categoria["CAT_ESTADO"],$id));
+        array($categoria["CAT_NAME"],$categoria["CAT_DESCRIPCION"],$categoria["CAT_ESTADO"],$categoria['CAT_IMAGEN'],$id));
     }
     public static function delete($id){
-        Database::queryChange("DELETE from categoria  where CAT_ID=?",array($id));
+        $datos = Database::queryChange("DELETE from categoria  where CAT_ID=?",array($id));
+        return $datos;
     }
 
 }
