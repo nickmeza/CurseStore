@@ -23,26 +23,26 @@
                 console.log("hola = " + id_video_yt);
                 $(".detalleCurso__container").append(`
                 <section class="presentation">
-            <div class="introduction">
-                <div class="intro-text">
-                    <h1>${valores.CURS_NOMBRE}</h1>
-                    <p>
-                        ${valores.CURS_DESCRIPCION}
-                    </p>
-                </div>
-                <div class="coste">
-                    <p>S/. ${valores.CURS_PRECIO}</p>
-                </div>
-                <div class="cta">
-                    <button class="cta-select">Añadir a la cesta</button>
-                    <button class="cta-add">Comprar ahora</button>
-                </div>
-            </div>
-            <div class="cover"><img src="https://www.hn.cl/wp-content/uploads/2020/11/BDM-1.png" alt="matebook"></div>
-        </section>
-        <img class="big-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/big-eclipse.svg" alt="">
-        <img class="medium-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/mid-eclipse.svg" alt="">
-        <img class="small-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/small-eclipse.svg" alt="">
+                    <div class="introduction">
+                        <div class="intro-text">
+                            <h1>${valores.CURS_NOMBRE}</h1>
+                            <p>
+                                ${valores.CURS_DESCRIPCION}
+                            </p>
+                        </div>
+                        <div class="coste">
+                            <p>S/. ${valores.CURS_PRECIO}</p>
+                        </div>
+                        <div class="cta">
+                            <button class="cta-select">Añadir a la cesta</button>
+                            <button class="cta-add">Comprar ahora</button>
+                        </div>
+                    </div>
+                    <div class="cover"><img src="https://www.hn.cl/wp-content/uploads/2020/11/BDM-1.png" alt="matebook"></div>
+                </section>
+                <img class="big-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/big-eclipse.svg" alt="">
+                <img class="medium-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/mid-eclipse.svg" alt="">
+                <img class="small-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/small-eclipse.svg" alt="">
 
 
     <div class="dC__container__body">
