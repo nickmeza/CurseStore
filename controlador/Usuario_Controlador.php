@@ -52,15 +52,15 @@ class Usuario
             echo "fallo al buscar";
         }
     }
-    public static function getClientData()
-    {
-        $cliente = Cliente_Modelo::getClientData();
-        echo json_encode($cliente);
-    }
-    public static function getProfesorData()
-    {
-        $profesor = Profesor_Modelo::getProfesorData();
-        echo json_encode($profesor);
+    public static function getPersonData($url)
+    {   
+        if ($url[3]=="profesor") {
+            $profesor = Profesor_Modelo::getProfesorData();
+            echo json_encode($profesor);
+        }else {
+            $cliente = Cliente_Modelo::getClientData();
+            echo json_encode($cliente);
+        }
     }
 
     /* 
