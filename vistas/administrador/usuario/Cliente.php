@@ -375,16 +375,17 @@ include_once "./vistas/administrador/component/header.php";
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     $.ajax({
-        url: url + 'admin/cliente/getAll',
+        url: url + 'admin/usuario/cliente/getPersonData',
         type: 'GET',
         dataType: 'json',
         success: function(json) {
+            console.log(json)
             json.map((valores, idx) => {
                 $(".tbody__categoria").append(`
                 <tr>
                     <td>${valores.PER_ID}</td>
                     <td>
-                        <a><img src="${valores.PER_NAME}" class="avatar" alt=""></a>
+                        <a>${valores.PER_NOMBRE + " " + valores.PER_APELLIDO}</a>
                     </td>
                     <td style="width: 400px;">${valores.PER_DIRECCION}</td>
 
@@ -453,22 +454,22 @@ include_once "./vistas/administrador/component/header.php";
         })
     }
     $("#form_editar_categoria").submit(function(event) {
-            event.preventDefault();
-            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
-            const id = $("#edit_id").val()
-            $.ajax({
-                type: 'POST',
-                url: url + "admin/categoria/update/" + id,
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(msg) {
-                    console.log(msg)
-                    location.href = url + "admin/categoria";
-                }
-            });
-        })
+        event.preventDefault();
+        $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
+        const id = $("#edit_id").val()
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/categoria/update/" + id,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/categoria";
+            }
+        });
+    })
 </script>
 
 <?php

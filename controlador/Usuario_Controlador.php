@@ -3,19 +3,66 @@
 
 class Usuario
 {
-    public static function create()
+    public static function createUsuarioProfesor($profesor)
     {
-        echo "create";
+        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
+            $profesor["NOMBRE"] = $_REQUEST['NOMBRE'];
+            $profesor["APELLIDO"] = $_REQUEST['APELLIDO'];
+            $profesor["DIRECCION"] = $_REQUEST['DIRECCION'];
+            $profesor["USUARIO"] = $_REQUEST['USUARIO'];
+            $profesor["CONTRASENA"] = $_REQUEST['CONTRASENA'];
+            Profesor_Modelo::insertProfesor($profesor);
+            echo "creado correctamente";
+        } else {
+            echo "fallo al crear";
+        }
+    }
+    public static function createUsuarioCliente($cliente)
+    {
+        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
+            $cliente["NOMBRE"] = $_REQUEST['NOMBRE'];
+            $cliente["APELLIDO"] = $_REQUEST['APELLIDO'];
+            $cliente["DIRECCION"] = $_REQUEST['DIRECCION'];
+            $cliente["USUARIO"] = $_REQUEST['USUARIO'];
+            $cliente["CONTRASENA"] = $_REQUEST['CONTRASENA'];
+            Cliente_Modelo::insertCliente($cliente);
+            echo "creado correctamente";
+        } else {
+            echo "fallo al crear";
+        }
+    }
+    public static function deleteUsuarioProfesor()
+    {
         include_once "./vistas/cliente/curso/Categoria.php";
     }
-    public static function delete()
+    public static function deleteUsuarioCliente()
     {
         include_once "./vistas/cliente/curso/Categoria.php";
     }
-    public static function update()
+    public static function updatePersona()
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
     }
+    public static function getById($id)
+    {
+        if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
+            $persona = array();
+            $persona = Banner_Modelo::getOne($id[4]);
+            echo json_encode($persona);
+        } else {
+            echo "fallo al buscar";
+        }
+    }
+    public static function getPersonData($url)
+    {   
+        if ($url[3]=="profesor") {
+            $profesor = Profesor_Modelo::getProfesorData();
+            echo json_encode($profesor);
+        }else {
+            $cliente = Cliente_Modelo::getClientData();
+            echo json_encode($cliente);
+        }
+    }
+
     /* 
     public static function Login($args = array())
     {
