@@ -273,7 +273,7 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2>User <b>Management</b></h2>
+                        <h2>Cliente<b>Management</b></h2>
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -314,21 +314,33 @@ include_once "./vistas/administrador/component/header.php";
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_agregar_usuarios" method="POST" enctype="multipart/form-data">
+            <form id="form_agregar_cliente" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
 
-                    <div class="form-group">
+                <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="PER_NAME" id="name">
+                        <input type="text" class="form-control" name="NOMBRE" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Apellido:</label>
+                        <input type="text" class="form-control" name="APELLIDO" id="apellido">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control" name="PER_DIRECCION" id="description">
+                        <input type="text" class="form-control" name="DIRECCION" id="direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">usuario:</label>
+                        <input type="text" class="form-control" name="USUARIO" id="usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">contraseña:</label>
+                        <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
                     </div>
 
                 </div>
@@ -379,13 +391,12 @@ include_once "./vistas/administrador/component/header.php";
         type: 'GET',
         dataType: 'json',
         success: function(json) {
-            console.log(json)
             json.map((valores, idx) => {
                 $(".tbody__categoria").append(`
                 <tr>
                     <td>${valores.PER_ID}</td>
                     <td>
-                        <a>${valores.PER_NOMBRE + " " + valores.PER_APELLIDO}</a>
+                         <a>${valores.PER_NOMBRE + " " + valores.PER_APELLIDO}</a>
                     </td>
                     <td style="width: 400px;">${valores.PER_DIRECCION}</td>
 
@@ -402,19 +413,19 @@ include_once "./vistas/administrador/component/header.php";
         }
     })
 
-    $("#form_agregar_categoria").submit(function(event) {
+    $("#form_agregar_cliente").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
             type: 'POST',
-            url: url + "admin/categoria/create",
+            url: url + "admin/usuario/cliente/createUsuarioCliente",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url + "admin/categoria";
+                location.href = url + "admin/usuario/cliente";
             }
         });
     })
@@ -454,22 +465,22 @@ include_once "./vistas/administrador/component/header.php";
         })
     }
     $("#form_editar_categoria").submit(function(event) {
-        event.preventDefault();
-        $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
-        const id = $("#edit_id").val()
-        $.ajax({
-            type: 'POST',
-            url: url + "admin/categoria/update/" + id,
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(msg) {
-                console.log(msg)
-                location.href = url + "admin/categoria";
-            }
-        });
-    })
+            event.preventDefault();
+            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
+            const id = $("#edit_id").val()
+            $.ajax({
+                type: 'POST',
+                url: url + "admin/categoria/update/" + id,
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(msg) {
+                    console.log(msg)
+                    location.href = url + "admin/categoria";
+                }
+            });
+        })
 </script>
 
 <?php

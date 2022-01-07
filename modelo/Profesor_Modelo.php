@@ -13,7 +13,7 @@ class Profesor_Modelo
     {
         Database::queryChange(
             "CALL AB_AGREGARPROFESOR(?, ?, ?, ?, ?);",
-            array($profesor["NOMBRE"], $profesor["APELLIDO"], $profesor["DIRECCION"], $profesor["USUARIO"],$profesor["CONTRASENA"], 1)
+            array($profesor["NOMBRE"], $profesor["APELLIDO"], $profesor["DIRECCION"], $profesor["USUARIO"],$profesor["CONTRASENA"])
         );
     }
     public static function updateProfesor($profesor, $id)
