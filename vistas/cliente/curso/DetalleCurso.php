@@ -2,14 +2,35 @@
 <!-- <div style="height:80px"></div> -->
 
 <body>
-    <main class="detalleCurso__container">
-    </main>
+    <main class="detalleCurso___container"></main>
     <div class="contenido__curso">
         <div class="intro-text--cc">
             <p>Contenido del curso</p>
             <span>90 secciones • 79 h 13 m de duración total</span>
         </div>
-        <div class="curso__modulo">
+        <nav class="nav__dc">
+            <ul class="nav__dc__lista">
+                <li class="lista__item lista__item--click">
+                    <div class="lista__button list__button--click">
+                        <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/play-dc.svg" alt="" class="lista__img">
+                        <a href="#" class="nav__link">Introduccion al curso</a>
+                        <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg" alt="" class="lista__arrow">
+                    </div>
+                    <ul class="list__show">
+                        <li class="lista__inside">
+                            <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                        </li>
+                        <li class="lista__inside">
+                            <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                        </li>
+                        <li class="lista__inside">
+                            <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- <div class="curso__modulo">
             <div class="curso__modulo_header">
                 <p class="curso__modulo_title">Introduccion al Desarrollo y Diseño Web <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
@@ -35,7 +56,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </body>
 
@@ -53,7 +74,7 @@
                 var id__Yt = valores.CURS_URL_VIDEO;
                 var id_video_yt = id__Yt.slice(32, 43)
                 console.log("hola = " + id_video_yt);
-                $(".detalleCurso__container").append(`
+                $(".detalleCurso___container").append(`
                 <section class="presentation">
                     <div class="introduction">
                         <div class="intro-text">
@@ -81,6 +102,21 @@
             })
             console.log(json)
         }
+    })
+
+    let listElements = document.querySelectorAll('.list__button--click');
+    listElements.forEach(listElements => {
+        listElements.addEventListener('click',()=>{
+            listElements.classList.toggle('arrow');
+            let height = 0;
+            let menu = listElements.nextElementSibling;
+            if (menu.clientHeight == "0"){
+                height = menu.scrollHeight;
+            }
+
+            menu.style.height = height+"px";
+
+        })
     })
 
     // var tag = document.createElement('script');

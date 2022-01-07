@@ -19,7 +19,10 @@ button {
 .presentation {
     display: flex;
     width: 90%;
-    margin: auto;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
     min-height: 80vh;
     align-items: center;
 }
@@ -128,7 +131,6 @@ button {
         margin-top: 10vh;
         text-align: center;
         padding-bottom: 3vh;
-        ;
     }
     .intro-text h1 {
         font-size: 30px
@@ -154,6 +156,9 @@ button {
     .big-circle {
         opacity: 0.2;
     }
+    .contenido__curso {
+        margin-top: 20px;
+    }
 }
 
 .contenido__curso {
@@ -161,6 +166,7 @@ button {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    /* margin-top: 10px; */
     align-items: center;
     font-family: 'Poppins', sans-serif;
     background: #fff;
@@ -215,4 +221,77 @@ button {
 
 .curso__modulo_descripcion {
     width: 55%
+}
+
+
+/* body detail curse */
+
+.nav__dc {
+    width: auto;
+}
+
+.nav__link {
+    color: #303440;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+
+.nav__link--inside {
+    padding-left: 20px;
+    border-radius: 6px;
+}
+
+.nav__link--inside:hover {
+    background: #f6f8fa
+}
+
+.nav__dc__lista {
+    width: 100%;
+    height: auto;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    background: #fff;
+}
+
+.lista__item {
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+}
+
+.lista__item--click {
+    cursor: pointer;
+}
+
+.lista__button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    /* margin: 0 auto; */
+}
+
+.lista__inside {
+    margin: 0 auto;
+}
+
+.lista__arrow {
+    margin-left: auto;
+    transition: transform .3s
+}
+
+.arrow .lista__arrow {
+    transform: rotate(90deg);
+}
+
+.list__show {
+    width: 80%;
+    margin-left: 10px;
+    border-left: 2px solid #303440;
+    list-style: none;
+    transition: height .4s;
+    height: 0;
 }
