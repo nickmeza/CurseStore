@@ -7,8 +7,8 @@ class Descuento_Modelo{
         return $data=Database::queryOne("SELECT * FROM descuento where DESC_ID=?",array($id));
     }
     public static function insertdescuento($descuento){
-        Database::queryChange("insert into descuento(DESC_PORCENT,DESC_STAR,DESC_END,DESC_STATUS) values(?,?,?,?)"
-        ,array($descuento["DESC_PORCENT"],$descuento["DESC_STAR"],$descuento["DESC_END"],1));
+        Database::queryChange("insert into descuento(DESC_PORCENT,DESC_STAR,DESC_END,DESC_STATUS,DESC_DESCRIPTION) values(?,?,?,?,?)"
+        ,array($descuento["DESC_PORCENT"],$descuento["DESC_STAR"],$descuento["DESC_END"],1,$descuento["DESC_DESCRIPTION"]));
     }
     public static function updatedescuento($descuento,$id){
         Database::queryChange("UPDATE descuento set DESC_PORCENT=?,DESC_STAR=?,DESC_END=?,DESC_STATUS=?
