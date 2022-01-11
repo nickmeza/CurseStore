@@ -3,7 +3,7 @@
 
 class Usuario
 {
-    public static function createUsuarioProfesor($profesor)
+    public static function createUsuarioProfesor($ruta)
     {
         if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
             $profesor["NOMBRE"] = $_REQUEST['NOMBRE'];
@@ -17,7 +17,7 @@ class Usuario
             echo "fallo al crear";
         }
     }
-    public static function createUsuarioCliente($cliente)
+    public static function createUsuarioCliente($ruta)
     {
         if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
             $cliente["NOMBRE"] = $_REQUEST['NOMBRE'];

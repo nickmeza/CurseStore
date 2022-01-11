@@ -263,7 +263,7 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2>User <b>Management</b></h2>
+                        <h2>Clientes<b>Management</b></h2>
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -304,7 +304,7 @@ include_once "./vistas/administrador/component/header.php";
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Crear profesor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -314,13 +314,25 @@ include_once "./vistas/administrador/component/header.php";
 
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="PER_NAME" id="name">
+                        <input type="text" class="form-control" name="NOMBRE" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Apellido:</label>
+                        <input type="text" class="form-control" name="APELLIDO" id="apellido">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control" name="PER_DIRECCION" id="description">
+                        <input type="text" class="form-control" name="DIRECCION" id="direccion">
                     </div>
-
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">usuario:</label>
+                        <input type="text" class="form-control" name="USUARIO" id="usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">contraseña:</label>
+                        <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
+                    </div>
+ 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -392,19 +404,19 @@ include_once "./vistas/administrador/component/header.php";
         }
     })
 
-    $("#form_agregar_categoria").submit(function(event) {
+    $("#form_agregar_profesor").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
             type: 'POST',
-            url: url + "admin/categoria/create",
+            url: url + "admin/usuario/profesor/createUsuarioProfesor",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url + "admin/categoria";
+                location.href = url + "admin/usuario/profesor";
             }
         });
     })
