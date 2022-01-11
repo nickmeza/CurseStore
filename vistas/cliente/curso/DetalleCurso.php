@@ -88,9 +88,7 @@
                             <button class="cta-add">Comprar ahora</button>
                         </div>
                     </div>
-                    <div class="cover">
-                        <img src="${valores.CURS_IMAGEN}" alt="matebook">
-                    </div>
+                    <div class="cover"><iframe  src="https://www.youtube.com/embed/${id_video_yt}" title="YouTube video player" frameborder="0" rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </section>
                 <img class="big-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/big-eclipse.svg" alt="">
                 <img class="medium-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/mid-eclipse.svg" alt="">
