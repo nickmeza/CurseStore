@@ -14,10 +14,10 @@ include_once "./vistas/cliente/component/header.php";
         <div class="section slider-banner set-height-top">
             <?php foreach ($datos as $dato) { ?>
                 <div class="slider-item">
-                    <div class="slider-1" style="background-image:url('<?php echo $GLOBALS['BASE_URL'] . $dato['BANNER_IMAGEN'] ?>')">
+                    <div class="slider-1" style="background-image:url('<?php echo $dato['BANNER_IMAGEN'] ?>')">
                         <div class="slider-caption">
                             <div class="container">
-                                <h5 class="text-info-2"><?php echo $dato['BANNER_IMAGEN'] ?></h5>
+                                <h5 class="text-info-2">Al gun titulo</h5>
 
                                 <h1 class="text-info-1">You can learn anything</h1>
 

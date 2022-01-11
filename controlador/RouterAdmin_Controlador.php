@@ -24,6 +24,7 @@ class RoutesAdmin
     }
     public static function descuento()
     {
+        $cursos = Curso_Modelo::getAll();
         include_once "./vistas/administrador/ventas/Descuento.php";
     }
     public static function crear_curso()

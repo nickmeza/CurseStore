@@ -18,7 +18,12 @@ class Curso
         $cursoname = Curso_Modelo::getByName($codigocurso[4]);
         echo json_encode($cursoname);
     }
-  
+    //getByIds
+    public static function getByIds($id)
+    {
+        $cursos = implode(',', array_map('intval', $id));//Curso_Modelo::getByName($id);
+        echo json_encode($cursos);
+    }
     public static function getById($id)
     {
         var_dump($id[4]);
