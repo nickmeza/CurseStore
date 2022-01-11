@@ -409,7 +409,6 @@ include_once "./vistas/administrador/component/header.php";
                         <a>${valores.DESC_DESCRIPTION}</a>
                     </td>
                     <td style="width: 400px;">${valores.DESC_PORCENT}</td>
-                    
                     <td style="width: 400px;">${valores.DESC_STAR}</td>
                     <td style="width: 400px;">${valores.DESC_END}</td>
 

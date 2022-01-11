@@ -273,7 +273,7 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2>User <b>Management</b></h2>
+                        <h2><b>Categorias</b></h2>
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -286,7 +286,7 @@ include_once "./vistas/administrador/component/header.php";
                     <tr>
                         <th>ID</th>
                         <th>NOMBRE</th>
-                        <th>FECHA DE CREACIÓN</th>
+                        <th>DESCRIPCIÓN</th>
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -314,7 +314,7 @@ include_once "./vistas/administrador/component/header.php";
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar categoría</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -337,8 +337,8 @@ include_once "./vistas/administrador/component/header.php";
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
             </form>
         </div>
