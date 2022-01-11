@@ -1,66 +1,63 @@
 <?php include_once "./vistas/cliente/component/header.php"; ?>
-<!-- <div style="height:80px"></div> -->
 
 <body>
     <main class="detalleCurso___container"></main>
-    <div class="contenido__curso">
-        <div class="intro-text--cc">
-            <p>Contenido del curso</p>
-            <span>90 secciones • 79 h 13 m de duración total</span>
+    <?php
+    $i = 0;
+    $i2 = 0;
+    $data_mod = array();
+    $mod = Curso_Modelo::getOneIdByName($buscador);
+    $dateModulo = Modulo_Modelo::getAllbyCurse($mod);
+    if (isset($dateModulo)) {
+        $data_mod = $dateModulo;
+        foreach ($data_mod as $contador) {
+            $dateSModulo = SubModulo_Modelo::getbyMod($contador['MOD_ID']);
+            foreach ($dateSModulo as $values_moduloss) {
+                $i2++;
+            }
+            $i++;
+        }
+    ?>
+        <div class="contenido__curso">
+            <div class="intro-text--cc">
+                <p>Contenido del curso</p>
+                <span><?php echo $i ?> secciones • <?php echo $i2 ?> módulos • Horas de pura de duración total</span>
+            </div>
+            <nav class="nav__dc">
+                <ul class="nav__dc__lista">
+                    <?php foreach ($data_mod as $value) { ?>
+                        <li class="lista__item lista__item--click">
+                            <div class="lista__button list__button--click">
+                                <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/play-dc.svg" alt="" class="lista__img">
+                                <a href="#" class="nav__link"><?php echo $value['MOD_NOMBRE'] ?></a>
+                                <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg" alt="" class="lista__arrow">
+                            </div>
+                            <?php
+                            $data_smod = array();
+                            $dateSModulo = SubModulo_Modelo::getbyMod($value['MOD_ID']);
+                            if (isset($dateSModulo)) {
+                                $data_smod = $dateSModulo;
+                            ?>
+                                <ul class="list__show">
+                                    <?php foreach ($data_smod as $value_smod) { ?>
+                                        <li class="lista__inside">
+                                            <a href="#" class="nav__link nav__link--inside"><?php echo $value_smod['SMOD_NOMBRE'] ?></a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </nav>
         </div>
-        <nav class="nav__dc">
-            <ul class="nav__dc__lista">
-                <li class="lista__item lista__item--click">
-                    <div class="lista__button list__button--click">
-                        <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/play-dc.svg" alt="" class="lista__img">
-                        <a href="#" class="nav__link">Introduccion al curso</a>
-                        <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg" alt="" class="lista__arrow">
-                    </div>
-                    <ul class="list__show">
-                        <li class="lista__inside">
-                            <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
-                        </li>
-                        <li class="lista__inside">
-                            <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
-                        </li>
-                        <li class="lista__inside">
-                            <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <!-- <div class="curso__modulo">
-            <div class="curso__modulo_header">
-                <p class="curso__modulo_title">Introduccion al Desarrollo y Diseño Web <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                    </svg></p>
-                <p class="curso__modulo_tiempo">3 clases• 6 min</p>
-            </div>
-            <div class="curso__modulo_body">
-                <div class="curso__modulo_clase">
-                    <div class="curso__modulo_title_container">
-                        <span>Introduccion al curso</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg>
-                    </div>
-
-                    <p class="curso__modulo_clase_duracion">
-                        02:13
-                    </p>
-                </div>
-                <div class="curso__modulo_descripcion">
-                    <p>Veamos algunas de las herramientas que serán necesarias a lo largo del curso,
-                        no te preocupes, de momento no es necesario instalar nada, habrá videos para cada parte
-                    </p>
-                </div>
-            </div>
-        </div> -->
-    </div>
+    <?php
+    } else { ?>
+        <div class="data_available" style="padding: 30px;">
+            data available
+        </div>
+    <?php } ?>
 </body>
-
-<!-- <div class="detalleCurso__container"></div> -->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
@@ -91,7 +88,7 @@
                             <button class="cta-add">Comprar ahora</button>
                         </div>
                     </div>
-                    <div class="cover"><img src="${valores.CURS_IMAGEN}" alt="matebook"></div>
+                    <div class="cover"><iframe  src="https://www.youtube.com/embed/${id_video_yt}" title="YouTube video player" frameborder="0" rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </section>
                 <img class="big-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/big-eclipse.svg" alt="">
                 <img class="medium-circle" src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/mid-eclipse.svg" alt="">
@@ -106,15 +103,15 @@
 
     let listElements = document.querySelectorAll('.list__button--click');
     listElements.forEach(listElements => {
-        listElements.addEventListener('click',()=>{
+        listElements.addEventListener('click', () => {
             listElements.classList.toggle('arrow');
             let height = 0;
             let menu = listElements.nextElementSibling;
-            if (menu.clientHeight == "0"){
+            if (menu.clientHeight == "0") {
                 height = menu.scrollHeight;
             }
 
-            menu.style.height = height+"px";
+            menu.style.height = height + "px";
 
         })
     })

@@ -6,6 +6,9 @@ class SubModulo_Modelo{
     public static function getOne($id){
         return $data=Database::queryOne("SELECT * FROM submodulo WHERE SMOD_ID=?",array($id));
     }
+    public static function getbyMod($id){
+        return $data=Database::query("SELECT * FROM submodulo WHERE MOD_ID LIKE '$id'",array());        
+    }
     public static function insertSubmodulo($submodulo){
         Database::queryChange("INSERT INTO submodulo (MOD_ID, SMOD_NOMBRE,SMOD_DESCRIPCION,SMOD_ESTADO) VALUES (?, ?, ?, ?);",array($submodulo["MOD_ID"],$submodulo["SMOD_NOMBRE"],$submodulo["SMOD_DESCRIPCION"],1));
     }
