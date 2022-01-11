@@ -256,6 +256,11 @@ include_once "./vistas/administrador/component/header.php";
     .slider.round:before {
         border-radius: 50%;
     }
+
+    .modal__izquierda,
+    .modal__derecha {
+        flex: 6;
+    }
 </style>
 <div class="container">
     <div class="table-responsive">
@@ -312,45 +317,67 @@ include_once "./vistas/administrador/component/header.php";
                 </button>
             </div>
             <form id="form_agregar_descuento" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
+                <div class="modal-body" style="display: flex; gap: 10px;">
+                    <div class="modal__izquierda">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Porcentaje de descuento:</label>
+                            <input type="text" class="form-control" name="DESCUENTO" id="descuento">
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Descripcion:</label>
+                            <input type="text" class="form-control" name="DESCRIPCION" id="descripcion">
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Inicio:</label>
+                            <input type="text" class="form-control" name="INICIO" id="inicio">
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Final:</label>
+                            <input type="text" class="form-control" name="FINAL" id="final">
 
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Porcentaje de descuento:</label>
-                        <input type="text" class="form-control" name="DESCUENTO" id="descuento">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="DESCRIPCION" id="descripcion">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Inicio:</label>
-                        <input type="text" class="form-control" name="INICIO" id="inicio">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Final:</label>
-                        <input type="text" class="form-control" name="FINAL" id="final">
-                        
+                        </div>
                     </div>
 
-                    <div class="form-group">
-        <label>Month</label>
-        <select id="my-select" style="width: 100%;" multiple="multiple">
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-    </div>
-                    
- 
+                    <?php
+                    $datos = array();
+
+
+                    if (isset($cursos)) {
+                        $datos = $cursos;
+                        $i = 0;
+                    ?>
+                        <div class="modal__derecha">
+                            <div class="form-group">
+                                <label>Month</label>
+                                <select onchange="setArrayCursos()" id="my-select" style="width: 100%;" multiple="multiple">
+                                    <?php foreach ($datos as $dato) { ?>
+                                        <option value="<?php echo $dato['CURS_ID'] ?>"><?php echo $dato['CURS_NOMBRE'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+
+                        <div class="modal__derecha">
+                            <div class="form-group">
+                                <label>Month</label>
+                                <select id="my-select" multiple="multiple">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -437,7 +464,7 @@ include_once "./vistas/administrador/component/header.php";
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url + "admin/descuento";  
+                location.href = url + "admin/descuento";
             }
         });
     })
@@ -501,8 +528,13 @@ include_once "./vistas/administrador/component/header.php";
 <script>
     // Initialize multiple select on your regular select
     $("#my-select").multipleSelect({
-        filter: true
-    });
+        filter: true,
+        width: '100%'
+    })
+
+    function setArrayCursos() {
+        console.log($("#my-select").val())
+    }
 </script>
 <?php
 include_once "./vistas/administrador/component/footer.php";

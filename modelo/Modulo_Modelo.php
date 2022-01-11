@@ -6,6 +6,9 @@ class Modulo_Modelo{
     public static function getOne($id){
         return $data=Database::queryOne("SELECT * FROM modulo WHERE MOD_ID=?",array($id));
     }
+    public static function getAllbyCurse($id){
+        return $data=Database::query("SELECT * FROM modulo WHERE CURS_ID LIKE '$id'",array());        
+    }
     public static function insertModulo($modulo){
         Database::queryChange("INSERT INTO modulo (CURS_ID, MOD_NOMBRE, MOD_DESCRIPCION, MOD_ESTADO) VALUES (?, ?, ?, ?);",array($modulo["CURS_ID"],$modulo["MOD_NOMBRE"],$modulo["MOD_DESCRIPCION"],1));
     }
@@ -17,5 +20,3 @@ class Modulo_Modelo{
     }
 
 }
-
-?>
