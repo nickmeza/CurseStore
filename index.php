@@ -223,7 +223,7 @@ if (isset($ruta_split[1])) {
                         break;
                     case 'ventas':
                     case 'historial':
-                    case 'solicitud':
+                    case 'solicitudes':
                         if (method_exists(new Orden(), $metodo)) {
                             Orden::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {

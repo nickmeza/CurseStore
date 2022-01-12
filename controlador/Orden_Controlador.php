@@ -2,9 +2,15 @@
 
 class Orden
 {
-    public static function create()
+    public static function getAll()
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
+        $orden = Orden_Modelo::getAll();
+        echo json_encode($orden);
+    }
+    public static function get_estado()
+    {
+        $orden = Orden_Modelo::get_estado();
+        echo json_encode($orden);
     }
     public static function delete()
     {
