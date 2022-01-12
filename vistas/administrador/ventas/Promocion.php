@@ -328,7 +328,8 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
-                        <input type="text" class="form-control" name="BANNER_IMAGEN" id="imagen">
+                        <input type="file" class="form-control inputimg" name="BANNER_IMAGEN" id="imagen">
+                        <img src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -362,6 +363,7 @@ include_once "./vistas/administrador/component/header.php";
                         <label for="description" class="col-form-label">Imagen:</label>
                         <input type="text" class="form-control" name="BANNER_IMAGEN" id="edit_imagen">
                     </div>
+
                     <label class="switch">
                         <input type="checkbox" id="edit_estado" name="BANNER_STATUS">
                         <span class="slider round"></span>
@@ -377,6 +379,27 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    $(document).on("change", ".inputimg", function() {
+        console.log("se ha cambiado");
+        console.log(this.files['0']);
+        console.log($(".inputimg").parent().children('img').attr("src"));
+        console.log(this);
+        if (this.files['0'] != undefined) {
+            var file = this.files['0'];
+            var tamano = this.files['0'].size;
+            var tamanoconvertido = parseInt(tamano / 1024);
+            if (tamanoconvertido > 1024) {
+                alert("La imagen es muy grande. Pesa " + tamanoconvertido + " MB. El archivo debe sermenor a 1 MB");
+                var input = $('#rutaimagen');
+                input.replaceWith(this);
+            } else {
+                var image = URL.createObjectURL(file);
+                $(".inputimg").parent().children('img').attr("src", image);
+            }
+        } else {
+            $(".inputimg").parent().children('img').attr("src", url + "publico/img/imagen_default.png");
+        }
+    });
     $.ajax({
         url: url + 'admin/promocion/get_all',
         type: 'GET',
@@ -387,7 +410,7 @@ include_once "./vistas/administrador/component/header.php";
                 <tr>
                     <td>${valores.BANNER_ID}</td>
                     <td>
-                        <a><img src="${valores.BANNER_IMAGEN}" class="avatar" alt=""></a>
+                        <a><img src= "${url + valores.BANNER_IMAGEN}" class="avatar" alt=""></a>
                     </td>
                     <td style="width: 400px;">${valores.BANNER_TITULO}</td>
 
@@ -450,27 +473,27 @@ include_once "./vistas/administrador/component/header.php";
                 $("#edit_name").val(json.BANNER_TITULO)
                 $("#edit_imagen").val(json.BANNER_IMAGEN)
                 $("#edit_id").val(json.BANNER_ID)
-                json.BANNER_STATUS== "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
+                json.BANNER_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
         })
     }
     $("#form_editar_banner").submit(function(event) {
-            event.preventDefault();
-            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
-            const id = $("#edit_id").val()
-            $.ajax({
-                type: 'POST',
-                url: url + "admin/promocion/update/" + id,
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(msg) {
-                    console.log(msg)
-                    location.href = url + "admin/promocion";
-                }
-            });
-        })
+        event.preventDefault();
+        $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
+        const id = $("#edit_id").val()
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/promocion/update/" + id,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/promocion";
+            }
+        });
+    })
 </script>
 
 

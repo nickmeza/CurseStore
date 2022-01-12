@@ -28,8 +28,8 @@ class Routes
     }
     public static function detalle($buscador)
     {
+        $buscador = strtr($buscador, "-", " ");
         include_once "./vistas/cliente/curso/DetalleCurso.php";
-        var_dump($buscador);
     }
     //videos
     public static function progreso($data)
@@ -61,7 +61,7 @@ class Routes
     {
         include_once "./vistas/cliente/pago/MetodoPago.php";
     }
-    
+
     public static function carrito()
     {
         include_once "./vistas/cliente/views/Carrito.php";
@@ -71,8 +71,4 @@ class Routes
     {
         include_once "./vistas/cliente/views/Nosotros.php";
     }
-
-
-
-    
 }
