@@ -12,6 +12,11 @@ class Orden
         $orden = Orden_Modelo::get_estado();
         echo json_encode($orden);
     }
+    public static function get_estado_approval()
+    {
+        $orden = Orden_Modelo::get_estado_approval();
+        echo json_encode($orden);
+    }
     public static function delete()
     {
         include_once "./vistas/cliente/curso/Categoria.php";
