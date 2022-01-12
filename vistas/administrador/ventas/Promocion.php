@@ -273,7 +273,7 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2>User <b>Management</b></h2>
+                        <h2><b>Banners</b></h2>
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -314,7 +314,7 @@ include_once "./vistas/administrador/component/header.php";
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar banner</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

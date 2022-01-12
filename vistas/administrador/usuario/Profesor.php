@@ -263,7 +263,7 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2>Clientes<b>Management</b></h2>
+                        <h2><b>Profesores</b></h2>
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>

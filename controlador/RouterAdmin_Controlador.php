@@ -45,7 +45,7 @@ class RoutesAdmin
     }
     public static function solicitudes()
     {
-        include_once "./vistas/administrador/cursos/Categoria.php";
+        include_once "./vistas/administrador/ventas/Solicitudes.php";
     }
 
     public static function admin()
