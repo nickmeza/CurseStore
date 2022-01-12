@@ -337,37 +337,46 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+<!-- Modal del editar orden--> 
+<div class="modal fade" id="editSolicitudes" tabindex="-1" role="dialog" aria-labelledby="editTitleModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_categoria" method="POST" enctype="multipart/form-data">
+            <form id="form_editar_title_modulo">
                 <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_ID" id="edit_id">
+                    <div class="content__submodulo">
+                        <div class="formulario__submodulo">
+                            <div class="form-group">
+                                <label for="nombre_edit_submodulo" class="col-form-label">Nombre del Submodulo:</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre_edit_submodulo">
+                            </div>
+                            <div class="form-group">
+                                <label for="descrip_edit_title" class="col-form-label">Direccion:</label>
+                                <textarea name="" placeholder="Descripcion" class="form-control" id="descrip_edit_title" cols="30" rows="4"></textarea>
+                            </div>
+                            <div class="videos__submodulo">
+                                <div class="videos__content modulo__title">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                    <textarea name="" id="modulotitle__input0" onkeyup="setTitleModulo(0)" placeholder="Link del Video" class="none__input modulo__input" id="" cols="30" rows="1"></textarea>
+                                    <div class="options__modulo">
+                                        <i class="fa fa-eye icon__module" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil icon__module" aria-hidden="true"></i>
+                                        <i class="fa fa-trash icon__module" onclick="eliminarModulo(0)" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <span class="button-48" onclick="agregarVideo()"><span class="text">Añadir Video</span></span>
+                            </div>
+                        </div>
+                        <div class="previsualizador__video">
+                            <div class="cover"><iframe src="https://www.youtube.com/embed/8XrhGs5-0rI" title="YouTube video player" frameborder="0" rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_NAME" id="edit_name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="CAT_DESCRIPCION" id="edit_description">
-                    </div>
-                    <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="edit_imagen"></textarea>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
-                        <span class="slider round"></span>
-                    </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -377,6 +386,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     $.ajax({
@@ -398,7 +408,7 @@ include_once "./vistas/administrador/component/header.php";
                     <td style="width: 400px;">${valores.ORD_VOUCHER}</td>
                     <td><span class="status text-warning">&bull;</span>  ${valores.ORD_STATUS==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a class="delete" onclick="eliminar(${valores.ORD_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                     </td>
                 </tr>
@@ -408,7 +418,9 @@ include_once "./vistas/administrador/component/header.php";
             curseCategoria = document.getElementsByClassName("navigation__categoria")
         }
     })
+    
 </script>
+
 <?php
 include_once "./vistas/administrador/component/footer.php";
 ?>
