@@ -105,9 +105,9 @@ if (isset($ruta_split[1])) {
                     switch ($metodo) {
                         case 'buscar':
                             if (isset($ruta_split[3])) {
-                                Routes::$metodo($ruta_split);
+                                Routes::$metodo($ruta_split[3]);
                             } else {
-                                Routes::$metodo($ruta_split);
+                                Routes::$metodo("nada");
                             }
                             break;
                         case 'detalle':
