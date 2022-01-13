@@ -248,9 +248,9 @@ ul {
 
 
 <!-- LOADING-->
-<div class="body-2 loading">
+<!-- <div class="body-2 loading">
     <div class="dots-loader"></div>
-</div>
+</div> -->
 <!-- JAVASCRIPT LIBS-->
 <script>if ((Cookies.get('color-skin') != undefined) && (Cookies.get('color-skin') != 'color-1')) {
     $('.logo .header-logo img').attr('src', 'assets/images/logo-' + Cookies.get('color-skin') + '.png');

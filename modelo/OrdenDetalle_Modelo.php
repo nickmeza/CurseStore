@@ -9,7 +9,7 @@ class OrdenDetalle_Modelo
     {
         return $data = Database::queryOne("SELECT * FROM orden_detalle WHERE  ODT_ID=?;", array($id));
     }
-    public static function insertModulo($ordendetalle)
+    public static function insertOrdemdetalle($ordendetalle)
     {
         Database::queryChange(
             "INSERT INTO orden_detalle (ORD_ID, CURS_ID, DESC_ID, ODT_SUBTOTAL, ODT_STATUS) VALUES (?,?,?,?,?);",

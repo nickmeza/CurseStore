@@ -256,6 +256,140 @@ include_once "./vistas/administrador/component/header.php";
     .slider.round:before {
         border-radius: 50%;
     }
+
+    /* modal edit solicitudes */
+    .edit__solicitudes {
+        padding: 8px;
+    }
+
+    .content__solicitudes {
+        display: flex;
+        gap: 10px;
+    }
+
+    .content__izquierda {
+        flex: 10;
+    }
+
+    .item__curso {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .tittle__h4 {
+        width: 50px;
+    }
+
+    .content__derecha {
+        flex: 6;
+    }
+
+    .button-48 {
+        appearance: none;
+        background-color: #fff;
+        border: 1px solid #ff00003b;
+        width: 100%;
+        box-sizing: border-box;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Clarkson, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1em;
+        margin: 0;
+        opacity: 1;
+        outline: 0;
+        padding: 1em 2.2em;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-rendering: geometricprecision;
+        text-transform: uppercase;
+        transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+
+    .button-48:before {
+        animation: opacityFallbackOut .5s step-end forwards;
+        backface-visibility: hidden;
+        background-color: #EBEBEB;
+        clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: translateZ(0);
+        transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+        width: 100%;
+    }
+
+    .button-48:hover:before {
+        animation: opacityFallbackIn 0s step-start forwards;
+        clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+    }
+
+    .button-48:after {
+        background-color: #FFFFFF;
+    }
+
+    .button-48 span {
+        z-index: 1;
+        position: relative;
+    }
+
+    .content__passed {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .quetion__passed {
+        width: 100%;
+        background: #bfe3d48f;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .question__aprobal {
+        flex: 6;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons__aprobal {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    @media (max-width: 1000px) {
+        .content__solicitudes {
+            flex-direction: column;
+        }
+
+        .quetion__passed {
+            width: 80%;
+            background: #bfe3d48f;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .quetion__passed {
+            width: 100%;
+        }
+    }
 </style>
 
 <div class="container">
@@ -338,7 +472,7 @@ include_once "./vistas/administrador/component/header.php";
     </div>
 </div>
 
-<!-- Modal del editar orden--> 
+<!-- Modal del editar orden-->
 <div class="modal fade" id="editSolicitudes" tabindex="-1" role="dialog" aria-labelledby="editTitleModal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -350,31 +484,32 @@ include_once "./vistas/administrador/component/header.php";
             </div>
             <form id="form_editar_title_modulo">
                 <div class="modal-body">
-                    <div class="content__submodulo">
-                        <div class="formulario__submodulo">
-                            <div class="form-group">
-                                <label for="nombre_edit_submodulo" class="col-form-label">Nombre del Submodulo:</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre_edit_submodulo">
+                    <div class="edit__solicitudes">
+                        <div class="content__solicitudes">
+                            <div class="content__izquierda">
+                                <div class="datos__cliente">
+
+                                </div>
+                                <div class="tabla__cursos">
+
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="descrip_edit_title" class="col-form-label">Direccion:</label>
-                                <textarea name="" placeholder="Descripcion" class="form-control" id="descrip_edit_title" cols="30" rows="4"></textarea>
-                            </div>
-                            <div class="videos__submodulo">
-                                <div class="videos__content modulo__title">
-                                    <i class="fa fa-bars" aria-hidden="true"></i>
-                                    <textarea name="" id="modulotitle__input0" onkeyup="setTitleModulo(0)" placeholder="Link del Video" class="none__input modulo__input" id="" cols="30" rows="1"></textarea>
-                                    <div class="options__modulo">
-                                        <i class="fa fa-eye icon__module" aria-hidden="true"></i>
-                                        <i class="fa fa-pencil icon__module" aria-hidden="true"></i>
-                                        <i class="fa fa-trash icon__module" onclick="eliminarModulo(0)" aria-hidden="true"></i>
+                            <div class="content__derecha">
+                                <div class="content__passed">
+                                    <div class="quetion__passed">
+                                        <div class="question__aprobal">
+                                            <h5>Confirmar Voucher</h5>
+                                        </div>
+                                        <div class="buttons__aprobal">
+                                            <span class="button-48" onclick="chageAprovalOrder(1)"><span class="text">Confirmar</span></span>
+                                            <span class="button-48" onclick="chageAprovalOrder(2)"><span class="text">No Confirmar</span></span>
+                                        </div>
                                     </div>
                                 </div>
-                                <span class="button-48" onclick="agregarVideo()"><span class="text">Añadir Video</span></span>
+                                <div class="voucher__cliente">
+                                    <img id="imagenVoucher" width="90%" src="https://www.ejemplode.com/images/uploads/voucher.jpg" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="previsualizador__video">
-                            <div class="cover"><iframe src="https://www.youtube.com/embed/8XrhGs5-0rI" title="YouTube video player" frameborder="0" rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                         </div>
                     </div>
                 </div>
@@ -389,14 +524,13 @@ include_once "./vistas/administrador/component/header.php";
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    var idOrder = 0;
     $.ajax({
         url: url + 'admin/solicitudes/get_estado',
         type: 'GET',
         dataType: 'json',
         success: function(json) {
-            console.log(json)
             json.map((valores, idx) => {
-                console.log(valores)
                 $(".tbody__orden").append(`
                 <tr>
                     <td>${valores.ORD_ID}</td>
@@ -408,17 +542,84 @@ include_once "./vistas/administrador/component/header.php";
                     <td style="width: 400px;">${valores.ORD_VOUCHER}</td>
                     <td><span class="status text-warning">&bull;</span>  ${valores.ORD_STATUS==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});setIdOrder(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a class="delete" onclick="eliminar(${valores.ORD_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                     </td>
                 </tr>
                 `)
             })
-            console.log(json)
             curseCategoria = document.getElementsByClassName("navigation__categoria")
         }
     })
-    
+
+    function setIdOrder(id) {
+        idOrder = id
+    }
+
+    function chageAprovalOrder(statusOrder) {
+        var formdata = new FormData();
+        formdata.append("ORD_APROVAL", "" + statusOrder)
+        formdata.append("ORD_ID", "" + idOrder)
+        console.log(statusOrder, idOrder)
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/curso/updateAprovalOrder",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                //location.href = url + "admin/categoria";
+            }
+        })
+    }
+
+    function mostrarDatos(id) {
+        console.log(id)
+        //
+        $.ajax({
+            url: url + 'admin/curso/getCursosByOrder/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                $(".tabla__cursos").empty();
+                json.map((valores, idx) => {
+                    $(".tabla__cursos").append(`
+                    <div class="item__curso">
+                        <div class="imagen__curso"><img src="${valores.CURS_IMAGEN}" width="130px" height="80px" style="object-fit: cover;" alt="${valores.CURS_NOMBRE}"></div>
+                        <div class="datos__curso">
+                            <div class="title__curso">
+                                <h5><b>${valores.CURS_NOMBRE}</b></h5>
+                            </div>
+                            <div class="title__curso">
+                                <p>${valores.CURS_DESCRIPCION}</p>
+                            </div>
+                        </div>
+                        <div class="datos__curso">
+                            <div class="title__curso">
+                                <h4 class="tittle__h4"> S/. <b>${valores.ODT_SUBTOTAL}</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    `)
+                })
+            }
+        })
+        $.ajax({
+            url: url + 'admin/ventas/getDataOrderById/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                console.log(json)
+                $("#imagenVoucher").attr("src", url + json.ORD_VOUCHER);
+                $(".datos__cliente").empty().append(`
+                        <h4><b>Cliente:</b> ${json.PER_NOMBRE}</h4>
+                        <h4><b>Total:</b> ${json.ORD_TOTAL_PRICE}</h4>
+                    `)
+            }
+        })
+    }
 </script>
 
 <?php

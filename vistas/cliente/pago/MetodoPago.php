@@ -14,7 +14,7 @@ include_once "./vistas/cliente/component/header.php";
 
   }
 
-  .container {
+  .container__ventana {
     height: 100%;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -75,7 +75,6 @@ include_once "./vistas/cliente/component/header.php";
 
   .small {
     font-size: 12px;
-    font-size: .8rem;
   }
 
   .half-input-table {
@@ -90,15 +89,16 @@ include_once "./vistas/cliente/component/header.php";
 
   .window {
     height: 540px;
-    width: 800px;
+    width: 80%;
     background: #fff;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.2);
     border-radius: 30px;
     z-index: 10;
+    margin-bottom: 50px;
   }
 
   .order-info {
@@ -122,6 +122,7 @@ include_once "./vistas/cliente/component/header.php";
     bottom: 0px;
     position: absolute;
     right: 0px;
+    font-size: 15px;
     color: #4488dd;
   }
 
@@ -310,7 +311,7 @@ include_once "./vistas/cliente/component/header.php";
   }
 </style>
 
-<div class='container' style="margin-top: 100px;">
+<div class='container__ventana' style="margin-top: 100px;">
   <div class='window'>
     <div class='order-info'>
       <div class='order-info-content'>
@@ -319,17 +320,17 @@ include_once "./vistas/cliente/component/header.php";
         <table class='order-table'>
           <tbody>
             <tr>
-              <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
+              <td><img src='https://www.hn.cl/wp-content/uploads/2020/11/BDM-1.png' class='full-width'></img>
               </td>
               <td>
-                <br> <span class='thin'>Nike</span>
-                <br> Free Run 3.0 Women<br> <span class='thin small'> Color: Grey/Orange, Size: 10.5<br><br></span>
+                <br> <span class='thin'>Base de datos</span>
+                <br> Aprende desde cero <br> <span class='thin small'> la teoría y práctica para administrar DBs profesionalmente.<br><br></span>
               </td>
 
             </tr>
             <tr>
               <td>
-                <div class='price'>S/.99.95</div>
+                <div class='price'>S/.50</div>
               </td>
             </tr>
           </tbody>
@@ -339,16 +340,16 @@ include_once "./vistas/cliente/component/header.php";
         <table class='order-table'>
           <tbody>
             <tr>
-              <td><img src='https://dl.dropboxusercontent.com/s/qbj9tsbvthqq72c/Vintage-20L-Backpack-by-Fj%C3%A4llr%C3%A4ven.jpg' class='full-width'></img>
+              <td><img src='https://i1.wp.com/decursosgratis.com/wp-content/uploads/2018/06/Cursos-de-google-analytics-gratis.png' class='full-width'></img>
               </td>
               <td>
-                <br> <span class='thin'>Fjällräven</span>
-                <br>Vintage Backpack<br> <span class='thin small'> Color: Olive, Size: 20L</span>
+                <br> <span class='thin'>Google Analytics Desde Cero</span>
+                <br>Aprende a analizar <br> <span class='thin small'>las visitas a tu sitio y el comportamiento de tus usuarios para convertirlos en c</span>
               </td>
             </tr>
             <tr>
               <td>
-                <div class='price'>S/.235.95</div>
+                <div class='price'>S/.150</div>
               </td>
             </tr>
           </tbody>
@@ -357,32 +358,28 @@ include_once "./vistas/cliente/component/header.php";
         <table class='order-table'>
           <tbody>
             <tr>
-              <td><img src='https://dl.dropboxusercontent.com/s/nbr4koso8dpoggs/6136C1p5FjL._SL1500_.jpg' class='full-width'></img>
+              <td><img src='https://i0.wp.com/www.aipbarcelona.com/wp-content/uploads/2016/08/banner-indesign-aip-barcelona.png' class='full-width'></img>
               </td>
               <td>
-                <br> <span class='thin'>Monobento</span>
-                <br>Double Lunchbox<br> <span class='thin small'> Color: Pink, Size: Medium</span>
+                <br> <span class='thin'>Adobe InDesign desde cero</span>
+                <br> Aprende diseño y diagramación <br> <span class='thin small'> con la herramienta líder en creación de publicaciones impresas y digit</span>
               </td>
 
             </tr>
             <tr>
               <td>
-                <div class='price'>S/.25.95</div>
+                <div class='price'>S/.100</div>
               </td>
             </tr>
           </tbody>
         </table>
         <div class='line'></div>
         <div class='total'>
-          <span style='float:left;'>
-            <div class='thin dense'>VAT 19%</div>
-            <div class='thin dense'>Delivery</div>
+          <span style='float:left; font-size: 25px;'>
             TOTAL
           </span>
-          <span style='float:right; text-align:right;'>
-            <div class='thin dense'>S/.68.75</div>
-            <div class='thin dense'>S/.4.95</div>
-            S/.435.55
+          <span style='float:right; text-align:right; font-size: 25px;'>
+            S/.300
           </span>
         </div>
       </div>
@@ -406,24 +403,36 @@ include_once "./vistas/cliente/component/header.php";
           </tr>
         </table>
         <div>
+          <h5>Datos de este metodo de pago</h5>
           <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
         </div>
-        <label for="imagen">Card Holder</label>
-        <input id="imagen" type="file" class='input-field inputimg'></input>
-
-        <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
-        <button class='pay-btn'>Checkout</button>
-
+        <form id="form_solicitud">
+          <label for="imagen">Card Holder</label>
+          <input id="imagen" type="file" class='input-field inputimg'></input>
+          <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
+          <button class='pay-btn' type="submit">Checkout</button>
+        </form>
       </div>
-
     </div>
   </div>
 </div>
 
 <script>
+  var idsProductos = [{
+    id: 4,
+    subtotal: 50
+  }, {
+    id: 14,
+    subtotal: 150
+  }, {
+    id: 24,
+    subtotal: 100
+  }];
+  var filess;
   $(document).on("change", ".inputimg", function() {
     console.log("se ha cambiado");
     console.log(this.files['0']);
+    filess = this.files['0'];
     console.log($(".inputimg").parent().children('img').attr("src"));
     console.log(this);
     if (this.files['0'] != undefined) {
@@ -454,10 +463,68 @@ include_once "./vistas/cliente/component/header.php";
     };
   })
 
+  $('#form_solicitud').submit((e) => {
+    e.preventDefault();
+    var formdata = new FormData()
+    console.log(filess)
+    formdata.append('ORD_VOUCHER', filess)
+    formdata.append('CLI_ID', '4')
+    formdata.append('ORD_DATE_ORDER', '12/01/2022')
+    formdata.append('ORD_APPROVAL', '0')
+    formdata.append('ORD_TOTAL_PRICE', '300')
+    formdata.append('ORD_DISCOUNT', '0')
+    formdata.append('ORD_IGV', '0')
+    $.ajax({
+      type: 'POST',
+      url: url + "admin/ventas/insertOrder",
+      data: formdata,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(msg) {
+        console.log()
+        const orderCreated = JSON.parse(msg)
+        idsProductos.map(
+          (valor) => {
+            var formdata2 = new FormData()
+            formdata2.append('ORD_ID', orderCreated.ORD_ID)
+            formdata2.append('CURS_ID', valor.id)
+            formdata2.append('DESC_ID', 64)
+            formdata2.append('ODT_SUBTOTAL', valor.subtotal)
+            $.ajax({
+              type: 'POST',
+              url: url + "admin/ventas/insertOrderDetalle",
+              data: formdata2,
+              contentType: false,
+              cache: false,
+              processData: false,
+              success: function(msg) {
+                console.log(msg)
+
+              }
+            });
+          }
+        )
+      }
+    });
+    /* idsProductos.map(
+      (valor) => {
+        $.ajax({
+          type: 'POST',
+          url: url + "admin/categoria/update",
+          data: formdata,
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function(msg) {
+            console.log(msg)
+            location.href = url + "admin/categoria";
+          }
+        });
+      }
+    ) */
+  })
   window.onclick = function(e) {
-    console.log(e.target.tagName)
-    console.log('dropdown');
-    console.log(activeDropdown)
     if (e.target.tagName === 'LI' && activeDropdown) {
       if (e.target.innerHTML === 'Master Card') {
         document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/2vbqk5lcpi7hjoc/MasterCard_Logo.svg.png';

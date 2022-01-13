@@ -24,9 +24,9 @@ class Banner
                     break;
             }
             //Ancho y alto máximo
-            $tamano_separado = explode("|", $tamano);
+           /*  $tamano_separado = explode("|", $tamano);
             $max_ancho = intval($tamano_separado[0]);
-            $max_alto = intval($tamano_separado[1]);
+            $max_alto = intval($tamano_separado[1]); */
             //Medir la imagen
             list($ancho, $alto) = getimagesize($rtOriginal);
             //Crear un lienzo

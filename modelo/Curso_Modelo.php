@@ -14,6 +14,11 @@ class Curso_Modelo
 
         return $data = Database::query('SELECT * FROM curso where CURS_ID IN (' . $ids . ')', array());
     }
+    public static function getCursosByOrder($ids)
+    {
+
+        return $data = Database::query('SELECT od.ORD_ID,c.CURS_NOMBRE,od.ODT_SUBTOTAL, c.CURS_DESCRIPCION,c.CURS_IMAGEN FROM orden_detalle  od, curso c WHERE c.CURS_ID = od.CURS_ID AND od.ORD_ID = ? ;', array($ids));
+    }
 
     public static function getOneIdByName($name)
     {
@@ -24,6 +29,10 @@ class Curso_Modelo
     public static function getCursosDescuento()
     {
         return $data = Database::query("SELECT c.*, c.CURS_PRECIO - (c.CURS_PRECIO * (d.DESC_PORCENT/100)) as CURS_DISCOUNT FROM detalle_descuento dd, descuento d,curso c WHERE dd.DESC_ID=d.DESC_ID AND dd.CURS_ID=c.CURS_ID AND d.DESC_STATUS=1 AND c.CURS_ESTADO=1;", array());
+    }
+    public static function updateAprovalOrder($orderupdate)
+    {
+        return $data = Database::queryChange("CALL AB_CHAGEAPROBALORDER(?, ?);", array($orderupdate['ORD_APROVAL'], $orderupdate['ORD_ID']));
     }
     //
     public static function getOne($id)

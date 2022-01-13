@@ -12,6 +12,23 @@ class Curso
         $cursosdescuento = Curso_Modelo::getCursosDescuento();
         echo json_encode($cursosdescuento);
     }
+    public static function getCursosByOrder($id)
+    {
+        $cursosdescuento = Curso_Modelo::getCursosByOrder($id[4]);
+        echo json_encode($cursosdescuento);
+    }
+    public static function updateAprovalOrder()
+    {
+        var_dump($_REQUEST);
+        if (isset($_REQUEST['ORD_APROVAL']) && isset($_REQUEST['ORD_ID'])) {
+            $order['ORD_APROVAL'] = $_REQUEST['ORD_APROVAL'];
+            $order['ORD_ID'] = $_REQUEST['ORD_ID'];
+            $cursosdescuento = Curso_Modelo::updateAprovalOrder($order);
+            echo json_encode($cursosdescuento);
+        } else {
+            echo "fallo al actualizar";
+        }
+    }
 
     public static function getByName($codigocurso)
     {
