@@ -29,7 +29,8 @@
     <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/product.css">
     <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/detalle-curso.css">
     <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/css/login.css">
-    <!-- STYLE CSS    --><!--link(type="text/css", rel='stylesheet', href='assets/css/color-1.css', id="color-skins")-->
+    <!-- STYLE CSS    -->
+    <!--link(type="text/css", rel='stylesheet', href='assets/css/color-1.css', id="color-skins")-->
     <link type="text/css" rel="stylesheet" href="#" id="color-skins">
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/jquery/jquery-2.1.4.min.js"></script>
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/js-cookie/js.cookie.js"></script>
@@ -52,7 +53,13 @@
         <nav class="nav_menu" id="nav-menu">
             <i class="bi bi-x header__close" id="close-menu"></i>
             <ul class="nav_list">
-                <li class="nav_item"><a href="#" class="nav_link">Search</a></li>
+                <?php
+                if (isset($buscador)) {
+                ?>
+                    <li class="nav_item"><input type="text" name="" id="" placeholder="buscar" onkeydown="search(this)" value="<?php echo $buscador ?>"></li>
+                <?php } else { ?>
+                    <li class="nav_item"><input type="text" name="" id="" placeholder="buscar" onkeydown="search(this)"></li>
+                <?php } ?>
                 <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>" class="nav_link">Inicio</a></li>
                 <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>nosotros" class="nav_link">Nosotros</a></li>
                 <li class="nav_item"><a href="<?php echo $GLOBALS['BASE_URL'] ?>carrito" class="nav_link">

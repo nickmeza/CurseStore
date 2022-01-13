@@ -6,6 +6,7 @@ class Curso_Modelo{
     public static function getByName($buscador){
         return $data=Database::query("SELECT * FROM curso where CURS_NOMBRE LIKE '%$buscador%' ",array());
     }
+
     public static function getByIds($ids){
         return $data=Database::query('SELECT * FROM curso where CURS_ID IN (' . implode(',', array_map('intval', $ids)) . ')' ,array());
     }
