@@ -97,7 +97,7 @@ include_once "./vistas/cliente/component/header.php";
                     <p class="p__carrito p__separate"><b>S/329,90</b>Sub Total</p>
                     <p class="p__carrito p__separate"><b>S/280</b>Descuento</p>
                     <!-- HTML !-->
-                    <button class="button-48" role="button"><span class="text">Comprar</span></button>
+                    <button class="button-48" role="button" onclick="location.href='/metodo_pago'"><span class="text">Comprar</span></button>
                 </div>
             </div>
         </div>

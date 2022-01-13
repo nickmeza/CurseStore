@@ -89,7 +89,7 @@ include_once "./vistas/cliente/component/header.php";
 <div class="cards__ofert">
     <div class="card__ofert card1__ofert">
         <div class="container__ofert">
-        <div class="ribbon">NUEVO</div>
+            <div class="ribbon">NUEVO</div>
             <img class="img__ofert" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png" alt="las vegas">
         </div>
         <div class="details__ofert">
@@ -99,8 +99,8 @@ include_once "./vistas/cliente/component/header.php";
             <span style="font-size:14px; color:#AAA">Ahora:</span>
             <span style="color:#f8971d; font-size:20px"><strong>s/50.00</strong></span>
             <div class="table-buy">
-                 <a href="#" class="pricing-action">Ver Oferta</a>
-            </div>   
+                <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/detalle/" class="pricing-action">Ver Oferta</a>
+            </div>
         </div>
     </div>
 </div>
@@ -131,7 +131,7 @@ include_once "./vistas/cliente/component/header.php";
                         <span style="font-size:14px; color:#AAA">Ahora:</span>
                         <span style="color:#f8971d; font-size:20px"><strong> S/.${valores.CURS_PRECIO}</strong></span>
                         <div class="table-buy">
-                        <a href="#" class="pricing-action">Ver Oferta</a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/detalle/${cambioSpace(valores.CURS_NOMBRE)}" class="pricing-action">Ver Oferta</a>
                         </div>    
                         </div>
                     </div>`)
@@ -171,16 +171,20 @@ include_once "./vistas/cliente/component/header.php";
         }
     })
 
+    function cambioSpace(texto) {
+        return texto.replace(/\s+/g, '-')
+    }
+
     function aparecerCursos(idx, cat_id) {
         card_categoria[idx].classList.toggle('active');
         $.ajax({
-        url: url + 'admin/curso/getCursosDescuento',
-        type: 'GET',
-        dataType: 'json',
-        success: function(json) {
-            json.map((valores) => {
-                const li = document.createElement('li')
-                const HTMLstring = `
+            url: url + 'admin/curso/getCursosDescuento',
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                json.map((valores) => {
+                    const li = document.createElement('li')
+                    const HTMLstring = `
                 <div style="display:flex; width: 100%;">
                     <img style="width: 30%;" src="https://i.blogs.es/e1feab/google-fotos/450_1000.jpg" alt="">
                     <div style="width: 70%;">
@@ -189,13 +193,13 @@ include_once "./vistas/cliente/component/header.php";
                     </div>
                 </div>
                 `;
-                li.innerHTML = HTMLstring;
-                curseCategoria[idx].append(li)
-            })
+                    li.innerHTML = HTMLstring;
+                    curseCategoria[idx].append(li)
+                })
 
-            console.log(json)
-        }
-    })
+                console.log(json)
+            }
+        })
     }
 </script>
 <?php

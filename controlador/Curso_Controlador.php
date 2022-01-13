@@ -15,14 +15,24 @@ class Curso
 
     public static function getByName($codigocurso)
     {
-        $cursoname = Curso_Modelo::getByName($codigocurso[4]);
+        $buscador = str_replace("%20", " ", $codigocurso[4]);
+        $cursoname = Curso_Modelo::getByName($buscador);
         echo json_encode($cursoname);
     }
     //getByIds
-    public static function getByIds($id)
+    public static function getByIds()
     {
-        $cursos = implode(',', array_map('intval', $id));//Curso_Modelo::getByName($id);
-        echo json_encode($cursos);
+        if (isset($_POST['ids'])) {
+            $id = $_POST["ids"];
+            $id = substr($id, 0, -1);
+            $id = substr($id, 1);
+            $cursos = Curso_Modelo::getByIds($id);
+            echo json_encode($cursos);
+        } else {
+            $mensaje["mensaje"] = "fallo";
+            $mensaje["statud"] = "500";
+            echo json_encode($mensaje);
+        }
     }
     public static function getById($id)
     {

@@ -261,6 +261,17 @@ include_once "./vistas/administrador/component/header.php";
     .modal__derecha {
         flex: 6;
     }
+
+    .item__curso {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .tabla__cursos {
+        overflow-y: auto;
+        height: 240px;
+    }
 </style>
 <div class="container">
     <div class="table-responsive">
@@ -321,19 +332,19 @@ include_once "./vistas/administrador/component/header.php";
                     <div class="modal__izquierda">
                         <div class="form-group">
                             <label for="name" class="col-form-label">Porcentaje de descuento:</label>
-                            <input type="text" class="form-control" name="DESCUENTO" id="descuento">
+                            <input type="text" class="form-control" name="DESC_PORCENT" id="descuento">
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Descripcion:</label>
-                            <input type="text" class="form-control" name="DESCRIPCION" id="descripcion">
+                            <input type="text" class="form-control" name="DESC_DESCRIPTION" id="descripcion">
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Inicio:</label>
-                            <input type="text" class="form-control" name="INICIO" id="inicio">
+                            <input type="text" class="form-control" name="DESC_STAR" id="inicio">
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Final:</label>
-                            <input type="text" class="form-control" name="FINAL" id="final">
+                            <input type="text" class="form-control" name="DESC_END" id="final">
 
                         </div>
                     </div>
@@ -348,12 +359,14 @@ include_once "./vistas/administrador/component/header.php";
                     ?>
                         <div class="modal__derecha">
                             <div class="form-group">
-                                <label>Month</label>
+                                <label>Cursos</label>
                                 <select onchange="setArrayCursos()" id="my-select" style="width: 100%;" multiple="multiple">
                                     <?php foreach ($datos as $dato) { ?>
                                         <option value="<?php echo $dato['CURS_ID'] ?>"><?php echo $dato['CURS_NOMBRE'] ?></option>
                                     <?php } ?>
                                 </select>
+                            </div>
+                            <div class="tabla__cursos">
                             </div>
                         </div>
                     <?php } else { ?>
@@ -419,9 +432,11 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-
+<script src="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    var contador_pares = 0;
+    var cursosIds = []
     $.ajax({
         url: url + 'admin/descuento/admin_Descuento_get_all',
         type: 'GET',
@@ -454,19 +469,38 @@ include_once "./vistas/administrador/component/header.php";
 
     $("#form_agregar_descuento").submit(function(event) {
         event.preventDefault();
-        console.log(new FormData(this))
-        $.ajax({
-            type: 'POST',
-            url: url + "admin/descuento/admin_descuento_agregar",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(msg) {
-                console.log(msg)
-                location.href = url + "admin/descuento";
-            }
-        });
+        if (cursosIds.length > 0) {
+            $.ajax({
+                type: 'POST',
+                url: url + "admin/descuento/admin_descuento_agregar",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(msg) {
+                    console.log(JSON.parse(msg))
+                    const descuentoId = JSON.parse(msg).DESC_ID;
+                    cursosIds.map((valores) => {
+                        const formdata = new FormData();
+                        formdata.append('CURS_ID', valores);
+                        formdata.append('DESC_ID', descuentoId);
+                        $.ajax({
+                            type: 'POST',
+                            url: url + "admin/descuento/admin_detalledescuento_agregar",
+                            data: formdata,
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function(msg) {
+                                console.log(msg)
+                                //location.href = url + "admin/descuento";
+                            }
+                        });
+                    })
+                    //location.href = url + "admin/descuento";
+                }
+            });
+        }
     })
 
 
@@ -522,10 +556,7 @@ include_once "./vistas/administrador/component/header.php";
             }
         });
     })
-</script>
 
-<script src="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.js"></script>
-<script>
     // Initialize multiple select on your regular select
     $("#my-select").multipleSelect({
         filter: true,
@@ -533,7 +564,43 @@ include_once "./vistas/administrador/component/header.php";
     })
 
     function setArrayCursos() {
-        console.log($("#my-select").val())
+        contador_pares++;
+        if (contador_pares % 2 == 0) {
+            if ($("#my-select").val() != null) {
+                cursosIds = $("#my-select").val()
+                const ids = $("#my-select").val().toString();
+                console.log(ids)
+                var formdata = new FormData();
+                formdata.append('ids', '[' + ids + ']')
+                $.ajax({
+                    type: 'POST',
+                    url: url + "admin/curso/getByIds",
+                    data: formdata,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(msg) {
+                        console.log(JSON.parse(msg))
+                        const resultado = JSON.parse(msg);
+                        $(".tabla__cursos").empty()
+                        resultado.map((valores, idx) => {
+                            $(".tabla__cursos").append(`
+                            <div class="item__curso">
+                                <div class="imagen__curso"><img src="${valores.CURS_IMAGEN}" width="150px" height="110px" style="object-fit: cover;" alt="${valores.CURS_NOMBRE}"></div>
+                                <div class="datos__curso">
+                                    <div class="title__curso"><h4><b>${valores.CURS_NOMBRE}</b></h4></div>
+                                    <div class="title__curso"><h5>${valores.CURS_DESCRIPCION}</h5></div>
+                                </div>
+                            </div>`)
+                        })
+                        //location.href = url + "admin/categoria";
+                    }
+                });
+            } else {
+                $(".tabla__cursos").empty()
+            }
+
+        }
     }
 </script>
 <?php
