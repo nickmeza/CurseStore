@@ -19,17 +19,17 @@
         line-height: 10px;
         justify-content: space-between;
         margin: 0;
-        border-bottom: 1px solid #ccc
+        border-bottom: 1px solid #ccc;
     }
 
     .container__date__Search-inside {
         display: flex;
+        width: 100%;
         gap: 10px;
         cursor: pointer;
         height: auto;
         line-height: 10px;
         margin: 0;
-
     }
 
     .align__text-s {
@@ -48,13 +48,63 @@
         justify-content: center;
         gap: 20px;
     }
+
+    @media screen and (max-width: 1024px) {
+        .descripcion {
+            display: none;
+        }
+
+        .title__search {
+            font-size: 1rem
+        }
+    }
+
+    .title__search {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    @media screen and (max-width: 455px) {
+        .descripcion {
+            display: none;
+        }
+
+        .title__search {
+            font-size: 2rem;
+            
+        }
+
+        .container__date__Search-inside img {
+            display: none;
+        }
+
+        .container__date__Search {
+            display: flex;
+            gap: 10px;
+            padding: 10px 30px 10px 0;
+            width: 90vw;
+            cursor: pointer;
+            height: auto;
+            line-height: 10px;
+            justify-content: space-between;
+            margin: 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .tittle__align__Search{
+            font-weight: 0;
+        }
+    }
+
+    .tittle__align__Search{
+        font-weight: bold
+    }
 </style>
 
 <body>
     <?php ?>
     <?php if (strlen($buscador) > 0) { ?>
         <div class="container__search">
-            <h1>Resultados de la busqueda:</h1>
+            <span class="title__search">Resultados de la busqueda:</span>
             <div class="resultado__search">
                 <?php
                 $dates__search;
@@ -69,8 +119,8 @@
                                 <div class="container__date__Search-inside" onclick="window.location.href='<?php echo $GLOBALS['BASE_URL'] ?>curso/detalle/<?php echo $name__search ?>'">
                                     <img src="<?php echo $date__s['CURS_IMAGEN'] ?>" alt="" srcset="" width="80">
                                     <div class="align__text-s">
-                                        <span style="font-weight: bold"><?php echo $date__s['CURS_NOMBRE'] ?></span>
-                                        <span><?php echo $date__s['CURS_DESCRIPCION'] ?></span>
+                                        <span style="tittle__align__Search"><?php echo $date__s['CURS_NOMBRE'] ?></span>
+                                        <span class="descripcion"><?php echo $date__s['CURS_DESCRIPCION'] ?></span>
                                     </div>
                                 </div>
                                 <div class="icons__search">
