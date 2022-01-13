@@ -12,6 +12,11 @@ class Orden
         $orden = Orden_Modelo::get_estado();
         echo json_encode($orden);
     }
+    public static function get_estado_approval()
+    {
+        $orden = Orden_Modelo::get_estado_approval();
+        echo json_encode($orden);
+    }
     public static function getDataOrderById($id)
     {
         $orden = Orden_Modelo::getDataOrderById($id[4]);

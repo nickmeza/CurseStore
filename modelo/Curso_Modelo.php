@@ -7,7 +7,8 @@ class Curso_Modelo
     } //
     public static function getByName($buscador)
     {
-        return $data = Database::query("SELECT * FROM curso where CURS_NOMBRE LIKE '%$buscador%' ", array());
+        $ggetname = str_replace("%20", " ", $buscador);
+        return $data = Database::query("SELECT * FROM curso where CURS_NOMBRE LIKE '%$ggetname%' ", array());
     }
     public static function getByIds($ids)
     {
