@@ -24,7 +24,7 @@ class Routes
     {
 
         include_once "./vistas/cliente/curso/Buscador.php";
-        var_dump($buscador);
+        // var_dump($buscador);
     }
     public static function detalle($buscador)
     {

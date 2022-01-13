@@ -55,7 +55,8 @@
             <ul class="nav_list">
                 <?php
                 if (isset($buscador)) {
-                ?>
+                ?>  
+                <?php $buscador = str_replace("%20", " ", $buscador); ?>
                     <li class="nav_item"><input type="text" name="" id="" placeholder="buscar" onkeydown="search(this)" value="<?php echo $buscador ?>"></li>
                 <?php } else { ?>
                     <li class="nav_item"><input type="text" name="" id="" placeholder="buscar" onkeydown="search(this)"></li>

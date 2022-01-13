@@ -25,7 +25,8 @@
             </div>
             <nav class="nav__dc">
                 <ul class="nav__dc__lista">
-                    <?php foreach ($data_mod as $value) { ?>
+                    <?php if (!empty($dateModulo)) { ?>
+                        <?php foreach ($data_mod as $value) { ?>
                         <li class="lista__item lista__item--click">
                             <div class="lista__button list__button--click">
                                 <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/play-dc.svg" alt="" class="lista__img">
@@ -47,6 +48,9 @@
                                 </ul>
                             <?php } ?>
                         </li>
+                    <?php } ?>
+                    <?php } else { ?>
+                        <h1>No hay Contenido del curso</h1>
                     <?php } ?>
                 </ul>
             </nav>

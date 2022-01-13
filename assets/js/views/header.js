@@ -17,8 +17,10 @@ search__header.addEventListener('click', () => {
 
 function search(ele) {
     console.log("inside");
+    console.log(ele.value);
     if (event.key === 'Enter') {
         valor__search = ele.value;
+        console.log(valor__search);
         window.location.href = `${url}curso/buscar/${valor__search}`;
     }
 }
