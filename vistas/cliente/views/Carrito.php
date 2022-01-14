@@ -103,6 +103,61 @@ include_once "./vistas/cliente/component/header.php";
         </div>
     </div>
 </div>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+<script>
+           var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+
+            var formdata = new FormData(); 
+                formdata.append('ids', JSON.stringify(idcurso))
+        $.ajax({
+                    type: 'POST',
+                    url: url + "admin/curso/getByIds",
+                    data: formdata,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(msg) {
+                        console.log(JSON.parse(msg))
+                        const resultado = JSON.parse(msg);
+                        resultado.map((valores, idx) => {
+                            $(".content__carrito").append(`
+                            <div class="card__carrito">
+                            <div class="datelle__curso">
+                                <div class="imagen__curso">
+                                    <img width="100%" height="100%" src="${valores.CURS_IMAGEN}">
+                                </div>
+                                <div class="descripcion__curso">
+                                    <div class="datos__curso">
+                                        <p class="p__carrito p__name">${valores.CURS_NOMBRE}</p>
+                                        <p class="p__carrito">${valores.CURS_DESCRIPCION}</p>
+                                    </div>
+                                    <div class="price__detail">
+                                        <p class="p__carrito p__precio">S/. ${valores.CURS_PRECIO}</p>
+                                        <p class="p__carrito">329,90 S/</p>
+                                    </div>
+                                </div>
+                                <div class="precios__curso">
+                                    <p class="p__carrito p__precio"> S/. ${valores.CURS_PRECIO}</p>
+                                    <p class="p__carrito">329,90 S/</p>
+                                </div>
+                                <div class="opciones__curso">
+                                    <div class='box-left'>
+                                        <i class='fa fa-times'></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="p__carrito">estrellas</p>
+                                <p class="p__carrito">clases - modulos - nivel</p>
+                                <p class="p__carrito">opciones</p>
+                            </div>
+                        </div>`)
+                        })
+                        //location.href = url + "admin/categoria";
+                    }
+                });
+          
+</script>
 <?php
 include_once "./vistas/cliente/component/footer.php";
 ?>

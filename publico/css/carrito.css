@@ -27,9 +27,7 @@
     flex: 6;
 }
 
-.content__carrito {
-    display: flex;
-}
+.content__carrito {}
 
 .card__carrito {
     align-items: center;

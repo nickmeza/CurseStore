@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="icons__search">
                                     <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/favorite.svg" alt="" height="30">
-                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/cart-plus-solid.svg" height="30">
+                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/cart-plus-solid.svg" onclick="anadirCarrito(<?php echo $date__s['CURS_ID'] ?>)" height="30">
                                 </div>
                             </div>
                         </div>
@@ -145,11 +145,24 @@
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    function anadirCarrito(id){
+        var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+
+        idcurso.push(id)
+        
+        localStorage.setItem('idcurso',JSON.stringify(idcurso))
+        
+        
+        console.log(localStorage.getItem('idcurso'));
+    }
+    
     function search__detail_curse(date__search) {
         console.log("date searc hg");
         console.log(date__search);
         window.location.href = `${url}curso/detalle/${date__search}`;
     }
 </script>
+
+
 
 <?php include_once "./vistas/cliente/component/footer.php"; ?>
