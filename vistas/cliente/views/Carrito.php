@@ -10,76 +10,14 @@ include_once "./vistas/cliente/component/header.php";
                     <div class="titulo__carrito">
                         <h3>N cursos en la cesta</h3>
                     </div>
-                    <div class="content__carrito">
-                        <div class="card__carrito">
-                            <div class="datelle__curso">
-                                <div class="imagen__curso">
-                                    <img width="100%" height="100%" src="https://www.segg.es/media/noticias/344/cursos.jpg">
-                                </div>
-                                <div class="descripcion__curso">
-                                    <div class="datos__curso">
-                                        <p class="p__carrito p__name">Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL</p>
-                                        <p class="p__carrito">Por Juan Pablo De la torre Valdez, Creador de Código Con Juan - Aprende Con Proyectos Reales</p>
-                                    </div>
-                                    <div class="price__detail">
-                                        <p class="p__carrito p__precio">49,90 S/</p>
-                                        <p class="p__carrito">329,90 S/</p>
-                                    </div>
-                                </div>
-                                <div class="precios__curso">
-                                    <p class="p__carrito p__precio">49,90 S/</p>
-                                    <p class="p__carrito">329,90 S/</p>
-                                </div>
-                                <div class="opciones__curso">
-                                    <div class='box-left'>
-                                        <i class='fa fa-times'></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="p__carrito">estrellas</p>
-                                <p class="p__carrito">clases - modulos - nivel</p>
-                                <p class="p__carrito">opciones</p>
-                            </div>
-                        </div>
+                    <div class="content__carrito"> 
                     </div>
                 </div>
                 <div>
                     <div class="titulo__carrito">
                         <h3>N cursos en la cesta</h3>
                     </div>
-                    <div class="content__carrito">
-                        <div class="card__carrito">
-                            <div class="datelle__curso">
-                                <div class="imagen__curso">
-                                    <img width="100%" height="100%" src="https://www.segg.es/media/noticias/344/cursos.jpg">
-                                </div>
-                                <div class="descripcion__curso">
-                                    <div class="datos__curso">
-                                        <p class="p__carrito p__name">Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL</p>
-                                        <p class="p__carrito">Por Juan Pablo De la torre Valdez, Creador de Código Con Juan - Aprende Con Proyectos Reales</p>
-                                    </div>
-                                    <div class="price__detail">
-                                        <p class="p__carrito p__precio">49,90 S/</p>
-                                        <p class="p__carrito">329,90 S/</p>
-                                    </div>
-                                </div>
-                                <div class="precios__curso">
-                                    <p class="p__carrito p__precio">49,90 S/</p>
-                                    <p class="p__carrito">329,90 S/</p>
-                                </div>
-                                <div class="opciones__curso">
-                                    <a href="">Eliminar</a>
-                                    <a href="">Guardar</a>
-
-                                </div>
-                            </div>
-                            <div>
-                                <p class="p__carrito">estrellas</p>
-                                <p class="p__carrito">clases - modulos - nivel</p>
-                                <p class="p__carrito">opciones</p>
-                            </div>
-                        </div>
+                    <div class="content__carrito2">  
                     </div>
                 </div>
             </div>
@@ -92,10 +30,15 @@ include_once "./vistas/cliente/component/header.php";
                 </div>
                 <div class="pago__carrito">
                     <div class="total__carrito">
-                        <h1>S/49,90</h1>
+                        
                     </div>
-                    <p class="p__carrito p__separate"><b>S/329,90</b>Sub Total</p>
-                    <p class="p__carrito p__separate"><b>S/280</b>Descuento</p>
+                    <div class = "subtotal">
+                    
+                    </div>
+                    <div class = "descuento">
+                    
+                    </div>
+                    
                     <!-- HTML !-->
                     <button class="button-48" role="button" onclick="location.href='/metodo_pago'"><span class="text">Comprar</span></button>
                 </div>
@@ -105,7 +48,10 @@ include_once "./vistas/cliente/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-           var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+        var precioTotal = 0
+        var subTotal = 0
+        var descuento = 0
+        var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
 
             var formdata = new FormData(); 
                 formdata.append('ids', JSON.stringify(idcurso))
@@ -120,6 +66,7 @@ include_once "./vistas/cliente/component/header.php";
                         console.log(JSON.parse(msg))
                         const resultado = JSON.parse(msg);
                         resultado.map((valores, idx) => {
+                            CalcularPrecio(valores.CURS_PRECIO,valores.CURS_PRECIO,valores.CURS_DESCUENTO ? valores.CURS_DESCUENTO:0)
                             $(".content__carrito").append(`
                             <div class="card__carrito">
                             <div class="datelle__curso">
@@ -142,7 +89,7 @@ include_once "./vistas/cliente/component/header.php";
                                 </div>
                                 <div class="opciones__curso">
                                     <div class='box-left'>
-                                        <i class='fa fa-times'></i>
+                                        <i onclick =borrarCarrito(${valores.CURS_ID}) class='fa fa-times'></i>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +103,29 @@ include_once "./vistas/cliente/component/header.php";
                         //location.href = url + "admin/categoria";
                     }
                 });
-          
+
+  function CalcularPrecio (precio,subprecio,descuentos){
+       precioTotal = Number(precio) + Number(precioTotal)
+       console.log(precioTotal)
+     $('.total__carrito').html("<h1>S/"+precioTotal+"</h1>")
+
+     subTotal = Number(subprecio) + Number(subTotal)
+       console.log(subTotal)
+     $('.subtotal').html("<p class='p__carrito p__separate'><b>S/"+subTotal+"</b>Sub Total</p>")
+
+     descuento = Number(descuentos) + Number(descuento)
+       console.log(descuento)
+     $('.descuento').html("<p class='p__carrito p__separate'><b>S/"+descuento+"</b>Descuento</p>")
+  }
+
+  function borrarCarrito (idCurso){
+    let carrito = JSON.parse(localStorage.getItem('idcurso'))
+    console.log(carrito.indexOf(idCurso))
+    carrito.splice(carrito.indexOf(idCurso),1)
+    localStorage.setItem('idcurso',JSON.stringify(carrito))
+    location.reload()
+
+  }
 </script>
 <?php
 include_once "./vistas/cliente/component/footer.php";

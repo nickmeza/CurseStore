@@ -380,7 +380,7 @@ include_once "./vistas/administrador/component/header.php";
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     $.ajax({
-        url: url + 'admin/ventas/getAll',
+        url: url + 'admin/ventas/get_estado_approval',
         type: 'GET',
         dataType: 'json',
         success: function(json) {
@@ -390,7 +390,7 @@ include_once "./vistas/administrador/component/header.php";
                 <tr>
                     <td>${valores.ORD_ID}</td>
                     <td>
-                        ${valores.CLI_ID} 
+                    <a>${valores.PER_NOMBRE +' '+valores.PER_APELLIDO}</a>
                     </td>
                     
                     <td style="width: 400px;">${valores.ORD_TOTAL_PRICE}</td>

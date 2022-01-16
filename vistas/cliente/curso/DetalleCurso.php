@@ -88,7 +88,7 @@
                             <p>S/. ${valores.CURS_PRECIO}</p>
                         </div>
                         <div class="cta">
-                            <button class="cta-anadir-cesta">Añadir a la cesta</button>
+                            <button onclick ="anadirCarrito(${valores.CURS_ID})" class="cta-anadir-cesta">Añadir a la cesta </button>
                             <button class="cta-add">Comprar ahora</button>
                         </div>
                     </div>
@@ -104,6 +104,18 @@
             console.log(json)
         }
     })
+    
+    function anadirCarrito(id){
+        var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+
+        idcurso.push(id)
+        
+        localStorage.setItem('idcurso',JSON.stringify(idcurso))
+
+        console.log(localStorage.getItem('idcurso'));
+    }
+    
+
 
     let listElements = document.querySelectorAll('.list__button--click');
     listElements.forEach(listElements => {

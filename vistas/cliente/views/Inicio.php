@@ -127,9 +127,9 @@ include_once "./vistas/cliente/component/header.php";
                     <div class="details__ofert">
                     <h3>${valores.CURS_NOMBRE}</h3>
                         <p>${valores.CURS_DESCRIPCION}</p>
-                        <p><span style="text-decoration:line-through">${valores.CURS_DISCOUNT}</span></p>
+                        <p><span style="text-decoration:line-through">${valores.CURS_PRECIO}</span></p>
                         <span style="font-size:14px; color:#AAA">Ahora:</span>
-                        <span style="color:#f8971d; font-size:20px"><strong> S/.${valores.CURS_PRECIO}</strong></span>
+                        <span style="color:#f8971d; font-size:20px"><strong> S/.${valores.CURS_DISCOUNT}</strong></span>
                         <div class="table-buy">
                         <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/detalle/${cambioSpace(valores.CURS_NOMBRE)}" class="pricing-action">Ver Oferta</a>
                         </div>    
