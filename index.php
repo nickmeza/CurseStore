@@ -302,8 +302,8 @@ if (isset($ruta_split[1])) {
                         }
                         break;
                     case 'correos':
-                        if (method_exists(new Categoria(), $metodo)) {
-                            Categoria::$metodo($ruta_split);
+                        if (method_exists(new Correo(), $metodo)) {
+                            Correo::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
                             RoutesAdmin::$controlador($ruta_split);
                         } else {
