@@ -102,15 +102,13 @@ include_once "./vistas/cliente/component/header.php";
   }
 
   .order-info {
+    overflow: auto;
     height: 100%;
     width: 50%;
     padding-left: 25px;
     padding-right: 25px;
     box-sizing: border-box;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -148,7 +146,7 @@ include_once "./vistas/cliente/component/header.php";
   }
 
   .order-info-content {
-    table-layout: fixed;
+    overflow-y: auto;
 
   }
 
@@ -180,10 +178,8 @@ include_once "./vistas/cliente/component/header.php";
   }
 
   .total {
-    margin-top: 25px;
     font-size: 20px;
     font-size: 1.3rem;
-    position: absolute;
     bottom: 30px;
     right: 27px;
     left: 35px;
@@ -317,71 +313,6 @@ include_once "./vistas/cliente/component/header.php";
       <div class='order-info-content'>
         <h2>Order Summary</h2>
         <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <td><img src='https://www.hn.cl/wp-content/uploads/2020/11/BDM-1.png' class='full-width'></img>
-              </td>
-              <td>
-                <br> <span class='thin'>Base de datos</span>
-                <br> Aprende desde cero <br> <span class='thin small'> la teoría y práctica para administrar DBs profesionalmente.<br><br></span>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>S/.50</div>
-              </td>
-            </tr>
-          </tbody>
-
-        </table>
-        <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <td><img src='https://i1.wp.com/decursosgratis.com/wp-content/uploads/2018/06/Cursos-de-google-analytics-gratis.png' class='full-width'></img>
-              </td>
-              <td>
-                <br> <span class='thin'>Google Analytics Desde Cero</span>
-                <br>Aprende a analizar <br> <span class='thin small'>las visitas a tu sitio y el comportamiento de tus usuarios para convertirlos en c</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>S/.150</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <td><img src='https://i0.wp.com/www.aipbarcelona.com/wp-content/uploads/2016/08/banner-indesign-aip-barcelona.png' class='full-width'></img>
-              </td>
-              <td>
-                <br> <span class='thin'>Adobe InDesign desde cero</span>
-                <br> Aprende diseño y diagramación <br> <span class='thin small'> con la herramienta líder en creación de publicaciones impresas y digit</span>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>S/.100</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class='line'></div>
-        <div class='total'>
-          <span style='float:left; font-size: 25px;'>
-            TOTAL
-          </span>
-          <span style='float:right; text-align:right; font-size: 25px;'>
-            S/.300
-          </span>
-        </div>
       </div>
     </div>
     <div class='credit-info'>
@@ -403,7 +334,12 @@ include_once "./vistas/cliente/component/header.php";
           </tr>
         </table>
         <div>
-          <h5>Datos de este metodo de pago</h5>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h4>Total</h4>
+            <div class='total'>
+
+            </div>
+          </div>
           <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
         </div>
         <form id="form_solicitud">
@@ -416,18 +352,10 @@ include_once "./vistas/cliente/component/header.php";
     </div>
   </div>
 </div>
-
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-  var idsProductos = [{
-    id: 4,
-    subtotal: 50
-  }, {
-    id: 14,
-    subtotal: 150
-  }, {
-    id: 24,
-    subtotal: 100
-  }];
+  var idsProductos = [];
+  var precioTotal = 0
   var filess;
   $(document).on("change", ".inputimg", function() {
     console.log("se ha cambiado");
@@ -463,6 +391,65 @@ include_once "./vistas/cliente/component/header.php";
     };
   })
 
+  //
+  function getCursos() {
+    var idcurso = localStorage.getItem('idcurso') ? JSON.parse(localStorage.getItem('idcurso')) : [];
+    var formdataIds = new FormData();
+    formdataIds.append('ids', JSON.stringify(idcurso))
+    $.ajax({
+      type: 'POST',
+      url: url + "admin/curso/getByIds",
+      data: formdataIds,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(msg) {
+        console.log(JSON.parse(msg))
+        const resultado = JSON.parse(msg);
+        resultado.map((valores, idx) => {
+          CalcularPrecio(valores.CURS_PRECIO, valores.CURS_PRECIO, valores.CURS_ID)
+          $(".order-info-content").append(`
+
+        <table class='order-table'>
+          <tbody>
+            <tr>
+              <td><img src='${valores.CURS_IMAGEN}' class='full-width'></img>
+              </td>
+              <td>
+                <br> <span class='thin'>${valores.CURS_NOMBRE}</span>
+                <br> ${valores.CURS_DESCRIPCION.slice(0, 20)} <br> <span class='thin small'> ${valores.CURS_DESCRIPCION.slice(19,-1)}<br><br></span>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <div class='price'>S/. ${valores.CURS_PRECIO}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='line'></div>
+        `)
+        })
+        //location.href = url + "admin/categoria";
+      }
+    });
+  }
+  getCursos();
+  /* <span style='font-size: 14px;'>
+  S/.300
+              </span> */
+  function CalcularPrecio(precio, subprecio, idprducto) {
+    precioTotal = Number(precio) + Number(precioTotal)
+    $('.total').html(`<span style='font-size: 14px;'>
+                      S/. ${precioTotal}
+                    </span>`)
+    const idproduct = {
+      subprecio,
+      idprducto
+    }
+    idsProductos.push(idproduct)
+  }
   $('#form_solicitud').submit((e) => {
     e.preventDefault();
     var formdata = new FormData()
@@ -471,7 +458,7 @@ include_once "./vistas/cliente/component/header.php";
     formdata.append('CLI_ID', '4')
     formdata.append('ORD_DATE_ORDER', '12/01/2022')
     formdata.append('ORD_APPROVAL', '0')
-    formdata.append('ORD_TOTAL_PRICE', '300')
+    formdata.append('ORD_TOTAL_PRICE', precioTotal)
     formdata.append('ORD_DISCOUNT', '0')
     formdata.append('ORD_IGV', '0')
     $.ajax({
@@ -486,11 +473,13 @@ include_once "./vistas/cliente/component/header.php";
         const orderCreated = JSON.parse(msg)
         idsProductos.map(
           (valor) => {
+            console.log(valor)
+            console.log(orderCreated.ORD_ID)
             var formdata2 = new FormData()
             formdata2.append('ORD_ID', orderCreated.ORD_ID)
-            formdata2.append('CURS_ID', valor.id)
+            formdata2.append('CURS_ID', valor.idprducto)
             formdata2.append('DESC_ID', 64)
-            formdata2.append('ODT_SUBTOTAL', valor.subtotal)
+            formdata2.append('ODT_SUBTOTAL', valor.subprecio)
             $.ajax({
               type: 'POST',
               url: url + "admin/ventas/insertOrderDetalle",

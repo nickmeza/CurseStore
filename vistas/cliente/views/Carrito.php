@@ -10,14 +10,14 @@ include_once "./vistas/cliente/component/header.php";
                     <div class="titulo__carrito">
                         <h3>N cursos en la cesta</h3>
                     </div>
-                    <div class="content__carrito"> 
+                    <div class="content__carrito">
                     </div>
                 </div>
                 <div>
                     <div class="titulo__carrito">
                         <h3>N cursos en la cesta</h3>
                     </div>
-                    <div class="content__carrito2">  
+                    <div class="content__carrito2">
                     </div>
                 </div>
             </div>
@@ -30,15 +30,15 @@ include_once "./vistas/cliente/component/header.php";
                 </div>
                 <div class="pago__carrito">
                     <div class="total__carrito">
-                        
+
                     </div>
-                    <div class = "subtotal">
-                    
+                    <div class="subtotal">
+
                     </div>
-                    <div class = "descuento">
-                    
+                    <div class="descuento">
+
                     </div>
-                    
+
                     <!-- HTML !-->
                     <button class="button-48" role="button" onclick="location.href='/metodo_pago'"><span class="text">Comprar</span></button>
                 </div>
@@ -48,84 +48,84 @@ include_once "./vistas/cliente/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-        var precioTotal = 0
-        var subTotal = 0
-        var descuento = 0
-        var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+    var precioTotal = 0
+    var subTotal = 0
+    var descuento = 0
+    var idcurso = localStorage.getItem('idcurso') ? JSON.parse(localStorage.getItem('idcurso')) : []
 
-            var formdata = new FormData(); 
-                formdata.append('ids', JSON.stringify(idcurso))
-        $.ajax({
-                    type: 'POST',
-                    url: url + "admin/curso/getByIds",
-                    data: formdata,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(msg) {
-                        console.log(JSON.parse(msg))
-                        const resultado = JSON.parse(msg);
-                        resultado.map((valores, idx) => {
-                            CalcularPrecio(valores.CURS_PRECIO,valores.CURS_PRECIO,valores.CURS_DESCUENTO ? valores.CURS_DESCUENTO:0)
-                            $(".content__carrito").append(`
-                            <div class="card__carrito">
-                            <div class="datelle__curso">
-                                <div class="imagen__curso">
-                                    <img width="100%" height="100%" src="${valores.CURS_IMAGEN}">
-                                </div>
-                                <div class="descripcion__curso">
-                                    <div class="datos__curso">
-                                        <p class="p__carrito p__name">${valores.CURS_NOMBRE}</p>
-                                        <p class="p__carrito">${valores.CURS_DESCRIPCION}</p>
-                                    </div>
-                                    <div class="price__detail">
-                                        <p class="p__carrito p__precio">S/. ${valores.CURS_PRECIO}</p>
-                                        <p class="p__carrito">329,90 S/</p>
-                                    </div>
-                                </div>
-                                <div class="precios__curso">
-                                    <p class="p__carrito p__precio"> S/. ${valores.CURS_PRECIO}</p>
-                                    <p class="p__carrito">329,90 S/</p>
-                                </div>
-                                <div class="opciones__curso">
-                                    <div class='box-left'>
-                                        <i onclick =borrarCarrito(${valores.CURS_ID}) class='fa fa-times'></i>
-                                    </div>
-                                </div>
+    var formdata = new FormData();
+    formdata.append('ids', JSON.stringify(idcurso))
+    $.ajax({
+        type: 'POST',
+        url: url + "admin/curso/getByIds",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(msg) {
+            console.log(JSON.parse(msg))
+            const resultado = JSON.parse(msg);
+            resultado.map((valores, idx) => {
+                CalcularPrecio(valores.CURS_PRECIO, valores.CURS_PRECIO, valores.CURS_DESCUENTO ? valores.CURS_DESCUENTO : 0)
+                $(".content__carrito").append(`
+                    <div class="card__carrito">
+                    <div class="datelle__curso">
+                        <div class="imagen__curso">
+                            <img width="100%" height="100%" src="${valores.CURS_IMAGEN}">
+                        </div>
+                        <div class="descripcion__curso">
+                            <div class="datos__curso">
+                                <p class="p__carrito p__name">${valores.CURS_NOMBRE}</p>
+                                <p class="p__carrito">${valores.CURS_DESCRIPCION}</p>
                             </div>
-                            <div>
-                                <p class="p__carrito">estrellas</p>
-                                <p class="p__carrito">clases - modulos - nivel</p>
-                                <p class="p__carrito">opciones</p>
+                            <div class="price__detail">
+                                <p class="p__carrito p__precio">S/. ${valores.CURS_PRECIO}</p>
+                                <p class="p__carrito">329,90 S/</p>
                             </div>
-                        </div>`)
-                        })
-                        //location.href = url + "admin/categoria";
-                    }
-                });
+                        </div>
+                        <div class="precios__curso">
+                            <p class="p__carrito p__precio"> S/. ${valores.CURS_PRECIO}</p>
+                            <p class="p__carrito">329,90 S/</p>
+                        </div>
+                        <div class="opciones__curso">
+                            <div class='box-left'>
+                                <i onclick =borrarCarrito(${valores.CURS_ID}) class='fa fa-times'></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="p__carrito">estrellas</p>
+                        <p class="p__carrito">clases - modulos - nivel</p>
+                        <p class="p__carrito">opciones</p>
+                    </div>
+                </div>`)
+            })
+            //location.href = url + "admin/categoria";
+        }
+    });
 
-  function CalcularPrecio (precio,subprecio,descuentos){
-       precioTotal = Number(precio) + Number(precioTotal)
-       console.log(precioTotal)
-     $('.total__carrito').html("<h1>S/"+precioTotal+"</h1>")
+    function CalcularPrecio(precio, subprecio, descuentos) {
+        precioTotal = Number(precio) + Number(precioTotal)
+        console.log(precioTotal)
+        $('.total__carrito').html("<h1>S/" + precioTotal + "</h1>")
 
-     subTotal = Number(subprecio) + Number(subTotal)
-       console.log(subTotal)
-     $('.subtotal').html("<p class='p__carrito p__separate'><b>S/"+subTotal+"</b>Sub Total</p>")
+        subTotal = Number(subprecio) + Number(subTotal)
+        console.log(subTotal)
+        $('.subtotal').html("<p class='p__carrito p__separate'><b>S/" + subTotal + "</b>Sub Total</p>")
 
-     descuento = Number(descuentos) + Number(descuento)
-       console.log(descuento)
-     $('.descuento').html("<p class='p__carrito p__separate'><b>S/"+descuento+"</b>Descuento</p>")
-  }
+        descuento = Number(descuentos) + Number(descuento)
+        console.log(descuento)
+        $('.descuento').html("<p class='p__carrito p__separate'><b>S/" + descuento + "</b>Descuento</p>")
+    }
 
-  function borrarCarrito (idCurso){
-    let carrito = JSON.parse(localStorage.getItem('idcurso'))
-    console.log(carrito.indexOf(idCurso))
-    carrito.splice(carrito.indexOf(idCurso),1)
-    localStorage.setItem('idcurso',JSON.stringify(carrito))
-    location.reload()
+    function borrarCarrito(idCurso) {
+        let carrito = JSON.parse(localStorage.getItem('idcurso'))
+        console.log(carrito.indexOf(idCurso))
+        carrito.splice(carrito.indexOf(idCurso), 1)
+        localStorage.setItem('idcurso', JSON.stringify(carrito))
+        location.reload()
 
-  }
+    }
 </script>
 <?php
 include_once "./vistas/cliente/component/footer.php";

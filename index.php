@@ -7,6 +7,7 @@ require_once("./modelo/Accesos_Modelo.php");
 require_once("./modelo/Banner_Modelo.php");
 require_once("./modelo/CaliCurso_Modelo.php");
 require_once("./modelo/Categoria_Modelo.php");
+require_once("./modelo/Correo_Modelo.php");
 require_once("./modelo/Cliente_Modelo.php");
 require_once("./modelo/Curso_Modelo.php");
 require_once("./modelo/Descuento_Modelo.php");
@@ -28,6 +29,7 @@ require_once("./controlador/Accesos_Controlador.php");
 require_once("./controlador/Banner_Controlador.php");
 require_once("./controlador/CaliCurso_Controlador.php");
 require_once("./controlador/Categoria_Controlador.php");
+require_once("./controlador/Correo_Controlador.php");
 require_once("./controlador/Cliente_Controlador.php");
 require_once("./controlador/Curso_Controlador.php");
 require_once("./controlador/Descuento_Controlador.php");
@@ -291,6 +293,15 @@ if (isset($ruta_split[1])) {
                         }
                         break;
                     case 'tienda':
+                        if (method_exists(new Categoria(), $metodo)) {
+                            Categoria::$metodo($ruta_split);
+                        } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
+                            RoutesAdmin::$controlador($ruta_split);
+                        } else {
+                            echo "error 404";
+                        }
+                        break;
+                    case 'correos':
                         if (method_exists(new Categoria(), $metodo)) {
                             Categoria::$metodo($ruta_split);
                         } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {

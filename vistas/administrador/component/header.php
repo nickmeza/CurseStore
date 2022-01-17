@@ -107,12 +107,16 @@
                 </ul>
             </li>
             <li>
-                <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/tienda">
-                    <i class='bx bx-cog'></i>
-                    <span class="link_name">Empresa</span>
-                </a>
-                <ul class="sub-menu blank">
+                <div class="iocn-link">
+                    <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/tienda">
+                        <i class='bx bx-cog'></i>
+                        <span class="link_name">Empresa</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/tienda">Empresa</a></li>
+                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/correos">Correos</a></li>
                 </ul>
             </li>
         </ul>
