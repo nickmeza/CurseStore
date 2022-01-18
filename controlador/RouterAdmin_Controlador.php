@@ -66,6 +66,6 @@ class RoutesAdmin
     }
     public static function correos()
     {
-        include_once "./vistas/administrador/tienda/Tienda.php";
+        include_once "./vistas/administrador/tienda/Correo.php";
     }
 }

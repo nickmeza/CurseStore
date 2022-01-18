@@ -9,6 +9,14 @@ class Correo
         array_splice($categorias, 0, 1);
         echo json_encode($categorias);
     }
+    public static function getCorreosData()
+    {
+        $categorias = array();
+        $categorias = Correo_Modelo::getCorreosData();
+        array_splice($categorias, 0, 1);
+        echo json_encode($categorias);
+    }
+
     public static function getById($id)
     {
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
