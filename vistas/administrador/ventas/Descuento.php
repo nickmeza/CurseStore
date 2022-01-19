@@ -340,12 +340,15 @@ include_once "./vistas/administrador/component/header.php";
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Inicio:</label>
-                            <input type="text" class="form-control" name="DESC_STAR" id="inicio">
+                            <!--  <input type="text" class="form-control" name="DESC_STAR" id="inicio">-->
+                           <input type="date" name="DESC_STAR" id ="inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Final:</label>
-                            <input type="text" class="form-control" name="DESC_END" id="final">
-
+                            <input type="date" name="DESC_END" id ="inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+                            
+                        <!--  <input type="text" class="form-control" name="DESC_END" id="final">-->
                         </div>
                     </div>
 
@@ -400,6 +403,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+<!--EDITAR DESCUENTO-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -409,24 +413,77 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_profesor" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="PER_NAME" id="edit_id">
+            <form id="form_editar_descuento" method="POST" enctype="multipart/form-data">
+                <div class="modal-body" style="display: flex; gap: 10px;">
+                    <div class="modal__izquierda">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Porcentaje de descuento:</label>
+                            <input type="text" class="form-control" name="DESC_PORCENT" id="edit_descuento">
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Descripcion:</label>
+                            <input type="text" class="form-control" name="DESC_DESCRIPTION" id="edit_descripcion">
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Inicio:</label>
+                            <!--  <input type="text" class="form-control" name="DESC_STAR" id="inicio">-->
+                           <input type="date" name="DESC_STAR" id="edit_inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Final:</label>
+                            <input type="date" name="DESC_END" id ="edit_final" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+                            
+                        <!--  <input type="text" class="form-control" name="DESC_END" id="final">-->
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control" name="PER_DIRECCION" id="edit_name">
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
-                        <span class="slider round"></span>
-                    </label>
+
+                    <?php
+                    $datos = array();
+
+
+                    if (isset($cursos)) {
+                        $datos = $cursos;
+                        $i = 0;
+                    ?>
+                        <div class="modal__derecha">
+                            <div class="form-group">
+                                <label>Cursos</label>
+                                <select onchange="setArrayCursos()" id="my-select" style="width: 100%;" multiple="multiple">
+                                    <?php foreach ($datos as $dato) { ?>
+                                        <option value="<?php echo $dato['CURS_ID'] ?>"><?php echo $dato['CURS_NOMBRE'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="tabla__cursos">
+                            </div>
+                        </div>
+                    <?php } else { ?>
+
+                        <div class="modal__derecha">
+                            <div class="form-group">
+                                <label>Month</label>
+                                <select id="my-select" multiple="multiple">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
             </form>
         </div>
@@ -504,55 +561,52 @@ include_once "./vistas/administrador/component/header.php";
     })
 
 
-    //form_editar_categoria
-
 
     function eliminar(id) {
         $.ajax({
-            url: url + 'admin/categoria/delete/' + id,
+            url: url + 'admin/descuento/admin_descuento_eliminar/' + id,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                //location.href = url + "admin/categoria";
+                
             },
             complete: function(xhr, status) {
                 if (status == "success") {
                     alert("correcto")
-                    location.href = url + "admin/categoria";
+                    location.href = url + "admin/descuento";
                 }
             },
         })
     }
-
     function mostrarDatos(valores) {
         console.log(valores);
         $.ajax({
-            url: url + 'admin/categoria/getById/' + valores,
+            url: url + 'admin/descuento/admin_descuento_get_one/' + valores,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                $("#edit_name").val(json.CAT_NAME)
-                $("#edit_description").val(json.CAT_DESCRIPCION)
-                $("#edit_imagen").val(json.CAT_IMAGEN)
-                $("#edit_id").val(json.CAT_ID)
-                json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
+                $("#edit_descuento").val(json.DESC.PORCENT)
+                $("#edit_descripcion").val(json.DESC_DESCRIPTION)
+                $("#edit_inicio").val(json.DESC_STAR)
+                $("#edit_final").val(json.DESC_END)
+                json.DESC_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
         })
     }
-    $("#form_editar_categoria").submit(function(event) {
+    $("#form_editar_descuento").submit(function(event) {
         event.preventDefault();
         $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
         const id = $("#edit_id").val()
         $.ajax({
             type: 'POST',
-            url: url + "admin/categoria/update/" + id,
+            url: url + "admin/descuento/update/" + id,
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url + "admin/categoria";
+                location.href = url + "admin/descuento";
             }
         });
     })

@@ -276,7 +276,7 @@ include_once "./vistas/administrador/component/header.php";
                         <h2><b>Correos</b></h2>
                     </div>
                     <div class="col-xs-7">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
+                       
                         <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
@@ -313,43 +313,14 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar categoría</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="form_agregar_categoria" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_NAME" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="CAT_DESCRIPCION" id="description">
-                    </div>
-                    <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="imagen"></textarea>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </div>
-            </form>
-        </div>
+        
     </div>
 </div>
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar categoría</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ver Correo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -405,7 +376,7 @@ include_once "./vistas/administrador/component/header.php";
                     <td style="width: 400px;">${valores.COR_ASUNTO}</td>
                    
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.COR_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="settings" onclick="mostrarDatos(${valores.COR_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <a class="delete" onclick="eliminar(${valores.COR_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                     </td>
                 </tr>
@@ -415,6 +386,24 @@ include_once "./vistas/administrador/component/header.php";
             curseCategoria = document.getElementsByClassName("navigation__categoria")
         }
     })
+    
+    function eliminar(id) {
+        $.ajax({
+            url: url + 'admin/correos/delete/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                
+            },
+            complete: function(xhr, status) {
+                if (status == "success") {
+                    alert("correcto")
+                    location.href = url + "admin/correos";
+                }
+            },
+        })
+    }
+
     </script>
 <?php
 include_once "./vistas/administrador/component/footer.php";
