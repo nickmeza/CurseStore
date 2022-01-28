@@ -87,7 +87,7 @@ class Categoria
     }
     public static function create()
     {
-        if (isset($_REQUEST['CAT_NAME']) && isset($_REQUEST['CAT_DESCRIPCION']) && isset($_REQUEST['CAT_IMAGEN'])) {
+        if (isset($_FILES['CAT_IMAGEN'])) {
             $categoria["CAT_IMAGEN"] = Categoria::CargarImagen($_FILES['CAT_IMAGEN']);
             $categoria["CAT_NAME"] = $_REQUEST['CAT_NAME'];
             $categoria["CAT_DESCRIPCION"] = $_REQUEST['CAT_DESCRIPCION'];

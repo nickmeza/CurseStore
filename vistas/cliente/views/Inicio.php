@@ -148,7 +148,7 @@ include_once "./vistas/cliente/component/header.php";
             json.map((valores, idx) => {
                 $(".main__categoria").append(`
                 <div class="card__categoria">
-                    <div class="content__categoria" style="--urlimg: url('${valores.CAT_IMAGEN}');">
+                    <div class="content__categoria" style="--urlimg: url('${url + valores.CAT_IMAGEN}');">
                         <h2> ${valores.CAT_NAME} <br><span>${valores.CAT_DESCRIPCION}</span></h2>
                     </div>
                     <ul class="navigation__categoria">
@@ -176,7 +176,7 @@ include_once "./vistas/cliente/component/header.php";
     }
 
     function aparecerCursos(idx, cat_id) {
-        card_categoria[idx].classList.toggle('active');
+       // card_categoria[idx].classList.toggle('active');
         $.ajax({
             url: url + 'admin/curso/getCursosDescuento',
             type: 'GET',

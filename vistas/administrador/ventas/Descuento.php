@@ -568,7 +568,7 @@ include_once "./vistas/administrador/component/header.php";
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                
+                location.href = url + "admin/descuento";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
@@ -579,18 +579,21 @@ include_once "./vistas/administrador/component/header.php";
         })
     }
     function mostrarDatos(valores) {
-        console.log(valores);
         $.ajax({
-            url: url + 'admin/descuento/admin_descuento_get_one/' + valores,
+            url: url + "admin/descuento/admin_descuento_get_one/" + valores,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                $("#edit_descuento").val(json.DESC.PORCENT)
+                console.log(json);
+                $("#edit_descuento").val(json.DESC_PORCENT)
                 $("#edit_descripcion").val(json.DESC_DESCRIPTION)
                 $("#edit_inicio").val(json.DESC_STAR)
                 $("#edit_final").val(json.DESC_END)
                 json.DESC_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
+            error:function(json){
+                console.log("Error al recibir los datos: " + json);
+            }
         })
     }
     $("#form_editar_descuento").submit(function(event) {
