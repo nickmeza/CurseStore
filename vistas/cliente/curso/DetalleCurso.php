@@ -27,28 +27,28 @@
                 <ul class="nav__dc__lista">
                     <?php if (!empty($dateModulo)) { ?>
                         <?php foreach ($data_mod as $value) { ?>
-                        <li class="lista__item lista__item--click">
-                            <div class="lista__button list__button--click">
-                                <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/play-dc.svg" alt="" class="lista__img">
-                                <a href="#" class="nav__link"><?php echo $value['MOD_NOMBRE'] ?></a>
-                                <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg" alt="" class="lista__arrow">
-                            </div>
-                            <?php
-                            $data_smod = array();
-                            $dateSModulo = SubModulo_Modelo::getbyMod($value['MOD_ID']);
-                            if (isset($dateSModulo)) {
-                                $data_smod = $dateSModulo;
-                            ?>
-                                <ul class="list__show">
-                                    <?php foreach ($data_smod as $value_smod) { ?>
-                                        <li class="lista__inside">
-                                            <a href="#" class="nav__link nav__link--inside"><?php echo $value_smod['SMOD_NOMBRE'] ?></a>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            <?php } ?>
-                        </li>
-                    <?php } ?>
+                            <li class="lista__item lista__item--click">
+                                <div class="lista__button list__button--click">
+                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/play-dc.svg" alt="" class="lista__img">
+                                    <a href="" class="nav__link"><?php echo $value['MOD_NOMBRE'] ?></a>
+                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg" alt="" class="lista__arrow">
+                                </div>
+                                <?php
+                                $data_smod = array();
+                                $dateSModulo = SubModulo_Modelo::getbyMod($value['MOD_ID']);
+                                if (isset($dateSModulo)) {
+                                    $data_smod = $dateSModulo;
+                                ?>
+                                    <ul class="list__show">
+                                        <?php foreach ($data_smod as $value_smod) { ?>
+                                            <li class="lista__inside">
+                                                <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/progreso/<?php echo $buscador . "/" . $value_smod['SMOD_ID'] ?>" class="nav__link nav__link--inside"><?php echo $value_smod['SMOD_NOMBRE'] ?></a>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                <?php } ?>
+                            </li>
+                        <?php } ?>
                     <?php } else { ?>
                         <h1>No hay Contenido del curso</h1>
                     <?php } ?>
@@ -104,17 +104,17 @@
             console.log(json)
         }
     })
-    
-    function anadirCarrito(id){
-        var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+
+    function anadirCarrito(id) {
+        var idcurso = localStorage.getItem('idcurso') ? JSON.parse(localStorage.getItem('idcurso')) : []
 
         idcurso.push(id)
-        
-        localStorage.setItem('idcurso',JSON.stringify(idcurso))
+
+        localStorage.setItem('idcurso', JSON.stringify(idcurso))
 
         console.log(localStorage.getItem('idcurso'));
     }
-    
+
 
 
     let listElements = document.querySelectorAll('.list__button--click');

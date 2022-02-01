@@ -34,10 +34,13 @@ class Routes
     //videos
     public static function progreso($data)
     {
-        include_once "./vistas/cliente/curso/Progreso.php";
-        var_dump($data[3]);
-        if (isset($data[4])) {
-            var_dump($data[4]);
+        if (isset($data[3]) && isset($data[4])) {
+            $subModulo = $data[4];
+            $modulo = $data[3];
+            include_once "./vistas/cliente/curso/Progreso.php";
+        } else {
+            header("Location: http://tiendacursos.test/curso/detalle/$data[3]");
+            die();
         }
     }
     public static function perfil()
