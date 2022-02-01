@@ -4,14 +4,15 @@ class Descuento
 {
 
 
-    public static function admin_descuento_eliminar($args = array())
+    public static function admin_descuento_eliminar($id)
     {
-        $Session = new UsuarioSession();
-        if (isset($_SESSION['user'])) {
-            if (isset($args[3])) {
-                Descuento_Modelo::delete($args[3]);
-                echo "success";
-            }
+        if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
+            $borrado = Descuento_Modelo::delete($id[4]);
+            $mensaje["mensaje"] = "correcto";
+            $mensaje["status"] = "200";
+            echo json_encode($mensaje);
+        } else {
+            echo "fallo al borrar";
         }
     }
 
@@ -34,19 +35,36 @@ class Descuento
         DetalleDescuento_Modelo::insertModulo($detalleDescuento);
         echo 'creado correctamente';
     }
-    public static function admin_descuento_get_one($args = array())
+    public static function admin_descuento_get_one($id)
     {
-        $Session = new UsuarioSession();
-        if (isset($_SESSION['user'])) {
-            if (isset($args[3])) {
-                $Descuento = Descuento_Modelo::getOne($args[3]);
+        if(isset($id[4])){
+            $Descuento = Descuento_Modelo::getOne($id[4]);
+            $bloque_arr = array(
+                'DESC_ID' => $Descuento['DESC_ID'],
+                'DESC_PORCENT' => $Descuento['DESC_PORCENT'],
+                'DESC_DESCRIPTION' => $Descuento['DESC_DESCRIPTION'],
+                'DESC_STAR' => $Descuento['DESC_STAR'],
+                'DESC_END' => $Descuento['DESC_END'],
+            );
+            echo json_encode($bloque_arr);
+        }
+
+        //$Session = new UsuarioSession();
+
+        /*if (isset($_SESSION['user'])) {
+            if (isset($id[4])) {
+                $Descuento = Descuento_Modelo::getOne($id[4]);
                 $bloque_arr = array(
                     'idelemento' => $Descuento['idelemento'],
                     'nombre' => $Descuento['nombre'],
                 );
                 echo json_encode($bloque_arr);
+            }else{
+                echo json_encode($id);
             }
-        }
+        }else{
+            echo json_encode($id);
+        }*/
     }
     public static function admin_descuento_editar($args = array())
     {

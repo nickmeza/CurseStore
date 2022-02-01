@@ -310,6 +310,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+<!-- AGREGAR CATEGORIA-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -331,10 +332,10 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="CAT_DESCRIPCION" id="description">
                     </div>
                     <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="imagen"></textarea>
+                        <label for="description" class="col-form-label">Imagen:</label>
+                        <input type="file" class="form-control inputimg" name="CAT_IMAGEN" id="imagen">
+                        <img src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -344,6 +345,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+<!-- EDITAR CATEGORIA -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -356,7 +358,7 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_editar_categoria" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
+                        <label for="name" class="col-form-label"mbr>Noe:</label>
                         <input type="text" class="form-control" name="CAT_ID" id="edit_id">
                     </div>
                     <div class="form-group">
@@ -368,8 +370,9 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="CAT_DESCRIPCION" id="edit_description">
                     </div>
                     <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="edit_imagen"></textarea>
+                        <label for="description" class="col-form-label">Imagen:</label>
+                        <input type="file" class="form-control inputimg" name="CAT_IMAGEN" id="edit_imagen">
+                        <img id ="edit_imagenes" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
@@ -386,17 +389,40 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    $(document).on("change", ".inputimg", function() {
+        console.log("se ha cambiado");
+        console.log(this.files['0']);
+        console.log($(".inputimg").parent().children('img').attr("src"));
+        console.log(this);
+        if (this.files['0'] != undefined) {
+            var file = this.files['0'];
+            var tamano = this.files['0'].size;
+            var tamanoconvertido = parseInt(tamano / 1024);
+            if (tamanoconvertido > 1024) {
+                alert("La imagen es muy grande. Pesa " + tamanoconvertido + " MB. El archivo debe sermenor a 1 MB");
+                var input = $('#rutaimagen');
+                input.replaceWith(this);
+            } else {
+                var image = URL.createObjectURL(file);
+                $(".inputimg").parent().children('img').attr("src", image);
+            }
+        } else {
+            $(".inputimg").parent().children('img').attr("src", url + "publico/img/imagen_default.png");
+        }
+    });
     $.ajax({
         url: url + 'admin/categoria/getAll',
         type: 'GET',
         dataType: 'json',
         success: function(json) {
+            console.log(json)
             json.map((valores, idx) => {
+                
                 $(".tbody__categoria").append(`
                 <tr>
                     <td>${valores.CAT_ID}</td>
                     <td>
-                        <a><img src="${valores.CAT_IMAGEN}" class="avatar" alt=""> ${valores.CAT_NAME}</a>
+                        <a><img src="${url + valores.CAT_IMAGEN}" class="avatar" alt=""> ${valores.CAT_NAME}</a>
                     </td>
                     <td style="width: 400px;">${valores.CAT_DESCRIPCION}</td>
 
@@ -438,7 +464,7 @@ include_once "./vistas/administrador/component/header.php";
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                //location.href = url + "admin/categoria";
+                location.href = url + "admin/categoria";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
@@ -458,12 +484,13 @@ include_once "./vistas/administrador/component/header.php";
             success: function(json) {
                 $("#edit_name").val(json.CAT_NAME)
                 $("#edit_description").val(json.CAT_DESCRIPCION)
-                $("#edit_imagen").val(json.CAT_IMAGEN)
+                $("#edit_imagenes").attr("src","http://tiendacursos.test/"+json.CAT_IMAGEN)
                 $("#edit_id").val(json.CAT_ID)
                 json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
         })
     }
+
     $("#form_editar_categoria").submit(function(event) {
             event.preventDefault();
             $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
@@ -477,10 +504,33 @@ include_once "./vistas/administrador/component/header.php";
                 processData: false,
                 success: function(msg) {
                     console.log(msg)
-                    location.href = url + "admin/categoria";
+                  location.href = url + "admin/categoria";
+                },
+                error: function (xhr, opciones, error) {
+                    console.log("error"+error);
                 }
             });
-        })
+        });
+
+        /*function editar(){
+            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0);
+            const id = $("#edit_id").val()
+            $.ajax({
+                type: 'POST',
+                url: url + "admin/categoria/update/" + id,
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(msg) {
+                    console.log("hola llege"+msg);
+                    //location.href = url + "admin/categoria";
+                },
+                error: function (xhr, opciones, error) {
+                    console.log("error"+error);
+                }
+            });
+        }*/
 </script>
 
 <?php

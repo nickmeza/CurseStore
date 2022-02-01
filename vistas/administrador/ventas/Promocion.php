@@ -277,7 +277,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-                        <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+                        
                     </div>
                 </div>
             </div>
@@ -310,6 +310,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+<!-- AGREGAR BANNER-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -340,6 +341,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+<!-- EDITAR BANNER  -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -361,7 +363,8 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
-                        <input type="text" class="form-control" name="BANNER_IMAGEN" id="edit_imagen">
+                        <input type="file" class="form-control inputimg" name="BANNER_IMAGEN" id="edit_imagen">
+                        <img id ="edit_banner"src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
 
                     <label class="switch">
@@ -443,7 +446,7 @@ include_once "./vistas/administrador/component/header.php";
             }
         });
     })
-    //form_editar_categoria
+    
 
 
     function eliminar(id) {
@@ -471,7 +474,7 @@ include_once "./vistas/administrador/component/header.php";
             dataType: 'json',
             success: function(json) {
                 $("#edit_name").val(json.BANNER_TITULO)
-                $("#edit_imagen").val(json.BANNER_IMAGEN)
+                $("#edit_banner").attr("src","http://tiendacursos.test/"+json.BANNER_IMAGEN)
                 $("#edit_id").val(json.BANNER_ID)
                 json.BANNER_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
