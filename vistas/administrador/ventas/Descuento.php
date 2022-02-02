@@ -550,8 +550,15 @@ include_once "./vistas/administrador/component/header.php";
                             processData: false,
                             success: function(msg) {
                                 console.log(msg)
-                                //location.href = url + "admin/descuento";
-                            }
+                                location.href = url + "admin/descuento";
+                            },
+                             complete: function(xhr, status) {
+                             if (status == "success") {
+                            alert("Agregado correctamente")
+                            location.href = url + "admin/descuento";
+                }
+            },
+                            
                         });
                     })
                     //location.href = url + "admin/descuento";

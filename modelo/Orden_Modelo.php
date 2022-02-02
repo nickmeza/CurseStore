@@ -15,7 +15,7 @@ class Orden_Modelo
     }
     public static function get_estado_approval()
     {
-        return $data = Database::query("SELECT o.*,p.PER_ID ,p.PER_NOMBRE ,p.PER_APELLIDO, p.PER_DIRECCION,p.PER_ESTADO, c.CLI_CREATE FROM orden o, cliente c,usuario u,persona p WHERE c.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID AND ORD_APPROVAL = 1 AND o.CLI_ID=c.CLI_ID ;", array());
+        return $data = Database::query("SELECT o.*, IF(o.ORD_APPROVAL=1,'Aprobado','Inactivo') AS estado, p.PER_ID ,p.PER_NOMBRE ,p.PER_APELLIDO, p.PER_DIRECCION,p.PER_ESTADO, c.CLI_CREATE FROM orden o, cliente c,usuario u,persona p WHERE c.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID AND ORD_APPROVAL = 1  AND o.CLI_ID=c.CLI_ID;", array());
     }
     public static function insertModulo($orden)
     {

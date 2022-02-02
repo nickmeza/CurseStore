@@ -39,15 +39,7 @@
             <span class="logo_name">CodingLab</span>
         </div>
         <ul class="nav-links">
-            <li>
-                <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria">
-                    <i class='bx bx-cog'></i>
-                    <span class="link_name">Categoria</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria">Categoria</a></li>
-                </ul>
-            </li>
+            
             <li>
                 <div class="iocn-link">
                     <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/curso">
@@ -63,6 +55,19 @@
                 </ul>
             </li>
             <li>
+             <div class="iocn-link">
+                <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria">
+                    <i class='bx bx-category'></i>
+                    <span class="link_name">Categoria</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu ">
+                    <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria"> Categoría</a></li>
+                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria">Lista de categorías</a></li>
+                </ul>
+            </li>
+            <li>
                 <div class="iocn-link">
                     <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/promocion">
                         <i class='bx bx-collection'></i>
@@ -72,15 +77,15 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/promocion">Promociones</a></li>
-                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/promocion">Gst. Banner</a></li>
-                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/descuento">Gst. Descuentos</a></li>
-                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin">Gst. Lista de Precios</a></li>
+                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/promocion">Banner</a></li>
+                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/descuento">Descuentos</a></li>
+                    
                 </ul>
             </li>
             <li>
                 <div class="iocn-link">
                     <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/ventas">
-                        <i class='bx bx-book-alt'></i>
+                        <i class='bx bx-shopping-bag'></i>
                         <span class="link_name">Ventas</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
@@ -88,14 +93,14 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/ventas">Ventas</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/ventas">Lista de Ventas</a></li>
-                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/historial">Historial de Usuario</a></li>
+                   
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/solicitudes">Confirmar Ventas</a></li>
                 </ul>
             </li>
             <li>
                 <div class="iocn-link">
                     <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/usuario/cliente">
-                        <i class='bx bx-book-alt'></i>
+                        <i class='bx bx-user-circle'></i>
                         <span class="link_name">Usuario</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
@@ -124,6 +129,6 @@
     <section class="home-section">
         <div class="home-content" style="padding-top: 20px;">
             <i class='bx bx-menu'></i>
-            <span class="text">Drop Down Sidebar</span>
+            <span class="text">Administrador</span>
         </div>
         <div class="contenido_admin">

@@ -154,6 +154,7 @@
         
         
         console.log(localStorage.getItem('idcurso'));
+        alert("Añadito con exito")
     }
     
     function search__detail_curse(date__search) {

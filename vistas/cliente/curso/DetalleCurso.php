@@ -113,6 +113,7 @@
         localStorage.setItem('idcurso', JSON.stringify(idcurso))
 
         console.log(localStorage.getItem('idcurso'));
+        alert("Agregado con exito")
     }
 
 

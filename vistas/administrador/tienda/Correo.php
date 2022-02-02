@@ -325,32 +325,30 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_categoria" method="POST" enctype="multipart/form-data">
+            <form id="form_editar_correo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_ID" id="edit_id">
+                        <label for="name" class="col-form-label">ID</label>
+                        <input type="text" class="form-control" name="COR_ID" id="edit_id" >
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_NAME" id="edit_name">
+                        <label for="name" class="col-form-label">Cliente:</label>
+                        <input type="text" class="form-control" name="PER_NAME" readonly id="edit_nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Asunto:</label>
+                        <input type="text" class="form-control" name="COR_ASUNTO" readonly id="edit_asunto">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="CAT_DESCRIPCION" id="edit_description">
+                        <input type="text" class="form-control" name="COR_DESCRIPCION" readonly id="edit_description">
                     </div>
-                    <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="edit_imagen"></textarea>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
-                        <span class="slider round"></span>
-                    </label>
+
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    
                 </div>
             </form>
         </div>
@@ -397,9 +395,24 @@ include_once "./vistas/administrador/component/header.php";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
-                    alert("correcto")
+                    alert("Eliminado correctamente")
                     location.href = url + "admin/correos";
                 }
+            },
+        })
+    }
+
+    function mostrarDatos(valores) {
+        console.log(valores);
+        $.ajax({
+            url: url + 'admin/correos/getById/' + valores,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                $("#edit_nombre").val(json.COR_NOMBRE)
+                $("#edit_asunto").val(json.COR_ASUNTO)
+                $("#edit_description").val(json.COR_DESCRIPCION)
+                
             },
         })
     }

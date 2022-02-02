@@ -368,8 +368,8 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="PER_NAME" id="edit_id">
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control" name="PER_DIRECCION" id="edit_name">
+                        <label for="name" class="col-form-label">Descripcion:</label>
+                        <input type="text" class="form-control" name="COR_DESCRIPCION" id="edit_descripcion">
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
@@ -443,7 +443,7 @@ include_once "./vistas/administrador/component/header.php";
             complete: function(xhr, status) {
                 if (status == "success") {
                     alert("correcto")
-                    location.href = url + "admin/categoria";
+                    location.href = url + "admin/usuario/cliente";
                 }
             },
         })
