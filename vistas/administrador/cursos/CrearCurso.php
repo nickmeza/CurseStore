@@ -309,17 +309,17 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_title_modulo">
+            <form id="form_editar_title_submodulo">
                 <div class="modal-body">
                     <div class="content__submodulo">
                         <div class="formulario__submodulo">
                             <div class="form-group">
                                 <label for="nombre_edit_submodulo" class="col-form-label">Nombre del Submodulo:</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre_edit_submodulo">
+                                <input type="text" class="form-control" name="nombre_submodulo" id="nombre_submodulo">
                             </div>
                             <div class="form-group">
                                 <label for="descrip_edit_title" class="col-form-label">Direccion:</label>
-                                <textarea name="" placeholder="Descripcion" class="form-control" id="descrip_edit_title" cols="30" rows="4"></textarea>
+                                <textarea name="description_submodulo" placeholder="Descripcion" class="form-control" id="description_submodulo" cols="30" rows="4"></textarea>
                             </div>
                             <div class="videos__submodulo">
                                 <div class="videos__content modulo__title">
@@ -361,11 +361,11 @@ include_once "./vistas/administrador/component/header.php";
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nombre_edit_title" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre_edit_title">
+                        <input type="text" class="form-control" name="nombre_modulo" id="nombre_modulo">
                     </div>
                     <div class="form-group">
                         <label for="descrip_edit_title" class="col-form-label">Direccion:</label>
-                        <textarea name="" placeholder="Descripcion" class="form-control" id="descrip_edit_title" cols="30" rows="4"></textarea>
+                        <textarea name="description_modulo" placeholder="Descripcion" class="form-control" id="description_modulo" cols="30" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -394,8 +394,33 @@ include_once "./vistas/administrador/component/header.php";
             $('#' + idinputeditor + '').trigger('focus')
         })
         if (where == "modulo") {
+            console.log(modulosArray)
+            $('#nombre_modulo').val(modulosArray[position].titulo)
+            $('#description_modulo').val(modulosArray[position].descripcion)
+            $('#form_editar_title_modulo').submit(function(event) {
+                const fields = $(this).serializeArray()
+                modulosArray[position].titulo = fields[0].value;
+                modulosArray[position].descripcion = fields[1].value;
+                event.preventDefault();
+                $('#' + idmodal + '').modal('hide').on('hidden.bs.modal', function() {
+                    $('#form_editar_title_modulo').unbind()
+                })
+            });
+
             alert('modulo' + position)
+
         } else {
+            $('#nombre_modulo').val(modulosArray[position].titulo)
+            $('#description_modulo').val(modulosArray[position].descripcion)
+            $('#form_editar_title_modulo').submit(function(event) {
+                const fields = $(this).serializeArray()
+                modulosArray[position].titulo = fields[0].value;
+                modulosArray[position].descripcion = fields[1].value;
+                event.preventDefault();
+                $('#' + idmodal + '').modal('hide').on('hidden.bs.modal', function() {
+                    $('#form_editar_title_modulo').unbind()
+                })
+            });
             alert('submodulo' + position)
         }
 
@@ -404,7 +429,6 @@ include_once "./vistas/administrador/component/header.php";
     function eliminarModulo(idmodulo) {
         $("#idmodulo__" + idmodulo).remove();
         let position = modulosArray.findIndex(array => array.idmodulo === idmodulo)
-        console.log(position)
         modulosArray.splice(position, 1)
         console.log(modulosArray)
     }
