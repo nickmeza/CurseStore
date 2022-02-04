@@ -398,10 +398,10 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2><b>Ventas</b></h2>
+                        <h2><b>Confirmar Ventas</b></h2>
                     </div>
                     <div class="col-xs-7">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
+                       
                         <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
@@ -413,7 +413,7 @@ include_once "./vistas/administrador/component/header.php";
                         <th>CLIENTE</th>
                         <th>TOTAL</th>
                         <th>FECHA DE PEDIDO</th>
-                        <th>COMPROBANTE</th>
+                        
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -437,47 +437,14 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar categoría</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="form_agregar_categoria" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_NAME" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="CAT_DESCRIPCION" id="description">
-                    </div>
-                    <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="imagen"></textarea>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- Modal del editar orden-->
 <div class="modal fade" id="editSolicitudes" tabindex="-1" role="dialog" aria-labelledby="editTitleModal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Confirmar ventas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -515,7 +482,7 @@ include_once "./vistas/administrador/component/header.php";
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    
                 </div>
             </form>
         </div>
@@ -537,13 +504,13 @@ include_once "./vistas/administrador/component/header.php";
                     <td>
                         <a>${valores.PER_NOMBRE +' '+valores.PER_APELLIDO}</a>
                     </td>
-                    <td style="width: 400px;">${valores.ORD_TOTAL_PRICE}</td>
+                    <td style="width: 400px;">S/.${valores.ORD_TOTAL_PRICE}</td>
                     <td style="width: 400px;">${valores.ORD_DATE_ORDER}</td>
-                    <td style="width: 400px;">${valores.ORD_VOUCHER}</td>
+                    
                     <td><span class="status text-warning">&bull;</span>  ${valores.ORD_STATUS==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});setIdOrder(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.ORD_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});setIdOrder(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        
                     </td>
                 </tr>
                 `)

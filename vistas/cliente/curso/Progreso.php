@@ -107,22 +107,49 @@ include_once "./vistas/cliente/component/header.php";
     .minutos__videos {
         color: #6a6f73;
     }
+    
 </style>
+
 <div class="content__progreso">
     <div class="flex">
+    <?php
+    $i = 0;
+    $i2 = 0;
+    $data_mod = array();
+    $mod = Curso_Modelo::getOneIdByName($buscador);
+    $dateModulo = Modulo_Modelo::getAllbyCurse($mod);
+    $idModuloSelected = SubModulo_Modelo::getidModuloBySubmodulo($subModulo);
+
+    if (isset($dateModulo)) {
+        $data_mod = $dateModulo;
+        foreach ($data_mod as $contador) {
+            $dateSModulo = SubModulo_Modelo::getbyMod($contador['MOD_ID']);
+            foreach ($dateSModulo as $values_moduloss) {
+                $i2++;
+            }
+            $i++;
+        }
+    }
+    ?>
         <div class="video__progreso">
             <iframe class="iframe__progreso" src="https://www.youtube.com/embed/raSv24T4cjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="modulo__progreso">
             <div class="titulo__progreso">
-                <h4>Contenido del curso</h4>
+                <h4>Contenido del curso:<?php echo $buscador ?> </h4>
             </div>
             <div class="cursos__progreso">
                 <div class="content__content">
-                    <div class="content__item">
-                        <div class="content__header" onclick="aparecerCursos(0)">
+
+                    <?php 
+                     $i = 0;
+                    foreach ($data_mod as $value) {  ?>
+                    <div class="content__item <?php  if ($value["MOD_ID"]==$idModuloSelected){
+                        echo "active";
+                         } ?>">
+                        <div class="content__header" onclick="aparecerCursos(<?php echo $i?>)">
                             <div>
-                                <b style="font-size: 16px;">Seccion 1:Introducción</b><br>
+                                <b style="font-size: 16px;"> <?php echo $value['MOD_NOMBRE'] ?></b><br>
                                 <b>4/4 | 25 min</b>
                             </div>
                             <div>
@@ -130,153 +157,43 @@ include_once "./vistas/cliente/component/header.php";
                             </div>
                         </div>
                         <div class="content__body">
+                        <?php 
+                        $j = 0;
+                        
+                        $dateSModulo = SubModulo_Modelo::getbyMod($value['MOD_ID']);
+                        
+                        foreach ($dateSModulo as $submodulo) {  ?>
                             <div class="sub__modulo">
                                 <div class="sub__modulo__title">
-                                    <b>Sub-Modulo</b>
+                                    <b><?php echo $submodulo['SMOD_NOMBRE'] ?></b>
                                 </div>
                                 <div class="videos__modulo">
+                                <?php 
+                         $k = 0;
+                        $dataVideos = Video_Modelo::getAllVideoSubmodul($submodulo['SMOD_ID']);
+                        foreach ( $dataVideos as $video) {  ?>
                                     <div class="video__content">
                                         <div class="checkbox__video">
                                             <input type="checkbox" name="STATUS_VIDEO" id="status">
                                         </div>
                                         <div class="datos__video">
                                             <div class="title__video">
-                                                <span>1. Video de introducción</span>
+                                                <span><?php echo $video['VI_DESCRIPCION']?></span>
                                             </div>
                                             <div class="minutos__videos">
                                                 <span>10 min.</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>2. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>15 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php }?>
                                 </div>
                             </div>
-                            <div class="sub__modulo">
-                                <div class="sub__modulo__title">
-                                    <b>Sub-Modulo</b>
-                                </div>
-                                <div class="videos__modulo">
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>2. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>15 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>2. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>15 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php }?>
                         </div>
+
                     </div>
-                    <div class="content__item">
-                        <div class="content__header" onclick="aparecerCursos(1)">
-                            <div>
-                                <b style="font-size: 16px;">Seccion 1:Introducción</b><br>
-                                <b>4/4 | 25 min</b>
-                            </div>
-                            <div>
-                                <div class="toggle__item__content"><img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg"></div>
-                            </div>
-                        </div>
-                        <div class="content__body">
-                            <div class="sub__modulo">
-                                <div class="sub__modulo__title">
-                                    <b>Sub-Modulo</b>
-                                </div>
-                                <div class="videos__modulo">
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>1. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>10 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>2. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>15 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sub__modulo">
-                                <div class="sub__modulo__title">
-                                    <b>Sub-Modulo</b>
-                                </div>
-                                <div class="videos__modulo">
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>2. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>15 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="video__content">
-                                        <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
-                                        </div>
-                                        <div class="datos__video">
-                                            <div class="title__video">
-                                                <span>2. Video de introducción</span>
-                                            </div>
-                                            <div class="minutos__videos">
-                                                <span>15 min.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php  $i++; } ?>
+                    
                 </div>
             </div>
         </div>

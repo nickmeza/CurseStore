@@ -311,7 +311,7 @@ include_once "./vistas/cliente/component/header.php";
   <div class='window'>
     <div class='order-info'>
       <div class='order-info-content'>
-        <h2>Order Summary</h2>
+        <h2>Orden de compra</h2>
         <div class='line'></div>
       </div>
     </div>
@@ -319,7 +319,7 @@ include_once "./vistas/cliente/component/header.php";
       <div class='credit-info-content'>
         <table class='half-input-table'>
           <tr>
-            <td>Please select your card: </td>
+            <td>Selecciona el método de pago: </td>
             <td>
               <div class='dropdown' id='card-dropdown'>
                 <div class='dropdown-btn' id='current-card'>Visa</div>
@@ -346,7 +346,7 @@ include_once "./vistas/cliente/component/header.php";
           <label for="imagen">Card Holder</label>
           <input id="imagen" type="file" class='input-field inputimg'></input>
           <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
-          <button class='pay-btn' type="submit">Checkout</button>
+          <button class='pay-btn' type="submit">Enviar</button>
         </form>
       </div>
     </div>
@@ -450,13 +450,16 @@ include_once "./vistas/cliente/component/header.php";
     }
     idsProductos.push(idproduct)
   }
+  <?php
+    $fecha_actual = date('d/m/Y');
+  ?>
   $('#form_solicitud').submit((e) => {
     e.preventDefault();
     var formdata = new FormData()
     console.log(filess)
     formdata.append('ORD_VOUCHER', filess)
     formdata.append('CLI_ID', '4')
-    formdata.append('ORD_DATE_ORDER', '12/01/2022')
+    formdata.append('ORD_DATE_ORDER','<?PHP echo $fecha_actual;?>')
     formdata.append('ORD_APPROVAL', '0')
     formdata.append('ORD_TOTAL_PRICE', precioTotal)
     formdata.append('ORD_DISCOUNT', '0')
@@ -541,5 +544,8 @@ include_once "./vistas/cliente/component/header.php";
   }
 </script>
 <?php
+
+ $fecha_actual = date('Y/m/d');
+
 include_once "./vistas/cliente/component/footer.php";
 ?>

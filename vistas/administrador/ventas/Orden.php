@@ -256,6 +256,139 @@ include_once "./vistas/administrador/component/header.php";
     .slider.round:before {
         border-radius: 50%;
     }
+     /* modal edit solicitudes */
+     .edit__solicitudes {
+        padding: 8px;
+    }
+
+    .content__solicitudes {
+        display: flex;
+        gap: 10px;
+    }
+
+    .content__izquierda {
+        flex: 10;
+    }
+
+    .item__curso {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .tittle__h4 {
+        width: 50px;
+    }
+
+    .content__derecha {
+        flex: 6;
+    }
+
+    .button-48 {
+        appearance: none;
+        background-color: #fff;
+        border: 1px solid #ff00003b;
+        width: 100%;
+        box-sizing: border-box;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Clarkson, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1em;
+        margin: 0;
+        opacity: 1;
+        outline: 0;
+        padding: 1em 2.2em;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-rendering: geometricprecision;
+        text-transform: uppercase;
+        transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+
+    .button-48:before {
+        animation: opacityFallbackOut .5s step-end forwards;
+        backface-visibility: hidden;
+        background-color: #EBEBEB;
+        clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: translateZ(0);
+        transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+        width: 100%;
+    }
+
+    .button-48:hover:before {
+        animation: opacityFallbackIn 0s step-start forwards;
+        clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+    }
+
+    .button-48:after {
+        background-color: #FFFFFF;
+    }
+
+    .button-48 span {
+        z-index: 1;
+        position: relative;
+    }
+
+    .content__passed {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .quetion__passed {
+        width: 100%;
+        background: #bfe3d48f;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .question__aprobal {
+        flex: 6;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons__aprobal {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    @media (max-width: 1000px) {
+        .content__solicitudes {
+            flex-direction: column;
+        }
+
+        .quetion__passed {
+            width: 80%;
+            background: #bfe3d48f;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .quetion__passed {
+            width: 100%;
+        }
+    }
 </style>
 
 <div class="container">
@@ -264,10 +397,10 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2><b>Ventas</b></h2>
+                        <h2><b>Lista de Ventas</b></h2>
                     </div>
                     <div class="col-xs-7">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
+                        
                         <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
@@ -279,8 +412,8 @@ include_once "./vistas/administrador/component/header.php";
                         <th>CLIENTE</th>
                         <th>TOTAL</th>
                         <th>FECHA DE PEDIDO</th>
-                        <th>ESTADO DE APROBACION</th>
                         <th>ESTADO </th>
+                        
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
@@ -303,75 +436,48 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+<!-- Modal del editar orden-->
+<div class="modal fade" id="editSolicitudes" tabindex="-1" role="dialog" aria-labelledby="editTitleModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar categoría</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detalle de la venta</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_agregar_categoria" method="POST" enctype="multipart/form-data">
+            <form id="form_editar_title_modulo">
                 <div class="modal-body">
+                    <div class="edit__solicitudes">
+                        <div class="content__solicitudes">
+                            <div class="content__izquierda">
+                                <div class="datos__cliente">
 
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="ID" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="DESCRIPCION" id="description">
-                    </div>
-                    <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="imagen"></textarea>
-                    </div>
+                                </div>
+                                <div class="tabla__cursos">
 
+                                </div>
+                            </div>
+                            <div class="content__derecha">
+                                <div class="content__passed">
+                                    <div class="quetion__passed">
+                                        <div class="question__aprobal">
+                                            <h5>Voucher adjunto</h5>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="voucher__cliente">
+                                    <img id="imagenVoucher" width="90%" src="https://www.ejemplode.com/images/uploads/voucher.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="form_editar_categoria" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_ID" id="edit_id">
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CAT_NAME" id="edit_name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="CAT_DESCRIPCION" id="edit_description">
-                    </div>
-                    <div class="form-group">
-                        <label for="imagen" class="col-form-label">Imagen:</label>
-                        <textarea class="form-control" name="CAT_IMAGEN" id="edit_imagen"></textarea>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    
                 </div>
             </form>
         </div>
@@ -379,6 +485,7 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    var idOrder = 1;
     $.ajax({
         url: url + 'admin/ventas/get_estado_approval',
         type: 'GET',
@@ -393,15 +500,15 @@ include_once "./vistas/administrador/component/header.php";
                     <a>${valores.PER_NOMBRE +' '+valores.PER_APELLIDO}</a>
                     </td>
                     
-                    <td style="width: 400px;">${valores.ORD_TOTAL_PRICE}</td>
+                    <td style="width: 400px;"> S/.${valores.ORD_TOTAL_PRICE}</td>
                     <td style="width: 400px;">${valores.ORD_DATE_ORDER}</td>
-                    <td style="width: 400px;">${valores.ORD_APPROVAL}</td>
+                    <td style="width: 400px;">${valores.estado}</td>
                     
 
-                    <td><span class="status text-warning">&bull;</span>  ${valores.ORD_STATUS==1?"activo":"inactivo"}</td>
+                    
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.ORD_STATUS});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.ORD_STATUS});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                    <a class="settings" onclick="mostrarDatos(${valores.ORD_ID});setIdOrder(${valores.ORD_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                       
                     </td>
                 </tr>
                 `)
@@ -410,6 +517,54 @@ include_once "./vistas/administrador/component/header.php";
             curseCategoria = document.getElementsByClassName("navigation__categoria")
         }
     })
+    function setIdOrder(id) {
+        idOrder = id
+    }
+    function mostrarDatos(id) {
+        console.log(id)
+        //
+        $.ajax({
+            url: url + 'admin/curso/getCursosByOrder/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                $(".tabla__cursos").empty();
+                json.map((valores, idx) => {
+                    $(".tabla__cursos").append(`
+                    <div class="item__curso">
+                        <div class="imagen__curso"><img src="${valores.CURS_IMAGEN}" width="130px" height="80px" style="object-fit: cover;" alt="${valores.CURS_NOMBRE}"></div>
+                        <div class="datos__curso">
+                            <div class="title__curso">
+                                <h5><b>${valores.CURS_NOMBRE}</b></h5>
+                            </div>
+                            <div class="title__curso">
+                                <p>${valores.CURS_DESCRIPCION}</p>
+                            </div>
+                        </div>
+                        <div class="datos__curso">
+                            <div class="title__curso">
+                                <h4 class="tittle__h4"> S/. <b>${valores.ODT_SUBTOTAL}</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    `)
+                })
+            }
+        })
+        $.ajax({
+            url: url + 'admin/ventas/getDataOrderById/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                console.log(json)
+                $("#imagenVoucher").attr("src", url + json.ORD_VOUCHER);
+                $(".datos__cliente").empty().append(`
+                        <h4><b>Cliente:</b> ${json.PER_NOMBRE}</h4>
+                        <h4><b>Total:</b> ${json.ORD_TOTAL_PRICE}</h4>
+                    `)
+            }
+        })
+    }
 </script>
 
 

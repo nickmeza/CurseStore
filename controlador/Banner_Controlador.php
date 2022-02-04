@@ -107,7 +107,7 @@ class Banner
     }
     public static function update($id)
     {
-        if (isset($_FILES['BANNER_IMAGEN']) && isset($_REQUEST['BANNER_STATUS'])) {
+        if (isset($_FILES['BANNER_IMAGEN']) && isset($_REQUEST['BANNER_TITULO'])) {
             $banner["BANNER_IMAGEN"] = Banner::CargarImagen($_FILES['BANNER_IMAGEN']);
             $banner["BANNER_TITULO"] = $_REQUEST['BANNER_TITULO'];
             $banner["BANNER_STATUS"] = $_REQUEST['BANNER_STATUS'];

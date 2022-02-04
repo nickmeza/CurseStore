@@ -468,7 +468,7 @@ include_once "./vistas/administrador/component/header.php";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
-                    alert("correcto")
+                    alert("Eliminado correctamente")
                     location.href = url + "admin/categoria";
                 }
             },
