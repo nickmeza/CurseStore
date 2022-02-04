@@ -3,6 +3,7 @@
 <body>
     <main class="detalleCurso___container"></main>
     <?php
+    var_dump($buscador);
     $i = 0;
     $i2 = 0;
     $data_mod = array();
@@ -42,7 +43,7 @@
                                     <ul class="list__show">
                                         <?php foreach ($data_smod as $value_smod) { ?>
                                             <li class="lista__inside">
-                                                <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/progreso/<?php echo $buscador . "/" . $value_smod['SMOD_ID'] ?>" class="nav__link nav__link--inside"><?php echo $value_smod['SMOD_NOMBRE'] ?></a>
+                                                <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/progreso/<?php echo strtr($buscador, " ", "-") . "/" . $value_smod['SMOD_ID'] ?>" class="nav__link nav__link--inside"><?php echo $value_smod['SMOD_NOMBRE'] ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>

@@ -15,6 +15,9 @@ class Video_Modelo{
     public static function delete($id){
         Database::queryChange("DELETE FROM video WHERE  VI_ID=?;",array($id));
     }
+    public static function getAllVideoSubmodul($id){
+        return $data=Database::query("SELECT * FROM video where SMOD_ID =?",array($id));
+    }
 }
 
 ?>

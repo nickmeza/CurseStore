@@ -18,6 +18,10 @@ class SubModulo_Modelo{
     public static function delete($id){
         Database::queryChange("DELETE FROM submodulo WHERE  SMOD_ID=?;",array($id));
     }
+    public static function getidModuloBySubmodulo($id){
+        return $data=Database::queryOne("SELECT MOD_ID FROM submodulo where SMOD_ID=?",array($id));
+    }
+
 }
 
 ?>

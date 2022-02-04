@@ -35,6 +35,7 @@ class Routes
     public static function progreso($data)
     {
         if (isset($data[3]) && isset($data[4])) {
+            $buscador = strtr($data[3], "-", " ");
             $subModulo = $data[4];
             $modulo = $data[3];
             include_once "./vistas/cliente/curso/Progreso.php";
