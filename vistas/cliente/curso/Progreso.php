@@ -130,10 +130,27 @@ include_once "./vistas/cliente/component/header.php";
             $i++;
         }
     }
+    if (isset($idVideo)){
+        $video_dato = Video_Modelo::getOne($idVideo);
+    } else {
+        $video_submodulo = Video_Modelo::getAllVideoSubmodul($subModulo);
+       
+
+    }
+    
     ?>
+    <?php if (isset($idVideo) && isset($video_dato)) { 
+        ?>
         <div class="video__progreso">
-            <iframe class="iframe__progreso" src="https://www.youtube.com/embed/raSv24T4cjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
+        <iframe class="iframe__progreso" src="<?php echo "https://www.youtube.com/embed/".substr($video_dato["VI_URL"],32,39) ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <?php }else { ?>
+            <div class="video__progreso">
+            <iframe class="iframe__progreso" src="<?php echo "https://www.youtube.com/embed/".substr($video_submodulo[0]["VI_URL"],32,39) ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+             <?php } ?> 
+        
         <div class="modulo__progreso">
             <div class="titulo__progreso">
                 <h4>Contenido del curso:<?php echo $buscador ?> </h4>
@@ -144,7 +161,7 @@ include_once "./vistas/cliente/component/header.php";
                     <?php 
                      $i = 0;
                     foreach ($data_mod as $value) {  ?>
-                    <div class="content__item <?php  if ($value["MOD_ID"]==$idModuloSelected){
+                    <div class="content__item <?php  if ($value["MOD_ID"]==$idModuloSelected["MOD_ID"]){
                         echo "active";
                          } ?>">
                         <div class="content__header" onclick="aparecerCursos(<?php echo $i?>)">
@@ -153,7 +170,9 @@ include_once "./vistas/cliente/component/header.php";
                                 <b>4/4 | 25 min</b>
                             </div>
                             <div>
-                                <div class="toggle__item__content"><img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg"></div>
+                                <div class="toggle__item__content <?php  if ($value["MOD_ID"]==$idModuloSelected["MOD_ID"]){
+                            echo "active";
+                            } ?>"><img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/detail_curse/arrow-bottom.svg"></div>
                             </div>
                         </div>
                         <div class="content__body">
@@ -172,10 +191,12 @@ include_once "./vistas/cliente/component/header.php";
                          $k = 0;
                         $dataVideos = Video_Modelo::getAllVideoSubmodul($submodulo['SMOD_ID']);
                         foreach ( $dataVideos as $video) {  ?>
+                                    
                                     <div class="video__content">
                                         <div class="checkbox__video">
                                             <input type="checkbox" name="STATUS_VIDEO" id="status">
                                         </div>
+                                        <a href="<?php echo $GLOBALS['BASE_URL'].'curso/progreso/'.strtr($data[3], " ", "-")."/".$subModulo."/".$video["VI_ID"]; ?>" >
                                         <div class="datos__video">
                                             <div class="title__video">
                                                 <span><?php echo $video['VI_DESCRIPCION']?></span>
@@ -184,7 +205,9 @@ include_once "./vistas/cliente/component/header.php";
                                                 <span>10 min.</span>
                                             </div>
                                         </div>
+                                        </a>
                                     </div>
+                                    
                                     <?php }?>
                                 </div>
                             </div>

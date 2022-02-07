@@ -37,9 +37,13 @@ class Routes
         if (isset($data[3]) && isset($data[4])) {
             $buscador = strtr($data[3], "-", " ");
             $subModulo = $data[4];
+          if (isset($data[5])) {
+            $idVideo = $data[5];
+          }  
             $modulo = $data[3];
             include_once "./vistas/cliente/curso/Progreso.php";
         } else {
+
             header("Location: http://tiendacursos.test/curso/detalle/$data[3]");
             die();
         }

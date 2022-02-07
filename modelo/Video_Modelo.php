@@ -18,6 +18,7 @@ class Video_Modelo{
     public static function getAllVideoSubmodul($id){
         return $data=Database::query("SELECT * FROM video where SMOD_ID =?",array($id));
     }
+
 }
 
 ?>
