@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/jquery/jquery-2.1.4.min.js"></script>
+    <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/js-cookie/js.cookie.js"></script>
+    <script>
+        if ((Cookies.get('color-skin') != undefined) && (Cookies.get('color-skin') != 'color-1')) {
+            $('#color-skins').attr('href', '<?php echo $GLOBALS['BASE_URL'] ?>assets/css/' + Cookies.get('color-skin') + '.css');
+        } else if ((Cookies.get('color-skin') == undefined) || (Cookies.get('color-skin') == 'color-1')) {
+            $('#color-skins').attr('href', '<?php echo $GLOBALS['BASE_URL'] ?>assets/css/color-1.css');
+        }
+    </script>
+</head>
+<body>
+
 <style>
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -143,6 +162,36 @@ input[type=text]:focus {
 input[type=text]:placeholder {
     color: #cccccc;
 }
+
+input[type=password] {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+input[type=password]:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #5fbae9;
+}
+
+input[type=password]:placeholder {
+    color: #cccccc;
+}
+
 
 
 /* ANIMATIONS */
@@ -298,15 +347,15 @@ input[type=text]:placeholder {
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="https://lh3.googleusercontent.com/proxy/w6SqQqgmBLuQWteMJQw_YajAga2Byo1RCUssgIC-LwLdKVtGD7l3g-Sw0UlMSgl0fDxqYyyrnYXEbjApovJDqv23" id="icon" alt="User Icon" />
+      <img src="https://www.pngitem.com/pimgs/m/80-800194_transparent-users-icon-png-flat-user-icon-png.png"  height="150px" id="icon" alt="User Icon" />
     </div>
  
     <!-- Login Form -->
-    <form>
+    <form id="form_login"> 
             <i class="fa fa-user"></i>
             <i class="fa fa-lock"></i>
-                <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">		
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+                <input type="text" id="login" class="fadeIn second" name="usuario" placeholder="Correo Electrónico">		
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
                 <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
             </div>
         </div>               
@@ -319,3 +368,26 @@ input[type=text]:placeholder {
     
   </div>
 </div>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+<script>
+$("#form_login").submit(function(event) {
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/usuario/cliente/GoInside",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                location.href = url ;
+            }
+        });
+    })
+
+</script>
+
+</body>
+</html>

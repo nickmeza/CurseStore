@@ -63,7 +63,7 @@ class Usuario
         }
     }
 
-    /* 
+    
     public static function Login($args = array())
     {
         $message_error = "";
@@ -97,6 +97,7 @@ class Usuario
     {
         $Session = new UsuarioSession();
         if (isset($_SESSION['user'])) {
+            echo $_SESSION['user'];
             return true;
         } else {
             if (isset($_REQUEST["usuario"]) && isset($_REQUEST["password"])) {
@@ -105,10 +106,14 @@ class Usuario
                 if (Usuario_Modelo::findUser($usuario, $password)) {
                     $usuario_found = Usuario_Modelo::getUser($usuario, $password);
                     UsuarioSession::setCurrentUser($usuario, $usuario_found);
-                    header("location:" . $GLOBALS['BASE_URL'] . "usuario/admin");
+                    $mensaje["mensaje"] = "correcto";
+                    $mensaje["status"] = "200";
+                    $mensaje["usuario"] = $usuario_found;
+                    echo json_encode($mensaje);
                 } else {
-                    echo "nel";
-                    header("location:" . $GLOBALS['BASE_URL'] . "usuario/login");
+                    $mensaje["mensaje"] = "usuario no incorrecto";
+                    $mensaje["status"] = "404";
+                    echo json_encode($mensaje);
                 }
             } else {
                 echo "error 404";
@@ -119,7 +124,7 @@ class Usuario
     {
         $Session = new UsuarioSession();
         UsuarioSession::closeSession();
-        header("Location:" . $GLOBALS['BASE_URL']);
+       
     }
     public static function admin_usuario()
     {
@@ -131,7 +136,7 @@ class Usuario
         } else {
             header("location:" . $GLOBALS['BASE_URL'] . "usuario/login");
         }
-    } */
+    } 
     //functions 
 
 }

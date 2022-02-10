@@ -27,8 +27,9 @@ class Usuario_modelo{
 
     }
     public static function getUser($usuario,$password){
-        return $data=Database::query("SELECT * FROM usuario WHERE usr_usuario=? AND usr_password=?",array($usuario,$password));
+        return $data=Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=?",array($usuario,$password));
     }
+
 }
 
 ?>

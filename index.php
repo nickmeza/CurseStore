@@ -265,7 +265,9 @@ if (isset($ruta_split[1])) {
                         $submetodo = "crear";
                         if (isset($ruta_split[4])) {
                             $submetodo = $ruta_split[4];
+                            
                         }
+
                         switch ($metodo) {
                             case 'profesor':
 
