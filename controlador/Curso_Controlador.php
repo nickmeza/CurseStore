@@ -51,6 +51,19 @@ class Curso
             echo json_encode($mensaje);
         }
     }
+    public static function getCursoIsComprado()
+    {
+        if (isset($_POST['curso']) && isset($_POST['usuario'])) {
+            $curso = $_POST["ids"];
+            $usuario = $_POST["ids"];
+            $cursos = Curso_Modelo::getCursoIsComprado($curso, $usuario);
+            echo json_encode($cursos);
+        } else {
+            $mensaje["mensaje"] = "fallo";
+            $mensaje["statud"] = "500";
+            echo json_encode($mensaje);
+        }
+    }
     public static function getById($id)
     {
         var_dump($id[4]);

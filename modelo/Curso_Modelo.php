@@ -40,6 +40,11 @@ class Curso_Modelo
     {
         return $data = Database::queryOne("SELECT * FROM curso where CURS_ID=?", array($id));
     }
+    public static function getCursoIsComprado($curso, $usuario)
+    {
+        return $data = Database::queryOne("SELECT * FROM usuario u, cliente c,orden o, orden_detalle od, curso cu WHERE u.USR_ID=c.USR_ID 
+        AND c.CLI_ID=o.CLI_ID AND o.ORD_ID=od.ORD_ID AND o.ORD_APPROVAL=1 AND od.CURS_ID=cu.CURS_ID AND cu.CURS_ID=? AND u.USR_ID=?", array($curso, $usuario));
+    }
 
     public static function insertCurso($curso)
     {

@@ -321,5 +321,6 @@ if (isset($ruta_split[1])) {
         }
     }
 } else {
+    $Session = new UsuarioSession();
     Routes::index();
 }

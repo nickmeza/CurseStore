@@ -116,7 +116,6 @@ include_once "./vistas/cliente/component/header.php";
     $i = 0;
     $i2 = 0;
     $data_mod = array();
-    $mod = Curso_Modelo::getOneIdByName($buscador);
     $dateModulo = Modulo_Modelo::getAllbyCurse($mod);
     $idModuloSelected = SubModulo_Modelo::getidModuloBySubmodulo($subModulo);
 
