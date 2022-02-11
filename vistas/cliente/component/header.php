@@ -41,24 +41,25 @@
         } else if ((Cookies.get('color-skin') == undefined) || (Cookies.get('color-skin') == 'color-1')) {
             $('#color-skins').attr('href', '<?php echo $GLOBALS['BASE_URL'] ?>assets/css/color-1.css');
         }
-        function logout(){
 
-       
-        $.ajax({
-            type: 'GET',
-            url: url + "admin/usuario/cliente/logout",
-            success: function(msg) {
-                console.log(msg)
-                location.href = url ;
-            }
-        });
+        function logout() {
+
+
+            $.ajax({
+                type: 'GET',
+                url: url + "admin/usuario/cliente/logout",
+                success: function(msg) {
+                    console.log(msg)
+                    location.href = url;
+                }
+            });
         }
     </script>
 </head>
 
 <body>
     <!-- HEADER-->
-    
+
     <header>
         <div class="logo">
             <img src="https://logodownload.org/wp-content/uploads/2019/07/udemy-logo.png" onclick="window.location.href=url+'views/Inicio.php'">
@@ -69,8 +70,8 @@
             <ul class="nav_list">
                 <?php
                 if (isset($buscador)) {
-                ?>  
-                <?php $buscador = str_replace("%20", " ", $buscador); ?>
+                ?>
+                    <?php $buscador = str_replace("%20", " ", $buscador); ?>
                     <li class="nav_item"><input type="text" name="" id="" placeholder="buscar" onkeydown="search(this)" value="<?php echo $buscador ?>"></li>
                 <?php } else { ?>
                     <li class="nav_item"><input type="text" name="" id="" placeholder="buscar" onkeydown="search(this)"></li>
@@ -82,26 +83,26 @@
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                         </svg>
                     </a></li>
-                    <?php 
-                     if (isset($_SESSION['user']))  {?>
-                        <div class="dropdown">
-                    <button class="nav_item nav_item_login nav_item_iniciar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php echo $_SESSION["user"]?>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Perfil</a>
-                        <a class="dropdown-item" href="#">Mis Cursos</a>
-                        <a class="dropdown-item" href="#">Favoritos</a>
-                        <a class="dropdown-item" onclick="logout()">Cerrar sesión</a>
+                <?php
+                if (isset($_SESSION['user'])) { ?>
+                    <div class="dropdown">
+                        <button class="nav_item nav_item_login nav_item_iniciar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $_SESSION["user"] ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil">Perfil</a>
+                            <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil/aprendizajes">Mis Cursos</a>
+                            <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil/favoritos">Favoritos</a>
+                            <a class="dropdown-item" onclick="logout()">Cerrar sesión</a>
+                        </div>
                     </div>
-                    </div>
-                     <?php } else {
+                <?php } else {
 
-                      ?>
-                <li class="nav_item nav_item_login nav_item_iniciar"><a href="<?php echo $GLOBALS['BASE_URL'] ?>login" class="nav_link nav_link_iniciar">Iniciar sesíon</a></li>
-                 <li class="nav_item nav_item_login nav_item_register"><a href="<?php echo $GLOBALS['BASE_URL'] ?>registrar" class="nav_link nav_link_register">Regístrate</a></li>
-               <?php } ?> 
-        </ul>
+                ?>
+                    <li class="nav_item nav_item_login nav_item_iniciar"><a href="<?php echo $GLOBALS['BASE_URL'] ?>login" class="nav_link nav_link_iniciar">Iniciar sesíon</a></li>
+                    <li class="nav_item nav_item_login nav_item_register"><a href="<?php echo $GLOBALS['BASE_URL'] ?>registrar" class="nav_link nav_link_register">Regístrate</a></li>
+                <?php } ?>
+            </ul>
         </nav>
         <i class="bi bi-list header__toggle" id="toggle-menu"></i>
         <div class="" id="container_real_time">

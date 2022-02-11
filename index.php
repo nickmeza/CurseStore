@@ -134,22 +134,22 @@ if (isset($ruta_split[1])) {
                 case 'perfil':
                     switch ($metodo) {
                         case 'cuenta':
-                            if (isset($ruta_split[3])) {
-                                Routes::$metodo($ruta_split[3]);
+                            if (!isset($ruta_split[3])) {
+                                Routes::$metodo($ruta_split);
                             } else {
                                 echo "no se busca por id";
                             }
                             break;
                         case 'aprendizaje':
-                            if (isset($ruta_split[3])) {
-                                Routes::$metodo($ruta_split[3]);
+                            if (!isset($ruta_split[3])) {
+                                Routes::$metodo($ruta_split);
                             } else {
                                 echo "no se busca por id";
                             }
                             break;
                         case 'favoritos':
-                            if (isset($ruta_split[3])) {
-                                Routes::$metodo($ruta_split[3]);
+                            if (!isset($ruta_split[3])) {
+                                Routes::$metodo($ruta_split);
                             } else {
                                 echo "no se busca por id";
                             }
@@ -265,7 +265,6 @@ if (isset($ruta_split[1])) {
                         $submetodo = "crear";
                         if (isset($ruta_split[4])) {
                             $submetodo = $ruta_split[4];
-                            
                         }
 
                         switch ($metodo) {
