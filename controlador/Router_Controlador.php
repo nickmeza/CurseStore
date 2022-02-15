@@ -78,6 +78,7 @@ class Routes
     public static function aprendizaje()
     {
         $Session = new UsuarioSession();
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
         include_once "./vistas/cliente/perfil/Aprendizaje.php";
     }
     public static function favoritos()

@@ -346,7 +346,9 @@ include_once "./vistas/cliente/component/header.php";
           <label for="imagen">Card Holder</label>
           <input id="imagen" type="file" class='input-field inputimg'></input>
           <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
+           
           <button class='pay-btn' type="submit">Enviar</button>
+
         </form>
       </div>
     </div>
@@ -495,10 +497,17 @@ include_once "./vistas/cliente/component/header.php";
 
               }
             });
+            Swal.fire(
+            'Enviado',
+            'Correctamente',
+            'success'
+) 
+    location.href = url;
           }
         )
       }
     });
+
     /* idsProductos.map(
       (valor) => {
         $.ajax({

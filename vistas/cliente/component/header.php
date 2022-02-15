@@ -34,6 +34,7 @@
     <link type="text/css" rel="stylesheet" href="#" id="color-skins">
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/jquery/jquery-2.1.4.min.js"></script>
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/js-cookie/js.cookie.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         if ((Cookies.get('color-skin') != undefined) && (Cookies.get('color-skin') != 'color-1')) {
             $('#color-skins').attr('href', '<?php echo $GLOBALS['BASE_URL'] ?>assets/css/' + Cookies.get('color-skin') + '.css');
@@ -90,7 +91,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil">Perfil</a>
-                            <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil/aprendizajes">Mis Cursos</a>
+                            <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil/aprendizaje">Mis Cursos</a>
                             <a class="dropdown-item" href="<?php echo $GLOBALS['BASE_URL'] ?>perfil/favoritos">Favoritos</a>
                             <a class="dropdown-item" onclick="logout()">Cerrar sesión</a>
                         </div>

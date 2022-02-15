@@ -54,8 +54,8 @@ class Curso
     public static function getCursoIsComprado()
     {
         if (isset($_POST['curso']) && isset($_POST['usuario'])) {
-            $curso = $_POST["ids"];
-            $usuario = $_POST["ids"];
+            $curso = $_POST["curso"];
+            $usuario = $_POST["usuario"];
             $cursos = Curso_Modelo::getCursoIsComprado($curso, $usuario);
             echo json_encode($cursos);
         } else {
@@ -82,4 +82,18 @@ class Curso
     {
         include_once "./vistas/cliente/curso/Categoria.php";
     }
+
+    public static function getCursosByidUser()
+    {
+        if (isset($_POST['usuario'])) {
+            $usuario = $_POST["usuario"];
+            $cursos = Curso_Modelo::getCursosByidUser($usuario);
+            echo json_encode($cursos);
+        } else {
+            $mensaje["mensaje"] = "fallo";
+            $mensaje["statud"] = "500";
+            echo json_encode($mensaje);
+        }
+    }
+
 }

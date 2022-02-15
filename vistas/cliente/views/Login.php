@@ -323,6 +323,14 @@ input[type=password]:placeholder {
     width: 100%;
 }
 
+.mensaje__error{
+ width: 100%;
+ justify-content: center;
+ background-color: #F06C5E ;
+ display:none;
+
+}
+
 
 /* OTHERS */
 
@@ -346,7 +354,14 @@ input[type=password]:placeholder {
     <h2 onclick = "window.location='<?php echo $GLOBALS['BASE_URL'] ?>registrar'" class ="inactive underlineHover">Registrarse </h2>
 
     <!-- Icon -->
+
     <div class="fadeIn first">
+        <div>
+
+        </div>
+        <div class="mensaje__error">
+            <p> Usuario o Contraseña incorrectas </p>
+        </div>
       <img src="https://www.pngitem.com/pimgs/m/80-800194_transparent-users-icon-png-flat-user-icon-png.png"  height="150px" id="icon" alt="User Icon" />
     </div>
  
@@ -368,8 +383,10 @@ input[type=password]:placeholder {
     
   </div>
 </div>
+
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    
 $("#form_login").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
@@ -382,7 +399,12 @@ $("#form_login").submit(function(event) {
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url ;
+                if(JSON.parse(msg).status == 404){
+                $(".mensaje__error").css("display","block")
+                }else{
+                    location.href = url ;
+                }
+                
             }
         });
     })

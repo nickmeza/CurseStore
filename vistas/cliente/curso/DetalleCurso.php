@@ -90,7 +90,7 @@
                         </div>
                         <div class="cta">
                             <button onclick ="anadirCarrito(${valores.CURS_ID})" class="cta-anadir-cesta">Añadir a la cesta </button>
-                            <button class="cta-add">Comprar ahora</button>
+                            <button onclick ="comprarAhora(${valores.CURS_ID}) "class="cta-add">Comprar ahora</button>
                         </div>
                     </div>
                     <div class="cover"><iframe  src="https://www.youtube.com/embed/${id_video_yt}" title="YouTube video player" frameborder="0" rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
@@ -115,6 +115,11 @@
 
         console.log(localStorage.getItem('idcurso'));
         alert("Agregado con exito")
+    }
+    function comprarAhora(id) {
+        anadirCarrito(id)
+        location.href = url;
+       
     }
 
 

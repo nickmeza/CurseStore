@@ -470,6 +470,7 @@ include_once "./vistas/administrador/component/header.php";
                                         <div class="buttons__aprobal">
                                             <span class="button-48" onclick="chageAprovalOrder(1)"><span class="text">Confirmar</span></span>
                                             <span class="button-48" onclick="chageAprovalOrder(2)"><span class="text">No Confirmar</span></span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -536,9 +537,18 @@ include_once "./vistas/administrador/component/header.php";
             cache: false,
             processData: false,
             success: function(msg) {
-                console.log(msg)
-                //location.href = url + "admin/categoria";
+                Swal.fire(
+                    statusOrder == 2? 'se rechazo con exito':
+                    'se aceptó con exito!','',
+                    
+                    'success'
+                    )
+                
+                    setTimeout(function(){
+                location.href = url + "admin/solicitudes";
+                },2000); 
             }
+
         })
     }
 
