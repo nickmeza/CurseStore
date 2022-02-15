@@ -29,6 +29,9 @@ class Usuario_modelo{
     public static function getUser($usuario,$password){
         return $data=Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=?",array($usuario,$password));
     }
+    public static function getClientbyUser($usuario){
+        return $data=Database::queryOne("SELECT * from cliente where USR_ID = ?",array($usuario));
+    }
 
 }
 

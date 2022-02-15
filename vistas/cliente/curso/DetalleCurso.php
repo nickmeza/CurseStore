@@ -118,7 +118,7 @@
     }
     function comprarAhora(id) {
         anadirCarrito(id)
-        location.href = url;
+        location.href = url+'carrito';
        
     }
 

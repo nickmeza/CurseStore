@@ -460,7 +460,7 @@ include_once "./vistas/cliente/component/header.php";
     var formdata = new FormData()
     console.log(filess)
     formdata.append('ORD_VOUCHER', filess)
-    formdata.append('CLI_ID', '4')
+    formdata.append('CLI_ID', '<?PHP echo $idclient;?>')
     formdata.append('ORD_DATE_ORDER','<?PHP echo $fecha_actual;?>')
     formdata.append('ORD_APPROVAL', '0')
     formdata.append('ORD_TOTAL_PRICE', precioTotal)
@@ -502,7 +502,7 @@ include_once "./vistas/cliente/component/header.php";
             'Correctamente',
             'success'
 ) 
-    location.href = url;
+location.href = url;
           }
         )
       }

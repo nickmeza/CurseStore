@@ -89,7 +89,14 @@ class Routes
 
     public static function metodo_pago()
     {
+        
         $Session = new UsuarioSession();
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        
+        $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
+        
+        $idclient = $cliente['CLI_ID'];
+        var_dump($idclient);
         include_once "./vistas/cliente/pago/MetodoPago.php";
     }
 
