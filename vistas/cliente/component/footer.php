@@ -203,8 +203,7 @@
               <a href="index.html"><img src="https://i.ibb.co/QDy827D/ak-logo.png" class="img-fluid" alt="logo"></a>
             </div>
             <div class="footer-text">
-              <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                elit,Lorem ipsum dolor sit amet.</p>
+              <p>Cursos especializados impartidos por líderes de la industria de la tecnología.</p>
             </div>
             <div class="footer-social-icon">
               <span>Siguénos</span>
@@ -220,11 +219,9 @@
               <h3>Enlaces directos</h3>
             </div>
             <ul>
-              <li><a href="#">Inicio</a></li>
-              <li><a href="#">Nosotros</a></li>
-              <li><a href="#">Cursos</a></li>
-              <li><a href="#">Categorias</a></li>
-              <li><a href="#">Contáctanos</a></li>
+              <li><a href="http://tiendacursos.test/">Inicio</a></li>
+              <li><a href="http://tiendacursos.test/nosotros">Nosotros</a></li>
+              <li><a href="http://tiendacursos.test/nosotros">Contáctanos</a></li>
 
             </ul>
           </div>
@@ -232,14 +229,14 @@
         <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
           <div class="footer-widget">
             <div class="footer-widget-heading">
-              <h3>Subscribete</h3>
+              <h3>Suscribete</h3>
             </div>
             <div class="footer-text mb-25">
-              <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+              <p>Es muy facil estar al tanto de nuestras novedades,cursos y promociones,solo tienes que suscribirte</p>
             </div>
             <div class="subscribe-form">
               <form action="#">
-                <input type="text" placeholder="Email Address">
+                <input type="text" placeholder="Ingresa tu Correo Electrónico">
                 <button><i class="fab fa-telegram-plane"></i></button>
               </form>
             </div>
@@ -259,11 +256,11 @@
         <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
           <div class="footer-menu">
             <ul>
-              <li><a href="#">Inicio</a></li>
+              <li><a href="http://tiendacursos.test/">Inicio</a></li>
               <li><a href="#">Términos</a></li>
               <li><a href="#">Privacidad</a></li>
               <li><a href="#">Política</a></li>
-              <li><a href="#">Contáctanos</a></li>
+              <li><a href="http://tiendacursos.test/nosotros">Contáctanos</a></li>
             </ul>
           </div>
         </div>

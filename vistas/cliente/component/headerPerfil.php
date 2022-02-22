@@ -68,7 +68,10 @@
   <div class="wrapper fixed-left">
     <nav id="sidebar">
       <div class="sidebar-header">
-        <h3><i class="fas fa-user"></i>Username</h3>
+
+      <?php
+                if (isset($_SESSION['user'])) { ?>
+        <h3><i class="fas fa-user"></i><?php echo $_SESSION["user"] ?></h3>
       </div>
 
       <ul class="list-unstyled components">
@@ -85,3 +88,4 @@
     </nav>
 
     <div id="content">
+    <?php }
