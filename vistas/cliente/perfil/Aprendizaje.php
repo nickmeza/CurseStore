@@ -96,8 +96,8 @@ include_once "./vistas/cliente/component/headerPerfil.php";
                     <div class="card">
                     <img src=${valores.CURS_IMAGEN}">
                     <h4>${valores.CURS_NOMBRE}</h4>
-                    <p>sadsadsadsadsa</p>
-                    <a href="#">Leer mas </a>
+                    <p>${valores.CURS_DESCRIPCION}</p>
+                    <a href=${url+"curso/progreso/"+valores.CURS_NOMBRE}>Leer mas </a>
                     </div>
                 `)
             })

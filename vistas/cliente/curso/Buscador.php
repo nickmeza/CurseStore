@@ -154,7 +154,11 @@
         
         
         console.log(localStorage.getItem('idcurso'));
-        alert("Añadito con exito")
+        Swal.fire(
+            'Añadido',
+            'Correctamente',
+            'success'
+) 
     }
     
     function search__detail_curse(date__search) {
