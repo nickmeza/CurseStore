@@ -71,7 +71,7 @@
 
         .title__search {
             font-size: 2rem;
-            
+
         }
 
         .container__date__Search-inside img {
@@ -90,12 +90,13 @@
             margin: 0;
             border-bottom: 1px solid #ccc;
         }
-        .tittle__align__Search{
+
+        .tittle__align__Search {
             font-weight: 0;
         }
     }
 
-    .tittle__align__Search{
+    .tittle__align__Search {
         font-weight: bold
     }
 </style>
@@ -109,6 +110,7 @@
                 <?php
                 $dates__search;
                 $date__search = Curso_Modelo::getByName($buscador);
+                $cursosId = Curso_Modelo::getIdCursosByidUser($idUsuario);
                 if (count($date__search) > 0) {
                     $dates__search = $date__search;
                     foreach ($dates__search as $date__s) {
@@ -124,8 +126,18 @@
                                     </div>
                                 </div>
                                 <div class="icons__search">
-                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/favorite.svg" alt="" height="30">
-                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/cart-plus-solid.svg" onclick="anadirCarrito(<?php echo $date__s['CURS_ID'] ?>)" height="30">
+                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/favorite.svg" alt="" onclick="anadirFavoritos(<?php echo $date__s['CURS_ID'] ?>)" height="30">
+                                    <?php
+                                    $encontrado = false;
+                                    foreach ($cursosId as $cursoId) {
+                                        if ($cursoId['CURS_ID'] == $date__s['CURS_ID']) {
+                                            $encontrado = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!$encontrado) { ?>
+                                        <img src="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/buscador/cart-plus-solid.svg" onclick="anadirCarrito(<?php echo $date__s['CURS_ID'] ?>)" height="30">
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -145,22 +157,63 @@
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-    function anadirCarrito(id){
-        var idcurso = localStorage.getItem('idcurso') ?JSON.parse(localStorage.getItem('idcurso')):[]
+    function anadirFavoritos(id) {
+        var encontrado = false
+        var idfavorito = localStorage.getItem('idfavorito') ? JSON.parse(localStorage.getItem('idfavorito')) : []
+        for (let i = 0; i < idfavorito.length; i++) {
+            const element = idfavorito[i];
+            if (element == id) {
+                encontrado = true
+            }
+        }
 
-        idcurso.push(id)
-        
-        localStorage.setItem('idcurso',JSON.stringify(idcurso))
-        
-        
-        console.log(localStorage.getItem('idcurso'));
-        Swal.fire(
-            'Añadido',
-            'Correctamente',
-            'success'
-) 
+        if (!encontrado) {
+            idfavorito.push(id)
+            localStorage.setItem('idfavorito', JSON.stringify(idfavorito))
+            console.log(localStorage.getItem('idfavorito'));
+            Swal.fire(
+                'Añadido',
+                'Correctamente',
+                'success'
+            )
+        } else {
+            Swal.fire(
+                'Ya se Añadido',
+                'Correctamente',
+                'info'
+            )
+        }
+
     }
-    
+
+    function anadirCarrito(id) {
+        var encontrado = false
+        var idcurso = localStorage.getItem('idcurso') ? JSON.parse(localStorage.getItem('idcurso')) : []
+        for (let i = 0; i < idcurso.length; i++) {
+            const element = idcurso[i];
+            if (element == id) {
+                encontrado = true
+            }
+        }
+
+        if (!encontrado) {
+            idcurso.push(id)
+            localStorage.setItem('idcurso', JSON.stringify(idcurso))
+            console.log(localStorage.getItem('idcurso'));
+            Swal.fire(
+                'Añadido',
+                'Correctamente',
+                'success'
+            )
+        } else {
+            Swal.fire(
+                'Ya se Añadido',
+                'Correctamente',
+                'info'
+            )
+        }
+    }
+
     function search__detail_curse(date__search) {
         console.log("date searc hg");
         console.log(date__search);

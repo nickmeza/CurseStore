@@ -17,16 +17,17 @@ class Routes
         $Session = new UsuarioSession();
         include_once "./vistas/cliente/views/Registrar.php";
     }
-    public static function categoria($buscador)
+    public static function categoria($ruta)
     {
         $Session = new UsuarioSession();
-        echo "$buscador[2]";
+        $buscador = $ruta[2];
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
         include_once "./vistas/cliente/curso/Categoria.php";
     }
     public static function buscar($buscador)
     {
         $Session = new UsuarioSession();
-
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
         include_once "./vistas/cliente/curso/Buscador.php";
         // var_dump($buscador);
     }

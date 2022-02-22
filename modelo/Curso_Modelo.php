@@ -5,6 +5,11 @@ class Curso_Modelo
     {
         return $data = Database::query("SELECT * FROM curso ", array());
     } //
+    public static function getAllIfNotDiscount()
+    {
+        return $data = Database::query("SELECT c.CURS_ID FROM descuento d, detalle_descuento dd, curso c 
+        WHERE d.DESC_ID=dd.DESC_ID AND dd.CURS_ID=c.CURS_ID AND d.DESC_STATUS = 1;", array());
+    } //
     public static function getByName($buscador)
     {
         $ggetname = str_replace("%20", " ", $buscador);
@@ -61,6 +66,11 @@ class Curso_Modelo
     public static function getCursosByidUser($usuario)
     {
         return $data = Database::query("SELECT * FROM usuario u, cliente c,orden o, orden_detalle od, curso cu WHERE u.USR_ID=c.USR_ID 
+        AND c.CLI_ID=o.CLI_ID AND o.ORD_ID=od.ORD_ID AND o.ORD_APPROVAL=1 AND od.CURS_ID=cu.CURS_ID AND u.USR_ID=?", array($usuario));
+    }
+    public static function getIdCursosByidUser($usuario)
+    {
+        return $data = Database::query("SELECT cu.CURS_ID FROM usuario u, cliente c,orden o, orden_detalle od, curso cu WHERE u.USR_ID=c.USR_ID 
         AND c.CLI_ID=o.CLI_ID AND o.ORD_ID=od.ORD_ID AND o.ORD_APPROVAL=1 AND od.CURS_ID=cu.CURS_ID AND u.USR_ID=?", array($usuario));
     }
 }
