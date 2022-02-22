@@ -13,15 +13,15 @@ include_once "./vistas/cliente/component/header.php";
     ?>
         <div class="section slider-banner set-height-top">
             <?php foreach ($datos as $dato) { ?>
-                <div class="slider-item">
-                    <div class="slider-1">
+                <div class="slider-item" style="background-image: url(<?php echo $GLOBALS['BASE_URL'] ?><?php echo $dato['BANNER_IMAGEN']?>);">
+                    <div class="slider-1" style="background-image: url(<?php echo $GLOBALS['BASE_URL'] ?><?php echo strtr($dato['BANNER_IMAGEN'], " ", "%20");?>);">
                         <div class="slider-caption">
                             <div class="container">
-                                <h5 class="text-info-2">Al gun titulo</h5>
+                                <h5 class="text-info-2"><?php echo $dato['BANNER_TITULO'];?></h5>
 
-                                <h1 class="text-info-1">You can learn anything</h1>
+                                <h1 class="text-info-1"></h1>
 
-                                <p class="text-info-3">For free. For everyone</p>
+                                <p class="text-info-3"></p>
                                 <button class="btn btn-green"><span>Start learning now !</span></button>
                             </div>
                         </div>
@@ -176,7 +176,7 @@ include_once "./vistas/cliente/component/header.php";
     }
 
     function aparecerCursos(idx, cat_id) {
-       // card_categoria[idx].classList.toggle('active');
+        // card_categoria[idx].classList.toggle('active');
         $.ajax({
             url: url + 'admin/curso/getCursosDescuento',
             type: 'GET',

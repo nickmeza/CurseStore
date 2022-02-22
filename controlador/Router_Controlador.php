@@ -46,7 +46,7 @@ class Routes
                 $buscador = strtr($data[3], "-", " ");
                 $mod = Curso_Modelo::getOneIdByName($buscador);
                 $isComprado = Curso_Modelo::getCursoIsComprado($mod, $_SESSION['escogido'][0]['USR_ID']);
-                if ($mod == $isComprado) {
+                if ($isComprado) {
                     $subModulo = $data[4];
                     if (isset($data[5])) {
                         $idVideo = $data[5];
@@ -89,12 +89,12 @@ class Routes
 
     public static function metodo_pago()
     {
-        
+
         $Session = new UsuarioSession();
         $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
-        
+
         $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
-        
+
         $idclient = $cliente['CLI_ID'];
         var_dump($idclient);
         include_once "./vistas/cliente/pago/MetodoPago.php";
