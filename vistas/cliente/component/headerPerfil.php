@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="<?php echo $GLOBALS['BASE_URL'] ?>/publico/js/icons.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/jquery/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <title>perfil-cursos</title>
 </head>
@@ -69,9 +69,9 @@
     <nav id="sidebar">
       <div class="sidebar-header">
 
-      <?php
-                if (isset($_SESSION['user'])) { ?>
-        <h3><i class="fas fa-user"></i><?php echo $_SESSION["user"] ?></h3>
+        <?php
+        if (isset($_SESSION['user'])) { ?>
+          <h3><i class="fas fa-user"></i><?php echo $_SESSION["user"] ?></h3>
       </div>
 
       <ul class="list-unstyled components">

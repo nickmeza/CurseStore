@@ -17,6 +17,20 @@ class Usuario
             echo "fallo al crear";
         }
     }
+    public static function updatePerfilUsuario($ruta)
+    {
+        if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['direccion']) && isset($_REQUEST['usuario'])) {
+            $usuario["nombre"] = $_REQUEST['nombre'];
+            $usuario["apellido"] = $_REQUEST['apellido'];
+            $usuario["direccion"] = $_REQUEST['direccion'];
+            $usuario["usuario"] = $_REQUEST['usuario'];
+            //Usuario_modelo::updatePerfilUsuario($usuario, '14');
+            var_dump($_SESSION['escogido'][0]);
+            echo "creado correctamente";
+        } else {
+            echo "fallo al crear";
+        }
+    }
     public static function createUsuarioCliente($ruta)
     {
         if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
@@ -53,17 +67,17 @@ class Usuario
         }
     }
     public static function getPersonData($url)
-    {   
-        if ($url[3]=="profesor") {
+    {
+        if ($url[3] == "profesor") {
             $profesor = Profesor_Modelo::getProfesorData();
             echo json_encode($profesor);
-        }else {
+        } else {
             $cliente = Cliente_Modelo::getClientData();
             echo json_encode($cliente);
         }
     }
 
-    
+
     public static function Login($args = array())
     {
         $message_error = "";
@@ -124,7 +138,6 @@ class Usuario
     {
         $Session = new UsuarioSession();
         UsuarioSession::closeSession();
-       
     }
     public static function admin_usuario()
     {
@@ -136,7 +149,7 @@ class Usuario
         } else {
             header("location:" . $GLOBALS['BASE_URL'] . "usuario/login");
         }
-    } 
+    }
     //functions 
 
 }

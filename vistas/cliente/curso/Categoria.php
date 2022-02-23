@@ -110,7 +110,6 @@
                 <?php
                 $dates__search;
                 $date__search = Categoria_Modelo::getByName($buscador);
-                var_dump($date__search);
                 $cursosId = Curso_Modelo::getIdCursosByidUser($idUsuario);
                 if (count($date__search) > 0) {
                     $dates__search = $date__search;

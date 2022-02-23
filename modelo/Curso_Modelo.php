@@ -13,12 +13,26 @@ class Curso_Modelo
     public static function getByName($buscador)
     {
         $ggetname = str_replace("%20", " ", $buscador);
-        return $data = Database::query("SELECT * FROM curso where CURS_NOMBRE LIKE '%$ggetname%' ", array());
+        return $data = Database::query("SELECT c.*,c.CURS_PRECIO-c.CURS_PRECIO*(d.DESC_PORCENT/100) AS CURS_DISCOUNT FROM curso c
+        LEFT JOIN detalle_descuento dd ON c.CURS_ID = dd.CURS_ID
+        LEFT JOIN descuento d ON d.DESC_ID = dd.DESC_ID AND d.DESC_STATUS=1
+        WHERE CURS_NOMBRE LIKE '%$ggetname%' ", array());
     }
     public static function getByIds($ids)
     {
+        $data = Database::query('SELECT * FROM curso where CURS_ID IN (' . $ids . ')', array());
 
-        return $data = Database::query('SELECT * FROM curso where CURS_ID IN (' . $ids . ')', array());
+        for ($i = 0; $i < sizeof($data); $i++) {
+            $videos = Database::queryOne('SELECT COUNT(*) FROM modulo m, submodulo s,curso c, video v WHERE m.CURS_ID=c.CURS_ID 
+                AND s.MOD_ID = m.MOD_ID AND v.SMOD_ID = s.SMOD_ID
+                AND c.CURS_ID = ?', array($data[$i]['CURS_ID']));
+            $data[$i]['CURS_VIDEOS'] = $videos["COUNT(*)"];
+            //modulos
+            $modulos = Database::queryOne('SELECT COUNT(*) FROM modulo m, curso c WHERE m.CURS_ID=c.CURS_ID
+                AND c.CURS_ID = ?', array($data[$i]['CURS_ID']));
+            $data[$i]['CURS_MODULOS'] = $modulos["COUNT(*)"];
+        }
+        return $data;
     }
     public static function getCursosByOrder($ids)
     {

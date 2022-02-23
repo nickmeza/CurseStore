@@ -3,13 +3,12 @@
 <body>
     <main class="detalleCurso___container"></main>
     <?php
-    var_dump($buscador);
     $i = 0;
     $i2 = 0;
     $data_mod = array();
     $mod = Curso_Modelo::getOneIdByName($buscador);
     $dateModulo = Modulo_Modelo::getAllbyCurse($mod);
-    $cursoComprado = Curso_Modelo::getCursoIsComprado($mod, $_SESSION['escogido'][0]['USR_ID']);
+    $cursoComprado = Curso_Modelo::getCursoIsComprado($mod, $idUsuario);
     if (isset($dateModulo)) {
         $data_mod = $dateModulo;
         foreach ($data_mod as $contador) {
@@ -67,6 +66,21 @@
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
+    function asignarDescuento(CURS_DISCOUNT) {
+        if (CURS_DISCOUNT) {
+            return `<p>S/. ${CURS_DISCOUNT}</p>`
+        } else {
+            return ' '
+        }
+    }
+
+    function decorarDescuento(CURS_DISCOUNT) {
+        if (CURS_DISCOUNT) {
+            return 'style="text-decoration:line-through; font-size: 40px;"'
+        } else {
+            return ' '
+        }
+    }
     //Descuento
     $.ajax({
         url: url + 'admin/curso/getByName/<?php echo $buscador ?>',
@@ -87,10 +101,10 @@
                             </p>
                         </div>
                         <div class="coste">
-                            <p>S/. ${valores.CURS_PRECIO}</p>
-                        </div>
-                        <?php if (!$cursoComprado) {
-                            var_dump($cursoComprado) ?>
+                          <p ` + decorarDescuento(valores.CURS_DISCOUNT) + `>S/. ${valores.CURS_PRECIO}</p>
+                            ` + asignarDescuento(valores.CURS_DISCOUNT) +
+                    `</div>
+                        <?php if (!$cursoComprado) { ?>
                         <div class="cta">
                             <button onclick ="anadirCarrito(${valores.CURS_ID})" class="cta-anadir-cesta">Añadir a la cesta </button>
                             <button onclick ="comprarAhora(${valores.CURS_ID}) "class="cta-add">Comprar ahora</button>

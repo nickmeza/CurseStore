@@ -341,14 +341,14 @@ include_once "./vistas/administrador/component/header.php";
                         <div class="form-group">
                             <label for="description" class="col-form-label">Inicio:</label>
                             <!--  <input type="text" class="form-control" name="DESC_STAR" id="inicio">-->
-                           <input type="date" name="DESC_STAR" id ="inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+                            <input type="date" name="DESC_STAR" id="inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
 
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Final:</label>
-                            <input type="date" name="DESC_END" id ="inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
-                            
-                        <!--  <input type="text" class="form-control" name="DESC_END" id="final">-->
+                            <input type="date" name="DESC_END" id="inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+
+                            <!--  <input type="text" class="form-control" name="DESC_END" id="final">-->
                         </div>
                     </div>
 
@@ -427,14 +427,14 @@ include_once "./vistas/administrador/component/header.php";
                         <div class="form-group">
                             <label for="description" class="col-form-label">Inicio:</label>
                             <!--  <input type="text" class="form-control" name="DESC_STAR" id="inicio">-->
-                           <input type="date" name="DESC_STAR" id="edit_inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+                            <input type="date" name="DESC_STAR" id="edit_inicio" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
 
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label">Final:</label>
-                            <input type="date" name="DESC_END" id ="edit_final" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
-                            
-                        <!--  <input type="text" class="form-control" name="DESC_END" id="final">-->
+                            <input type="date" name="DESC_END" id="edit_final" step="1" min="2022-01-01" max="2050-12-31" value="2022-01-01">
+
+                            <!--  <input type="text" class="form-control" name="DESC_END" id="final">-->
                         </div>
                     </div>
 
@@ -443,13 +443,13 @@ include_once "./vistas/administrador/component/header.php";
 
 
                     if (isset($cursos)) {
-                        $datos = $cursos;
+                        $datos = $cursosEdit;
                         $i = 0;
                     ?>
                         <div class="modal__derecha">
                             <div class="form-group">
                                 <label>Cursos</label>
-                                <select onchange="setArrayCursos()" id="my-select" style="width: 100%;" multiple="multiple">
+                                <select onchange="setArrayCursosEdit()" id="my-select-edit" style="width: 100%;" multiple="multiple">
                                     <?php foreach ($datos as $dato) { ?>
                                         <option value="<?php echo $dato['CURS_ID'] ?>"><?php echo $dato['CURS_NOMBRE'] ?></option>
                                     <?php } ?>
@@ -463,7 +463,7 @@ include_once "./vistas/administrador/component/header.php";
                         <div class="modal__derecha">
                             <div class="form-group">
                                 <label>Month</label>
-                                <select id="my-select" multiple="multiple">
+                                <select id="my-select-edit" multiple="multiple">
                                     <option value="1">January</option>
                                     <option value="2">February</option>
                                     <option value="3">March</option>
@@ -492,6 +492,15 @@ include_once "./vistas/administrador/component/header.php";
 <script src="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    // Initialize multiple select on your regular select
+    $("#my-select").multipleSelect({
+        filter: true,
+        width: '100%'
+    })
+    $("#my-select-edit").multipleSelect({
+        filter: true,
+        width: '100%'
+    })
     var contador_pares = 0;
     var cursosIds = []
     $.ajax({
@@ -552,13 +561,13 @@ include_once "./vistas/administrador/component/header.php";
                                 console.log(msg)
                                 location.href = url + "admin/descuento";
                             },
-                             complete: function(xhr, status) {
-                             if (status == "success") {
-                            alert("Agregado correctamente")
-                            location.href = url + "admin/descuento";
-                }
-            },
-                            
+                            complete: function(xhr, status) {
+                                if (status == "success") {
+                                    alert("Agregado correctamente")
+                                    location.href = url + "admin/descuento";
+                                }
+                            },
+
                         });
                     })
                     //location.href = url + "admin/descuento";
@@ -585,6 +594,7 @@ include_once "./vistas/administrador/component/header.php";
             },
         })
     }
+
     function mostrarDatos(valores) {
         $.ajax({
             url: url + "admin/descuento/admin_descuento_get_one/" + valores,
@@ -598,7 +608,7 @@ include_once "./vistas/administrador/component/header.php";
                 $("#edit_final").val(json.DESC_END)
                 json.DESC_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
-            error:function(json){
+            error: function(json) {
                 console.log("Error al recibir los datos: " + json);
             }
         })
@@ -621,18 +631,52 @@ include_once "./vistas/administrador/component/header.php";
         });
     })
 
-    // Initialize multiple select on your regular select
-    $("#my-select").multipleSelect({
-        filter: true,
-        width: '100%'
-    })
-
     function setArrayCursos() {
         contador_pares++;
         if (contador_pares % 2 == 0) {
             if ($("#my-select").val() != null) {
                 cursosIds = $("#my-select").val()
                 const ids = $("#my-select").val().toString();
+                console.log(ids)
+                var formdata = new FormData();
+                formdata.append('ids', '[' + ids + ']')
+                $.ajax({
+                    type: 'POST',
+                    url: url + "admin/curso/getByIds",
+                    data: formdata,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(msg) {
+                        console.log(JSON.parse(msg))
+                        const resultado = JSON.parse(msg);
+                        $(".tabla__cursos").empty()
+                        resultado.map((valores, idx) => {
+                            $(".tabla__cursos").append(`
+                            <div class="item__curso">
+                                <div class="imagen__curso"><img src="${valores.CURS_IMAGEN}" width="150px" height="110px" style="object-fit: cover;" alt="${valores.CURS_NOMBRE}"></div>
+                                <div class="datos__curso">
+                                    <div class="title__curso"><h4><b>${valores.CURS_NOMBRE}</b></h4></div>
+                                    <div class="title__curso"><h5>${valores.CURS_DESCRIPCION}</h5></div>
+                                </div>
+                            </div>`)
+                        })
+                        //location.href = url + "admin/categoria";
+                    }
+                });
+            } else {
+                $(".tabla__cursos").empty()
+            }
+
+        }
+    }
+
+    function setArrayCursosEdit() {
+        contador_pares++;
+        if (contador_pares % 2 == 0) {
+            if ($("#my-select-edit").val() != null) {
+                cursosIds = $("#my-select-edit").val()
+                const ids = $("#my-select-edit").val().toString();
                 console.log(ids)
                 var formdata = new FormData();
                 formdata.append('ids', '[' + ids + ']')
