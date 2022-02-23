@@ -136,7 +136,11 @@
         localStorage.setItem('idcurso', JSON.stringify(idcurso))
 
         console.log(localStorage.getItem('idcurso'));
-        alert("Agregado con exito")
+        Swal.fire(
+            'Añadido',
+            'Correctamente',
+            'success')
+
     }
 
     function comprarAhora(id) {

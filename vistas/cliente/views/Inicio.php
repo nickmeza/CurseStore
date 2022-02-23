@@ -87,22 +87,7 @@ include_once "./vistas/cliente/component/header.php";
 
 <!-- Ofertas -->
 <div class="cards__ofert">
-    <div class="card__ofert card1__ofert">
-        <div class="container__ofert">
-            <div class="ribbon">NUEVO</div>
-            <img class="img__ofert" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png" alt="las vegas">
-        </div>
-        <div class="details__ofert">
-            <h3>Tecnología</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam adipisci exercitationem.</p>
-            <p><span style="text-decoration:line-through">S/40.00</span></p>
-            <span style="font-size:14px; color:#AAA">Ahora:</span>
-            <span style="color:#f8971d; font-size:20px"><strong>s/50.00</strong></span>
-            <div class="table-buy">
-                <a href="<?php echo $GLOBALS['BASE_URL'] ?>curso/detalle/" class="pricing-action">Ver Oferta</a>
-            </div>
-        </div>
-    </div>
+    
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
@@ -127,7 +112,7 @@ include_once "./vistas/cliente/component/header.php";
                     <div class="details__ofert">
                     <h3>${valores.CURS_NOMBRE}</h3>
                         <p>${valores.CURS_DESCRIPCION}</p>
-                        <p><span style="text-decoration:line-through">${valores.CURS_PRECIO}</span></p>
+                        <p><span style="text-decoration:line-through">Antes:S/.${valores.CURS_PRECIO}</span></p>
                         <span style="font-size:14px; color:#AAA">Ahora:</span>
                         <span style="color:#f8971d; font-size:20px"><strong> S/.${valores.CURS_DISCOUNT}</strong></span>
                         <div class="table-buy">
