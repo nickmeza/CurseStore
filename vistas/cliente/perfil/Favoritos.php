@@ -71,29 +71,41 @@ include_once "./vistas/cliente/component/headerPerfil.php";
 <div class="title__aprendizaje">
     <h1 class="title">Favoritos</h1>
     <div class="container">
-        <div class="card">
-            <img src="img/img1.jpg">
-            <h4>Naturaleza</h4>
-            <p>sadsadsadsadsa</p>
-            <a href="#">Leer mas </a>
-        </div>
-        <div class="card">
-            <img src="img/img2.jpeg">
-            <h4>Naturaleza</h4>
-            <p>sadsadsadsadsa</p>
-            <a href="#">Leer mas </a>
-        </div>
-        <div class="card">
-            <img src="img/img3.jpg">
-            <h4>Naturaleza</h4>
-            <p>sadsadsadsadsa</p>
-            <a href="#">Leer mas </a>
-        </div>
+
     </div>
 </div>
 <br>
 <div class="content__aprendizaje">
 </div>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+<script>
+    var idcurso = localStorage.getItem('idfavorito') ? JSON.parse(localStorage.getItem('idcurso')) : []
+
+    var formdata = new FormData();
+    formdata.append('ids', JSON.stringify(idcurso))
+    $.ajax({
+        type: 'POST',
+        url: url + "admin/curso/getByIds",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(msg) {
+            console.log(JSON.parse(msg))
+            const resultado = JSON.parse(msg);
+            resultado.map((valores, idx) => {
+                $(".container").append(`
+                <div class="card">
+                    <img src=${valores.CURS_IMAGEN}">
+                    <h4>${valores.CURS_NOMBRE}</h4>
+                    <p>${valores.CURS_DESCRIPCION}</p>
+                    <a href=${url+"curso/progreso/"+valores.CURS_NOMBRE}>Leer mas </a>
+                    </div>`)
+            })
+            //location.href = url + "admin/categoria";
+        }
+    });
+</script>
 <?php
 include_once "./vistas/cliente/component/footerPerfil.php";
 ?>

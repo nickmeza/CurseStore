@@ -22,9 +22,23 @@ class RoutesAdmin
     {
         include_once "./vistas/administrador/ventas/Promocion.php";
     }
+    public static function indexOf($array, $word)
+    {
+        foreach ($array as $key => $value) if ($value === $word) return $key;
+        return -1;
+    }
     public static function descuento()
     {
-        $cursos = Curso_Modelo::getAll();
+        $allCursos = Curso_Modelo::getAll();
+        $cursosDescuento = Curso_Modelo::getAllIfNotDiscount();
+        foreach ($cursosDescuento as $curso) {
+            for ($i = 0; $i < sizeof($allCursos); $i++) {
+                if ($allCursos[$i]['CURS_ID'] == $curso['CURS_ID']) {
+                    unset($allCursos[$i]);
+                }
+            }
+        }
+        $cursos = $allCursos;
         include_once "./vistas/administrador/ventas/Descuento.php";
     }
     public static function crear_curso()
