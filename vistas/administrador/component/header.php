@@ -123,7 +123,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/tienda">Empresa</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/correos">Correos</a></li>
-                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/metodo_pagos">Correos</a></li>
+                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/metodo_pagos">Método de pagos</a></li>
                 </ul>
             </li>
         </ul>

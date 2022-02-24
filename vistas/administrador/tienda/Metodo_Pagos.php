@@ -273,7 +273,7 @@ include_once "./vistas/administrador/component/header.php";
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2><b>Banners</b></h2>
+                        <h2><b>Metodo de Pago</b></h2>
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -287,6 +287,7 @@ include_once "./vistas/administrador/component/header.php";
                         <th>ID</th>
                         <th>IMAGEN</th>
                         <th>NOMBRE</th>
+                        <th>DATOS</th>
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -310,26 +311,30 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-<!-- AGREGAR BANNER-->
+<!-- AGREGAR METODOP-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar banner</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Método de pago</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_agregar_banner" method="POST" enctype="multipart/form-data">
+            <form id="form_agregar_metodo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="BANNER_TITULO" id="name">
+                        <input type="text" class="form-control" name="MET_NOMBRE" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Datos:</label>
+                        <input type="text" class="form-control" name="MET_DATOS" id="name">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
-                        <input type="file" class="form-control inputimg" name="BANNER_IMAGEN" id="imagen">
+                        <input type="file" class="form-control inputimg" name="MET_IMAGEN" id="imagen">
                         <img src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
                 </div>
@@ -341,7 +346,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-<!-- EDITAR BANNER  -->
+<!-- EDITAR METODO  -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -351,7 +356,7 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_banner" method="POST" enctype="multipart/form-data">
+            <form id="form_editar_metodo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: none;">
                         <label for="name" class="col-form-label">Nombre:</label>
@@ -359,11 +364,15 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="BANNER_TITULO" id="edit_name">
+                        <input type="text" class="form-control" name="MET_NOMBRE" id="edit_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Datos:</label>
+                        <input type="text" class="form-control" name="MET_DATOS" id="edit_datos">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
-                        <input type="file" class="form-control inputimg" name="BANNER_IMAGEN" id="edit_imagen">
+                        <input type="file" class="form-control inputimg" name="MET_IMAGEN" id="edit_imagen">
                         <img id="edit_banner" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
 
@@ -404,23 +413,23 @@ include_once "./vistas/administrador/component/header.php";
         }
     });
     $.ajax({
-        url: url + 'admin/promocion/get_all',
+        url: url + 'admin/metodo_pagos/get_all',
         type: 'GET',
         dataType: 'json',
         success: function(json) {
             json.map((valores, idx) => {
                 $(".tbody__categoria").append(`
                 <tr>
-                    <td>${valores.BANNER_ID}</td>
+                    <td>${valores.MET_ID}</td>
                     <td>
-                        <a><img src= "${url + valores.BANNER_IMAGEN}" class="avatar" alt=""></a>
+                        <a><img src= "${url + valores.MET_IMAGEN}" class="avatar" alt=""></a>
                     </td>
-                    <td style="width: 400px;">${valores.BANNER_TITULO}</td>
-
-                    <td><span class="status text-warning">&bull;</span>  ${valores.BANNER_STATUS==1?"activo":"inactivo"}</td>
+                    <td style="width: 400px;">${valores.MET_NOMBRE}</td>
+                    <td style="width: 400px;">${valores.MET_DATOS}</td>
+                    <td><span class="status text-warning">&bull;</span>  ${valores.MET_ESTADO==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.BANNER_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.BANNER_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a class="settings" onclick="mostrarDatos(${valores.MET_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="delete" onclick="eliminar(${valores.MET_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                     </td>
                 </tr>
                 `)
@@ -430,12 +439,12 @@ include_once "./vistas/administrador/component/header.php";
         }
     })
 
-    $("#form_agregar_banner").submit(function(event) {
+    $("#form_agregar_metodo").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
             type: 'POST',
-            url: url + "admin/promocion/create",
+            url: url + "admin/metodo_pagos/create",
             data: new FormData(this),
             contentType: false,
             cache: false,
@@ -443,7 +452,7 @@ include_once "./vistas/administrador/component/header.php";
             success: function(msg) {
                 console.log(msg)
 
-                location.href = url + "admin/promocion";
+                location.href = url + "admin/metodo_pagos";
             }
         });
     })
@@ -452,16 +461,16 @@ include_once "./vistas/administrador/component/header.php";
 
     function eliminar(id) {
         $.ajax({
-            url: url + 'admin/promocion/delete/' + id,
+            url: url + 'admin/metodo_pagos/delete/' + id,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                location.href = url + "admin/promocion";
+                location.href = url + "admin/metodo_pagos";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
                     alert("Eliminado correctamente")
-                    location.href = url + "admin/promocion";
+                    location.href = url + "admin/metodo_pagos";
                 }
             },
         })
@@ -470,31 +479,32 @@ include_once "./vistas/administrador/component/header.php";
     function mostrarDatos(valores) {
         console.log(valores);
         $.ajax({
-            url: url + 'admin/promocion/getById/' + valores,
+            url: url + 'admin/metodo_pagos/getById/' + valores,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                $("#edit_name").val(json.BANNER_TITULO)
-                $("#edit_banner").attr("src", "http://tiendacursos.test/" + json.BANNER_IMAGEN)
-                $("#edit_id").val(json.BANNER_ID)
-                json.BANNER_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
+                $("#edit_name").val(json.MET_NOMBRE)
+                $("#edit_datos").val(json.MET_DATOS)
+                $("#edit_banner").attr("src", "http://tiendacursos.test/" + json.MET_IMAGEN)
+                $("#edit_id").val(json.MET_ID)
+                json.MET_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
         })
     }
-    $("#form_editar_banner").submit(function(event) {
+    $("#form_editar_metodo").submit(function(event) {
         event.preventDefault();
         $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
         const id = $("#edit_id").val()
         $.ajax({
             type: 'POST',
-            url: url + "admin/promocion/update/" + id,
+            url: url + "admin/metodo_pagos/update/" + id,
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url + "admin/promocion";
+                location.href = url + "admin/metodo_pagos";
             }
         });
     })

@@ -70,25 +70,25 @@ class MetodoPago
     }
     public static function get_all()
     {
-        $banner = Banner_Modelo::getAll();
-        echo json_encode($banner);
+        $metodo = MetodoPago_Modelo::getAll();
+        echo json_encode($metodo);
     }
     public static function getById($id)
     {
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
-            $banners = array();
-            $banners = Banner_Modelo::getOne($id[4]);
-            echo json_encode($banners);
+            $metodos = array();
+            $metodos = MetodoPago_Modelo::getOne($id[4]);
+            echo json_encode($metodos);
         } else {
             echo "fallo al buscar";
         }
     }
     public static function create()
     {
-        if (isset($_FILES['BANNER_IMAGEN'])) {
-            $banner["BANNER_IMAGEN"] = Banner::CargarImagen($_FILES['BANNER_IMAGEN']);
-            $banner["BANNER_TITULO"] = $_REQUEST['BANNER_TITULO'];
-            Banner_Modelo::insertBanner($banner);
+        if (isset($_FILES['MET_IMAGEN'])) {
+            $metodo["MET_IMAGEN"] = MetodoPago::CargarImagen($_FILES['MET_IMAGEN']);
+            $metodo["MET_NOMBRE"] = $_REQUEST['MET_NOMBRE'];
+            MetodoPago_Modelo::insertMetodoPago($metodo);
             echo "creado correctamente";
         } else {
             echo "fallo al crear";
@@ -97,7 +97,7 @@ class MetodoPago
     public static function delete($id)
     {
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
-            $borrado = Banner_Modelo::delete($id[4]);
+            $borrado = MetodoPago_Modelo::delete($id[4]);
             $mensaje["mensaje"] = "correcto";
             $mensaje["statud"] = "200";
             echo json_encode($mensaje);
@@ -107,13 +107,14 @@ class MetodoPago
     }
     public static function update($id)
     {
-        if (isset($_FILES['BANNER_IMAGEN']) && isset($_REQUEST['BANNER_TITULO'])) {
-            $banner["BANNER_IMAGEN"] = Banner::CargarImagen($_FILES['BANNER_IMAGEN']);
-            $banner["BANNER_TITULO"] = $_REQUEST['BANNER_TITULO'];
-            $banner["BANNER_STATUS"] = $_REQUEST['BANNER_STATUS'];
+        if (isset($_FILES['MET_IMAGEN']) && isset($_REQUEST['MET_NOMBRE'])) {
+            $metodo["MET_IMAGEN"] = MetodoPago::CargarImagen($_FILES['MET_IMAGEN']);
+            $metodo["MET_NOMBRE"] = $_REQUEST['MET_NOMBRE'];
+            $metodo["MET_DATOS"] = $_REQUEST['MET_DATOS'];
+            $metodo["MET_ESTADO"] = $_REQUEST['MET_ESTADO'];
             $mensaje["mensaje"] = "correcto";
             $mensaje["statud"] = "200";
-            Banner_Modelo::updateBanner($banner, $id[4]);
+            MetodoPago_Modelo::updateMetodo($metodo, $id[4]);
             echo json_encode($mensaje);
         } else {
             echo "fallo al actualizar";
