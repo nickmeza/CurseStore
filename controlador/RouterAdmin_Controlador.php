@@ -30,15 +30,17 @@ class RoutesAdmin
     public static function descuento()
     {
         $allCursos = Curso_Modelo::getAll();
+        $cursosEdit = $allCursos;
         $cursosDescuento = Curso_Modelo::getAllIfNotDiscount();
         foreach ($cursosDescuento as $curso) {
             for ($i = 0; $i < sizeof($allCursos); $i++) {
-                if ($allCursos[$i]['CURS_ID'] == $curso['CURS_ID']) {
+                if (isset($allCursos[$i]) && ($allCursos[$i]['CURS_ID'] == $curso['CURS_ID'])) {
                     unset($allCursos[$i]);
                 }
             }
         }
         $cursos = $allCursos;
+
         include_once "./vistas/administrador/ventas/Descuento.php";
     }
     public static function crear_curso()

@@ -20,14 +20,23 @@ class Routes
     public static function categoria($ruta)
     {
         $Session = new UsuarioSession();
-        $buscador = $ruta[2];
-        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        $buscador = strtr($ruta[2], "-", " ");
+        if (isset($_SESSION['user'])) {
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        } else {
+            $idUsuario = 0;
+        }
         include_once "./vistas/cliente/curso/Categoria.php";
     }
     public static function buscar($buscador)
     {
         $Session = new UsuarioSession();
-        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+
+        if (isset($_SESSION['user'])) {
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        } else {
+            $idUsuario = 0;
+        }
         include_once "./vistas/cliente/curso/Buscador.php";
         // var_dump($buscador);
     }
@@ -35,6 +44,11 @@ class Routes
     {
         $Session = new UsuarioSession();
         $buscador = strtr($buscador, "-", " ");
+        if (isset($_SESSION['user'])) {
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        } else {
+            $idUsuario = 0;
+        }
         include_once "./vistas/cliente/curso/DetalleCurso.php";
     }
     //videos
@@ -79,7 +93,11 @@ class Routes
     public static function aprendizaje()
     {
         $Session = new UsuarioSession();
-        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        if (isset($_SESSION['user'])) {
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        } else {
+            header("Location: http://tiendacursos.test/login");
+        }
         include_once "./vistas/cliente/perfil/Aprendizaje.php";
     }
     public static function favoritos()
@@ -92,13 +110,17 @@ class Routes
     {
 
         $Session = new UsuarioSession();
-        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        if (isset($_SESSION['user'])) {
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
 
-        $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
+            $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
 
-        $idclient = $cliente['CLI_ID'];
-        var_dump($idclient);
-        include_once "./vistas/cliente/pago/MetodoPago.php";
+            $idclient = $cliente['CLI_ID'];
+            var_dump($idclient);
+            include_once "./vistas/cliente/pago/MetodoPago.php";
+        } else {
+            header("Location: http://tiendacursos.test/login");
+        }
     }
 
     public static function carrito()

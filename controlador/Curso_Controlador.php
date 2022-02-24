@@ -95,5 +95,4 @@ class Curso
             echo json_encode($mensaje);
         }
     }
-
 }

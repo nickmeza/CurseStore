@@ -13,13 +13,13 @@ include_once "./vistas/cliente/component/header.php";
                     <div class="content__carrito">
                     </div>
                 </div>
-                <div>
+                <!-- <div>
                     <div class="titulo__carrito">
                         <h3>N cursos en la cesta</h3>
                     </div>
                     <div class="content__carrito2">
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -65,6 +65,7 @@ include_once "./vistas/cliente/component/header.php";
         success: function(msg) {
             console.log(JSON.parse(msg))
             const resultado = JSON.parse(msg);
+            $(".titulo__carrito h3").text(resultado.length + ' cursos en la cesta')
             resultado.map((valores, idx) => {
                 CalcularPrecio(valores.CURS_PRECIO, valores.CURS_PRECIO, valores.CURS_DESCUENTO ? valores.CURS_DESCUENTO : 0)
                 $(".content__carrito").append(`
@@ -94,9 +95,7 @@ include_once "./vistas/cliente/component/header.php";
                         </div>
                     </div>
                     <div>
-                        <p class="p__carrito">estrellas</p>
-                        <p class="p__carrito">clases - modulos - nivel</p>
-                        <p class="p__carrito">opciones</p>
+                        <p class="p__carrito">${valores.CURS_MODULOS} Modulos -  ${valores.CURS_VIDEOS} Videos</p>
                     </div>
                 </div>`)
             })
