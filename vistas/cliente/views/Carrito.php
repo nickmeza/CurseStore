@@ -67,7 +67,7 @@ include_once "./vistas/cliente/component/header.php";
             const resultado = JSON.parse(msg);
             $(".titulo__carrito h3").text(resultado.length + ' cursos en la cesta')
             resultado.map((valores, idx) => {
-                CalcularPrecio(valores.CURS_PRECIO, valores.CURS_PRECIO, valores.CURS_DESCUENTO ? valores.CURS_DESCUENTO : 0)
+                CalcularPrecio(valores.CURS_PRECIO, valores.CURS_PRECIO, valores.CURS_PRICE_DISCOUNT ? valores.CURS_PRICE_DISCOUNT : 0)
                 $(".content__carrito").append(`
                     <div class="card__carrito">
                     <div class="datelle__curso">
@@ -104,9 +104,7 @@ include_once "./vistas/cliente/component/header.php";
     });
 
     function CalcularPrecio(precio, subprecio, descuentos) {
-        precioTotal = Number(precio) + Number(precioTotal)
-        console.log(precioTotal)
-        $('.total__carrito').html("<h1>S/" + precioTotal + "</h1>")
+        
 
         subTotal = Number(subprecio) + Number(subTotal)
         console.log(subTotal)
@@ -115,6 +113,10 @@ include_once "./vistas/cliente/component/header.php";
         descuento = Number(descuentos) + Number(descuento)
         console.log(descuento)
         $('.descuento').html("<p class='p__carrito p__separate'><b>S/" + descuento + "</b>Descuento</p>")
+
+        precioTotal = Number(precio) + Number(precioTotal) -  Number(descuento)
+        console.log(precioTotal)
+        $('.total__carrito').html("<h1>S/" + precioTotal + "</h1>")
     }
 
     function borrarCarrito(idCurso) {

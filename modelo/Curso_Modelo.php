@@ -20,7 +20,7 @@ class Curso_Modelo
     }
     public static function getByIds($ids)
     {
-        $data = Database::query('SELECT c.*,c.CURS_PRECIO-c.CURS_PRECIO*(d.DESC_PORCENT/100) AS CURS_DISCOUNT FROM curso c
+        $data = Database::query('SELECT c.*,c.CURS_PRECIO-c.CURS_PRECIO*(d.DESC_PORCENT/100) AS CURS_DISCOUNT, c.CURS_PRECIO*(d.DESC_PORCENT/100) AS CURS_PRICE_DISCOUNT  FROM curso c
         LEFT JOIN detalle_descuento dd ON c.CURS_ID = dd.CURS_ID
         LEFT JOIN descuento d ON d.DESC_ID = dd.DESC_ID AND d.DESC_STATUS=1
          where c.CURS_ID IN (' . $ids . ')', array());
