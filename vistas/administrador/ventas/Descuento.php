@@ -561,13 +561,16 @@ include_once "./vistas/administrador/component/header.php";
                                 console.log(msg)
                                 location.href = url + "admin/descuento";
                             },
-                            complete: function(xhr, status) {
-                                if (status == "success") {
-                                    alert("Agregado correctamente")
-                                    location.href = url + "admin/descuento";
-                                }
-                            },
-
+                             complete: function(xhr, status) {
+                             if (status == "success") {
+                                Swal.fire(
+                                    'Añadido',
+                                    'Correctamente',
+                                    'success')
+                            location.href = url + "admin/descuento";
+                }
+            },
+                            
                         });
                     })
                     //location.href = url + "admin/descuento";
@@ -588,7 +591,10 @@ include_once "./vistas/administrador/component/header.php";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
-                    alert("correcto")
+                    Swal.fire(
+                        'Eliminado',
+                        'Correctamente',
+                        'success')
                     location.href = url + "admin/descuento";
                 }
             },
