@@ -191,6 +191,66 @@ include_once "./vistas/administrador/component/header.php";
             margin-top: 10px;
             font-size: 13px;
         }
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
     </style>
 
 
@@ -226,60 +286,8 @@ include_once "./vistas/administrador/component/header.php";
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt=""> Base de Datos</a>
-                            </td>
-                            <td>Tecnologia</td>
-
-                            <td><span class="status text-success">&bull;</span> Active</td>
-                            <td>
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                <a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt=""> Ciencia</a>
-                            </td>
-                            <td>Ciencia</td>
-
-                            <td><span class="status text-success">&bull;</span> Active</td>
-                            <td>
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                <a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt=""> Adobe InDesing</a>
-                            </td>
-                            <td>Diseño</td>
-
-                            <td><span class="status text-danger">&bull;</span> Suspended</td>
-                            <td>
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>
-                                <a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="">Google</a>
-                            </td>
-                            <td>Marketing</td>
-
-                            <td><span class="status text-success">&bull;</span> Active</td>
-                            <td>
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                        
+                    <tbody class="tbody_cursos">
+                       
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -297,7 +305,71 @@ include_once "./vistas/administrador/component/header.php";
             </div>
         </div>
     </div>
+    <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+<script>
+    $.ajax({
+        url: url + 'admin/curso/getAll',
+        type: 'GET',
+        dataType: 'json',
+        success: function(json) {
+            console.log(json)
+            json.map((valores, idx) => {
+                
+                $(".tbody_cursos").append(`
+                <tr>
+                    <td>${valores.CURS_ID}</td>
+                    <td>
+                        <a><img src="${url + valores.CURS_IMAGEN}" class="avatar" alt=""> ${valores.CURS_NOMBRE}</a>
+                    </td>
+                    <td style="width: 400px;">${valores.CURS_DESCRIPCION}</td>
 
+                    <td><span class="status text-warning">&bull;</span>  ${valores.CURS_ESTADO==1?"activo":"inactivo"}</td>
+                    <td style="width: 100px;">
+                        <a class="settings" onclick="mostrarDatos(${valores.CURS_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>   
+                        <a class="delete" onclick="deshabilitar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><label class="switch">
+                        <input ${validarEstado(valores.CURS_ESTADO)}  type="checkbox" id="edit_estado" name="BANNER_STATUS">
+                        <span onclick ='deshabilitar(${valores.CURS_ID},${valores.CURS_ESTADO})'class="slider round"></span>
+                        </label></a>
+                        </td>
+                </tr>
+                `)
+            })
+            console.log(json)
+            curseCategoria = document.getElementsByClassName("navigation__categoria")
+        }
+    })
+    function deshabilitar(cursoId,cursoEstado){
+        
+        var estado = cursoEstado ==1 ? 0 : 1
+        var formdata = new FormData() 
+        formdata.append("estado",estado)
+        formdata.append("id",cursoId)
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/curso/updateDeshabilitar",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/curso";
+            }
+        });
+
+        
+    }
+
+    function validarEstado(estado){
+    if (estado==1) {
+        return "checked"
+    }
+        return ""
+    }
+
+
+</script>
 
 <?php
 include_once "./vistas/administrador/component/footer.php";

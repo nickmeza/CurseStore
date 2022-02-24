@@ -4,8 +4,9 @@ class Curso
 {
     public static function getAll()
     {
-        echo "json";
-        include_once "./vistas/cliente/curso/Categoria.php";
+        $cursos = Curso_Modelo::getAll();
+        echo json_encode($cursos);
+       
     }
     public static function getCursosDescuento()
     {
@@ -80,8 +81,25 @@ class Curso
     }
     public static function update()
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
+        
     }
+    public static function updateDeshabilitar()
+    {
+        if (isset($_POST['estado']) && isset($_POST['id'])) {
+            $curso["CURS_ESTADO"]= $_POST["estado"];
+            $id=$_POST['id'];
+            $cursos = Curso_Modelo::updateCursoDeshabilitar($curso,$id);
+            $mensaje["mensaje"] = "exito";
+            $mensaje["statud"] = "200";
+            echo json_encode($mensaje);
+        } else {
+            $mensaje["mensaje"] = "fallo";
+            $mensaje["statud"] = "500";
+            echo json_encode($mensaje);
+        }
+         
+    }
+
 
     public static function getCursosByidUser()
     {
