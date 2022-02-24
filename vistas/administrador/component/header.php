@@ -40,7 +40,7 @@
             <span class="logo_name">CodingLab</span>
         </div>
         <ul class="nav-links">
-            
+
             <li>
                 <div class="iocn-link">
                     <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/curso">
@@ -56,12 +56,12 @@
                 </ul>
             </li>
             <li>
-             <div class="iocn-link">
-                <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria">
-                    <i class='bx bx-category'></i>
-                    <span class="link_name">Categoria</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow'></i>
+                <div class="iocn-link">
+                    <a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria">
+                        <i class='bx bx-category'></i>
+                        <span class="link_name">Categoria</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu ">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/categoria"> Categoría</a></li>
@@ -80,7 +80,7 @@
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/promocion">Promociones</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/promocion">Banner</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/descuento">Descuentos</a></li>
-                    
+
                 </ul>
             </li>
             <li>
@@ -94,7 +94,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/ventas">Ventas</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/ventas">Lista de Ventas</a></li>
-                   
+
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/solicitudes">Confirmar Ventas</a></li>
                 </ul>
             </li>
@@ -123,6 +123,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/tienda">Empresa</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/correos">Correos</a></li>
+                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/metodo_pagos">Correos</a></li>
                 </ul>
             </li>
         </ul>

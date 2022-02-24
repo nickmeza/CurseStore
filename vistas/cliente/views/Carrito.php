@@ -80,13 +80,22 @@ include_once "./vistas/cliente/component/header.php";
                                 <p class="p__carrito">${valores.CURS_DESCRIPCION}</p>
                             </div>
                             <div class="price__detail">
-                                <p class="p__carrito p__precio">S/. ${valores.CURS_PRECIO}</p>
-                                <p class="p__carrito">329,90 S/</p>
+                            ${valores.CURS_DISCOUNT?
+                            `<p class="p__carrito p__precio">S/. ${valores.CURS_DISCOUNT}</p>`:
+                            ``
+                            }
+                            <p class="p__carrito ${valores.CURS_DISCOUNT?'':'p__precio'}"> S/. ${valores.CURS_PRECIO}</p>
+
                             </div>
                         </div>
                         <div class="precios__curso">
-                            <p class="p__carrito p__precio"> S/. ${valores.CURS_PRECIO}</p>
-                            <p class="p__carrito">329,90 S/</p>
+                        
+                            ${valores.CURS_DISCOUNT?
+                            `<p class="p__carrito p__precio">S/. ${valores.CURS_DISCOUNT}</p>`:
+                            ``
+                            }
+                            <p class="p__carrito ${valores.CURS_DISCOUNT?'':'p__precio'}"> S/. ${valores.CURS_PRECIO}</p>
+
                         </div>
                         <div class="opciones__curso">
                             <div class='box-left'>
@@ -104,7 +113,7 @@ include_once "./vistas/cliente/component/header.php";
     });
 
     function CalcularPrecio(precio, subprecio, descuentos) {
-        
+
 
         subTotal = Number(subprecio) + Number(subTotal)
         console.log(subTotal)
@@ -114,7 +123,7 @@ include_once "./vistas/cliente/component/header.php";
         console.log(descuento)
         $('.descuento').html("<p class='p__carrito p__separate'><b>S/" + descuento + "</b>Descuento</p>")
 
-        precioTotal = Number(precio) + Number(precioTotal) -  Number(descuento)
+        precioTotal = Number(precio) + Number(precioTotal) - Number(descuentos)
         console.log(precioTotal)
         $('.total__carrito').html("<h1>S/" + precioTotal + "</h1>")
     }

@@ -84,4 +84,8 @@ class RoutesAdmin
     {
         include_once "./vistas/administrador/tienda/Correo.php";
     }
+    public static function metodo_pagos()
+    {
+        include_once "./vistas/administrador/tienda/Metodo_Pagos.php";
+    }
 }
