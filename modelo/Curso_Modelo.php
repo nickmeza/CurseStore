@@ -20,7 +20,10 @@ class Curso_Modelo
     }
     public static function getByIds($ids)
     {
-        $data = Database::query('SELECT * FROM curso where CURS_ID IN (' . $ids . ')', array());
+        $data = Database::query('SELECT c.*,c.CURS_PRECIO-c.CURS_PRECIO*(d.DESC_PORCENT/100) AS CURS_DISCOUNT FROM curso c
+        LEFT JOIN detalle_descuento dd ON c.CURS_ID = dd.CURS_ID
+        LEFT JOIN descuento d ON d.DESC_ID = dd.DESC_ID AND d.DESC_STATUS=1
+         where c.CURS_ID IN (' . $ids . ')', array());
 
         for ($i = 0; $i < sizeof($data); $i++) {
             $videos = Database::queryOne('SELECT COUNT(*) FROM modulo m, submodulo s,curso c, video v WHERE m.CURS_ID=c.CURS_ID 
