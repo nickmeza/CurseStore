@@ -88,6 +88,8 @@ class MetodoPago
         if (isset($_FILES['MET_IMAGEN'])) {
             $metodo["MET_IMAGEN"] = MetodoPago::CargarImagen($_FILES['MET_IMAGEN']);
             $metodo["MET_NOMBRE"] = $_REQUEST['MET_NOMBRE'];
+            $metodo["MET_DATOS"] = $_REQUEST['MET_DATOS'];
+
             MetodoPago_Modelo::insertMetodoPago($metodo);
             echo "creado correctamente";
         } else {
@@ -107,10 +109,11 @@ class MetodoPago
     }
     public static function update($id)
     {
-        if (isset($_FILES['MET_IMAGEN']) && isset($_REQUEST['MET_NOMBRE'])) {
-            $metodo["MET_IMAGEN"] = MetodoPago::CargarImagen($_FILES['MET_IMAGEN']);
+        if (  isset($_REQUEST['MET_NOMBRE']) && isset($_REQUEST['MET_DATOS']) && isset($_FILES['MET_IMAGEN'])) {
+            
             $metodo["MET_NOMBRE"] = $_REQUEST['MET_NOMBRE'];
             $metodo["MET_DATOS"] = $_REQUEST['MET_DATOS'];
+            $metodo["MET_IMAGEN"] = MetodoPago::CargarImagen($_FILES['MET_IMAGEN']);
             $metodo["MET_ESTADO"] = $_REQUEST['MET_ESTADO'];
             $mensaje["mensaje"] = "correcto";
             $mensaje["statud"] = "200";

@@ -330,7 +330,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Datos:</label>
-                        <input type="text" class="form-control" name="MET_DATOS" id="name">
+                        <input type="text" class="form-control" name="MET_DATOS" id="datos">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
@@ -351,16 +351,16 @@ include_once "./vistas/administrador/component/header.php";
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Banner</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar metodo de pago</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="form_editar_metodo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="BANNER_ID" id="edit_id">
+                <div class="form-group" style="display: none;">
+                        <label for="name" class="col-form-label">ID</label>
+                        <input type="text" class="form-control" name="MET_ID" id="edit_id">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
@@ -373,11 +373,11 @@ include_once "./vistas/administrador/component/header.php";
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
                         <input type="file" class="form-control inputimg" name="MET_IMAGEN" id="edit_imagen">
-                        <img id="edit_banner" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
+                        <img id="edit_imagenes" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
 
                     <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="BANNER_STATUS">
+                        <input type="checkbox" id="edit_estado" name="MET_ESTADO">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -469,7 +469,11 @@ include_once "./vistas/administrador/component/header.php";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
-                    alert("Eliminado correctamente")
+                    Swal.fire(
+                'Eliminado',
+                'Correctamente',
+                'info'
+            )
                     location.href = url + "admin/metodo_pagos";
                 }
             },
@@ -485,7 +489,7 @@ include_once "./vistas/administrador/component/header.php";
             success: function(json) {
                 $("#edit_name").val(json.MET_NOMBRE)
                 $("#edit_datos").val(json.MET_DATOS)
-                $("#edit_banner").attr("src", "http://tiendacursos.test/" + json.MET_IMAGEN)
+                $("#edit_imagenes").attr("src", "http://tiendacursos.test/" + json.MET_IMAGEN)
                 $("#edit_id").val(json.MET_ID)
                 json.MET_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
