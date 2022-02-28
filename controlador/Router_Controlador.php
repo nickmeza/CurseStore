@@ -133,6 +133,11 @@ class Routes
     public static function nosotros()
     {
         $Session = new UsuarioSession();
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+
+        $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
+
+        $idclient = $cliente['CLI_ID'];
         include_once "./vistas/cliente/views/Nosotros.php";
     }
 }
