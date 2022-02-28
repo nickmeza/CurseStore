@@ -39,15 +39,40 @@ $empresa = array();
                 <a href="https://www.linkedin.com/company/multispace-perú/?viewAsMember=true"><i class="fa fa-linkedin"></i></a>
             </div>
         </div>
-        <form id="form_agregar" class="formulario">
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-            <input type="text" name="correo" id="correo" placeholder="Correo">
-            <input type="text" name="asunto" id="asunto" placeholder="Asunto">
-            <textarea name="descripcion" id="descripcion" placeholder="Descripcion"></textarea>
+        <form id="form_agregar_contacto" class="formulario">
+            <input type="text" name="COR_NOMBRE" id="nombre" placeholder="Nombre">
+            <input type="text" name="COR_CORREO" id="correo" placeholder="Correo">
+            <input type="text" name="COR_ASUNTO" id="asunto" placeholder="Asunto">
+            <textarea name="COR_DESCRIPCION" id="descripcion" placeholder="Descripcion"></textarea>
             <button type="submit" class="btn btn-contact btn-green"><span>ENVIAR</span></button>
         </form>
     </div>
 </div>
+
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+<script>
+    $("#form_agregar_contacto").submit(function(event) {
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/correos/create",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                if (JSON.parse(msg).status == 404) {
+                    $(".mensaje__error").css("display", "block")
+                } else {
+                    location.href = url;
+                }
+
+            }
+        });
+    })
+</script>
 <?php
 include_once "./vistas/cliente/component/footer.php";
 ?>
