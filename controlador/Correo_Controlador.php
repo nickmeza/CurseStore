@@ -4,36 +4,37 @@ class Correo
 {
     public static function getAll()
     {
-        $categorias = array();
-        $categorias = Correo_Modelo::getAll();
-        array_splice($categorias, 0, 1);
-        echo json_encode($categorias);
+        $correo = array();
+        $correo = Correo_Modelo::getAll();
+        array_splice($correo, 0, 1);
+        echo json_encode($correo);
     }
     public static function getCorreosData()
     {
-        $categorias = array();
-        $categorias = Correo_Modelo::getCorreosData();
+        $correo= array();
+        $correo = Correo_Modelo::getCorreosData();
         array_splice($categorias, 0, 1);
-        echo json_encode($categorias);
+        echo json_encode($correo);
     }
 
     public static function getById($id)
     {
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
-            $categorias = array();
-            $categorias = Correo_Modelo::getOne($id[4]);
-            echo json_encode($categorias);
+            $correo = array();
+            $correo = Correo_Modelo::getOne($id[4]);
+            echo json_encode($correo);
         } else {
             echo "fallo al buscar";
         }
     }
     public static function create()
     {
-        if (isset($_REQUEST['CAT_NAME']) && isset($_REQUEST['CAT_DESCRIPCION']) && isset($_REQUEST['CAT_IMAGEN'])) {
-            $categoria["CAT_NAME"] = $_REQUEST['CAT_NAME'];
-            $categoria["CAT_DESCRIPCION"] = $_REQUEST['CAT_DESCRIPCION'];
-            $categoria["CAT_IMAGEN"] = $_REQUEST['CAT_IMAGEN'];
-            Correo_Modelo::insertCorreo($categoria);
+        if (isset($_REQUEST['COR_NOMBRE']) && isset($_REQUEST['COR_CORREO']) && isset($_REQUEST['COR_DESCRIPCION']) && isset($_REQUEST['COR_ASUNTO'])) {
+            $correo["COR_NOMBRE"] = $_REQUEST['COR_NOMBRE'];
+            $correo["COR_CORREO"] = $_REQUEST['COR_CORREO'];
+            $correo["COR_DESCRIPCION"] = $_REQUEST['COR_DESCRIPCION'];
+            $correo["COR_ASUNTO"] = $_REQUEST['COR_ASUNTO'];
+            Correo_Modelo::insertCorreo($correo);
             echo "creado correctamente";
         } else {
             echo "fallo al crear";

@@ -306,7 +306,15 @@ include_once "./vistas/cliente/component/header.php";
     }
   }
 </style>
+<?php
+    $datos = array();
 
+
+    if (isset($metodo_pago)) {
+        $datos = $metodo_pago;
+        $i = 0;
+    }
+    ?>
 <div class='container__ventana' style="margin-top: 100px;">
   <div class='window'>
     <div class='order-info'>
@@ -321,6 +329,17 @@ include_once "./vistas/cliente/component/header.php";
           <tr>
             <td>Selecciona el método de pago: </td>
             <td>
+              <select onchange="setImagen()" id="metodo_pago">
+                <option value="-1">
+                  seleccione una opción
+                </option>
+                <?php foreach ($datos as $dato) { ?>
+                  <option value="<?php echo $GLOBALS['BASE_URL'].$dato["MET_IMAGEN"]."|".$dato["MET_DATOS"] ?>"> <?php echo $dato["MET_NOMBRE"] ?> 
+                  
+                </option>
+                  <?php } ?>
+              </select>
+              
               <div class='dropdown' id='card-dropdown'>
                 <div class='dropdown-btn' id='current-card'>Visa</div>
                 <div class='dropdown-select'>
@@ -341,10 +360,14 @@ include_once "./vistas/cliente/component/header.php";
             </div>
           </div>
           <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
+          <h4 id = "dato_metodo">
+          </h4>  
+
         </div>
         <form id="form_solicitud">
           <label for="imagen">Card Holder</label>
           <input id="imagen" type="file" class='input-field inputimg'></input>
+
           <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
            
           <button class='pay-btn' type="submit">Enviar</button>
@@ -441,6 +464,18 @@ include_once "./vistas/cliente/component/header.php";
   /* <span style='font-size: 14px;'>
   S/.300
               </span> */
+
+  function setImagen(){
+    var datos = document.getElementById("metodo_pago").value
+    console.log(datos.split("|"))
+    var imagen = datos.split("|")[0]
+    var dato = datos.split("|")[1]
+    $("#dato_metodo").text(dato)
+    $("#credit-card-image").attr("src",imagen)
+
+
+   
+  }            
   function CalcularPrecio(precio, subprecio, idprducto) {
     precioTotal = Number(precio) + Number(precioTotal)
     $('.total').html(`<span style='font-size: 14px;'>

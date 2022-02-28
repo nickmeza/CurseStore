@@ -116,6 +116,7 @@ class Routes
             $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
 
             $idclient = $cliente['CLI_ID'];
+            $metodo_pago = MetodoPago_Modelo::getbystatus();
             var_dump($idclient);
             include_once "./vistas/cliente/pago/MetodoPago.php";
         } else {
