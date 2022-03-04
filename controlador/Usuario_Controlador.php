@@ -31,6 +31,28 @@ class Usuario
             echo "fallo al crear";
         }
     }
+    public static function updateContraseña($ruta)
+    {
+        if (isset($_REQUEST['contraseña'])) {
+            $usuario["contraseña"] = $_REQUEST['contraseña'];
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+            Usuario_modelo::updateContraseña($usuario, $idUsuario);
+            var_dump($_SESSION['escogido'][0]);
+            echo "creado correctamente";
+        } else {
+            echo "fallo al crear";
+        }
+    }
+    public static function getPasswordByUser($ruta)
+    {
+            
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+            Usuario_modelo::getPasswordByUser($idUsuario);
+            var_dump($_SESSION['escogido'][0]);
+            echo "creado correctamente";  
+    }
+
+
     public static function createUsuarioCliente($ruta)
     {
         if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {

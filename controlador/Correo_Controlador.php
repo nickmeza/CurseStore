@@ -29,7 +29,7 @@ class Correo
     }
     public static function create()
     {
-        if (isset($_REQUEST['CLI_ID']) &&isset($_REQUEST['COR_NOMBRE']) && isset($_REQUEST['COR_CORREO']) && isset($_REQUEST['COR_DESCRIPCION']) && isset($_REQUEST['COR_ASUNTO'])) {
+        if (isset($_REQUEST['CLI_ID']) && isset($_REQUEST['COR_NOMBRE']) && isset($_REQUEST['COR_CORREO']) && isset($_REQUEST['COR_DESCRIPCION']) && isset($_REQUEST['COR_ASUNTO'])) {
             $correo["CLI_ID"] = $_REQUEST['CLI_ID'];
             $correo["COR_NOMBRE"] = $_REQUEST['COR_NOMBRE'];
             $correo["COR_CORREO"] = $_REQUEST['COR_CORREO'];

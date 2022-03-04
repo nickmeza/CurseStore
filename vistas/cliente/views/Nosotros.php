@@ -53,11 +53,13 @@ $empresa = array();
 <script>
     $("#form_agregar_contacto").submit(function(event) {
         event.preventDefault();
-        console.log(new FormData(this).append('CLI_ID', <?php echo $idclient; ?>))
+        console.log(new FormData(this))
+        var formdata = new FormData(this)
+        formdata.append('CLI_ID', <?php echo $idclient; ?>)
         $.ajax({
             type: 'POST',
             url: url + "admin/correos/create",
-            data: new FormData(this),
+            data: formdata,
             contentType: false,
             cache: false,
             processData: false,

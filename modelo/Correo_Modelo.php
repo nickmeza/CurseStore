@@ -22,6 +22,7 @@ class Correo_Modelo{
     {
         return $data = Database::query("SELECT p.*,co.COR_ID,co.COR_CORREO,co.COR_DESCRIPCION,co.COR_ASUNTO FROM correos co,cliente cli ,persona p,usuario u WHERE co.CLI_ID=cli.CLI_ID  AND cli.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID", array());
     }
+    
 
 }
 

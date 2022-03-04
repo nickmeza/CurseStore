@@ -109,8 +109,7 @@ class MetodoPago
     }
     public static function update($id)
     {
-        if (  isset($_REQUEST['MET_NOMBRE']) && isset($_REQUEST['MET_DATOS']) && isset($_FILES['MET_IMAGEN'])) {
-            
+        if (isset($_REQUEST['MET_NOMBRE']) && isset($_REQUEST['MET_DATOS']) && isset($_FILES['MET_IMAGEN'])) {
             $metodo["MET_NOMBRE"] = $_REQUEST['MET_NOMBRE'];
             $metodo["MET_DATOS"] = $_REQUEST['MET_DATOS'];
             $metodo["MET_IMAGEN"] = MetodoPago::CargarImagen($_FILES['MET_IMAGEN']);

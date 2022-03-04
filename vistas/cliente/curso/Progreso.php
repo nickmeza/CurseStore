@@ -193,7 +193,7 @@ include_once "./vistas/cliente/component/header.php";
                                     
                                     <div class="video__content">
                                         <div class="checkbox__video">
-                                            <input type="checkbox" name="STATUS_VIDEO" id="status">
+                                            <input onchange="alert(hola)" <?php if ($video["CHECK_ESTADO"]==1) echo "checked"  ?> type="checkbox" name="STATUS_VIDEO" id="status">
                                         </div>
                                         <a href="<?php echo $GLOBALS['BASE_URL'].'curso/progreso/'.strtr($data[3], " ", "-")."/".$subModulo."/".$video["VI_ID"]; ?>" >
                                         <div class="datos__video">

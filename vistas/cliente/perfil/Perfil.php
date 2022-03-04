@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <?php
 include_once "./vistas/cliente/component/headerPerfil.php";
 ?>
@@ -27,7 +28,7 @@ include_once "./vistas/cliente/component/headerPerfil.php";
                 <input class="form-control" type="text" placeholder="Usuario" name="usuario" id="usuario_perfil">
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" role="button"><span class="text">Comprar</span></button>
+        <button class="btn btn-primary" type="submit" role="button"><span class="text">Actualizar</span></button>
     </form>
 </div>
 <div class="title__peril">
@@ -35,22 +36,25 @@ include_once "./vistas/cliente/component/headerPerfil.php";
 </div>
 <br>
 <div class="form__pegil">
+        <form id="form_editar_contrasena">
     <div style="display: flex;justify-content: space-around; gap: 20px;">
         <div class="form-group w-100">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input class="form-control" type="text" placeholder="Default input">
+            <label for="exampleFormControlInput1">Contraseña actual</label>
+            <input class="form-control" type="text" placeholder="Contraseña actual">
         </div>
         <div class="form-group w-100">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input class="form-control" type="text" placeholder="Default input">
+            <label for="exampleFormControlInput1">Nueva contraseña</label>
+            <input class="form-control" type="text" placeholder="Nueva contraseña">
         </div>
     </div>
     <div style="display: flex;justify-content: space-around; gap: 20px;">
         <div class="form-group w-100">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input class="form-control" type="text" placeholder="Default input">
+            <label for="exampleFormControlInput1">Confirmar contraseña</label>
+            <input class="form-control" type="text" placeholder="Confirmar contraseña">
         </div>
     </div>
+    <button class="btn btn-primary" type="submit" role="button"><span class="text">Actualizar Contraseña</span></button>
+</form>
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
@@ -60,7 +64,32 @@ include_once "./vistas/cliente/component/headerPerfil.php";
         console.log(new FormData(this))
         $.ajax({
             type: 'POST',
-            url: url + "admin/usuario/cliente/updatePerfilUsuario",
+            url: url + "admin/usuario/cliente/update",
+            data:new FormData(this), 
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(json) {
+                console.log(JSON.parse(json))
+                JSON.parse(json).map((valores, idx) => {
+                $(".container").append(`
+                    <div class="card">
+                    <img src=${valores.CURS_IMAGEN}">
+                    <h4>${valores.CURS_NOMBRE}</h4>
+                    <p>${valores.CURS_DESCRIPCION}</p>
+                    <a href=${url+"curso/progreso/"+valores.CURS_NOMBRE}>Leer mas </a>
+                    </div>
+                `)
+            })
+            }
+        });
+    })
+    $("#form_editar_contrasena").submit(function(event) {
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/usuario/cliente/updateContraseña",
             data: new FormData(this),
             contentType: false,
             cache: false,
