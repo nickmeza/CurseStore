@@ -24,7 +24,7 @@ class Usuario_modelo
     }
     public static function updateContraseña($usuario, $id)
     {
-        Database::queryChange("UPDATE usuario set USR_PASSWORD = ? WHERE USR_ID = ?;", array($usuario["USR_PASSWORD"], $id));
+        Database::queryChange("UPDATE usuario set USR_PASSWORD = ? WHERE USR_ID = ?;", array($usuario["contraseña"], $id));
     }
     public static function delete($id)
     {

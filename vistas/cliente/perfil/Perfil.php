@@ -40,17 +40,17 @@ include_once "./vistas/cliente/component/headerPerfil.php";
     <div style="display: flex;justify-content: space-around; gap: 20px;">
         <div class="form-group w-100">
             <label for="exampleFormControlInput1">Contraseña actual</label>
-            <input class="form-control" type="text" placeholder="Contraseña actual">
+            <input class="form-control" type="text" placeholder="Contraseña actual" name = "contraseña" >
         </div>
         <div class="form-group w-100">
             <label for="exampleFormControlInput1">Nueva contraseña</label>
-            <input class="form-control" type="text" placeholder="Nueva contraseña">
+            <input class="form-control" type="text" placeholder="Nueva contraseña" name = "nueva_contraseña">
         </div>
     </div>
     <div style="display: flex;justify-content: space-around; gap: 20px;">
         <div class="form-group w-100">
             <label for="exampleFormControlInput1">Confirmar contraseña</label>
-            <input class="form-control" type="text" placeholder="Confirmar contraseña">
+            <input class="form-control" type="text" placeholder="Confirmar contraseña" name = "confirmar_contraseña">
         </div>
     </div>
     <button class="btn btn-primary" type="submit" role="button"><span class="text">Actualizar Contraseña</span></button>
@@ -61,45 +61,36 @@ include_once "./vistas/cliente/component/headerPerfil.php";
 <script>
     $("#form_editar_perfil").submit(function(event) {
         event.preventDefault();
-        console.log(new FormData(this))
+        console.log(new FormData(this));
         $.ajax({
             type: 'POST',
-            url: url + "admin/usuario/cliente/update",
-            data:new FormData(this), 
+            url: url + "admin/usuario/cliente/updatePerfilUsuario",
+            data: new FormData(this), 
             contentType: false,
             cache: false,
             processData: false,
             success: function(json) {
-                console.log(JSON.parse(json))
-                JSON.parse(json).map((valores, idx) => {
-                $(".container").append(`
-                    <div class="card">
-                    <img src=${valores.CURS_IMAGEN}">
-                    <h4>${valores.CURS_NOMBRE}</h4>
-                    <p>${valores.CURS_DESCRIPCION}</p>
-                    <a href=${url+"curso/progreso/"+valores.CURS_NOMBRE}>Leer mas </a>
-                    </div>
-                `)
-            })
+                console.log(json)
             }
         });
-    })
+    });
     $("#form_editar_contrasena").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
             type: 'POST',
-            url: url + "admin/usuario/cliente/updateContraseña",
+            url: url + "admin/usuario/cliente/updateContrasena",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                location.href = url + "admin/categoria";
+                
+                //location.href = url + "admin/categoria";
             }
         });
-    })
+    });
 </script>
 <?php
 include_once "./vistas/cliente/component/footerPerfil.php";
