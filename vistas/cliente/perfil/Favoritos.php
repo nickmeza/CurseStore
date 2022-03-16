@@ -79,7 +79,7 @@ include_once "./vistas/cliente/component/headerPerfil.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-    var idcurso = localStorage.getItem('idfavorito') ? JSON.parse(localStorage.getItem('idcurso')) : []
+    var idcurso = localStorage.getItem('idfavorito') ? JSON.parse(localStorage.getItem('idfavorito')) : []
 
     var formdata = new FormData();
     formdata.append('ids', JSON.stringify(idcurso))

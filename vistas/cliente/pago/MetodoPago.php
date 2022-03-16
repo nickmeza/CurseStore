@@ -307,14 +307,14 @@ include_once "./vistas/cliente/component/header.php";
   }
 </style>
 <?php
-    $datos = array();
+$datos = array();
 
 
-    if (isset($metodo_pago)) {
-        $datos = $metodo_pago;
-        $i = 0;
-    }
-    ?>
+if (isset($metodo_pago)) {
+  $datos = $metodo_pago;
+  $i = 0;
+}
+?>
 <div class='container__ventana' style="margin-top: 100px;">
   <div class='window'>
     <div class='order-info'>
@@ -334,12 +334,12 @@ include_once "./vistas/cliente/component/header.php";
                   seleccione una opción
                 </option>
                 <?php foreach ($datos as $dato) { ?>
-                  <option value="<?php echo $GLOBALS['BASE_URL'].$dato["MET_IMAGEN"]."|".$dato["MET_DATOS"] ?>"> <?php echo $dato["MET_NOMBRE"] ?> 
-                  
-                </option>
-                  <?php } ?>
+                  <option value="<?php echo $GLOBALS['BASE_URL'] . $dato["MET_IMAGEN"] . "|" . $dato["MET_DATOS"] ?>"> <?php echo $dato["MET_NOMBRE"] ?>
+
+                  </option>
+                <?php } ?>
               </select>
-              
+
               <div class='dropdown' id='card-dropdown'>
                 <div class='dropdown-btn' id='current-card'>Visa</div>
                 <div class='dropdown-select'>
@@ -360,8 +360,8 @@ include_once "./vistas/cliente/component/header.php";
             </div>
           </div>
           <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
-          <h4 id = "dato_metodo">
-          </h4>  
+          <h4 id="dato_metodo">
+          </h4>
 
         </div>
         <form id="form_solicitud">
@@ -369,7 +369,7 @@ include_once "./vistas/cliente/component/header.php";
           <input id="imagen" type="file" class='input-field inputimg'></input>
 
           <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
-           
+
           <button class='pay-btn' type="submit">Enviar</button>
 
         </form>
@@ -465,17 +465,18 @@ include_once "./vistas/cliente/component/header.php";
   S/.300
               </span> */
 
-  function setImagen(){
+  function setImagen() {
     var datos = document.getElementById("metodo_pago").value
     console.log(datos.split("|"))
     var imagen = datos.split("|")[0]
     var dato = datos.split("|")[1]
     $("#dato_metodo").text(dato)
-    $("#credit-card-image").attr("src",imagen)
+    $("#credit-card-image").attr("src", imagen)
 
 
-   
-  }            
+
+  }
+
   function CalcularPrecio(precio, subprecio, idprducto) {
     precioTotal = Number(precio) + Number(precioTotal)
     $('.total').html(`<span style='font-size: 14px;'>
@@ -488,15 +489,15 @@ include_once "./vistas/cliente/component/header.php";
     idsProductos.push(idproduct)
   }
   <?php
-    $fecha_actual = date('d/m/Y');
+  $fecha_actual = date('d/m/Y');
   ?>
   $('#form_solicitud').submit((e) => {
     e.preventDefault();
     var formdata = new FormData()
     console.log(filess)
     formdata.append('ORD_VOUCHER', filess)
-    formdata.append('CLI_ID', '<?PHP echo $idclient;?>')
-    formdata.append('ORD_DATE_ORDER','<?PHP echo $fecha_actual;?>')
+    formdata.append('CLI_ID', '<?PHP echo $idclient; ?>')
+    formdata.append('ORD_DATE_ORDER', '<?PHP echo $fecha_actual; ?>')
     formdata.append('ORD_APPROVAL', '0')
     formdata.append('ORD_TOTAL_PRICE', precioTotal)
     formdata.append('ORD_DISCOUNT', '0')
@@ -529,15 +530,14 @@ include_once "./vistas/cliente/component/header.php";
               processData: false,
               success: function(msg) {
                 console.log(msg)
-
               }
             });
             Swal.fire(
-            'Enviado',
-            'Correctamente',
-            'success'
-) 
-location.href = url;
+              'Enviado',
+              'Correctamente',
+              'success'
+            )
+            //location.href = url;
           }
         )
       }
@@ -589,7 +589,7 @@ location.href = url;
 </script>
 <?php
 
- $fecha_actual = date('Y/m/d');
+$fecha_actual = date('Y/m/d');
 
 include_once "./vistas/cliente/component/footer.php";
 ?>
