@@ -16,7 +16,8 @@ class Video_Modelo{
         Database::queryChange("DELETE FROM video WHERE  VI_ID=?;",array($id));
     }
     public static function getAllVideoSubmodul($id){
-        return $data=Database::query("SELECT * FROM video where SMOD_ID =?",array($id));
+        return $data=Database::query("SELECT * FROM video v LEFT JOIN video_check vc
+        ON  v.VI_ID= vc.VI_ID WHERE v.SMOD_ID =?",array($id));
     }
 
 }

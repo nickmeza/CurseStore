@@ -24,13 +24,48 @@ class Usuario
             $usuario["apellido"] = $_REQUEST['apellido'];
             $usuario["direccion"] = $_REQUEST['direccion'];
             $usuario["usuario"] = $_REQUEST['usuario'];
-            //Usuario_modelo::updatePerfilUsuario($usuario, '14');
-            var_dump($_SESSION['escogido'][0]);
+
+            session_start();
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+            Usuario_modelo::updatePerfilUsuario($usuario, $idUsuario);
+            //var_dump($_SESSION['escogido'][0]);
             echo "creado correctamente";
         } else {
             echo "fallo al crear";
         }
     }
+    public static function updateContrasena($ruta)
+    {
+        if (isset($_REQUEST['contraseña']) && isset($_REQUEST['nueva_contraseña']) && isset($_REQUEST['confirmar_contraseña'])) {
+            //proceso de verificar contraseñas entre si
+            if($_REQUEST['nueva_contraseña'] == $_REQUEST['confirmar_contraseña']){
+                //proceso de verificar contraseña en la base de datos
+                session_start();
+                if($_REQUEST['contraseña'] == $_SESSION['escogido'][0]['USR_PASSWORD']){
+                    $usuario["contraseña"] = $_REQUEST['nueva_contraseña'];
+                    $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+                    Usuario_modelo::updateContraseña($usuario, $idUsuario);
+                    echo "creado correctamente";
+                }else{
+                    echo 'La contraseña principal es incorrecta';
+                }
+            }else{
+                echo "La nueva contraseña no coincide";
+            }
+        } else {
+            echo "fallo al crear";
+        }
+    }
+    public static function getPasswordByUser($ruta)
+    {
+            
+            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+            Usuario_modelo::getPasswordByUser($idUsuario);
+            var_dump($_SESSION['escogido'][0]);
+            echo "creado correctamente";  
+    }
+
+
     public static function createUsuarioCliente($ruta)
     {
         if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
