@@ -93,6 +93,7 @@ class Routes
     public static function aprendizaje()
     {
         $Session = new UsuarioSession();
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
         if (isset($_SESSION['user'])) {
             $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
         } else {

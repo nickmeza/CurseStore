@@ -133,7 +133,7 @@ include_once "./vistas/cliente/component/header.php";
         console.log(carrito.indexOf(idCurso))
         carrito.splice(carrito.indexOf(idCurso), 1)
         localStorage.setItem('idcurso', JSON.stringify(carrito))
-        location.reload()
+        //location.reload()
 
     }
 </script>
