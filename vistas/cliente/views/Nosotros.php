@@ -65,13 +65,21 @@ $empresa = array();
             processData: false,
             success: function(msg) {
                 console.log(msg)
+                Swal.fire(
+                'Mensaje enviado',
+                'Correctamente',
+                'success')
                 if (JSON.parse(msg).status == 404) {
                     $(".mensaje__error").css("display", "block")
                 } else {
                     location.href = url;
+                    
+                //location.href = url + "admin/categoria";
+            
                 }
 
             }
+            
         });
     })
 </script>

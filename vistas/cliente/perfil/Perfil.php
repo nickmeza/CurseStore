@@ -71,6 +71,10 @@ include_once "./vistas/cliente/component/headerPerfil.php";
             processData: false,
             success: function(json) {
                 console.log(json)
+                Swal.fire(
+                'Se actualizó',
+                'Correctamente',
+                'success')
             }
         });
     });
@@ -86,7 +90,10 @@ include_once "./vistas/cliente/component/headerPerfil.php";
             processData: false,
             success: function(msg) {
                 console.log(msg)
-                
+                Swal.fire(
+                'Contraseña actualizada',
+                'Correctamente',
+                'success')
                 //location.href = url + "admin/categoria";
             }
         });

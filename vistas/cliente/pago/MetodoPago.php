@@ -500,7 +500,7 @@ if (isset($metodo_pago)) {
     formdata.append('ORD_DATE_ORDER', '<?PHP echo $fecha_actual; ?>')
     formdata.append('ORD_APPROVAL', '0')
     formdata.append('ORD_TOTAL_PRICE', precioTotal)
-    formdata.append('ORD_DISCOUNT', '0')
+    formdata.append('ORD_DISCOUNT', 354)
     formdata.append('ORD_IGV', '0')
     $.ajax({
       type: 'POST',
@@ -519,9 +519,9 @@ if (isset($metodo_pago)) {
             var formdata2 = new FormData()
             formdata2.append('ORD_ID', orderCreated.ORD_ID)
             formdata2.append('CURS_ID', valor.idprducto)
-            formdata2.append('DESC_ID', 64)
+            formdata2.append('ODT_STATUS', "1")
             formdata2.append('ODT_SUBTOTAL', valor.subprecio)
-            $.ajax({
+            /* $.ajax({
               type: 'POST',
               url: url + "admin/ventas/insertOrderDetalle",
               data: formdata2,
@@ -531,7 +531,7 @@ if (isset($metodo_pago)) {
               success: function(msg) {
                 console.log(msg)
               }
-            });
+            }); */
             Swal.fire(
               'Enviado',
               'Correctamente',
