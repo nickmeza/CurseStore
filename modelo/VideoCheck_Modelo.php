@@ -1,5 +1,5 @@
 <?php
-Class VideoCheck{
+Class VideoCheck_Modelo{
     public static function getAll(){
         return $data=Database::query("SELECT * FROM video_check",array());
     }

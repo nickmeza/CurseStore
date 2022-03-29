@@ -6,7 +6,6 @@ class Curso
     {
         $cursos = Curso_Modelo::getAll();
         echo json_encode($cursos);
-       
     }
     public static function getCursosDescuento()
     {
@@ -81,14 +80,13 @@ class Curso
     }
     public static function update()
     {
-        
     }
     public static function updateDeshabilitar()
     {
         if (isset($_POST['estado']) && isset($_POST['id'])) {
-            $curso["CURS_ESTADO"]= $_POST["estado"];
-            $id=$_POST['id'];
-            $cursos = Curso_Modelo::updateCursoDeshabilitar($curso,$id);
+            $curso["CURS_ESTADO"] = $_POST["estado"];
+            $id = $_POST['id'];
+            $cursos = Curso_Modelo::updateCursoDeshabilitar($curso, $id);
             $mensaje["mensaje"] = "exito";
             $mensaje["statud"] = "200";
             echo json_encode($mensaje);
@@ -97,7 +95,6 @@ class Curso
             $mensaje["statud"] = "500";
             echo json_encode($mensaje);
         }
-         
     }
 
 
@@ -112,5 +109,14 @@ class Curso
             $mensaje["statud"] = "500";
             echo json_encode($mensaje);
         }
+    }
+
+    public static function createVideoCheck()
+    {
+        $check["VI_ID"] = $_POST['VI_ID'];
+        $check["CURS_ID"] = $_POST['CURS_ID'];
+        $check["CLI_ID"] = $_POST['CLI_ID'];
+        $cursos = VideoCheck_Modelo::insertCheck($check);
+        echo json_encode($cursos);
     }
 }
