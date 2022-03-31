@@ -65,6 +65,23 @@ class Usuario
             echo "creado correctamente";  
     }
 
+    public static function RegistrarCliente($ruta)
+    {
+        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
+            $cliente["NOMBRE"] = $_REQUEST['NOMBRE'];
+            $cliente["APELLIDO"] = $_REQUEST['APELLIDO'];
+            $cliente["DIRECCION"] = $_REQUEST['DIRECCION'];
+            $cliente["USUARIO"] = $_REQUEST['USUARIO'];
+            $cliente["CONTRASENA"] = $_REQUEST['CONTRASENA'];
+            Cliente_Modelo::insertCliente($cliente);
+            $usuario_found = Usuario_Modelo::getUser($cliente["USUARIO"], $cliente["CONTRASENA"]);
+            UsuarioSession::setCurrentUser($cliente["USUARIO"], $usuario_found);
+            echo "creado correctamente";
+        } else {
+            echo "fallo al crear";
+        }
+    }
+
 
     public static function createUsuarioCliente($ruta)
     {

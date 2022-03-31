@@ -335,9 +335,11 @@ include_once "./vistas/administrador/component/header.php";
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    
+                    <button type="submit" class="btn btn-primary" id="btnAgregar" onclick="checkSubmit()">Agregar</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
@@ -431,6 +433,7 @@ include_once "./vistas/administrador/component/header.php";
     })
 
     $("#form_agregar_banner").submit(function(event) {
+        jQuery('#btnAgregar').attr("disabled","disabled");
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
@@ -441,6 +444,7 @@ include_once "./vistas/administrador/component/header.php";
             cache: false,
             processData: false,
             success: function(msg) {
+                
                 console.log(msg)
                 
                 location.href = url + "admin/promocion";

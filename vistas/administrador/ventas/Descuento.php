@@ -397,7 +397,7 @@ include_once "./vistas/administrador/component/header.php";
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="btn btn-primary" id="btnAgregar">Agregar</button>
                 </div>
             </form>
         </div>
@@ -534,6 +534,7 @@ include_once "./vistas/administrador/component/header.php";
     })
 
     $("#form_agregar_descuento").submit(function(event) {
+        jQuery('#btnAgregar').attr("disabled","disabled");
         event.preventDefault();
         if (cursosIds.length > 0) {
             $.ajax({

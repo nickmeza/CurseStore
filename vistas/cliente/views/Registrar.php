@@ -1,3 +1,4 @@
+
 <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -298,19 +299,44 @@ input[type=text]:placeholder {
     
 
     <!-- Login Form -->
-    <form>
-    <input type="text" id="name" class="fadeIn second" name="login" placeholder="Nombre completo">
-    <input type="text" id="phone" class="fadeIn second" name="login" placeholder="Número de celular">
-    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo Electrónico">
-    <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Repetir Contraseña">
+    <form id="form_registrar">
+    <input type="text" id="name" class="fadeIn second" name="NOMBRE" placeholder="Nombre completo">
+    <input type="text" id="apellido" class="fadeIn second" name="APELLIDO" placeholder="Apellido">
+    <input type="text" id="direccion" class="fadeIn second" name="DIRECCION" placeholder="Dirección">
+    <input type="text" id="usuario" class="fadeIn third" name="USUARIO" placeholder="Usuario">
+      <input type="text" id="contrasena" class="fadeIn third" name="CONTRASENA" placeholder=" Contraseña">
       <input type="submit" class="fadeIn fourth" value="Registrate">
     </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+    <script>
+    
+$("#form_registrar").submit(function(event) {
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/usuario/cliente/RegistrarCliente",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                
+                location.href = url ;
+            }
+        });
+    })
+
+</script>
 
    <!-- -->
    <div id="formFooter">
       <a onclick = "window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="underlineHover" > ¿Ya tienes una cuenta? Inicia sesión</a>
     </div>
+
+    
 
   </div>
 </div>
