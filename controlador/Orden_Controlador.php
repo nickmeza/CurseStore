@@ -41,10 +41,9 @@ class Orden
     }
     public static function insertOrderDetalle()
     {
-        if (isset($_REQUEST['ORD_ID']) && isset($_REQUEST['CURS_ID']) && isset($_REQUEST['CURS_ID']) && isset($_REQUEST['CURS_ID'])) {
+        if (isset($_REQUEST['ORD_ID']) && isset($_REQUEST['CURS_ID']) && isset($_REQUEST['ODT_SUBTOTAL'])) {
             $ordenDetalle["ORD_ID"] = intval($_REQUEST['ORD_ID']);
             $ordenDetalle['CURS_ID'] = intval($_REQUEST['CURS_ID']);
-            $ordenDetalle['DESC_ID'] = intval($_REQUEST['DESC_ID']);
             $ordenDetalle['ODT_SUBTOTAL'] = $_REQUEST['ODT_SUBTOTAL'];
             OrdenDetalle_Modelo::insertOrdemdetalle($ordenDetalle);
             echo "correctamente creado";

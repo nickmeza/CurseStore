@@ -12,13 +12,13 @@ class OrdenDetalle_Modelo
     public static function insertOrdemdetalle($ordendetalle)
     {
         Database::queryChange(
-            "INSERT INTO orden_detalle (ORD_ID, CURS_ID, DESC_ID, ODT_SUBTOTAL, ODT_STATUS) VALUES (?,?,?,?,?);",
-            array($ordendetalle['ORD_ID'], $ordendetalle['CURS_ID'], $ordendetalle['DESC_ID'], $ordendetalle['ODT_SUBTOTAL'], 1)
+            "INSERT INTO orden_detalle (ORD_ID, CURS_ID, ODT_SUBTOTAL, ODT_STATUS) VALUES (?,?,?,?);",
+            array($ordendetalle['ORD_ID'], $ordendetalle['CURS_ID'], $ordendetalle['ODT_SUBTOTAL'], 1)
         );
     }
     public static function updateModulo($ordendetalle, $id)
     {
-        Database::queryChange("UPDATE orden_detalle SET ORD_ID=?,CURS_ID=?, DESC_ID=?,ODT_SUBTOTAL=?, ODT_STATUS=? WHERE  ODT_ID=?;", array($ordendetalle['ORD_ID'], $ordendetalle['CURS_ID'], $ordendetalle['DESC_ID'], $ordendetalle['ODT_SUBTOTAL'], $ordendetalle['ODT_STATUS'],$id));
+        Database::queryChange("UPDATE orden_detalle SET ORD_ID=?,CURS_ID=?, DESC_ID=?,ODT_SUBTOTAL=?, ODT_STATUS=? WHERE  ODT_ID=?;", array($ordendetalle['ORD_ID'], $ordendetalle['CURS_ID'], $ordendetalle['DESC_ID'], $ordendetalle['ODT_SUBTOTAL'], $ordendetalle['ODT_STATUS'], $id));
     }
     public static function delete($id)
     {

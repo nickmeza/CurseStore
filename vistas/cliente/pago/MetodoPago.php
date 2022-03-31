@@ -510,18 +510,18 @@ if (isset($metodo_pago)) {
       cache: false,
       processData: false,
       success: function(msg) {
-        console.log()
         const orderCreated = JSON.parse(msg)
+        console.log(msg)
         idsProductos.map(
           (valor) => {
             console.log(valor)
-            console.log(orderCreated.ORD_ID)
+            console.log(orderCreated)
             var formdata2 = new FormData()
             formdata2.append('ORD_ID', orderCreated.ORD_ID)
             formdata2.append('CURS_ID', valor.idprducto)
             formdata2.append('ODT_STATUS', "1")
             formdata2.append('ODT_SUBTOTAL', valor.subprecio)
-            /* $.ajax({
+            $.ajax({
               type: 'POST',
               url: url + "admin/ventas/insertOrderDetalle",
               data: formdata2,
@@ -531,7 +531,7 @@ if (isset($metodo_pago)) {
               success: function(msg) {
                 console.log(msg)
               }
-            }); */
+            });
             Swal.fire(
               'Enviado',
               'Correctamente',
