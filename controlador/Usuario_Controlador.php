@@ -34,6 +34,8 @@ class Usuario
             echo "fallo al crear";
         }
     }
+    
+
     public static function updateContrasena($ruta)
     {
         if (isset($_REQUEST['contraseña']) && isset($_REQUEST['nueva_contraseña']) && isset($_REQUEST['confirmar_contraseña'])) {
@@ -113,7 +115,7 @@ class Usuario
     {
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
             $persona = array();
-            $persona = Banner_Modelo::getOne($id[4]);
+            $persona = Cliente_Modelo::ClientData($id[4]);
             echo json_encode($persona);
         } else {
             echo "fallo al buscar";
