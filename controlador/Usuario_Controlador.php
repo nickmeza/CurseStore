@@ -38,18 +38,18 @@ class Usuario
     {
         if (isset($_REQUEST['contraseña']) && isset($_REQUEST['nueva_contraseña']) && isset($_REQUEST['confirmar_contraseña'])) {
             //proceso de verificar contraseñas entre si
-            if($_REQUEST['nueva_contraseña'] == $_REQUEST['confirmar_contraseña']){
+            if ($_REQUEST['nueva_contraseña'] == $_REQUEST['confirmar_contraseña']) {
                 //proceso de verificar contraseña en la base de datos
                 session_start();
-                if($_REQUEST['contraseña'] == $_SESSION['escogido'][0]['USR_PASSWORD']){
+                if ($_REQUEST['contraseña'] == $_SESSION['escogido'][0]['USR_PASSWORD']) {
                     $usuario["contraseña"] = $_REQUEST['nueva_contraseña'];
                     $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
                     Usuario_modelo::updateContraseña($usuario, $idUsuario);
                     echo "creado correctamente";
-                }else{
+                } else {
                     echo 'La contraseña principal es incorrecta';
                 }
-            }else{
+            } else {
                 echo "La nueva contraseña no coincide";
             }
         } else {
@@ -58,15 +58,16 @@ class Usuario
     }
     public static function getPasswordByUser($ruta)
     {
-            
-            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
-            Usuario_modelo::getPasswordByUser($idUsuario);
-            var_dump($_SESSION['escogido'][0]);
-            echo "creado correctamente";  
+
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+        Usuario_modelo::getPasswordByUser($idUsuario);
+        var_dump($_SESSION['escogido'][0]);
+        echo "creado correctamente";
     }
 
     public static function RegistrarCliente($ruta)
     {
+        $Session = new UsuarioSession();
         if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
             $cliente["NOMBRE"] = $_REQUEST['NOMBRE'];
             $cliente["APELLIDO"] = $_REQUEST['APELLIDO'];
