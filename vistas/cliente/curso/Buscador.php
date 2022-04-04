@@ -119,7 +119,7 @@
                         <div>
                             <div class="container__date__Search">
                                 <div class="container__date__Search-inside" onclick="window.location.href='<?php echo $GLOBALS['BASE_URL'] ?>curso/detalle/<?php echo $name__search ?>'">
-                                    <img src="<?php echo $date__s['CURS_IMAGEN'] ?>" alt="" srcset="" width="80">
+                                    <img src="<?php echo $GLOBALS['BASE_URL'] ?><?php echo $date__s['CURS_IMAGEN'] ?>" alt="" srcset="" width="80">
                                     <div class="align__text-s">
                                         <span style="tittle__align__Search"><?php echo $date__s['CURS_NOMBRE'] ?></span>
                                         <span class="descripcion"><?php echo $date__s['CURS_DESCRIPCION'] ?></span>

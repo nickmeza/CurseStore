@@ -11,21 +11,21 @@ include_once "./vistas/cliente/component/headerPerfil.php";
         <div style="display: flex;justify-content: space-around; gap: 20px;">
             <div class="form-group w-100">
                 <label for="nombre_perfil">Nombre</label>
-                <input class="form-control" type="text" placeholder="Nombre" name="nombre" id="nombre_perfil">
+                <input class="form-control" value="<?php echo $cliente['PER_NOMBRE']; ?>" type="text" placeholder="Nombre" name="nombre" id="nombre_perfil">
             </div>
             <div class="form-group w-100">
                 <label for="apellido_perfil">Apellido</label>
-                <input class="form-control" type="text" placeholder="Apellido" name="apellido" id="apellido_perfil">
+                <input class="form-control" value="<?php echo $cliente['PER_APELLIDO']; ?>" type="text" placeholder="Apellido" name="apellido" id="apellido_perfil">
             </div>
         </div>
         <div style="display: flex;justify-content: space-around; gap: 20px;">
             <div class="form-group w-100">
                 <label for="direccion_perfil">Direccion</label>
-                <input class="form-control" type="text" placeholder="Direccion" name="direccion" id="direccion_perfil">
+                <input class="form-control" value="<?php echo $cliente['PER_DIRECCION']; ?>" type="text" placeholder="Direccion" name="direccion" id="direccion_perfil">
             </div>
             <div class="form-group w-100">
                 <label for="usuario_perfil ">Usuario</label>
-                <input class="form-control" type="text" placeholder="Usuario" name="usuario" id="usuario_perfil">
+                <input class="form-control" value="<?php echo $cliente['USR_USUARIO']; ?>" disabled type="text" placeholder="Usuario" name="usuario" id="usuario_perfil">
             </div>
         </div>
         <button class="btn btn-primary" type="submit" role="button"><span class="text">Actualizar</span></button>
@@ -36,45 +36,46 @@ include_once "./vistas/cliente/component/headerPerfil.php";
 </div>
 <br>
 <div class="form__pegil">
-        <form id="form_editar_contrasena">
-    <div style="display: flex;justify-content: space-around; gap: 20px;">
-        <div class="form-group w-100">
-            <label for="exampleFormControlInput1">Contraseña actual</label>
-            <input class="form-control" type="text" placeholder="Contraseña actual" name = "contraseña" >
+    <form id="form_editar_contrasena">
+        <div style="display: flex;justify-content: space-around; gap: 20px;">
+            <div class="form-group w-100">
+                <label for="exampleFormControlInput1">Contraseña actual</label>
+                <input class="form-control" type="text" placeholder="Contraseña actual" name="contraseña">
+            </div>
+            <div class="form-group w-100">
+                <label for="exampleFormControlInput1">Nueva contraseña</label>
+                <input class="form-control" type="text" placeholder="Nueva contraseña" name="nueva_contraseña">
+            </div>
         </div>
-        <div class="form-group w-100">
-            <label for="exampleFormControlInput1">Nueva contraseña</label>
-            <input class="form-control" type="text" placeholder="Nueva contraseña" name = "nueva_contraseña">
+        <div style="display: flex;justify-content: space-around; gap: 20px;">
+            <div class="form-group w-100">
+                <label for="exampleFormControlInput1">Confirmar contraseña</label>
+                <input class="form-control" type="text" placeholder="Confirmar contraseña" name="confirmar_contraseña">
+            </div>
         </div>
-    </div>
-    <div style="display: flex;justify-content: space-around; gap: 20px;">
-        <div class="form-group w-100">
-            <label for="exampleFormControlInput1">Confirmar contraseña</label>
-            <input class="form-control" type="text" placeholder="Confirmar contraseña" name = "confirmar_contraseña">
-        </div>
-    </div>
-    <button class="btn btn-primary" type="submit" role="button"><span class="text">Actualizar Contraseña</span></button>
-</form>
+        <button class="btn btn-primary" type="submit" role="button"><span class="text">Actualizar Contraseña</span></button>
+    </form>
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
     $("#form_editar_perfil").submit(function(event) {
         event.preventDefault();
-        console.log(new FormData(this));
+        var formdata = new FormData(this);
+        formdata.append("usuario", $("#usuario_perfil").val())
         $.ajax({
             type: 'POST',
             url: url + "admin/usuario/cliente/updatePerfilUsuario",
-            data: new FormData(this), 
+            data: formdata,
             contentType: false,
             cache: false,
             processData: false,
             success: function(json) {
                 console.log(json)
                 Swal.fire(
-                'Se actualizó',
-                'Correctamente',
-                'success')
+                    'Se actualizó',
+                    'Correctamente',
+                    'success')
             }
         });
     });
@@ -91,9 +92,9 @@ include_once "./vistas/cliente/component/headerPerfil.php";
             success: function(msg) {
                 console.log(msg)
                 Swal.fire(
-                'Contraseña actualizada',
-                'Correctamente',
-                'success')
+                    'Contraseña actualizada',
+                    'Correctamente',
+                    'success')
                 //location.href = url + "admin/categoria";
             }
         });

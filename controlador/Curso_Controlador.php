@@ -12,6 +12,11 @@ class Curso
         $cursosdescuento = Curso_Modelo::getCursosDescuento();
         echo json_encode($cursosdescuento);
     }
+    public static function getOne($id)
+    {
+        $cursosdescuento = Curso_Modelo::getOne($id[4]);
+        echo json_encode($cursosdescuento);
+    }
     public static function getCursosByOrder($id)
     {
         $cursosdescuento = Curso_Modelo::getCursosByOrder($id[4]);
@@ -70,10 +75,34 @@ class Curso
         include_once "./vistas/cliente/curso/Categoria.php";
         var_dump($id);
     }
+
     public static function create()
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
+        var_dump($_POST);
+        if (
+            isset($_POST['CURS_NOMBRE']) && isset($_POST['CURS_DESCRIPCION'])
+            && isset($_POST['CURS_PRECIO']) && isset($_POST['PROF_ID'])
+            && isset($_POST['CURS_URL_VIDEO']) && isset($_FILES['CURS_IMAGEN'])
+            && isset($_POST['CAT_ID'])
+        ) {
+            $curso["CAT_ID"] = $_POST["CAT_ID"];
+            $curso["PROF_ID"] = $_POST["PROF_ID"];
+            $curso["CURS_NOMBRE"] = $_POST["CURS_NOMBRE"];
+            $curso["CURS_DESCRIPCION"] = $_POST["CURS_DESCRIPCION"];
+            $curso["CURS_PRECIO"] = $_POST["CURS_PRECIO"];
+            $curso["CURS_IMAGEN"] = Banner::CargarImagen($_FILES['CURS_IMAGEN']);
+            $curso["CURS_URL_VIDEO"] = $_POST["CURS_URL_VIDEO"];
+            Curso_Modelo::insertCurso($curso);
+            $mensaje["mensaje"] = "exito";
+            $mensaje["statud"] = "200";
+            echo json_encode($mensaje);
+        } else {
+            $mensaje["mensaje"] = "fallo";
+            $mensaje["status"] = "500";
+            echo json_encode($mensaje);
+        }
     }
+
     public static function delete()
     {
         include_once "./vistas/cliente/curso/Categoria.php";

@@ -235,7 +235,7 @@ include_once "./vistas/administrador/component/header.php";
     }
 </style>
 <div class="container__admin container">
-    <form id="form_editar_categoria" method="POST" enctype="multipart/form-data">
+    <form id="form_crearCurso" method="POST" enctype="multipart/form-data">
         <div class="content__admin ">
             <div class="izquierda__modulo">
                 <div class="formulario__curso">
@@ -243,17 +243,52 @@ include_once "./vistas/administrador/component/header.php";
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name" class="col-form-label">Nombre:</label>
-                            <input type="text" class="form-control" name="CAT_NAME" id="edit_name">
+                            <input type="text" class="form-control" name="CURS_NOMBRE" id="CURS_NOMBRE">
                         </div>
                         <div class="form-group">
-                            <label for="description" class="col-form-label">Descripcion:</label>
-                            <input type="text" class="form-control" name="CAT_DESCRIPCION" id="edit_description">
+                            <label for="name" class="col-form-label">Descripción:</label>
+                            <input type="text" class="form-control" name="CURS_DESCRIPCION" id="CURS_DESCRIPCION">
                         </div>
                         <div class="form-group">
-                            <label for="imagen" class="col-form-label">Imagen:</label>
-                            <textarea class="form-control" name="CAT_IMAGEN" id="edit_imagen"></textarea>
+                            <label for="name" class="col-form-label">Precio:</label>
+                            <input type="number" class="form-control" name="CURS_PRECIO" id="CURS_PRECIO">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Categoria:</label>
+                            <select name="CAT_ID" class="form-control" id="CAT_ID">
+                                <?php foreach ($dataCategoria as $categoria) {  ?>
+                                    <option value="<?php echo $categoria['CAT_ID'] ?>">
+                                        <?php echo $categoria['CAT_NAME'] ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <!-- <input type="text" class="form-control" name="CAT_ID" id="CAT_ID"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Profesor:</label>
+                            <select name="PROF_ID" class="form-control" id="PROF_ID">
+                                <?php foreach ($dataProfesores as $profesores) { ?>
+                                    <option value="<?php echo $profesores['PROF_ID']; ?>">
+                                        <?php echo $profesores['PER_NOMBRE'] ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <!-- <input type="text" class="form-control" name="PROF_ID" id="PROF_ID"> -->
+                            <!-- dataProfesores -->
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Imagen:</label>
+                            <input type="file" class="form-control" name="CURS_IMAGEN" id="CURS_IMAGEN">
+                        </div>
+                        <div class="form-group">
+                            <label for="imagen" class="col-form-label">Video:</label>
+                            <textarea class="form-control" name="CURS_URL_VIDEO" id="CURS_URL_VIDEO"></textarea>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
             </div>
             <div class="derecha__modulo">
@@ -293,9 +328,6 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary">Agregar</button>
         </div>
     </form>
 </div>
@@ -376,6 +408,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     var moduloDNI = 0;
     var modulosArray = [{
@@ -545,6 +578,24 @@ include_once "./vistas/administrador/component/header.php";
         const moduloSetTamno = document.getElementById("idmodulo__" + idmodulo)
         moduloSetTamno.classList.toggle("ocultar__modulo")
     }
+
+    $("#form_crearCurso").submit(function(event) {
+        //jQuery('#btnAgregar').attr("disabled", "disabled");
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/curso/create",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                //location.href = url + "admin/curso";
+            }
+        });
+    })
 </script>
 <?php
 include_once "./vistas/administrador/component/footer.php";

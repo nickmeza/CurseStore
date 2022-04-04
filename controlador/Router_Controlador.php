@@ -83,6 +83,9 @@ class Routes
     public static function perfil()
     {
         $Session = new UsuarioSession();
+        $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+
+        $cliente = Usuario_Modelo::getClientbyUser($idUsuario);
         include_once "./vistas/cliente/perfil/Perfil.php";
     }
     public static function cuenta()

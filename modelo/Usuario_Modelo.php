@@ -18,7 +18,7 @@ class Usuario_modelo
     {
         Database::queryChange("UPDATE usuario SET PER_ID=?, USR_USUARIO=?, USR_PASSWORD=?, USR_STATUS=? WHERE  USR_ID=?;", array($usuario["PER_ID"], $usuario["USR_USUARIO"], $usuario["USR_PASSWORD"], $usuario["USR_STATUS"], $id));
     }
-    
+
     public static function updatePerfilUsuario($usuario, $id)
     {
         Database::queryChange("CALL AB_EDITARPERFIL(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
@@ -31,6 +31,10 @@ class Usuario_modelo
     {
         Database::queryChange("DELETE FROM usuario WHERE  USR_ID=?;", array($id));
     }
+    public static function chageEstado($id, $estado)
+    {
+        Database::queryChange("CALL AB_EDITESTADO(?, ?)", array($estado, $id));
+    }
     public static function getPasswordByUser($id)
     {
         Database::queryChange("select USR_PASSWORD FROM usuario WHERE USR_ID= ?;", array($id));
@@ -39,7 +43,7 @@ class Usuario_modelo
 
     public static function findUser($usuario, $password)
     {
-        $data = Database::query("SELECT * FROM usuario WHERE usr_usuario=? AND usr_password=?", array($usuario, $password));
+        $data = Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=? AND USR_STATUS=1", array($usuario, $password));
         if (count($data) > 0) {
             return true;
         } else {
@@ -48,10 +52,11 @@ class Usuario_modelo
     }
     public static function getUser($usuario, $password)
     {
-        return $data = Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=?", array($usuario, $password));
+        return $data = Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=? AND USR_STATUS=1", array($usuario, $password));
     }
     public static function getClientbyUser($usuario)
     {
-        return $data = Database::queryOne("SELECT * from cliente where USR_ID = ?", array($usuario));
+        return $data = Database::queryOne("SELECT p.*, c.*,u.USR_USUARIO from cliente c, usuario u, persona p 
+        WHERE p.PER_ID=u.PER_ID AND c.USR_ID=u.USR_ID AND c.USR_ID = ?", array($usuario));
     }
 }

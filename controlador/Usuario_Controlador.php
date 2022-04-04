@@ -19,14 +19,16 @@ class Usuario
     }
     public static function updatePerfilUsuario($ruta)
     {
+        var_dump($_REQUEST);
         if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['direccion']) && isset($_REQUEST['usuario'])) {
             $usuario["nombre"] = $_REQUEST['nombre'];
             $usuario["apellido"] = $_REQUEST['apellido'];
             $usuario["direccion"] = $_REQUEST['direccion'];
             $usuario["usuario"] = $_REQUEST['usuario'];
-
+            var_dump($usuario);
             session_start();
             $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+            var_dump($idUsuario);
             Usuario_modelo::updatePerfilUsuario($usuario, $idUsuario);
             //var_dump($_SESSION['escogido'][0]);
             echo "creado correctamente";
@@ -34,7 +36,7 @@ class Usuario
             echo "fallo al crear";
         }
     }
-    
+
 
     public static function updateContrasena($ruta)
     {
@@ -111,6 +113,17 @@ class Usuario
     public static function updatePersona()
     {
     }
+    public static function chageEstado($id)
+    {
+        var_dump($id);
+        if (isset($id) && isset($id[5]) && strlen($id[6])) {
+            $persona = array();
+            $persona = Usuario_modelo::chageEstado($id[5], $id[6]);
+            echo json_encode($persona);
+        } else {
+            echo "fallo al buscar";
+        }
+    }
     public static function getById($id)
     {
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
@@ -180,7 +193,7 @@ class Usuario
                     $mensaje["usuario"] = $usuario_found;
                     echo json_encode($mensaje);
                 } else {
-                    $mensaje["mensaje"] = "usuario no incorrecto";
+                    $mensaje["mensaje"] = "usuario incorrecto";
                     $mensaje["status"] = "404";
                     echo json_encode($mensaje);
                 }

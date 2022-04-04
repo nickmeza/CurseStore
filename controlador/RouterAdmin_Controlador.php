@@ -8,6 +8,8 @@ class RoutesAdmin
     }
     public static function curso($codigocurso)
     {
+        $dataCategoria = Categoria_Modelo::getAll();
+        $dataProfesores = Profesor_Modelo::getProfesorData();
         if (isset($codigocurso[3]) && strlen($codigocurso[3]) > 0) {
             include_once "./vistas/administrador/cursos/DetalleCurso.php";
         } else {
@@ -45,6 +47,8 @@ class RoutesAdmin
     }
     public static function crear_curso()
     {
+        $dataCategoria = Categoria_Modelo::getAll();
+        $dataProfesores = Profesor_Modelo::getProfesorData();
         include_once "./vistas/administrador/cursos/CrearCurso.php";
     }
     public static function perfil()

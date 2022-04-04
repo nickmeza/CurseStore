@@ -70,7 +70,8 @@ class Curso_Modelo
 
     public static function insertCurso($curso)
     {
-        Database::queryChange("INSERT INTO curso (CAT_ID,PROF_ID,CURS_NOMBRE,CURS_DESCRIPCION,CURS_IMAGEN,CURS_URL_VIDEO,CURS_ESTADO) VALUES (?,?,?,?,?,?,?);", array($curso["CAT_ID"], $curso["PROF_ID"], $curso["CURS_NOMBRE"], $curso["CURS_DESCRIPCION"], $curso["CURS_IMAGEN"], $curso["CURS_URL_VIDEO"], 1));
+        Database::queryChange("INSERT INTO curso (CAT_ID,PROF_ID,CURS_NOMBRE,CURS_DESCRIPCION,CURS_IMAGEN,CURS_URL_VIDEO,CURS_ESTADO,CURS_PRECIO) 
+        VALUES (?,?,?,?,?,?,?,?);", array($curso["CAT_ID"], $curso["PROF_ID"], $curso["CURS_NOMBRE"], $curso["CURS_DESCRIPCION"], $curso["CURS_IMAGEN"], $curso["CURS_URL_VIDEO"], 1, $curso['CURS_PRECIO']));
     }
     public static function updateCurso($curso, $id)
     {
@@ -78,7 +79,7 @@ class Curso_Modelo
     }
     public static function updateCursoDeshabilitar($curso, $id)
     {
-        Database::queryChange("UPDATE curso set CURS_ESTADO=? where CURS_ID=?", array( $curso["CURS_ESTADO"], $id));
+        Database::queryChange("UPDATE curso set CURS_ESTADO=? where CURS_ID=?", array($curso["CURS_ESTADO"], $id));
     }
     public static function delete($id)
     {

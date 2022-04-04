@@ -322,7 +322,7 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_agregar_cliente" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
 
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" name="NOMBRE" id="name">
                     </div>
@@ -364,7 +364,7 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_editar_usuario" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
 
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" name="nombre" id="edit_name">
                     </div>
@@ -391,7 +391,7 @@ include_once "./vistas/administrador/component/header.php";
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </div>
             </form>
-            
+
         </div>
     </div>
 </div>
@@ -414,7 +414,7 @@ include_once "./vistas/administrador/component/header.php";
                     <td><span class="status text-warning">&bull;</span>  ${valores.PER_ESTADO==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
                         <a class="settings" onclick="mostrarDatos(${valores.PER_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.PER_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a class="delete" onclick="eliminar(${valores.PER_ID},${valores.PER_ESTADO==1?0:1});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                     </td>
                 </tr>
                 `)
@@ -443,17 +443,16 @@ include_once "./vistas/administrador/component/header.php";
     //form_editar_categoria
 
 
-    function eliminar(id) {
+    function eliminar(id, estado) {
         $.ajax({
-            url: url + 'admin/categoria/delete/' + id,
+            url: url + 'admin/usuario/cliente/chageEstado/' + id + "/" + estado,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                //location.href = url + "admin/categoria";
+                location.href = url + "admin/usuario/cliente";
             },
             complete: function(xhr, status) {
                 if (status == "success") {
-                    alert("correcto")
                     location.href = url + "admin/usuario/cliente";
                 }
             },
@@ -477,25 +476,25 @@ include_once "./vistas/administrador/component/header.php";
         })
     }
     $("#form_editar_usuario").submit(function(event) {
-            event.preventDefault();
-            console.log(new FormData(this));
-            
-            $.ajax({
-                type: 'POST',
-                url: url + "admin/usuario/cliente/updatePerfilUsuario" + id,
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(msg) {
-                    console.log(msg)
-                    Swal.fire(
-                'Se actualizó',
-                'Correctamente',
-                'success')
-                }
-            });
-        })
+        event.preventDefault();
+        console.log(new FormData(this));
+
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/usuario/cliente/updatePerfilUsuario" + id,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                Swal.fire(
+                    'Se actualizó',
+                    'Correctamente',
+                    'success')
+            }
+        });
+    })
 </script>
 
 <?php
