@@ -17,7 +17,7 @@ class Video_Modelo{
     }
     public static function getAllVideoSubmodul($id){
         return $data=Database::query("SELECT * FROM video v LEFT JOIN video_check vc
-        ON  v.VI_ID= vc.VI_ID WHERE v.SMOD_ID =?",array($id));
+        ON  v.VI_ID= vc.VI_ID WHERE v.SMOD_ID =	?",array($id));
     }
 
 }
