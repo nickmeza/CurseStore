@@ -32,4 +32,8 @@ class Cliente_Modelo
     {
         return $data = Database::query("SELECT p.PER_ID ,p.PER_NOMBRE ,p.PER_APELLIDO, p.PER_DIRECCION,p.PER_ESTADO, c.CLI_CREATE FROM cliente c,usuario u,persona p WHERE c.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID;", array());
     }
+    public static function ClientData()
+    {
+        return $data = Database::query("SELECT p.PER_ID ,p.PER_NOMBRE ,u.usr_usuario,p.PER_APELLIDO, p.PER_DIRECCION FROM cliente c,usuario u,persona p WHERE c.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID", array());
+    }
 }

@@ -363,24 +363,35 @@ include_once "./vistas/administrador/component/header.php";
             </div>
             <form id="form_editar_usuario" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <div class="form-group" style="display: none;">
+
+                <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="PER_NAME" id="edit_id">
+                        <input type="text" class="form-control" name="nombre" id="edit_name">
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="COR_DESCRIPCION" id="edit_descripcion">
+                        <label for="description" class="col-form-label">Apellido:</label>
+                        <input type="text" class="form-control" name="apellido" id="edit_apellido">
                     </div>
-                    <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
-                        <span class="slider round"></span>
-                    </label>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Direccion:</label>
+                        <input type="text" class="form-control" name="direccion" id="edit_direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">usuario:</label>
+                        <input type="text" class="form-control" name="usuario" id="edit_usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">contraseña:</label>
+                        <input type="password" class="form-control" name="contrasena" id="edit_contrasena">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </div>
             </form>
+            
         </div>
     </div>
 </div>
@@ -452,32 +463,36 @@ include_once "./vistas/administrador/component/header.php";
     function mostrarDatos(valores) {
         console.log(valores);
         $.ajax({
-            url: url + 'admin/categoria/getById/' + valores,
+            url: url + 'admin/usuario/cliente/getById' + valores,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                $("#edit_name").val(json.CAT_NAME)
-                $("#edit_description").val(json.CAT_DESCRIPCION)
-                $("#edit_imagen").val(json.CAT_IMAGEN)
-                $("#edit_id").val(json.CAT_ID)
-                json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
+                $("#edit_name").val(json.PER_NAME)
+                $("#edit_apellido").val(json.PER_APELLIDO)
+                $("#edit_direccion").val(json.PER_DIRECCION)
+                $("#edit_usuario").val(json.USR_USUARIO)
+                $("#edit_contraseña").val(json.USR_PASSWORD)
+                //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
         })
     }
-    $("#form_editar_categoria").submit(function(event) {
+    $("#form_editar_usuario").submit(function(event) {
             event.preventDefault();
-            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
-            const id = $("#edit_id").val()
+            console.log(new FormData(this));
+            
             $.ajax({
                 type: 'POST',
-                url: url + "admin/categoria/update/" + id,
+                url: url + "admin/usuario/cliente/updatePerfilUsuario" + id,
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(msg) {
                     console.log(msg)
-                    location.href = url + "admin/categoria";
+                    Swal.fire(
+                'Se actualizó',
+                'Correctamente',
+                'success')
                 }
             });
         })

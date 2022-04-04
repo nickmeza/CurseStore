@@ -18,6 +18,7 @@ class Usuario_modelo
     {
         Database::queryChange("UPDATE usuario SET PER_ID=?, USR_USUARIO=?, USR_PASSWORD=?, USR_STATUS=? WHERE  USR_ID=?;", array($usuario["PER_ID"], $usuario["USR_USUARIO"], $usuario["USR_PASSWORD"], $usuario["USR_STATUS"], $id));
     }
+    
     public static function updatePerfilUsuario($usuario, $id)
     {
         Database::queryChange("CALL AB_EDITARPERFIL(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
