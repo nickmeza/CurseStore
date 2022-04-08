@@ -352,20 +352,30 @@ include_once "./vistas/administrador/component/header.php";
                 </button>
             </div>
             <form id="form_editar_profesor" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="PER_NAME" id="edit_id">
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control" name="PER_DIRECCION" id="edit_name">
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
+            <div class="modal-body">
+
+<div class="form-group">
+    <label for="name" class="col-form-label">Nombre:</label>
+    <input type="text" class="form-control" name="NOMBRE" id="name">
+</div>
+<div class="form-group">
+    <label for="description" class="col-form-label">Apellido:</label>
+    <input type="text" class="form-control" name="APELLIDO" id="apellido">
+</div>
+<div class="form-group">
+    <label for="description" class="col-form-label">Direccion:</label>
+    <input type="text" class="form-control" name="DIRECCION" id="direccion">
+</div>
+<div class="form-group">
+    <label for="description" class="col-form-label">usuario:</label>
+    <input type="text" class="form-control" name="USUARIO" id="usuario">
+</div>
+<div class="form-group">
+    <label for="description" class="col-form-label">contraseña:</label>
+    <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
+</div>
+
+</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Editar</button>
@@ -455,7 +465,7 @@ include_once "./vistas/administrador/component/header.php";
             },
         })
     }
-    $("#form_editar_categoria").submit(function(event) {
+    $("#form_editar_profesor").submit(function(event) {
         event.preventDefault();
         $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
         const id = $("#edit_id").val()

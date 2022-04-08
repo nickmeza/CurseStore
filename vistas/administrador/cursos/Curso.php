@@ -284,7 +284,7 @@ include_once "./vistas/administrador/component/header.php";
                     <tr>
                         <th>ID</th>
                         <th>NOMBRE</th>
-                        <th>CATEGORIA</th>
+                        <th>DESCRIPCIÓN</th>
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -318,8 +318,12 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_title_modulo">
+            <form id="form_editar_curso" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
+                <div class="form-group" style="display: none;">
+                        <label for="name" class="col-form-label"mbr>Noe:</label>
+                        <input type="text" class="form-control" name="CURS_ID" id="edit_id">
+                    </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" name="CURS_NOMBRE" id="CURS_NOMBRE">
@@ -363,6 +367,10 @@ include_once "./vistas/administrador/component/header.php";
                         <label for="imagen" class="col-form-label">Video:</label>
                         <textarea class="form-control" name="CURS_URL_VIDEO" id="CURS_URL_VIDEO"></textarea>
                     </div>
+                    <label class="switch">
+                        <input type="checkbox" id="edit_estado" name="CURS_ESTADO">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -374,6 +382,27 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    $(document).on("change", ".inputimg", function() {
+        console.log("se ha cambiado");
+        console.log(this.files['0']);
+        console.log($(".inputimg").parent().children('img').attr("src"));
+        console.log(this);
+        if (this.files['0'] != undefined) {
+            var file = this.files['0'];
+            var tamano = this.files['0'].size;
+            var tamanoconvertido = parseInt(tamano / 1024);
+            if (tamanoconvertido > 1024) {
+                alert("La imagen es muy grande. Pesa " + tamanoconvertido + " MB. El archivo debe sermenor a 1 MB");
+                var input = $('#rutaimagen');
+                input.replaceWith(this);
+            } else {
+                var image = URL.createObjectURL(file);
+                $(".inputimg").parent().children('img').attr("src", image);
+            }
+        } else {
+            $(".inputimg").parent().children('img').attr("src", url + "publico/img/imagen_default.png");
+        }
+    });
     function showModal(idCurso) {
         $('#editCurso').modal('show').on('shown.bs.modal', function() {
             $('#CURS_NOMBRE').trigger('focus')
@@ -392,6 +421,11 @@ include_once "./vistas/administrador/component/header.php";
                 $('#CAT_ID').val(json.CAT_ID)
                 $('#PROF_ID').val(json.PROF_ID)
                 $('#CURS_URL_VIDEO').val(json.CURS_URL_VIDEO)
+                $('#edit_estado').val(json.CURS_ESTADO)
+                $('#edit_id').val(json.CURS_ID)
+
+
+                
                 //curseCategoria = document.getElementsByClassName("navigation__categoria")
             }
         })
@@ -411,13 +445,14 @@ include_once "./vistas/administrador/component/header.php";
                         <a><img src="${url + valores.CURS_IMAGEN}" class="avatar" alt=""> ${valores.CURS_NOMBRE}</a>
                     </td>
                     <td style="width: 400px;">${valores.CURS_DESCRIPCION}</td>
+                    
 
                     <td><span class="status text-warning">&bull;</span>  ${valores.CURS_ESTADO==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
                         <a class="settings" onclick="showModal(${valores.CURS_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>   
                         <a class="delete" onclick="deshabilitar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><label class="switch">
-                        <input ${validarEstado(valores.CURS_ESTADO)}  type="checkbox" id="edit_estado" name="BANNER_STATUS">
+                        <input ${validarEstado(valores.CURS_ESTADO)}  type="checkbox" id="edit_estado" name="CURS_ESTADO">
                         <span onclick ='deshabilitar(${valores.CURS_ID},${valores.CURS_ESTADO})'class="slider round"></span>
                         </label></a>
                         </td>
@@ -428,6 +463,24 @@ include_once "./vistas/administrador/component/header.php";
             curseCategoria = document.getElementsByClassName("navigation__categoria")
         }
     })
+    $("#form_editar_curso").submit(function(event) {
+        event.preventDefault();
+        $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
+        const id = $("#edit_id").val()
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/curso/update/" + id,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/curso";
+            }
+        });
+    })
+
 
     function deshabilitar(cursoId, cursoEstado) {
 

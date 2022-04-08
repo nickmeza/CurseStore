@@ -75,7 +75,14 @@ class Curso_Modelo
     }
     public static function updateCurso($curso, $id)
     {
-        Database::queryChange("UPDATE curso set CAT_ID=?,PROF_ID=?,CURS_NOMBRE=?,CURS_DESCRIPCION=?,CURS_IMAGEN=?,CURS_URL_VIDEO=?,CURS_ESTADO=? where CURS_ID=?", array($curso["CAT_ID"], $curso["PROF_ID"], $curso["CURS_NOMBRE"], $curso["CURS_DESCRIPCION"], $curso["CURS_IMAGEN"], $curso["CURS_URL_VIDEO"], $curso["CURS_ESTADO"], $id));
+        if($curso['CURS_IMAGEN']!="publico/img/imagen_default.png" ) {
+            Database::queryChange("UPDATE curso set CAT_ID=?,PROF_ID=?,CURS_NOMBRE=? ,CURS_DESCRIPCION=?,CURS_PRECIO=?,CURS_IMAGEN=?,CURS_URL_VIDEO=?,CURS_ESTADO=? 
+        where CURS_ID=?", array($curso["CAT_ID"], $curso["PROF_ID"], $curso["CURS_NOMBRE"], $curso["CURS_DESCRIPCION"], $curso["CURS_PRECIO"], $curso["CURS_IMAGEN"], $curso["CURS_URL_VIDEO"], $curso["CURS_ESTADO"], $id));
+        } else {
+            Database::queryChange("UPDATE curso set CAT_ID=?,PROF_ID=?,CURS_NOMBRE=? ,CURS_DESCRIPCION=?,CURS_PRECIO=?,CURS_URL_VIDEO=?,CURS_ESTADO=?  where CURS_ID=?", array($curso["CAT_ID"], $curso["PROF_ID"], $curso["CURS_NOMBRE"], $curso["CURS_DESCRIPCION"],$curso["CURS_PRECIO"], $curso["CURS_URL_VIDEO"], $curso["CURS_ESTADO"], $id));
+         }
+        
+        
     }
     public static function updateCursoDeshabilitar($curso, $id)
     {

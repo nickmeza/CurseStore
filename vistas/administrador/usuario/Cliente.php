@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <?php
 include_once "./vistas/administrador/component/header.php";
 ?>
@@ -363,7 +364,10 @@ include_once "./vistas/administrador/component/header.php";
             </div>
             <form id="form_editar_usuario" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-
+                <div class="form-group" style="display: none;">
+                        <label for="name" class="col-form-label"mbr>Noe:</label>
+                        <input type="text" class="form-control" name="PER_ID" id="edit_id">
+                    </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" name="nombre" id="edit_name">
@@ -414,7 +418,11 @@ include_once "./vistas/administrador/component/header.php";
                     <td><span class="status text-warning">&bull;</span>  ${valores.PER_ESTADO==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
                         <a class="settings" onclick="mostrarDatos(${valores.PER_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.PER_ID},${valores.PER_ESTADO==1?0:1});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a class="delete" onclick="changeEstado(${valores.PER_ID},${valores.PER_ESTADO==1?0:1});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a class="delete" onclick="changeEstado(${valores.PER_ID});" title="Delete" title="Delete" data-toggle="tooltip"><label class="switch">
+                        <input ${validarEstado(valores.PER_ESTADO)}  type="checkbox" id="edit_estado" name="PER_ESTADO">
+                        <span onclick ='deshabilitar(${valores.PER_ID},${valores.PER_ESTADO})'class="slider round"></span>
+                        </label></a>
                     </td>
                 </tr>
                 `)
@@ -424,6 +432,14 @@ include_once "./vistas/administrador/component/header.php";
         }
     })
 
+ 
+    function validarEstado(estado) {
+        if (estado == 1) {
+            return "checked"
+        }
+        return ""
+    }
+    
     $("#form_agregar_cliente").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
@@ -443,7 +459,7 @@ include_once "./vistas/administrador/component/header.php";
     //form_editar_categoria
 
 
-    function eliminar(id, estado) {
+    function changeEstado(id, estado) {
         $.ajax({
             url: url + 'admin/usuario/cliente/chageEstado/' + id + "/" + estado,
             type: 'GET',
@@ -471,6 +487,8 @@ include_once "./vistas/administrador/component/header.php";
                 $("#edit_direccion").val(json.PER_DIRECCION)
                 $("#edit_usuario").val(json.USR_USUARIO)
                 $("#edit_contraseña").val(json.USR_PASSWORD)
+                $("#edit_id").val(json.PER_ID)
+
                 //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
         })
