@@ -21,7 +21,11 @@ class Usuario_modelo
 
     public static function updatePerfilUsuario($usuario, $id)
     {
-        Database::queryChange("CALL AB_EDITARPERFIL(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
+        if (isset($usuario['admin'])) {
+            Database::queryChange("CALL AB_EDITARPERFILADMIN(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
+        } else {
+            Database::queryChange("CALL AB_EDITARPERFILCLIENT(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
+        }
     }
     public static function updateContraseña($usuario, $id)
     {
@@ -34,6 +38,16 @@ class Usuario_modelo
     public static function chageEstado($id, $estado)
     {
         Database::queryChange("CALL AB_EDITESTADO(?, ?)", array($estado, $id));
+    }
+    public static function validatedDelete($id)
+    {
+        $data = Database::query("SELECT * FROM orden o, cliente c, usuario u,persona p WHERE 
+        o.CLI_ID=c.CLI_ID AND c.USR_ID = u.USR_ID AND p.PER_ID = u.PER_ID AND p.PER_ID=?;", array($id));
+        if (count($data) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public static function getPasswordByUser($id)
     {
@@ -64,5 +78,4 @@ class Usuario_modelo
         return $data = Database::queryOne("SELECT p.*, c.*,u.USR_USUARIO from cliente c, usuario u, persona p 
         WHERE p.PER_ID=u.PER_ID AND c.USR_ID=u.USR_ID AND p.PER_ID = ?", array($usuario));
     }
-    
 }

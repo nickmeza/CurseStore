@@ -27,8 +27,13 @@ class Usuario
             $usuario["direccion"] = $_REQUEST['direccion'];
             $usuario["usuario"] = $_REQUEST['usuario'];
             //var_dump($usuario);
-            $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
-            echo($idUsuario);
+            if (isset($_REQUEST['admin'])) {
+                $usuario["admin"] = true;
+                $idUsuario = $_REQUEST['idpersona'];
+            } else {
+                $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
+            }
+            echo ($idUsuario);
             Usuario_modelo::updatePerfilUsuario($usuario, $idUsuario);
             var_dump($_SESSION['escogido'][0]);
             echo "creado correctamente";
@@ -106,9 +111,21 @@ class Usuario
     {
         include_once "./vistas/cliente/curso/Categoria.php";
     }
-    public static function deleteUsuarioCliente()
+    public static function deleteUsuarioCliente($id)
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
+        if (isset($id[5])) {
+            if (!(Usuario_modelo::validatedDelete($id[5]))) {
+                Persona_Modelo::delete($id[5]);
+                $mensaje["mensaje"] = "correcto";
+                $mensaje["status"] = "200";
+                echo json_encode($mensaje);
+            } else {
+                $mensaje["mensaje"] = "error";
+                $mensaje["status"] = "404";
+                echo json_encode($mensaje);
+            }
+        } else {
+        }
     }
     public static function updatePersona()
     {
@@ -136,7 +153,7 @@ class Usuario
     }
     public static function getClientbyId($id)
     {
-        
+
         if (isset($id) && isset($id[5]) && strlen($id[5]) > 0) {
             $persona = array();
             $persona = Usuario_Modelo::getClientbyId($id[5]);
