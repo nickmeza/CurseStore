@@ -59,4 +59,10 @@ class Usuario_modelo
         return $data = Database::queryOne("SELECT p.*, c.*,u.USR_USUARIO from cliente c, usuario u, persona p 
         WHERE p.PER_ID=u.PER_ID AND c.USR_ID=u.USR_ID AND c.USR_ID = ?", array($usuario));
     }
+    public static function getClientbyId($usuario)
+    {
+        return $data = Database::queryOne("SELECT p.*, c.*,u.USR_USUARIO from cliente c, usuario u, persona p 
+        WHERE p.PER_ID=u.PER_ID AND c.USR_ID=u.USR_ID AND p.PER_ID = ?", array($usuario));
+    }
+    
 }

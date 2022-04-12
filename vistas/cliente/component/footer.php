@@ -307,7 +307,10 @@
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>./direccion.js"></script>
 <!-- HEADER JS -->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>publico/js/search.js"></script>
-
+<script>
+  var contador=JSON.parse(localStorage.getItem("idcurso")).length 
+  $('.contador').after("<p> "+contador+" </p>")
+</script>
 </body>
 
 </html>

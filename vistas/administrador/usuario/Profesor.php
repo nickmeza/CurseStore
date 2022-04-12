@@ -353,27 +353,27 @@ include_once "./vistas/administrador/component/header.php";
             </div>
             <form id="form_editar_profesor" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
-
-<div class="form-group">
-    <label for="name" class="col-form-label">Nombre:</label>
-    <input type="text" class="form-control" name="NOMBRE" id="name">
-</div>
-<div class="form-group">
-    <label for="description" class="col-form-label">Apellido:</label>
-    <input type="text" class="form-control" name="APELLIDO" id="apellido">
-</div>
-<div class="form-group">
-    <label for="description" class="col-form-label">Direccion:</label>
-    <input type="text" class="form-control" name="DIRECCION" id="direccion">
-</div>
-<div class="form-group">
-    <label for="description" class="col-form-label">usuario:</label>
-    <input type="text" class="form-control" name="USUARIO" id="usuario">
-</div>
-<div class="form-group">
-    <label for="description" class="col-form-label">contraseña:</label>
-    <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
-</div>
+            <div class="form-group" style="display: none;">
+                        <label for="name" class="col-form-label"mbr>Noe:</label>
+                        <input type="text" class="form-control" name="PROF_ID" id="edit_id">
+                    </div>
+            <div class="form-group">
+                <label for="name" class="col-form-label">Nombre:</label>
+                <input type="text" class="form-control" name="NOMBRE" id="edit_name">
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-form-label">Apellido:</label>
+                <input type="text" class="form-control" name="APELLIDO" id="edit_apellido">
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-form-label">Direccion:</label>
+                <input type="text" class="form-control" name="DIRECCION" id="edit_direccion">
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-form-label">usuario:</label>
+                <input type="text" class="form-control" name="USUARIO" id="edit_usuario">
+            </div>
+           
 
 </div>
                 <div class="modal-footer">
@@ -431,7 +431,27 @@ include_once "./vistas/administrador/component/header.php";
         });
     })
     //form_editar_categoria
-
+    function mostrarDatos(valores) {
+        id = valores;
+        console.log(valores);
+        $.ajax({
+            url: url + 'admin/usuario/profesor/getClientbyId/' + valores,
+            type: 'GET',
+            dataType: 'json',   
+            success: function(json) { 
+                console.log(json)
+                $("#edit_name").val(json.PER_NOMBRE)
+                $("#edit_apellido").val(json.PER_APELLIDO)
+                $("#edit_direccion").val(json.PER_DIRECCION)
+                $("#edit_usuario").val(json.USR_USUARIO)
+                $("#edit_contraseña").val(json.USR_PASSWORD)
+                $("#edit_id").val(json.PER_ID)
+                
+                //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
+            }, 
+            
+        })
+    }
 
     function eliminar(id) {
         $.ajax({

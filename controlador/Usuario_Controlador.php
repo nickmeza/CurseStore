@@ -19,18 +19,18 @@ class Usuario
     }
     public static function updatePerfilUsuario($ruta)
     {
-        var_dump($_REQUEST);
+        //var_dump($_REQUEST);
+        session_start();
         if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['direccion']) && isset($_REQUEST['usuario'])) {
             $usuario["nombre"] = $_REQUEST['nombre'];
             $usuario["apellido"] = $_REQUEST['apellido'];
             $usuario["direccion"] = $_REQUEST['direccion'];
             $usuario["usuario"] = $_REQUEST['usuario'];
-            var_dump($usuario);
-            session_start();
+            //var_dump($usuario);
             $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
-            var_dump($idUsuario);
+            echo($idUsuario);
             Usuario_modelo::updatePerfilUsuario($usuario, $idUsuario);
-            //var_dump($_SESSION['escogido'][0]);
+            var_dump($_SESSION['escogido'][0]);
             echo "creado correctamente";
         } else {
             echo "fallo al crear";
@@ -129,6 +129,17 @@ class Usuario
         if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
             $persona = array();
             $persona = Cliente_Modelo::ClientData($id[4]);
+            echo json_encode($persona);
+        } else {
+            echo "fallo al buscar";
+        }
+    }
+    public static function getClientbyId($id)
+    {
+        
+        if (isset($id) && isset($id[5]) && strlen($id[5]) > 0) {
+            $persona = array();
+            $persona = Usuario_Modelo::getClientbyId($id[5]);
             echo json_encode($persona);
         } else {
             echo "fallo al buscar";

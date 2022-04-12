@@ -321,6 +321,7 @@ include_once "./vistas/administrador/component/header.php";
                 </button>
             </div>
             <form id="form_agregar_cliente" method="POST" enctype="multipart/form-data">
+                
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -384,10 +385,7 @@ include_once "./vistas/administrador/component/header.php";
                         <label for="description" class="col-form-label">usuario:</label>
                         <input type="text" class="form-control" name="usuario" id="edit_usuario">
                     </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">contraseña:</label>
-                        <input type="password" class="form-control" name="contrasena" id="edit_contrasena">
-                    </div>
+                    
 
                 </div>
                 <div class="modal-footer">
@@ -401,6 +399,7 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    var id = 0;
     $.ajax({
         url: url + 'admin/usuario/cliente/getPersonData',
         type: 'GET',
@@ -476,21 +475,24 @@ include_once "./vistas/administrador/component/header.php";
     }
 
     function mostrarDatos(valores) {
+        id = valores;
         console.log(valores);
         $.ajax({
-            url: url + 'admin/usuario/cliente/getById' + valores,
+            url: url + 'admin/usuario/cliente/getClientbyId/' + valores,
             type: 'GET',
-            dataType: 'json',
-            success: function(json) {
-                $("#edit_name").val(json.PER_NAME)
+            dataType: 'json',   
+            success: function(json) { 
+                console.log(json)
+                $("#edit_name").val(json.PER_NOMBRE)
                 $("#edit_apellido").val(json.PER_APELLIDO)
                 $("#edit_direccion").val(json.PER_DIRECCION)
                 $("#edit_usuario").val(json.USR_USUARIO)
                 $("#edit_contraseña").val(json.USR_PASSWORD)
                 $("#edit_id").val(json.PER_ID)
-
+                
                 //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
-            },
+            }, 
+            
         })
     }
     $("#form_editar_usuario").submit(function(event) {
@@ -499,18 +501,25 @@ include_once "./vistas/administrador/component/header.php";
 
         $.ajax({
             type: 'POST',
-            url: url + "admin/usuario/cliente/updatePerfilUsuario" + id,
+            url: url + "admin/usuario/cliente/updatePerfilUsuario/" + id,
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
+            error:function(msg){
+                console.log(msg)
+                     },
             success: function(msg) {
                 console.log(msg)
+
                 Swal.fire(
                     'Se actualizó',
                     'Correctamente',
                     'success')
             }
+        
+        
+            
         });
     })
 </script>

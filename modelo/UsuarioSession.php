@@ -4,8 +4,12 @@ class UsuarioSession{
         session_start();
     }
     public static function setCurrentUser($usuario,$user){
+        var_dump("user");
+        var_dump($user);
+        
         $_SESSION['user'] = $usuario;
         $_SESSION['escogido']=$user;
+        
     }
     public static function getCurrentUser(){
         return $_SESSION['user'];
