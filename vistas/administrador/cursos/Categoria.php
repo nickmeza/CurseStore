@@ -358,7 +358,7 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_editar_categoria" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label"mbr>Noe:</label>
+                        <label for="name" class="col-form-label" mbr>Noe:</label>
                         <input type="text" class="form-control" name="CAT_ID" id="edit_id">
                     </div>
                     <div class="form-group">
@@ -372,7 +372,7 @@ include_once "./vistas/administrador/component/header.php";
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
                         <input type="file" class="form-control inputimg" name="CAT_IMAGEN" id="edit_imagen">
-                        <img id ="edit_imagenes" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
+                        <img id="edit_imagenes" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="edit_estado" name="CAT_ESTADO">
@@ -416,8 +416,9 @@ include_once "./vistas/administrador/component/header.php";
         dataType: 'json',
         success: function(json) {
             console.log(json)
+            alert("termine de cargar")
             json.map((valores, idx) => {
-                
+
                 $(".tbody__categoria").append(`
                 <tr>
                     <td>${valores.CAT_ID}</td>
@@ -440,7 +441,7 @@ include_once "./vistas/administrador/component/header.php";
     })
 
     $("#form_agregar_categoria").submit(function(event) {
-        jQuery('#btnAgregar').attr("disabled","disabled");
+        jQuery('#btnAgregar').attr("disabled", "disabled");
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
@@ -485,7 +486,7 @@ include_once "./vistas/administrador/component/header.php";
             success: function(json) {
                 $("#edit_name").val(json.CAT_NAME)
                 $("#edit_description").val(json.CAT_DESCRIPCION)
-                $("#edit_imagenes").attr("src","http://tiendacursos.test/"+json.CAT_IMAGEN)
+                $("#edit_imagenes").attr("src", "http://tiendacursos.test/" + json.CAT_IMAGEN)
                 $("#edit_id").val(json.CAT_ID)
                 json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },
@@ -493,45 +494,45 @@ include_once "./vistas/administrador/component/header.php";
     }
 
     $("#form_editar_categoria").submit(function(event) {
-            event.preventDefault();
-            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
-            const id = $("#edit_id").val()
-            $.ajax({
-                type: 'POST',
-                url: url + "admin/categoria/update/" + id,
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(msg) {
-                    console.log(msg)
-                  location.href = url + "admin/categoria";
-                },
-                error: function (xhr, opciones, error) {
-                    console.log("error"+error);
-                }
-            });
+        event.preventDefault();
+        $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
+        const id = $("#edit_id").val()
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/categoria/update/" + id,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/categoria";
+            },
+            error: function(xhr, opciones, error) {
+                console.log("error" + error);
+            }
         });
+    });
 
-        /*function editar(){
-            $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0);
-            const id = $("#edit_id").val()
-            $.ajax({
-                type: 'POST',
-                url: url + "admin/categoria/update/" + id,
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(msg) {
-                    console.log("hola llege"+msg);
-                    //location.href = url + "admin/categoria";
-                },
-                error: function (xhr, opciones, error) {
-                    console.log("error"+error);
-                }
-            });
-        }*/
+    /*function editar(){
+        $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0);
+        const id = $("#edit_id").val()
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/categoria/update/" + id,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log("hola llege"+msg);
+                //location.href = url + "admin/categoria";
+            },
+            error: function (xhr, opciones, error) {
+                console.log("error"+error);
+            }
+        });
+    }*/
 </script>
 
 <?php

@@ -295,15 +295,6 @@ if (isset($ruta_split[1])) {
                                 break;
                         }
                         break;
-                    case 'tienda':
-                        if (method_exists(new Categoria(), $metodo)) {
-                            Categoria::$metodo($ruta_split);
-                        } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
-                            RoutesAdmin::$controlador($ruta_split);
-                        } else {
-                            echo "error 404";
-                        }
-                        break;
                     case 'correos':
                         if (method_exists(new Correo(), $metodo)) {
                             Correo::$metodo($ruta_split);
@@ -321,6 +312,9 @@ if (isset($ruta_split[1])) {
                         } else {
                             echo "error 404";
                         }
+                        break;
+                    case 'tienda':
+                        include_once "./vistas/administrador/tienda/Tienda.php";
                         break;
                     default:
                         RoutesAdmin::index();
