@@ -467,10 +467,16 @@ include_once "./vistas/administrador/component/header.php";
                 console.log(json);
                 if (json.status == "200") {
                     //el de correcto
-
+                    Swal.fire(
+                    'Se eliminó',
+                    'Correctamente',
+                    'success')
                     location.href = url + "admin/usuario/cliente";
                 } else {
-                    //el de error
+                    Swal.fire(
+                    'No es posible',
+                    'Eliminar',
+                    "error")
                 }
             }
         })
@@ -482,11 +488,16 @@ include_once "./vistas/administrador/component/header.php";
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                location.href = url + "admin/usuario/cliente";
+                location.href = url + "admin/usuario/cliente"
+                
+                
+                ;
+                
             },
             complete: function(xhr, status) {
                 if (status == "success") {
                     location.href = url + "admin/usuario/cliente";
+                    
                 }
             },
         })
