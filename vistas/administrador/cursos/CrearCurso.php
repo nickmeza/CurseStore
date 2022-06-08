@@ -190,11 +190,11 @@ include_once "./vistas/administrador/component/header.php";
                             <h2 style="padding: 10px;">Crear Modulo</h2>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Nombre:</label>
-                                <input type="text" class="form-control" name="EMP_RUC" id="EMP_RUC">
+                                <input type="text" class="form-control" name="MOD_NOMBRE" id="MOD_NOMBRE">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Descripcion:</label>
-                                <textarea class="form-control" style="height: 100px;" name="EMP_RUC" id="EMP_RUC"></textarea>
+                                <textarea class="form-control" style="height: 100px;" name="MOD_DESCRIPCION" id="MOD_DESCRIPCION"></textarea>
                             </div>
                         </div>
                         <div class="centrarrr">
@@ -210,8 +210,31 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 </div>
 
-
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    
+    $("#form_crearModulo").submit(function(event) {
+        // jQuery('#btnAgregar').attr("disabled", "disabled");
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/modulo/create",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                Swal.fire(
+                    'MODULO AGREADO!',
+                    'FUNCION EXITOSA!',
+                    'success'
+                )
+                location.href = url + "admin/crear_curso/"+$url[3];
+            }
+        });
+    })
 </script>
 <?php
 include_once "./vistas/administrador/component/footer.php";

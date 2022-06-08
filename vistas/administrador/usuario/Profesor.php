@@ -267,7 +267,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/usuario/profesor/exportar"?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] . "admin/usuario/profesor/exportar" ?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
             </div>
@@ -332,7 +332,7 @@ include_once "./vistas/administrador/component/header.php";
                         <label for="description" class="col-form-label">contraseña:</label>
                         <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
                     </div>
- 
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -352,30 +352,30 @@ include_once "./vistas/administrador/component/header.php";
                 </button>
             </div>
             <form id="form_editar_profesor" method="POST" enctype="multipart/form-data">
-            <div class="modal-body">
-            <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label"mbr>Noe:</label>
+                <div class="modal-body">
+                    <div class="form-group" style="display: none;">
+                        <label for="name" class="col-form-label" mbr>Noe:</label>
                         <input type="text" class="form-control" name="PROF_ID" id="edit_id">
                     </div>
-            <div class="form-group">
-                <label for="name" class="col-form-label">Nombre:</label>
-                <input type="text" class="form-control" name="NOMBRE" id="edit_name">
-            </div>
-            <div class="form-group">
-                <label for="description" class="col-form-label">Apellido:</label>
-                <input type="text" class="form-control" name="APELLIDO" id="edit_apellido">
-            </div>
-            <div class="form-group">
-                <label for="description" class="col-form-label">Direccion:</label>
-                <input type="text" class="form-control" name="DIRECCION" id="edit_direccion">
-            </div>
-            <div class="form-group">
-                <label for="description" class="col-form-label">usuario:</label>
-                <input type="text" class="form-control" name="USUARIO" id="edit_usuario">
-            </div>
-           
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" name="NOMBRE" id="edit_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Apellido:</label>
+                        <input type="text" class="form-control" name="APELLIDO" id="edit_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Direccion:</label>
+                        <input type="text" class="form-control" name="DIRECCION" id="edit_direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">usuario:</label>
+                        <input type="text" class="form-control" name="USUARIO" id="edit_usuario">
+                    </div>
 
-</div>
+
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Editar</button>
@@ -405,6 +405,10 @@ include_once "./vistas/administrador/component/header.php";
                     <td style="width: 100px;">
                         <a class="settings" onclick="mostrarDatos(${valores.PER_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a class="delete" onclick="eliminar(${valores.PER_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a class="delete" onclick="changeEstado(${valores.PER_ID},${valores.PER_ESTADO==1?0:1});" title="Delete" title="Delete" data-toggle="tooltip"><label class="switch">
+                        <input ${validarEstado(valores.PER_ESTADO)}  type="checkbox" id="edit_estado" name="PER_ESTADO">
+                        <span onclick ='deshabilitar(${valores.PER_ID},${valores.PER_ESTADO})'class="slider round"></span>
+                        </label></a>
                     </td>
                 </tr>
                 `)
@@ -413,7 +417,27 @@ include_once "./vistas/administrador/component/header.php";
             curseCategoria = document.getElementsByClassName("navigation__categoria")
         }
     })
-
+    function validarEstado(estado) {
+        if (estado == 1) {
+            return "checked"
+        }
+        return ""
+    }
+    function changeEstado(id, estado) {
+        $.ajax({
+            url: url + 'admin/usuario/profesor/chageEstado/' + id + "/" + estado,
+            type: 'GET',
+            dataType: 'json',
+            error: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/usuario/profesor";
+            },
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/curso";
+            }
+        })
+    }
     $("#form_agregar_profesor").submit(function(event) {
         event.preventDefault();
         console.log(new FormData(this))
@@ -437,8 +461,8 @@ include_once "./vistas/administrador/component/header.php";
         $.ajax({
             url: url + 'admin/usuario/profesor/getClientbyId/' + valores,
             type: 'GET',
-            dataType: 'json',   
-            success: function(json) { 
+            dataType: 'json',
+            success: function(json) {
                 console.log(json)
                 $("#edit_name").val(json.PER_NOMBRE)
                 $("#edit_apellido").val(json.PER_APELLIDO)
@@ -446,10 +470,10 @@ include_once "./vistas/administrador/component/header.php";
                 $("#edit_usuario").val(json.USR_USUARIO)
                 $("#edit_contraseña").val(json.USR_PASSWORD)
                 $("#edit_id").val(json.PER_ID)
-                
+
                 //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
-            }, 
-            
+            },
+
         })
     }
 
@@ -462,19 +486,19 @@ include_once "./vistas/administrador/component/header.php";
                 if (json.status == "200") {
                     //el de correcto
                     Swal.fire(
-                    'Se eliminó',
-                    'Correctamente',
-                    'success')
+                        'Se eliminó',
+                        'Correctamente',
+                        'success')
                     location.href = url + "admin/usuario/profesor";
                 } else {
                     Swal.fire(
-                    'No es posible',
-                    'Eliminar',
-                    "error")
+                        'No es posible',
+                        'Eliminar',
+                        "error")
                 }
                 console.log(json)
             },
-  
+
         })
     }
 
