@@ -52,7 +52,6 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="<?php echo $GLOBALS['BASE_URL'] ?>admin/curso">Cursos</a></li>
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/curso">Lista Cursos</a></li>
-                    <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/crear_curso">Crear Curso</a></li>
                 </ul>
             </li>
             <li>

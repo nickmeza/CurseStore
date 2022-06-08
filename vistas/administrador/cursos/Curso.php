@@ -319,28 +319,101 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_agregar_metodo" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
+            <form id="form_crearCurso" method="POST" enctype="multipart/form-data">
+        <div class="content__admin ">
+            <div class="izquierda__modulo">
+                <div class="formulario__curso">
+                    <h2>Datos de Curso</h2>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="CURS_NOMBRE" id="CURS_NOMBRE">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Descripción:</label>
+                            <input type="text" class="form-control" name="CURS_DESCRIPCION" id="CURS_DESCRIPCION">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Precio:</label>
+                            <input type="number" class="form-control" name="CURS_PRECIO" id="CURS_PRECIO">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Categoria:</label>
+                            <select name="CAT_ID" class="form-control" id="CAT_ID">
+                                <?php foreach ($dataCategoria as $categoria) {  ?>
+                                    <option value="<?php echo $categoria['CAT_ID'] ?>">
+                                        <?php echo $categoria['CAT_NAME'] ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <!-- <input type="text" class="form-control" name="CAT_ID" id="CAT_ID"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Profesor:</label>
+                            <select name="PROF_ID" class="form-control" id="PROF_ID">
+                                <?php foreach ($dataProfesores as $profesores) { ?>
+                                    <option value="<?php echo $profesores['PROF_ID']; ?>">
+                                        <?php echo $profesores['PER_NOMBRE'] ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <!-- <input type="text" class="form-control" name="PROF_ID" id="PROF_ID"> -->
+                            <!-- dataProfesores -->
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Imagen:</label>
+                            <input type="file" class="form-control" name="CURS_IMAGEN" id="CURS_IMAGEN">
+                        </div>
+                        <div class="form-group">
+                            <label for="imagen" class="col-form-label">Video:</label>
+                            <textarea class="form-control" name="CURS_URL_VIDEO" id="CURS_URL_VIDEO"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="MET_NOMBRE" id="name">
+                <div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+            <div class="derecha__modulo">
+                <div class="capa__modulo">
+                    <div class="titulo__admin">
+                        <h2>Modulo</h2>
                     </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Datos:</label>
-                        <input type="text" class="form-control" name="MET_DATOS" id="datos">
+                    <div id="contenedor__modulos" class="formulario__modulo">
+                        <div id="idmodulo__0" class="modulo__global formulario__modulo">
+                            <div style="border: black 1px solid; display: flex;height: 50px;padding-left : 20px;padding-right: 5px;">
+                                <!-- TITULO DEL MODULOOO -->
+                                <div class="modulo__title">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                    <textarea name="" id="modulotitle__input0" onkeyup="setTitleModulo(0)" oncontextmenu="return false" onclick="showModal('editTitle','nombre_edit_title','modulo',0)" placeholder="Nombre del modulo" class="none__input modulo__input" id="" cols="30" rows="1"></textarea>
+                                    <div class="options__modulo">
+                                        <i class="fa fa-eye icon__module" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil icon__module" aria-hidden="true"></i>
+                                        <i class="fa fa-trash icon__module" onclick="eliminarModulo(0)" aria-hidden="true"></i>
+                                        <svg onclick="setTamano(0)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                            <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIN DEL TITULO DEL MODULOOO -->
+                            <div id="submodulo__modulo0" class="sub__modulos">
+                                <!-- INICIO DEL SUBMODULO -->
+                                <!-- FIN DEL SUBMODULO -->
+                            </div>
+                            <div class="agregar__submodulo">
+                                <span class="button-48" onclick="agregarSubmodulo(0)"><span class="text">Añadir Submodulo</span></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Imagen:</label>
-                        <input type="file" class="form-control inputimg" name="MET_IMAGEN" id="imagen">
-                        <img src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
+                    <div class="agregar__modulo">
+                        <span class="button-48" onclick="agregarModulo()"><span class="text">Añadir Modulo</span></span>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" id="btnAgregar">Agregar</button>
-                </div>
-            </form>
+            </div>
+        </div>
+    </form>
         </div>
     </div>
 </div>
@@ -485,8 +558,9 @@ include_once "./vistas/administrador/component/header.php";
 
                     <td><span class="status text-warning">&bull;</span>  ${valores.CURS_ESTADO==1?"activo":"inactivo"}</td>
                     <td style="width: 100px;">
-                        <a class="settings" onclick="showModal(${valores.CURS_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>   
+                        <a style="cursor:pointer;" class="settings" onclick="showModal(${valores.CURS_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/crear_curso"?>/${valores.CURS_ID}" style="cursor:pointer;" class="config"  title="Config"  ><i class="fa fa-cog" aria-hidden="true"></i></a>
+                        <a style="cursor:pointer;" class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>   
                         <a class="delete" onclick="deshabilitar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><label class="switch">
                         <input ${validarEstado(valores.CURS_ESTADO)}  type="checkbox" id="edit_estado" name="CURS_ESTADO">
                         <span onclick ='deshabilitar(${valores.CURS_ID},${valores.CURS_ESTADO})'class="slider round"></span>
