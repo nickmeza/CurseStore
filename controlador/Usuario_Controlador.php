@@ -107,9 +107,18 @@ class Usuario
             echo "fallo al crear";
         }
     }
-    public static function deleteUsuarioProfesor()
+    public static function deleteUsuarioProfesor($id)
     {
-        include_once "./vistas/cliente/curso/Categoria.php";
+        if (!(Usuario_modelo::validatedProfesorDelete($id[5]))) {
+            Persona_Modelo::delete($id[5]);
+            $mensaje["mensaje"] = "correcto";
+            $mensaje["status"] = "200";
+            echo json_encode($mensaje);
+        } else {
+            $mensaje["mensaje"] = "error";
+            $mensaje["status"] = "404";
+            echo json_encode($mensaje);
+        }
     }
     public static function deleteUsuarioCliente($id)
     {
@@ -247,6 +256,15 @@ class Usuario
         }
     }
     //functions 
+    public static function exportar($url)
+    {
+        if ($url[3] == "profesor") {
+            $usuario = Profesor_Modelo::getProfesorData();
+        } else {
+            $usuario = Cliente_Modelo::getClientData();
+        }
+        include_once("./excel/usuarioExcel.php");
+    }
 
 }
 ?>

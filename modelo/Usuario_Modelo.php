@@ -49,6 +49,16 @@ class Usuario_modelo
             return false;
         }
     }
+    public static function validatedProfesorDelete($id)
+    {
+        $data = Database::query("SELECT * FROM curso c, profesor p, usuario u,persona p WHERE 
+        c.PROF_ID=p.PROF_ID AND p.USR_ID = u.USR_ID AND p.PER_ID = u.PER_ID AND p.PER_ID=?;", array($id));
+        if (count($data) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static function getPasswordByUser($id)
     {
         Database::queryChange("select USR_PASSWORD FROM usuario WHERE USR_ID= ?;", array($id));

@@ -20,9 +20,16 @@ class Correo_Modelo{
     }
     public static function getCorreosData()
     {
-        return $data = Database::query("SELECT p.*,co.COR_ID,co.COR_CORREO,co.COR_DESCRIPCION,co.COR_ASUNTO FROM correos co,cliente cli ,persona p,usuario u WHERE co.CLI_ID=cli.CLI_ID  AND cli.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID", array());
+        return $data = Database::query(
+            "SELECT p.*,co.COR_ID,co.COR_CORREO,co.COR_DESCRIPCION,co.COR_ASUNTO FROM correos co,cliente cli ,persona p,usuario u WHERE co.CLI_ID=cli.CLI_ID  AND cli.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID ORDER BY COR_ID DESC" , array());
     }
-    
+    public static function getDataCorreoById($id)
+    {
+        return $data =  Database::queryOne(
+            "SELECT p.*,co.COR_ID,co.COR_CORREO,co.COR_DESCRIPCION,co.COR_ASUNTO FROM correos co,cliente cli ,persona p,usuario u WHERE co.CLI_ID=cli.CLI_ID  AND cli.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID AND co.COR_ID = ?;",
+            array($id)
+        );
+    }
 
 }
 

@@ -276,8 +276,8 @@ include_once "./vistas/administrador/component/header.php";
                         <h2><b>Correos</b></h2>
                     </div>
                     <div class="col-xs-7">
-                       
-                        <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/correos/exportar"?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
             </div>
@@ -287,8 +287,8 @@ include_once "./vistas/administrador/component/header.php";
                         <th>ID</th>
                         <th>CLIENTE</th>
                         <th>CORREO</th>
-                        <th>DESCRIPCION</th>
                         <th>ASUNTO</th>
+                        <th>DESCRIPCION</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
@@ -311,49 +311,30 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        
-    </div>
-</div>
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- VER orden-->
+<div class="modal fade" id="editSolicitudes" tabindex="-1" role="dialog" aria-labelledby="editTitleModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ver Correo</h5>
+                <h4 class="modal-title" id="exampleModalLabel">Detalle del Correo</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_editar_correo" method="POST" enctype="multipart/form-data">
+            <form id="form_editar_title_modulo">
                 <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="name" class="col-form-label">ID</label>
-                        <input type="text" class="form-control" name="COR_ID" id="edit_id" >
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Cliente:</label>
-                        <input type="text" class="form-control" name="PER_NAME" readonly id="edit_nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">Asunto:</label>
-                        <input type="text" class="form-control" name="COR_ASUNTO" readonly id="edit_asunto">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="COR_DESCRIPCION" readonly id="edit_description">
-                    </div>
-
-                    
+                    <div class="datos__correo"></div>
+                    <div class="tabla__correos"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    
+
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 
 <script>
@@ -362,62 +343,81 @@ include_once "./vistas/administrador/component/header.php";
         type: 'GET',
         dataType: 'json',
         success: function(json) {
+            console.log(json)
             json.map((valores, idx) => {
                 $(".tbody__correo").append(`
                 <tr>
-                    <td>${valores.COR_ID}</td>
-                    <td>
-                       ${valores.PER_NOMBRE+ " " + valores.PER_APELLIDO}
-                    </td>
-                    <td style="width: 400px;">${valores.COR_CORREO}</td>
-                    <td style="width: 400px;">${valores.COR_DESCRIPCION}</td>
-                    <td style="width: 400px;">${valores.COR_ASUNTO}</td>
-                   
+                    <td>${idx+1}</td>
+                    <td>${valores.PER_NOMBRE+" "+ valores.PER_APELLIDO}</td>
+                    <td>${valores.COR_CORREO}</td>
+                    <td >${valores.COR_ASUNTO}</td>
+                    <td style="width: 400px;">${valores.COR_DESCRIPCION.substr(0,30)}${valores.COR_DESCRIPCION.length>30?'...':''}</td>
+
                     <td style="width: 100px;">
-                        <a class="settings" onclick="mostrarDatos(${valores.COR_ID});" title="Settings" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a class="delete" onclick="eliminar(${valores.COR_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                    <a class="settings" onclick="mostrarDatos(${valores.COR_ID});setIdCorreo(${valores.COR_ID});" title="Settings" data-toggle="modal" data-target="#editSolicitudes"  ><i class="fa fa-eye" aria-hidden="true"></i></a> 
                     </td>
+                   
                 </tr>
                 `)
             })
-            console.log(json)
-            curseCategoria = document.getElementsByClassName("navigation__categoria")
+        },
+        complete: function(x, y) {
+            console.log(x)
         }
     })
-    
-    function eliminar(id) {
+
+
+    // function mostrarDatos(valores) {
+    //     console.log(valores);
+    //     $.ajax({
+    //         url: url + 'admin/correos/getCursosByOrder/' + valores,
+    //         type: 'GET',
+    //         dataType: 'json',
+    //         success: function(json) {
+    //             $("#edit_nombre").val(json.COR_NOMBRE)
+    //             $("#edit_asunto").val(json.COR_ASUNTO)
+    //             $("#edit_description").val(json.COR_DESCRIPCION)
+
+    //         },
+    //     })
+    // }
+    function setIdCorreo(id) {
+        idOrder = id
+    }
+
+    function mostrarDatos(id) {
+        console.log(id)
+        //
         $.ajax({
-            url: url + 'admin/correos/delete/' + id,
+            url: url + 'admin/correos/getDataCorreoById/' + id,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
-                
-            },
-            complete: function(xhr, status) {
-                if (status == "success") {
-                    alert("Eliminado correctamente")
-                    location.href = url + "admin/correos";
-                }
-            },
+                $(".tabla__correos").empty();
+                console.log(json)
+                $(".tabla__correos").append(`
+                    <div class="item__correo">
+                        <div class="datos__correo">
+                        <br>
+                            <div class="title__correo">
+                                <h4>Cliente: <b>${json.PER_NOMBRE+" "+ json.PER_APELLIDO}</b></h4>
+                            </div>
+                            <div class="title__correo">
+                                <h4>Correo: <b>${json.COR_CORREO}</b></h4>
+                            </div>
+                            <div class="title__correo">
+                                <h4>Asunto: <b>${json.COR_ASUNTO}</b></h4>
+                            </div>
+                            <div class="title__correo">
+                                <h4 >Descripcion: </h4><p style>${json.COR_DESCRIPCION}</p>
+                            </div>
+                        </div>
+                    </div>
+                    `)
+            }
         })
     }
-
-    function mostrarDatos(valores) {
-        console.log(valores);
-        $.ajax({
-            url: url + 'admin/correos/getById/' + valores,
-            type: 'GET',
-            dataType: 'json',
-            success: function(json) {
-                $("#edit_nombre").val(json.COR_NOMBRE)
-                $("#edit_asunto").val(json.COR_ASUNTO)
-                $("#edit_description").val(json.COR_DESCRIPCION)
-                
-            },
-        })
-    }
-
-    </script>
+</script>
 <?php
 include_once "./vistas/administrador/component/footer.php";
 ?>

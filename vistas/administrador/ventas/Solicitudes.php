@@ -402,7 +402,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="col-xs-7">
                        
-                        <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/solicitudes/exportar"?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
             </div>
@@ -413,7 +413,6 @@ include_once "./vistas/administrador/component/header.php";
                         <th>CLIENTE</th>
                         <th>TOTAL</th>
                         <th>FECHA DE PEDIDO</th>
-                        
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -501,7 +500,7 @@ include_once "./vistas/administrador/component/header.php";
             json.map((valores, idx) => {
                 $(".tbody__orden").append(`
                 <tr>
-                    <td>${valores.ORD_ID}</td>
+                    <td>${idx+1}</td>
                     <td>
                         <a>${valores.PER_NOMBRE +' '+valores.PER_APELLIDO}</a>
                     </td>
@@ -564,7 +563,7 @@ include_once "./vistas/administrador/component/header.php";
                 json.map((valores, idx) => {
                     $(".tabla__cursos").append(`
                     <div class="item__curso">
-                        <div class="imagen__curso"><img src="${valores.CURS_IMAGEN}" width="130px" height="80px" style="object-fit: cover;" alt="${valores.CURS_NOMBRE}"></div>
+                        <div class="imagen__curso"><img src="${url + valores.CURS_IMAGEN}" width="130px" height="80px" style="object-fit: cover;" alt="${valores.CURS_NOMBRE}"></div>
                         <div class="datos__curso">
                             <div class="title__curso">
                                 <h5><b>${valores.CURS_NOMBRE}</b></h5>

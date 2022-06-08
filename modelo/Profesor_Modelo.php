@@ -22,11 +22,15 @@ class Profesor_Modelo
     }
     public static function delete($id)
     {
-        Database::queryChange("DELETE FROM profesor WHERE  PROF_ID=?;", array($id));
+        Database::queryChange("DELETE FROM persona WHERE  PER_ID=?;", array($id));
     }
     public static function getProfesorData()
     {
         return $data = Database::query("SELECT p.*, pro.PROF_ID FROM profesor pro,usuario u,persona p WHERE pro.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID;", array());
+    }
+    public static function getProfesorData2()
+    {
+        return $data = Database::query("SELECT pro.PROF_ID,  FROM profesor pro,usuario u,persona p WHERE pro.USR_ID=u.USR_ID AND u.PER_ID=p.PER_ID;", array());
     }
     public static function agregandoProfesor($profesor)
     {

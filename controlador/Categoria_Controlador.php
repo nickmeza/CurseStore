@@ -125,4 +125,9 @@ class Categoria
             echo "fallo al actualizar";
         }
     }
+    public static function exportar()
+    {
+        $categoria = Categoria_Modelo::getAll();
+        include_once("./excel/categoriaExcel.php");
+    }
 }

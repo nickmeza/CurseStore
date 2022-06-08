@@ -278,7 +278,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-                        <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/usuario/cliente/exportar"?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
             </div>
@@ -408,7 +408,7 @@ include_once "./vistas/administrador/component/header.php";
             json.map((valores, idx) => {
                 $(".tbody__categoria").append(`
                 <tr>
-                    <td>${valores.PER_ID}</td>
+                    <td>${idx+1}</td>
                     <td>
                          <a>${valores.PER_NOMBRE + " " + valores.PER_APELLIDO}</a>
                     </td>

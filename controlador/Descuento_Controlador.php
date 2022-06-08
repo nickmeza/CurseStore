@@ -85,4 +85,9 @@ class Descuento
         $Descuentos = Descuento_Modelo::getAll();
         echo json_encode($Descuentos);
     }
+    public static function exportar()
+    {
+        $descuentos = Descuento_Modelo::getAll();
+        include_once("./excel/descuentoExcel.php");
+    }
 }

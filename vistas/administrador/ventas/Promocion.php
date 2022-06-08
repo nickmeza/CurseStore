@@ -413,7 +413,7 @@ include_once "./vistas/administrador/component/header.php";
             json.map((valores, idx) => {
                 $(".tbody__categoria").append(`
                 <tr>
-                    <td>${valores.BANNER_ID}</td>
+                    <td>${idx+1}</td>
                     <td>
                         <a><img src= "${url + valores.BANNER_IMAGEN}" class="avatar" alt=""></a>
                     </td>

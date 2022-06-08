@@ -283,7 +283,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="col-xs-7">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-                        <a class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/descuento/exportar"?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
             </div>
@@ -512,7 +512,7 @@ include_once "./vistas/administrador/component/header.php";
             json.map((valores, idx) => {
                 $(".tbody__descuento").append(`
                 <tr>
-                    <td>${valores.DESC_ID}</td>
+                    <td>${idx+1}</td>
                     <td>
                         <a>${valores.DESC_DESCRIPTION}</a>
                     </td>

@@ -24,6 +24,7 @@ require_once("./modelo/UsuarioSession.php");
 require_once("./modelo/Usuario_Modelo.php");
 require_once("./modelo/Video_Modelo.php");
 require_once("./modelo/MetodoPagos_Modelo.php");
+require_once("./modelo/Empresa_Modelo.php");
 
 require_once("./controlador/AccesoRol_Controlador.php");
 require_once("./controlador/Accesos_Controlador.php");
@@ -48,6 +49,8 @@ require_once("./controlador/Video_Controlador.php");
 require_once("./controlador/Router_Controlador.php");
 require_once("./controlador/RouterAdmin_Controlador.php");
 require_once("./controlador/MetodoPagos_Controlador.php");
+require_once("./controlador/Empresa_Controlador.php");
+
 
 
 
@@ -313,8 +316,14 @@ if (isset($ruta_split[1])) {
                             echo "error 404";
                         }
                         break;
-                    case 'tienda':
-                        include_once "./vistas/administrador/tienda/Tienda.php";
+                    case 'empresa':
+                        if (method_exists(new Empresa(), $metodo)) {
+                            Empresa::$metodo($ruta_split);
+                        } else if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
+                            RoutesAdmin::$controlador($ruta_split);
+                        } else {
+                            echo "error 404";
+                        }
                         break;
                     default:
                         RoutesAdmin::index();

@@ -80,9 +80,9 @@ class RoutesAdmin
     {
         include_once "./vistas/administrador/usuario/Cliente.php";
     }
-    public static function tienda()
+    public static function empresa()
     {
-        include_once "./vistas/administrador/tienda/Tienda.php";
+        include_once "./vistas/administrador/tienda/Empresa.php";
     }
     public static function correos()
     {

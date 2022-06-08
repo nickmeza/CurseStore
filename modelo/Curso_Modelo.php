@@ -92,6 +92,7 @@ class Curso_Modelo
     {
         Database::queryChange("DELETE FROM curso  where CURS_ID=?", array($id));
     }
+    
     public static function getCursosByidUser($usuario)
     {
         return $data = Database::query("SELECT * FROM usuario u, cliente c,orden o, orden_detalle od, curso cu WHERE u.USR_ID=c.USR_ID 

@@ -13,7 +13,6 @@ class Correo
     {
         $correo= array();
         $correo = Correo_Modelo::getCorreosData();
-        array_splice($categorias, 0, 1);
         echo json_encode($correo);
     }
 
@@ -66,5 +65,15 @@ class Correo
         } else {
             echo "fallo al actualizar";
         }
+    }
+    public static function getDataCorreoById($id)
+    {
+        $correo = Correo_Modelo::getDataCorreoById($id[4]);
+        echo json_encode($correo);
+    }
+    public static function exportar()
+    {
+        $correos = Correo_Modelo::getCorreosData();
+        include_once("./excel/correoExcel.php");
     }
 }

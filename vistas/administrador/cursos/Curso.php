@@ -274,8 +274,8 @@ include_once "./vistas/administrador/component/header.php";
                         <h2><b>Cursos</b></h2>
                     </div>
                     <div class="col-xs-7">
-                        <a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-                        <a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
+                        <a href="#" class="btn btn-primary"><i class="material-icons" data-toggle="modal" data-target="#exampleModal">&#xE147;</i> <span>Agregar</span></a>
+                        <a href="<?php echo $GLOBALS['BASE_URL'] ."admin/curso/exportar"?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
             </div>
@@ -305,6 +305,42 @@ include_once "./vistas/administrador/component/header.php";
                     <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
                 </ul>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- AGREGAR METODOP-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_agregar_metodo" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" name="MET_NOMBRE" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Datos:</label>
+                        <input type="text" class="form-control" name="MET_DATOS" id="datos">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Imagen:</label>
+                        <input type="file" class="form-control inputimg" name="MET_IMAGEN" id="imagen">
+                        <img src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" class="rounded mx-auto d-block">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" id="btnAgregar">Agregar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -440,7 +476,7 @@ include_once "./vistas/administrador/component/header.php";
 
                 $(".tbody_cursos").append(`
                 <tr>
-                    <td>${valores.CURS_ID}</td>
+                    <td>${idx+1}</td>
                     <td>
                         <a><img src="${url + valores.CURS_IMAGEN}" class="avatar" alt=""> ${valores.CURS_NOMBRE}</a>
                     </td>
@@ -502,6 +538,26 @@ include_once "./vistas/administrador/component/header.php";
         });
 
 
+    }
+    function eliminar(id) {
+        $.ajax({
+            url: url + 'admin/curso/delete/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                location.href = url + "admin/curso";
+            },
+            complete: function(xhr, status) {
+                if (status == "success") {
+                    Swal.fire(
+                        'Eliminado',
+                        'Correctamente',
+                        'info'
+                    )
+                    location.href = url + "admin/curso";
+                }
+            },
+        })
     }
 
     function validarEstado(estado) {

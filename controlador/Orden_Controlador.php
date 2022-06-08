@@ -56,4 +56,19 @@ class Orden
     {
         include_once "./vistas/cliente/curso/Categoria.php";
     }
+    // public static function exportar()
+    // {
+    //     $orden = Orden_Modelo::get_estado();
+    //     include_once("./excel/confirmarVentasExcel.php");
+    // }
+    public static function exportar($url)
+    {
+        if ($url[2] == "ventas") {
+            $ventas = Orden_Modelo::get_estado_approval();
+        } else {
+            $ventas = Orden_Modelo::get_estado();
+        }
+        include_once("./excel/ventasExcel.php");
+    }
+    
 }

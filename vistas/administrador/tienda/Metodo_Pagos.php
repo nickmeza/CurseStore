@@ -358,7 +358,7 @@ include_once "./vistas/administrador/component/header.php";
             </div>
             <form id="form_editar_metodo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                <div class="form-group" style="display: none;">
+                    <div class="form-group" style="display: none;">
                         <label for="name" class="col-form-label">ID</label>
                         <input type="text" class="form-control" name="MET_ID" id="edit_id">
                     </div>
@@ -391,6 +391,8 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
+    let cont = 1
+
     $(document).on("change", ".inputimg", function() {
         console.log("se ha cambiado");
         console.log(this.files['0']);
@@ -420,7 +422,7 @@ include_once "./vistas/administrador/component/header.php";
             json.map((valores, idx) => {
                 $(".tbody__categoria").append(`
                 <tr>
-                    <td>${valores.MET_ID}</td>
+                    <td>${cont}</td>
                     <td>
                         <a><img src= "${url + valores.MET_IMAGEN}" class="avatar" alt=""></a>
                     </td>
@@ -433,6 +435,7 @@ include_once "./vistas/administrador/component/header.php";
                     </td>
                 </tr>
                 `)
+                cont++
             })
             console.log(json)
             curseCategoria = document.getElementsByClassName("navigation__categoria")
@@ -440,7 +443,7 @@ include_once "./vistas/administrador/component/header.php";
     })
 
     $("#form_agregar_metodo").submit(function(event) {
-        jQuery('#btnAgregar').attr("disabled","disabled");
+        jQuery('#btnAgregar').attr("disabled", "disabled");
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
@@ -471,10 +474,10 @@ include_once "./vistas/administrador/component/header.php";
             complete: function(xhr, status) {
                 if (status == "success") {
                     Swal.fire(
-                'Eliminado',
-                'Correctamente',
-                'info'
-            )
+                        'Eliminado',
+                        'Correctamente',
+                        'info'
+                    )
                     location.href = url + "admin/metodo_pagos";
                 }
             },
