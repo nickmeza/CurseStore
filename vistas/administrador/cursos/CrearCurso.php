@@ -134,11 +134,7 @@ include_once "./vistas/administrador/component/header.php";
         <div class="col-xs-12 ">
             <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">MODULO 1</a>
-                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">MODULO 2</a>
-                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">MODULO 3</a>
-                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">MODULO 4</a>
-                    <a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">+</a>
+                    
                 </div>
             </nav>
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -212,14 +208,59 @@ include_once "./vistas/administrador/component/header.php";
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-    
+    function GetModuloData() {
+
+
+        $.ajax({
+            url: url + 'admin/modulo/admin_modulo_get_by_id/<?php echo $url[3] ?>',
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                console.log(json)
+                json.map((valores, idx) => {
+
+                    $("#nav-tab").append(`
+        
+                 <a class="nav-item nav-link" id="nav-${idx}-tab" data-toggle="tab" href="#nav-${idx}" role="tab" aria-controls="nav-home" aria-selected="true">${valores.MOD_NOMBRE}</a>
+        
+        
+                    `)
+                    $("#nav-tabContent").append(`
+        
+                         <div class="tab-pane fade" id="nav-${idx}" role="tabpanel" aria-labelledby="nav-${idx}-tab">
+                         <div style="justify-content: flex-star ; padding: 10px;">
+                        <h1>${valores.MOD_NOMBRE}</h1>
+                        <p>${valores.MOD_DESCRIPCION}</p>
+                    </div>
+                    <div class="outer">
+                        ${
+                            valores.submodulos.map((submodulitos,idx)=> `<details>
+                            <summary>${submodulitos.SMOD_NOMBRE}</summary>
+                            <div class="faq-content">
+                                <p>${submodulitos.SMOD_DESCRIPCION}</p>
+                            </div>
+                        </details>`)
+                        }
+                    </div>
+                          </div>
+        `)
+                })
+                $("#nav-tab").append('<a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">+</a>')
+                console.log(json)
+                curseCategoria = document.getElementsByClassName("navigation__categoria")
+            }
+        })
+    }
+    GetModuloData()
+
+
     $("#form_crearModulo").submit(function(event) {
         // jQuery('#btnAgregar').attr("disabled", "disabled");
         event.preventDefault();
         console.log(new FormData(this))
         $.ajax({
             type: 'POST',
-            url: url + "admin/modulo/create/<?php echo $url[3]?>",
+            url: url + "admin/modulo/create/<?php echo $url[3] ?>",
             data: new FormData(this),
             contentType: false,
             cache: false,
@@ -231,9 +272,10 @@ include_once "./vistas/administrador/component/header.php";
                     'FUNCION EXITOSA!',
                     'success'
                 )
-                location.href = url + "admin/crear_curso/<?php echo $url[3]?>";
+                location.href = url + "admin/crear_curso/<?php echo $url[3] ?>";
             }
         });
+
     })
 </script>
 <?php
