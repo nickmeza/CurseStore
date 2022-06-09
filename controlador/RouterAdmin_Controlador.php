@@ -45,8 +45,8 @@ class RoutesAdmin
 
         include_once "./vistas/administrador/ventas/Descuento.php";
     }
-    public static function crear_curso()
-    {
+    public static function crear_curso($url)
+    {   
         $dataCategoria = Categoria_Modelo::getAll();
         $dataProfesores = Profesor_Modelo::getProfesorData();
         include_once "./vistas/administrador/cursos/CrearCurso.php";

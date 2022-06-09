@@ -325,6 +325,13 @@ if (isset($ruta_split[1])) {
                             echo "error 404";
                         }
                         break;
+                    case 'modulo':
+                        if (method_exists(new Modulo(), $metodo)) {
+                            Modulo::$metodo($ruta_split);
+                        } else {
+                            echo "error 404";
+                        }
+                        break;
                     default:
                         RoutesAdmin::index();
                         break;

@@ -53,5 +53,17 @@ class Modulo {
         $modulos = Modulo_Modelo::getAll();
         echo json_encode($modulos);
     }
+    public static function create($url)
+    {
+        if ( isset($_REQUEST['MOD_NOMBRE']) && isset($_REQUEST['MOD_DESCRIPCION'])&& isset($url[4]) ) {
+            $modulo["CURS_ID"] = $url[4];
+            $modulo["MOD_NOMBRE"] = $_REQUEST['MOD_NOMBRE'];
+            $modulo["MOD_DESCRIPCION"] = $_REQUEST['MOD_DESCRIPCION'];
+            Modulo_Modelo::insertModulo($modulo);
+            echo "creado correctamente";
+        } else {
+            echo "fallo al crear";
+        }
+    }
     
 }

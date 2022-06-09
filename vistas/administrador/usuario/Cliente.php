@@ -399,7 +399,6 @@ include_once "./vistas/administrador/component/header.php";
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-    var id = 0;
     $.ajax({
         url: url + 'admin/usuario/cliente/getPersonData',
         type: 'GET',
@@ -487,19 +486,14 @@ include_once "./vistas/administrador/component/header.php";
             url: url + 'admin/usuario/cliente/chageEstado/' + id + "/" + estado,
             type: 'GET',
             dataType: 'json',
-            success: function(json) {
-                location.href = url + "admin/usuario/cliente"
-                
-                
-                ;
-                
+            error: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/usuario/cliente";
             },
-            complete: function(xhr, status) {
-                if (status == "success") {
-                    location.href = url + "admin/usuario/cliente";
-                    
-                }
-            },
+            success: function(msg) {
+                console.log(msg)
+                location.href = url + "admin/curso";
+            }
         })
     }
 
