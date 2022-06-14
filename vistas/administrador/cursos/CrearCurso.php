@@ -47,24 +47,7 @@ include_once "./vistas/administrador/component/header.php";
         transition: background 0.20s linear;
     }
 
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-content: space-around;
-        background-color: #ffffff;
-        padding: 10px;
-        border: 2px solid black;
-    }
 
-    .flex-container div {
-        background-color: #EBEBEB;
-        width: 530px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-        border: 2px solid black;
-    }
 
     .outer {
         display: flex;
@@ -79,12 +62,46 @@ include_once "./vistas/administrador/component/header.php";
         text-align: center;
     }
 
+    .izq {
+        text-align: start;
+    }
+
+    .der {
+        text-align: end;
+    }
+
+    .medio {
+        align-items: center;
+    }
+
+    .flex-container {
+        background-color: #D0F1F7;
+        display: flex;
+        flex-direction: row;
+        /* border: 2px solid black; */
+    }
+
+    .flex-container-modulo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .flex-container-modulo2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     .faq-content {
         background-color: #ffffff;
         padding: 5px 20px;
         border-radius: 5px;
     }
+    .container-flex-tabs{
+        display: flex;
+        flex-direction: column;
+    }
+    
 
     summary {
         background-color: #2196f3;
@@ -128,58 +145,76 @@ include_once "./vistas/administrador/component/header.php";
         content: "-";
         right: 25px;
     }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
 </style>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 ">
             <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                    
+
                 </div>
             </nav>
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div style="justify-content: flex-star ; padding: 10px;">
-                        <h1>TITULO DEL MODULO</h1>
-                        <p>1Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.</p>
-                    </div>
-                    <div class="outer">
-                        <details>
-                            <summary>Sub Modulo 1</summary>
-                            <div class="faq-content">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </details>
 
-                        <details>
-                            <summary>Sub Modulo 2</summary>
-                            <div class="faq-content">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>Sub Modulo 3</summary>
-                            <div class="faq-content">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words</p>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>Sub Modulo 4</summary>
-                            <div class="faq-content">
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    2Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    3Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                </div>
-                <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                    4Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                </div>
                 <div class="tab-pane fade " id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
                     <form id="form_crearModulo" method="POST" enctype="multipart/form-data">
                         <div class="content__admin" style="padding: 30px;">
@@ -203,9 +238,193 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-</div>
-</div>
+<!-- AGREGAR VIDEO-->
+<div class="modal fade" id="agregarVideoModal" tabindex="-1" role="dialog" aria-labelledby="agregarVideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarVideoModalLabel">Agregar Video</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_agregarVideo" method="POST" enctype="multipart/form-data">
+                <div class="content__admin ">
+                    <div class="formulario__video">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">id submodulito:</label>
+                                <input type="text" class="form-control" name="SMOD_ID" id="SMOD_ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Descripcion:</label>
+                                <input type="text" class="form-control" name="VI_DESCRIPCION" id="VI_DESCRIPCION">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Url:</label>
+                                <input type="text" class="form-control" name="VI_URL" id="VI_URL">
+                            </div>
+                        </div>
+                    </div>
 
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary ">Agregar</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- AGREGAR SUBMODULO-->
+<div class="modal fade" id="agregarSubModuloModal" tabindex="-1" role="dialog" aria-labelledby="agregarSubModuloModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarSubmodulo">Agregar Submodulo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_agregarSubmodulo" method="POST" enctype="multipart/form-data">
+                <div class="content__admin ">
+                    <div class="formulario__submodulo">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">id modulito:</label>
+                                <input type="text" class="form-control" name="MOD_ID" id="MOD_ID_ADD">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" name="SMOD_NOMBRE" id="SMOD_NOMBRE">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Descripcion:</label>
+                                <input type="text" class="form-control" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary ">Agregar</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- EDITAR MODULO-->
+<div class="modal fade" id="editarModuloModal" tabindex="-1" role="dialog" aria-labelledby="editarModuloModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_editar_modulo" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group" style="display: non">
+                        <label for="name" class="col-form-label" mbr>id:</label>
+                        <input type="text" class="form-control" name="MOD_ID" id="MOD_ID_EDI">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" name="MOD_NOMBRE" id="MOD_NOMBRE">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Descripción:</label>
+                        <input type="text" class="form-control" name="MOD_DESCRIPCION" id="MOD_DESCRIPCION">
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="edit_estado" name="MOD_ESTADO">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- EDITAR SUBMODULO-->
+<div class="modal fade" id="editarSubModuloModal" tabindex="-1" role="dialog" aria-labelledby="editarSubModuloModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_editar_submodulo" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group" style="display: non">
+                        <label for="name" class="col-form-label" mbr>id:</label>
+                        <input type="text" class="form-control" name="SMOD_ID" id="SMOD_ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" name="SMOD_NOMBRE" id="SMOD_NOMBRE">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Descripción:</label>
+                        <input type="text" class="form-control" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION">
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="edit_estado" name="SMOD_ESTADO">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- EDITAR VIDEO-->
+<div class="modal fade" id="editarVideoModal" tabindex="-1" role="dialog" aria-labelledby="editarVideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_editar_video" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group" style="display: non">
+                        <label for="name" class="col-form-label" mbr>id:</label>
+                        <input type="text" class="form-control" name="VID_ID" id="VID_ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" name="VID_NOMBRE" id="VID_NOMBRE">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Descripción:</label>
+                        <input type="text" class="form-control" name="VID_DESCRIPCION" id="VID_DESCRIPCION">
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="edit_estado" name="VID_ESTADO">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     function GetModuloData() {
@@ -220,34 +439,111 @@ include_once "./vistas/administrador/component/header.php";
                 json.map((valores, idx) => {
 
                     $("#nav-tab").append(`
-        
-                 <a class="nav-item nav-link" id="nav-${idx}-tab" data-toggle="tab" href="#nav-${idx}" role="tab" aria-controls="nav-home" aria-selected="true">${valores.MOD_NOMBRE}</a>
-        
-        
+                    
+                    
+                    <a class="nav-item nav-link" id="nav-${idx}-tab" data-toggle="tab" href="#nav-${idx}" role="tab" aria-controls="nav-home" aria-selected="true">${valores.MOD_NOMBRE} </a>
+                        
+                
+                    
                     `)
                     $("#nav-tabContent").append(`
-        
-                         <div class="tab-pane fade" id="nav-${idx}" role="tabpanel" aria-labelledby="nav-${idx}-tab">
-                         <div style="justify-content: flex-star ; padding: 10px;">
-                        <h1>${valores.MOD_NOMBRE}</h1>
-                        <p>${valores.MOD_DESCRIPCION}</p>
+                    
+                    <div class="tab-pane fade" id="nav-${idx}" role="tabpanel" aria-labelledby="nav-${idx}-tab">
+                    <div style="justify-content: flex-star ; padding: 10px;">
+                    <div class="flex-container-modulo">
+                        <div>
+                            <h1>${valores.MOD_NOMBRE}</h1>
+                            <p>${valores.MOD_DESCRIPCION}</p>
+                        </div>
+                        <div class="flex-container-modulo2" >
+                            <div  style="flex-grow:2;">
+                                <a  class="btn btn-primary" id="editarmodulo" data-toggle="modal" data-target="#editarModuloModal"><span>Editar</span></a>
+                                <a  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><span>Eliminar</span></a>
+                            </div>
+                            <div>
+                                <a  class="btn btn-primary" id="agregarsubmodulo" data-toggle="modal" data-target="#agregarSubModuloModal" data-id="${valores.MOD_ID}"><i class="material-icons" >&#xE147;</i> <span>Agregar</span></a>
+                            </div>
+                         </div>
+                    </div>
                     </div>
                     <div class="outer">
-                        ${
-                            valores.submodulos.map((submodulitos,idx)=> `<details>
-                            <summary>${submodulitos.SMOD_NOMBRE}</summary>
+
+                    ${
+                        valores.submodulos.map((submodulitos,idx)=> 
+                        `<details>
+                            <summary>${submodulitos.SMOD_NOMBRE}
+                                <a style="cursor:pointer;" class="settings" id="editarsubmodulo" data-toggle="modal" data-target="#editarSubModuloModal" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a style="cursor:pointer;" class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                            
+                            </summary>
                             <div class="faq-content">
-                                <p>${submodulitos.SMOD_DESCRIPCION}</p>
+                            <p>${submodulitos.SMOD_DESCRIPCION}</p>
+                            
+                            ${
+                                
+                                submodulitos.video.map((videitos,idx)=> `
+                                <div class="flex-container">
+                                    <div style="flex-grow:1;">
+                                        <img src="https://i.blogs.es/1d8f99/youtube/450_1000.jpg" height="82" alt="">
+                                    </div>
+                                    <div style="flex-grow:10;">
+                                        <h3>   ${videitos.VI_DESCRIPCION}</h3>
+                                        <a href='${videitos.VI_URL}'>${videitos.VI_URL}</a>
+                                    </div>
+                                    <div  style="flex-grow:1;">
+                                        <a style="cursor:pointer;" class="settings" onclick="showModal(${valores.CURS_ID});"id="editarvideo" data-toggle="modal" data-target="#editarVideoModal" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a style="cursor:pointer;" class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                    </div>
+                                </div>`
+                                )
+                                
+                            }
+                            <div class="flex-container" Style="margin-top: 20px;">
+                                <div style="flex-grow:1;">
+                                    <img src="https://i.blogs.es/1d8f99/youtube/450_1000.jpg" height="82" alt="">
+                                </div>
+                                <div style="flex-grow:10;">
+                                    <h1>
+                                    <a id="agregarvideo" data-toggle="modal" data-target="#agregarVideoModal" data-id="${submodulitos.SMOD_ID}" style="cursor:pointer;"> Agregar Video</a>
+                                    </h1>
+                                </div>
                             </div>
+                        
                         </details>`)
-                        }
-                    </div>
-                          </div>
+                    }
+                    <details>
+                            <summary>+ Agregar SubModulo</summary>
+                            <form id="form_crearSubModulo" method="POST" enctype="multipart/form-data">
+                                <div class="content__admin faq-content">
+                                    <h2 style="margin-top: 10px;">Crear SubModulo</h2>
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Nombre:</label>
+                                        <input type="text" class="form-control" name="SMOD_NOMBRE" id="SMOD_NOMBRE">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Descripcion:</label>
+                                        <textarea class="form-control" style="height: 100px;" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION"></textarea>
+                                        <input type="text" class="form-control" name="MOD_ID" id="MOD_ID">                               
+                                    </div>
+                                </div>
+                                <div class="centrarrr">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                    </details>
+                    
+
+
+
+                    
+
+
+
+
+
         `)
                 })
                 $("#nav-tab").append('<a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">+</a>')
-                console.log(json)
-                curseCategoria = document.getElementsByClassName("navigation__categoria")
             }
         })
     }
@@ -276,6 +572,64 @@ include_once "./vistas/administrador/component/header.php";
             }
         });
 
+    })
+
+    $("#form_crearSubModulo").submit(function(event) {
+        // jQuery('#btnAgregar').attr("disabled", "disabled");
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/submodulo/create/",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                Swal.fire(
+                    'SUBMODULO AGREADO!',
+                    'FUNCION EXITOSA!',
+                    'success'
+                )
+                location.href = url + "admin/crear_curso/<?php echo $url[3] ?>";
+            }
+        });
+        console.log("paso")
+
+    })
+    $(document).on("click", "#agregarvideo", function () {
+        $("#SMOD_ID").val($(this).data("id"))
+
+    })
+    $(document).on("click", "#agregarsubmodulo", function () {
+        $("#MOD_ID_ADD").val($(this).data("id"))
+        console.log( $(this).data("id"))
+    })
+    $(document).on("click", "#editarmodulo", function () {
+        $.ajax({
+            url: url + 'admin/modulo/getOne/' + $(this).data("id"),
+            type: 'GET',
+            dataType: 'json',
+            success: function(json) {
+                console.log(json)
+                $("#MOD_ID").val($(this).data("id"))
+                $("#MOD_NOMBRE").val($(this).data("id"))
+                $("#MOD_DESCRIPCION").val($(this).data("id"))
+                $("#MOD_ESTADO").val($(this).data("id"))
+            },
+            complete: function(xhr, status) {
+                if (status == "success") {
+                    Swal.fire(
+                        'editar',
+                        'Correctamente',
+                        'info'
+                    )
+                    location.href = url + "admin/curso";
+                }
+            },
+        })
+        console.log( $(this).data("id"))
     })
 </script>
 <?php

@@ -274,7 +274,7 @@ include_once "./vistas/administrador/component/header.php";
                         <h2><b>Cursos</b></h2>
                     </div>
                     <div class="col-xs-7">
-                        <a href="#" class="btn btn-primary"><i class="material-icons" data-toggle="modal" data-target="#exampleModal">&#xE147;</i> <span>Agregar</span></a>
+                        <a  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" >&#xE147;</i> <span>Agregar</span></a>
                         <a href="<?php echo $GLOBALS['BASE_URL'] . "admin/curso/exportar" ?>" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar</span></a>
                     </div>
                 </div>
@@ -309,7 +309,7 @@ include_once "./vistas/administrador/component/header.php";
     </div>
 </div>
 
-<!-- AGREGAR METODOP-->
+<!-- AGREGAR CURSO-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -378,7 +378,7 @@ include_once "./vistas/administrador/component/header.php";
         </div>
     </div>
 </div>
-
+<!-- EDITAR CURSO-->
 <div class="modal fade" id="editCurso" tabindex="-1" role="dialog" aria-labelledby="editTitleModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -623,6 +623,7 @@ include_once "./vistas/administrador/component/header.php";
                     'success'
                 )
                 $("#form_crearCurso").trigger("reset")
+                location.href = url + "admin/curso";
             }
         });
 

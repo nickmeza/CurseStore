@@ -77,6 +77,8 @@ class Modulo
             $submodulos = SubModulo_Modelo::getbyMod($modulito["MOD_ID"]);
             $j = 0;
             foreach ($submodulos as $submodulito) {
+                // $submodulos[$j]["video"] = Video_Modelo::getAllVideoSubmodul($submodulito["SMOD_ID"]);
+                // $j++;
                 $submodulos[$j]["video"] = Video_Modelo::getAllVideoSubmodul($submodulito["SMOD_ID"]);
                 $j++;
             }
