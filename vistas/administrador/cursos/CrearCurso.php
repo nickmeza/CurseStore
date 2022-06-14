@@ -215,24 +215,7 @@ include_once "./vistas/administrador/component/header.php";
             </nav>
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 
-                <div class="tab-pane fade " id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
-                    <form id="form_crearModulo" method="POST" enctype="multipart/form-data">
-                        <div class="content__admin" style="padding: 30px;">
-                            <h2 style="padding: 10px;">Crear Modulo</h2>
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Nombre:</label>
-                                <input type="text" class="form-control" name="MOD_NOMBRE" id="MOD_NOMBRE">
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Descripcion:</label>
-                                <textarea class="form-control" style="height: 100px;" name="MOD_DESCRIPCION" id="MOD_DESCRIPCION"></textarea>
-                            </div>
-                        </div>
-                        <div class="centrarrr">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
+                
             </div>
 
         </div>
@@ -296,11 +279,11 @@ include_once "./vistas/administrador/component/header.php";
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Nombre:</label>
-                                <input type="text" class="form-control" name="SMOD_NOMBRE" id="SMOD_NOMBRE">
+                                <input type="text" class="form-control" name="SMOD_NOMBRE" id="SMOD_NOMBRE_ADD">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Descripcion:</label>
-                                <input type="text" class="form-control" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION">
+                                <input type="text" class="form-control" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION_ADD">
                             </div>
                         </div>
                     </div>
@@ -332,20 +315,20 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="MOD_NOMBRE" id="MOD_NOMBRE">
+                        <input type="text" class="form-control" name="MOD_NOMBRE" id="MOD_NOMBRE_EDI">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Descripción:</label>
-                        <input type="text" class="form-control" name="MOD_DESCRIPCION" id="MOD_DESCRIPCION">
+                        <input type="text" class="form-control" name="MOD_DESCRIPCION" id="MOD_DESCRIPCION_EDI">
                     </div>
                     <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="MOD_ESTADO">
+                        <input type="checkbox" id="MOD_ESTADO_EDI" name="MOD_ESTADO">
                         <span class="slider round"></span>
                     </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button id="BUTON_EDI_MODULO" type="submit" class="btn btn-primary">Editar</button>
                 </div>
             </form>
         </div>
@@ -429,7 +412,8 @@ include_once "./vistas/administrador/component/header.php";
 <script>
     function GetModuloData() {
 
-
+        $("#nav-tab").empty()
+        $("#nav-tabContent").empty()
         $.ajax({
             url: url + 'admin/modulo/admin_modulo_get_by_id/<?php echo $url[3] ?>',
             type: 'GET',
@@ -448,7 +432,7 @@ include_once "./vistas/administrador/component/header.php";
                     `)
                     $("#nav-tabContent").append(`
                     
-                    <div class="tab-pane fade" id="nav-${idx}" role="tabpanel" aria-labelledby="nav-${idx}-tab">
+                    <div class="tab-pane fade ${idx==0?"":"fade"}" id="nav-${idx}" role="tabpanel" aria-labelledby="nav-${idx}-tab">
                     <div style="justify-content: flex-star ; padding: 10px;">
                     <div class="flex-container-modulo">
                         <div>
@@ -457,7 +441,7 @@ include_once "./vistas/administrador/component/header.php";
                         </div>
                         <div class="flex-container-modulo2" >
                             <div  style="flex-grow:2;">
-                                <a  class="btn btn-primary" id="editarmodulo" data-toggle="modal" data-target="#editarModuloModal"><span>Editar</span></a>
+                                <a  class="btn btn-primary" id="editarmodulo" data-toggle="modal" data-target="#editarModuloModal" data-id="${valores.MOD_ID}"><span>Editar</span></a>
                                 <a  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><span>Eliminar</span></a>
                             </div>
                             <div>
@@ -511,46 +495,31 @@ include_once "./vistas/administrador/component/header.php";
                         
                         </details>`)
                     }
-                    <details>
-                            <summary>+ Agregar SubModulo</summary>
-                            <form id="form_crearSubModulo" method="POST" enctype="multipart/form-data">
-                                <div class="content__admin faq-content">
-                                    <h2 style="margin-top: 10px;">Crear SubModulo</h2>
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">Nombre:</label>
-                                        <input type="text" class="form-control" name="SMOD_NOMBRE" id="SMOD_NOMBRE">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">Descripcion:</label>
-                                        <textarea class="form-control" style="height: 100px;" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION"></textarea>
-                                        <input type="text" class="form-control" name="MOD_ID" id="MOD_ID">                               
-                                    </div>
-                                </div>
-                                <div class="centrarrr">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </div>
-                            </form>
-                    </details>
                     
-
-
-
-                    
-
-
-
-
+            
 
         `)
                 })
                 $("#nav-tab").append('<a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">+</a>')
-            }
-        })
-    }
-    GetModuloData()
-
-
-    $("#form_crearModulo").submit(function(event) {
+                $("#nav-tabContent").append(`<div class="tab-pane fade " id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
+                    <form id="form_crearModulo" method="POST" enctype="multipart/form-data">
+                        <div class="content__admin" style="padding: 30px;">
+                            <h2 style="padding: 10px;">Crear Modulo</h2>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" name="MOD_NOMBRE" id="MOD_NOMBRE">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Descripcion:</label>
+                                <textarea class="form-control" style="height: 100px;" name="MOD_DESCRIPCION" id="MOD_DESCRIPCION"></textarea>
+                            </div>
+                        </div>
+                        <div class="centrarrr">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>`)
+                $("#form_crearModulo").submit(function(event) {
         // jQuery('#btnAgregar').attr("disabled", "disabled");
         event.preventDefault();
         console.log(new FormData(this))
@@ -573,6 +542,12 @@ include_once "./vistas/administrador/component/header.php";
         });
 
     })
+                
+            }
+        })
+    }
+    GetModuloData()
+
 
     $("#form_crearSubModulo").submit(function(event) {
         // jQuery('#btnAgregar').attr("disabled", "disabled");
@@ -607,29 +582,50 @@ include_once "./vistas/administrador/component/header.php";
         console.log( $(this).data("id"))
     })
     $(document).on("click", "#editarmodulo", function () {
+        $("#MOD_ID_EDI").val($(this).data("id"))
         $.ajax({
-            url: url + 'admin/modulo/getOne/' + $(this).data("id"),
+            url: url + 'admin/modulo/modulo_get_one/' + $(this).data("id"),
             type: 'GET',
             dataType: 'json',
+            
             success: function(json) {
                 console.log(json)
-                $("#MOD_ID").val($(this).data("id"))
-                $("#MOD_NOMBRE").val($(this).data("id"))
-                $("#MOD_DESCRIPCION").val($(this).data("id"))
-                $("#MOD_ESTADO").val($(this).data("id"))
+                $("#MOD_NOMBRE_EDI").val(json.MOD_NOMBRE)
+                $("#MOD_DESCRIPCION_EDI").val(json.MOD_DESCRIPCION)
+                $("#MOD_ESTADO_EDI").prop("checked",json.MOD_ESTADO=="1")
             },
             complete: function(xhr, status) {
                 if (status == "success") {
-                    Swal.fire(
-                        'editar',
-                        'Correctamente',
-                        'info'
-                    )
-                    location.href = url + "admin/curso";
+                    
                 }
             },
         })
         console.log( $(this).data("id"))
+    })
+    $("#form_editar_modulo").submit(function(event) {
+        event.preventDefault();
+        $("#BUTON_EDI_MODULO").attr("disabled",true)
+        $("#MOD_ESTADO_EDI").val() == "on" ? $("#MOD_ESTADO_EDI").val(1) : $("#MOD_ESTADO_EDI").val(0)
+        const id = $("#MOD_ID_EDI").val()
+        var formdata= new FormData(this)
+        if($("#MOD_ESTADO_EDI").val() == 0){
+            formdata.append("MOD_ESTADO","0")
+        }
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/modulo/modulo_editar/" + id,
+            contentType: false,
+            cache: false,
+            data:formdata,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                GetModuloData()
+                $("#BUTON_EDI_MODULO").attr("disabled",false)
+                $('#editarModuloModal').modal('hide')     
+            }
+        });
+        
     })
 </script>
 <?php

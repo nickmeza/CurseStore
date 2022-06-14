@@ -7,8 +7,8 @@ class Modulo
     {
         $Session = new UsuarioSession();
         if (isset($_SESSION['user'])) {
-            if (isset($args[3])) {
-                Modulo_Modelo::delete($args[3]);
+            if (isset($args[4])) {
+                Modulo_Modelo::delete($args[4]);
                 echo "success";
             }
         }
@@ -28,14 +28,21 @@ class Modulo
     {
         $Session = new UsuarioSession();
         if (isset($_SESSION['user'])) {
-            if (isset($args[3])) {
-                $modulo = Modulo_Modelo::getOne($args[3]);
+            if (isset($args[4])) {
+                $modulo = Modulo_Modelo::getOne($args[4]);
                 $bloque_arr = array(
                     'idelemento' => $modulo['idelemento'],
                     'nombre' => $modulo['nombre'],
                 );
                 echo json_encode($bloque_arr);
             }
+        }
+    }
+    public static function modulo_get_one($args = array())
+    {
+        if (isset($args[4])) {
+            $modulo = Modulo_Modelo::getOne($args[4]);
+            echo json_encode($modulo);
         }
     }
     public static function admin_modulo_editar($args = array())
@@ -50,6 +57,20 @@ class Modulo
             }
         } else {
             echo "error";
+        }
+    }
+    public static function modulo_editar($args = array())
+    {
+        if (isset($_REQUEST['MOD_NOMBRE']) && isset($_REQUEST['MOD_DESCRIPCION']) && isset($_REQUEST['MOD_ESTADO']) && isset($_REQUEST['MOD_ID'])) {
+
+            $modulo["MOD_NOMBRE"] = $_REQUEST['MOD_NOMBRE'];
+            $modulo["MOD_DESCRIPCION"] = $_REQUEST['MOD_DESCRIPCION'];
+            $modulo["MOD_ESTADO"] = $_REQUEST['MOD_ESTADO'];
+            $id=$_REQUEST['MOD_ID'];
+            Modulo_Modelo::updateModulo($modulo,$id);
+            echo "success";
+        } else {
+            echo "not found";
         }
     }
     public static function admin_modulo_get_all()
@@ -82,7 +103,7 @@ class Modulo
                 $submodulos[$j]["video"] = Video_Modelo::getAllVideoSubmodul($submodulito["SMOD_ID"]);
                 $j++;
             }
-            $modulos[$i]["submodulos"]=$submodulos ;
+            $modulos[$i]["submodulos"] = $submodulos;
             $i++;
         }
         echo json_encode($modulos);
