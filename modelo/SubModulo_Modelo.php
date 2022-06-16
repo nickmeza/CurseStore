@@ -13,7 +13,7 @@ class SubModulo_Modelo{
         Database::queryChange("INSERT INTO submodulo (MOD_ID, SMOD_NOMBRE,SMOD_DESCRIPCION,SMOD_ESTADO) VALUES (?, ?, ?, ?);",array($submodulo["MOD_ID"],$submodulo["SMOD_NOMBRE"],$submodulo["SMOD_DESCRIPCION"],1));
     }
     public static function updateSubmodulo($submodulo,$id){
-        Database::queryChange("UPDATE submodulo SET MOD_ID=?, SMOD_NOMBRE=?, SMOD_DESCRIPCION=?, SMOD_ESTADO=? WHERE  SMOD_ID=?;",array(array($submodulo["MOD_ID"],$submodulo["SMOD_NOMBRE"],$submodulo["SMOD_DESCRIPCION"],$submodulo["SMOD_ESTADO"],$id)));
+        Database::queryChange("UPDATE submodulo SET SMOD_NOMBRE=?, SMOD_DESCRIPCION=?, SMOD_ESTADO=? WHERE  SMOD_ID=?;",array($submodulo["SMOD_NOMBRE"],$submodulo["SMOD_DESCRIPCION"],$submodulo["SMOD_ESTADO"],$id));
     }
     public static function delete($id){
         Database::queryChange("DELETE FROM submodulo WHERE  SMOD_ID=?;",array($id));

@@ -237,15 +237,19 @@ include_once "./vistas/administrador/component/header.php";
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="name" class="col-form-label">id submodulito:</label>
-                                <input type="text" class="form-control" name="SMOD_ID" id="SMOD_ID">
+                                <input type="text" class="form-control" name="SMOD_ID" id="SMOD_ID_ADD">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" name="VI_NOMBRE" id="VI_NOMBRE_ADD">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Descripcion:</label>
-                                <input type="text" class="form-control" name="VI_DESCRIPCION" id="VI_DESCRIPCION">
+                                <input type="text" class="form-control" name="VI_DESCRIPCION" id="VI_DESCRIPCION_ADD">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Url:</label>
-                                <input type="text" class="form-control" name="VI_URL" id="VI_URL">
+                                <input type="text" class="form-control" name="VI_URL" id="VI_URL_ADD">
                             </div>
                         </div>
                     </div>
@@ -260,7 +264,7 @@ include_once "./vistas/administrador/component/header.php";
     </div>
 </div>
 <!-- AGREGAR SUBMODULO-->
-<div class="modal fade" id="agregarSubModuloModal" tabindex="-1" role="dialog" aria-labelledby="agregarSubModuloModalLabel" aria-hidden="true">
+<div class="modal fade" id="agregarSubModuloModal"  tabindex="-1" role="dialog" aria-labelledby="crearSubModuloModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -269,7 +273,7 @@ include_once "./vistas/administrador/component/header.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_agregarSubmodulo" method="POST" enctype="multipart/form-data">
+            <form id="form_crear_submodulo" method="POST" enctype="multipart/form-data">
                 <div class="content__admin ">
                     <div class="formulario__submodulo">
                         <div class="modal-body">
@@ -310,7 +314,7 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_editar_modulo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: non">
-                        <label for="name" class="col-form-label" mbr>id:</label>
+                        <label for="name" class="col-form-label" >id:</label>
                         <input type="text" class="form-control" name="MOD_ID" id="MOD_ID_EDI">
                     </div>
                     <div class="form-group">
@@ -347,7 +351,7 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_editar_submodulo" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: non">
-                        <label for="name" class="col-form-label" mbr>id:</label>
+                        <label for="name" class="col-form-label" >id:</label>
                         <input type="text" class="form-control" name="SMOD_ID" id="SMOD_ID">
                     </div>
                     <div class="form-group">
@@ -359,13 +363,13 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="SMOD_DESCRIPCION" id="SMOD_DESCRIPCION">
                     </div>
                     <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="SMOD_ESTADO">
+                        <input type="checkbox" id="SMOD_ESTADO" name="SMOD_ESTADO">
                         <span class="slider round"></span>
                     </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button type="submit" class="btn btn-primary" id="BUTON_EDI_SUBMODULO">Editar</button>
                 </div>
             </form>
         </div>
@@ -384,25 +388,29 @@ include_once "./vistas/administrador/component/header.php";
             <form id="form_editar_video" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group" style="display: non">
-                        <label for="name" class="col-form-label" mbr>id:</label>
-                        <input type="text" class="form-control" name="VID_ID" id="VID_ID">
+                        <label for="name" class="col-form-label">id:</label>
+                        <input type="text" class="form-control" name="VI_ID" id="VI_ID">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="VID_NOMBRE" id="VID_NOMBRE">
+                        <input type="text" class="form-control" name="VI_NOMBRE" id="VI_NOMBRE">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Descripción:</label>
-                        <input type="text" class="form-control" name="VID_DESCRIPCION" id="VID_DESCRIPCION">
+                        <input type="text" class="form-control" name="VI_DESCRIPCION" id="VI_DESCRIPCION">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Url:</label>
+                        <input type="text" class="form-control" name="VI_URL" id="VI_URL">
                     </div>
                     <label class="switch">
-                        <input type="checkbox" id="edit_estado" name="VID_ESTADO">
+                        <input type="checkbox" id="VI_ESTADO" name="VI_ESTADO">
                         <span class="slider round"></span>
                     </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button type="submit" class="btn btn-primary" id="BUTON_EDI_VIDEO">Editar</button>
                 </div>
             </form>
         </div>
@@ -456,7 +464,7 @@ include_once "./vistas/administrador/component/header.php";
                         valores.submodulos.map((submodulitos,idx)=> 
                         `<details>
                             <summary>${submodulitos.SMOD_NOMBRE}
-                                <a style="cursor:pointer;" class="settings" id="editarsubmodulo" data-toggle="modal" data-target="#editarSubModuloModal" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a style="cursor:pointer;" class="settings" id="editarsubmodulo" data-toggle="modal" data-target="#editarSubModuloModal" data-id="${submodulitos.SMOD_ID}" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <a style="cursor:pointer;" class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                             
                             </summary>
@@ -468,15 +476,16 @@ include_once "./vistas/administrador/component/header.php";
                                 submodulitos.video.map((videitos,idx)=> `
                                 <div class="flex-container">
                                     <div style="flex-grow:1;">
-                                        <img src="https://i.blogs.es/1d8f99/youtube/450_1000.jpg" height="82" alt="">
+                                        <img src="https://i.blogs.es/1d8f99/youtube/450_1000.jpg" height="86" alt="">
                                     </div>
                                     <div style="flex-grow:10;">
-                                        <h3>   ${videitos.VI_DESCRIPCION}</h3>
-                                        <a href='${videitos.VI_URL}'>${videitos.VI_URL}</a>
+                                        <h4>   ${videitos.VI_NOMBRE} </h4>
+                                        <h5>   ${videitos.VI_DESCRIPCION}</h5>
+                                        <h6> <a href='${videitos.VI_URL}'>${videitos.VI_URL}</a> </h6>
                                     </div>
                                     <div  style="flex-grow:1;">
-                                        <a style="cursor:pointer;" class="settings" onclick="showModal(${valores.CURS_ID});"id="editarvideo" data-toggle="modal" data-target="#editarVideoModal" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a style="cursor:pointer;" class="delete" onclick="eliminar(${valores.CURS_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                        <a style="cursor:pointer;" class="settings" id="editarvideo" data-toggle="modal" data-target="#editarVideoModal" data-id="${videitos["0"]}" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a style="cursor:pointer;" class="delete" onclick="eliminar(${videitos.VI_ID});" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                                     </div>
                                 </div>`
                                 )
@@ -500,6 +509,9 @@ include_once "./vistas/administrador/component/header.php";
 
         `)
                 })
+                $(document).on("click", "#agregarvideo", function () {
+        $("#SMOD_ID_ADD").val($(this).data("id"))
+    })
                 $("#nav-tab").append('<a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">+</a>')
                 $("#nav-tabContent").append(`<div class="tab-pane fade " id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
                     <form id="form_crearModulo" method="POST" enctype="multipart/form-data">
@@ -573,10 +585,7 @@ include_once "./vistas/administrador/component/header.php";
         console.log("paso")
 
     })
-    $(document).on("click", "#agregarvideo", function () {
-        $("#SMOD_ID").val($(this).data("id"))
-
-    })
+    
     $(document).on("click", "#agregarsubmodulo", function () {
         $("#MOD_ID_ADD").val($(this).data("id"))
         console.log( $(this).data("id"))
@@ -626,6 +635,149 @@ include_once "./vistas/administrador/component/header.php";
             }
         });
         
+    })
+    $(document).on("click", "#editarsubmodulo", function () {
+        $("#SMOD_ID").val($(this).data("id"))
+        $.ajax({
+            url: url + 'admin/submodulo/submodulo_get_one/' + $(this).data("id"),
+            type: 'GET',
+            dataType: 'json',
+            
+            success: function(json) {
+                console.log(json)
+                $("#SMOD_NOMBRE").val(json.SMOD_NOMBRE)
+                $("#SMOD_DESCRIPCION").val(json.SMOD_DESCRIPCION)
+                $("#SMOD_ESTADO").prop("checked",json.SMOD_ESTADO=="1")
+                console.log(json)
+            },
+            complete: function(xhr, status) {
+                if (status == "success") {
+                    
+                }
+            },
+        })
+        console.log( $(this).data("id"))
+    })
+    $("#form_editar_submodulo").submit(function(event) {
+        event.preventDefault();
+        $("#BUTON_EDI_SUBMODULO").attr("disabled",true)
+        $("#SMOD_ESTADO").val() == "on" ? $("#SMOD_ESTADO").val(1) : $("#SMOD_ESTADO").val(0)
+        const id = $("#SMOD_ID").val()
+        var formdata= new FormData(this)
+        if($("#SMOD_ESTADO").val() == 0){
+            formdata.append("SMOD_ESTADO","0")
+        }
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/submodulo/submodulo_editar/" + id,
+            contentType: false,
+            cache: false,
+            data:formdata,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                GetModuloData()
+                $("#BUTON_EDI_SUBMODULO").attr("disabled",false)
+                $('#editarSubModuloModal').modal('hide')     
+            }
+        });
+        
+    })
+    $(document).on("click", "#editarvideo", function () {
+        $("#VI_ID").val($(this).data("id"))
+        $.ajax({
+            url: url + 'admin/video/video_get_one/' + $(this).data("id"),
+            type: 'GET',
+            dataType: 'json',
+            
+            success: function(json) {
+                console.log(json)
+                $("#VI_NOMBRE").val(json.VI_NOMBRE)
+                $("#VI_DESCRIPCION").val(json.VI_DESCRIPCION)
+                $("#VI_URL").val(json.VI_URL)
+                $("#VI_ESTADO").prop("checked",json.VI_ESTADO=="1")
+                console.log(json)
+            },
+            complete: function(xhr, status) {
+                if (status == "success") {
+                    
+                }
+            },
+        })
+        console.log( $(this).data("id"))
+        console.log($("#VI_ID"))
+    })
+    $("#form_editar_video").submit(function(event) {
+        event.preventDefault();
+        $("#BUTON_EDI_VIDEO").attr("disabled",true)
+        // $("#VI_ESTADO").val() == "on" ? $("#VI_ESTADO").val(1) : $("#VI_ESTADO").val(0)
+        const id = $("#VI_ID").val()
+        var formdata= new FormData(this)
+        formdata.set("VI_ESTADO", $("#VI_ESTADO").val() == "on" ?"1":"0")
+        console.log($("#VI_ESTADO").val())
+        // $.ajax({
+        //     type: 'POST',
+        //     url: url + "admin/video/video_editar/" + id,
+        //     contentType: false,
+        //     cache: false,
+        //     data:formdata,
+        //     processData: false,
+        //     success: function(msg) {
+        //         console.log(msg)
+        //         GetModuloData()
+        //         $("#BUTON_EDI_VIDEO").attr("disabled",false)
+        //         $('#editarVideoModal').modal('hide')     
+        //     }
+        // });
+        
+    })
+    $("#form_crear_submodulo").submit(function(event) {
+        // jQuery('#btnAgregar').attr("disabled", "disabled");
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/submodulo/create/",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                Swal.fire(
+                    'SUBMODULO AGREADO!',
+                    'FUNCION EXITOSA!',
+                    'success'
+                )
+                location.href = url + "admin/crear_curso/<?php echo $url[3] ?>";
+            }
+        });
+        console.log("paso")
+
+    })
+    $("#form_agregarVideo").submit(function(event) {
+        // jQuery('#btnAgregar').attr("disabled", "disabled");
+        event.preventDefault();
+        console.log(new FormData(this))
+        $.ajax({
+            type: 'POST',
+            url: url + "admin/video/create/",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(msg) {
+                console.log(msg)
+                Swal.fire(
+                    'VIDEO AGREADO!',
+                    'FUNCION EXITOSA!',
+                    'success'
+                )
+                location.href = url + "admin/crear_curso/<?php echo $url[3] ?>";
+            }
+        });
+        console.log("paso")
+
     })
 </script>
 <?php

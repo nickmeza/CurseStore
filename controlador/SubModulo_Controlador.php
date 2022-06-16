@@ -21,4 +21,25 @@ class SubModulo
             echo json_encode($mensaje);
         }
     }
+    public static function submodulo_get_one($args = array())
+    {
+        if (isset($args[4])) {
+            $submodulo = SubModulo_Modelo::getOne($args[4]);
+            echo json_encode($submodulo);
+        }
+    }
+    public static function submodulo_editar($args = array())
+    {
+        if (isset($_REQUEST['SMOD_NOMBRE']) && isset($_REQUEST['SMOD_DESCRIPCION']) && isset($_REQUEST['SMOD_ESTADO']) && isset($_REQUEST['SMOD_ID'])) {
+
+            $modulo["SMOD_NOMBRE"] = $_REQUEST['SMOD_NOMBRE'];
+            $modulo["SMOD_DESCRIPCION"] = $_REQUEST['SMOD_DESCRIPCION'];
+            $modulo["SMOD_ESTADO"] = $_REQUEST['SMOD_ESTADO'];
+            $id=$_REQUEST['SMOD_ID'];
+            SubModulo_Modelo::updateSubModulo($modulo,$id);
+            echo "success";
+        } else {
+            echo "not found";
+        }
+    }
 }

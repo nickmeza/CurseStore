@@ -339,6 +339,13 @@ if (isset($ruta_split[1])) {
                             echo "error 404";
                         }
                         break;
+                    case 'video':
+                        if (method_exists(new Video(), $metodo)) {
+                            Video::$metodo($ruta_split);
+                        } else {
+                            echo "error 404";
+                        }
+                        break;
                     default:
                         RoutesAdmin::index();
                         break;
