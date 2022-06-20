@@ -1,5 +1,6 @@
 <?php
 require_once("./direccion.php");
+require_once("./Enviar_Correo.php");
 require_once("./conexion/conexion.php");
 
 require_once("./modelo/AccesoRol_Modelo.php");
@@ -205,7 +206,6 @@ if (isset($ruta_split[1])) {
                         echo "error 404";
                     }
                     break;
-
                 default:
                     Routes::index();
                     echo "error 404";

@@ -353,7 +353,7 @@
             box-sizing: border-box;
         }
     </style>
-    
+
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
@@ -373,11 +373,11 @@
             </div>
             <h4 style="color: #0d0d0d;">Se le enviara un correo con su contraseña a su correo electronio</h4>
             <!-- Login Form -->
-            <form id="form_login">
+            <form id="form_remindpassword">
                 <i class="fa fa-user"></i>
                 <i class="fa fa-lock"></i>
-                
-                <input type="text" id="login" class="fadeIn second" name="usuario" placeholder="Correo Electrónico">
+
+                <input type="text" id="correo" class="fadeIn second" name="usuario" placeholder="Correo Electrónico">
                 <input type="submit" class="fadeIn fourth" value="Enviar">
             </form>
         </div>
@@ -390,22 +390,19 @@
 
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
     <script>
-        $("#form_login").submit(function(event) {
+        $("#form_remindpassword").submit(function(event) {
             event.preventDefault();
-            console.log(new FormData(this))
+            var correo = $("#correo").val()
             $.ajax({
-                type: 'POST',
-                url: url + "admin/usuario/cliente/GoInside",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
+                url: url + "admin/correos/getByCorreo/" + correo,
+                type: 'GET',
+                dataType: 'json',
                 success: function(msg) {
                     console.log(msg)
                     if (JSON.parse(msg).status == 404) {
-                        $(".mensaje__error").css("display", "block")
+                        //$(".mensaje__error").css("display", "block")
                     } else {
-                        location.href = url;
+                        //location.href = url;
                     }
 
                 }
