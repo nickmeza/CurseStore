@@ -382,7 +382,7 @@
             </form>
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                <a class="underlineHover" href="<?php echo $GLOBALS['BASE_URL'] ?>remind_password"> ¿Has olvidado la contraseña?</a>
+                <a class="underlineHover" href="http://tiendacursos.test/remind_password"> ¿Has olvidado la contraseña?</a>
             </div>
         </div>
     </div>

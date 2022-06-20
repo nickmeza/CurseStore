@@ -353,11 +353,11 @@
             box-sizing: border-box;
         }
     </style>
+    
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active"> Iniciar Sesión</h2>
-            <h2 onclick="window.location='<?php echo $GLOBALS['BASE_URL'] ?>registrar'" class="inactive underlineHover">Registrarse </h2>
+            <h2 style="color: #0d0d0d; border-bottom: 2px solid #5fbae9;"> Recuperar Contraseña</h2>
 
             <!-- Icon -->
 
@@ -369,16 +369,16 @@
                     <p>Usuario o Contraseña Incorrectas </p>
                     <p>Asegúrese de que este Habilitado esta Cuenta</p>
                 </div>
-                <img src="https://www.pngitem.com/pimgs/m/80-800194_transparent-users-icon-png-flat-user-icon-png.png" height="250px" id="icon" alt="User Icon" />
-            </div>
 
+            </div>
+            <h4 style="color: #0d0d0d;">Se le enviara un correo con su contraseña a su correo electronio</h4>
             <!-- Login Form -->
             <form id="form_login">
                 <i class="fa fa-user"></i>
                 <i class="fa fa-lock"></i>
+                
                 <input type="text" id="login" class="fadeIn second" name="usuario" placeholder="Correo Electrónico">
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
-                <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
+                <input type="submit" class="fadeIn fourth" value="Enviar">
             </form>
         </div>
     </div>
