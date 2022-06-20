@@ -12,6 +12,10 @@ class Routes
     {
         include_once "./vistas/cliente/views/Login.php";
     }
+    public static function remind_password()
+    {
+        include_once "./vistas/cliente/views/remind_password.php";
+    }
     public static function registrar()
     {
         $Session = new UsuarioSession();

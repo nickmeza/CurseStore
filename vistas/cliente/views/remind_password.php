@@ -380,11 +380,11 @@
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
                 <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
             </form>
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <a class="underlineHover" href="<?php echo $GLOBALS['BASE_URL'] ?>remind_password"> ¿Has olvidado la contraseña?</a>
-            </div>
         </div>
+    </div>
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+        <a class="underlineHover" href="#"> ¿Has olvidado la contraseña?</a>
     </div>
 
 

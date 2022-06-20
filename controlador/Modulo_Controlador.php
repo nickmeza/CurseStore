@@ -108,4 +108,15 @@ class Modulo
         }
         echo json_encode($modulos);
     }
+    public static function delete($id)
+    {
+        if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
+            $borrado = Modulo_Modelo::delete($id[4]);
+            $mensaje["mensaje"] = "correcto";
+            $mensaje["statud"] = "200";
+            echo json_encode($mensaje);
+        } else {
+            echo "fallo al borrar";
+        }
+    }
 }

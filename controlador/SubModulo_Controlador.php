@@ -35,11 +35,22 @@ class SubModulo
             $modulo["SMOD_NOMBRE"] = $_REQUEST['SMOD_NOMBRE'];
             $modulo["SMOD_DESCRIPCION"] = $_REQUEST['SMOD_DESCRIPCION'];
             $modulo["SMOD_ESTADO"] = $_REQUEST['SMOD_ESTADO'];
-            $id=$_REQUEST['SMOD_ID'];
-            SubModulo_Modelo::updateSubModulo($modulo,$id);
+            $id = $_REQUEST['SMOD_ID'];
+            SubModulo_Modelo::updateSubModulo($modulo, $id);
             echo "success";
         } else {
             echo "not found";
+        }
+    }
+    public static function delete($id)
+    {
+        if (isset($id) && isset($id[4]) && strlen($id[4]) > 0) {
+            $borrado = SubModulo_Modelo::delete($id[4]);
+            $mensaje["mensaje"] = "correcto";
+            $mensaje["statud"] = "200";
+            echo json_encode($mensaje);
+        } else {
+            echo "fallo al borrar";
         }
     }
 }
