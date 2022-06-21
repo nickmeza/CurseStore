@@ -486,7 +486,7 @@ include_once "./vistas/administrador/component/header.php";
             success: function(json) {
                 $("#edit_name").val(json.CAT_NAME)
                 $("#edit_description").val(json.CAT_DESCRIPCION)
-                $("#edit_imagenes").attr("src", "http://tiendacursos.test/" + json.CAT_IMAGEN)
+                $("#edit_imagenes").attr("src", "<?php echo $GLOBALS['BASE_URL'] ?>" + json.CAT_IMAGEN)
                 $("#edit_id").val(json.CAT_ID)
                 json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },

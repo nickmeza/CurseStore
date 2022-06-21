@@ -493,7 +493,7 @@ include_once "./vistas/administrador/component/header.php";
             success: function(json) {
                 $("#edit_name").val(json.MET_NOMBRE)
                 $("#edit_datos").val(json.MET_DATOS)
-                $("#edit_imagenes").attr("src", "http://tiendacursos.test/" + json.MET_IMAGEN)
+                $("#edit_imagenes").attr("src", "<?php  echo $GLOBALS['BASE_URL']   ?>" + json.MET_IMAGEN)
                 $("#edit_id").val(json.MET_ID)
                 json.MET_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },

@@ -73,15 +73,15 @@ class Routes
                     $modulo = $data[3];
                     include_once "./vistas/cliente/curso/Progreso.php";
                 } else {
-                    header("Location: http://tiendacursos.test/curso/detalle/$data[3]");
+                    header("Location:" . $GLOBALS['BASE_URL'] . "curso/detalle/$data[3]");
                 }
             } else {
 
-                header("Location: http://tiendacursos.test/curso/detalle/$data[3]");
+                header("Location:" . $GLOBALS['BASE_URL'] . "curso/detalle/$data[3]");
                 die();
             }
         } else {
-            header("Location: http://tiendacursos.test/login");
+            header("Location:" . $GLOBALS['BASE_URL'] . "login");
         }
     }
     public static function perfil()
@@ -104,7 +104,7 @@ class Routes
         if (isset($_SESSION['user'])) {
             $idUsuario = $_SESSION['escogido'][0]['USR_ID'];
         } else {
-            header("Location: http://tiendacursos.test/login");
+            header("Location:" . $GLOBALS['BASE_URL'] . "login");
         }
         include_once "./vistas/cliente/perfil/Aprendizaje.php";
     }
@@ -128,7 +128,7 @@ class Routes
             var_dump($idclient);
             include_once "./vistas/cliente/pago/MetodoPago.php";
         } else {
-            header("Location: http://tiendacursos.test/login");
+            header("Location:" . $GLOBALS['BASE_URL'] . "login");
         }
     }
 

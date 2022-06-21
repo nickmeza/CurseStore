@@ -219,9 +219,9 @@
               <h3>Enlaces directos</h3>
             </div>
             <ul>
-              <li><a href="http://tiendacursos.test/">Inicio</a></li>
-              <li><a href="http://tiendacursos.test/nosotros">Nosotros</a></li>
-              <li><a href="http://tiendacursos.test/nosotros">Contáctanos</a></li>
+              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>">Inicio</a></li>
+              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>nosotros">Nosotros</a></li>
+              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>nosotros">Contáctanos</a></li>
 
             </ul>
           </div>
@@ -256,11 +256,11 @@
         <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
           <div class="footer-menu">
             <ul>
-              <li><a href="http://tiendacursos.test/">Inicio</a></li>
+              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>">Inicio</a></li>
               <li><a href="#">Términos</a></li>
               <li><a href="#">Privacidad</a></li>
               <li><a href="#">Política</a></li>
-              <li><a href="http://tiendacursos.test/nosotros">Contáctanos</a></li>
+              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>nosotros">Contáctanos</a></li>
             </ul>
           </div>
         </div>

@@ -479,7 +479,7 @@ include_once "./vistas/administrador/component/header.php";
             dataType: 'json',
             success: function(json) {
                 $("#edit_name").val(json.BANNER_TITULO)
-                $("#edit_banner").attr("src","http://tiendacursos.test/"+json.BANNER_IMAGEN)
+                $("#edit_banner").attr("src","<?php  echo $GLOBALS['BASE_URL']   ?>"+json.BANNER_IMAGEN)
                 $("#edit_id").val(json.BANNER_ID)
                 json.BANNER_STATUS == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
             },

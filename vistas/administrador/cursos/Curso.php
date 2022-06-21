@@ -396,19 +396,19 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="CURS_NOMBRE" id="CURS_NOMBRE">
+                        <input type="text" class="form-control" name="CURS_NOMBRE" id="edit_CURS_NOMBRE">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Descripción:</label>
-                        <input type="text" class="form-control" name="CURS_DESCRIPCION" id="CURS_DESCRIPCION">
+                        <input type="text" class="form-control" name="CURS_DESCRIPCION" id="edit_CURS_DESCRIPCION">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Precio:</label>
-                        <input type="number" class="form-control" name="CURS_PRECIO" id="CURS_PRECIO">
+                        <input type="number" class="form-control" name="CURS_PRECIO" id="edit_CURS_PRECIO">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Categoria:</label>
-                        <select name="CAT_ID" class="form-control" id="CAT_ID">
+                        <select name="CAT_ID" class="form-control" id="edit_CAT_ID">
                             <?php foreach ($dataCategoria as $categoria) {  ?>
                                 <option value="<?php echo $categoria['CAT_ID'] ?>">
                                     <?php echo $categoria['CAT_NAME'] ?>
@@ -419,7 +419,7 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Profesor:</label>
-                        <select name="PROF_ID" class="form-control" id="PROF_ID">
+                        <select name="PROF_ID" class="form-control" id="edit_PROF_ID">
                             <?php foreach ($dataProfesores as $profesores) { ?>
                                 <option value="<?php echo $profesores['PROF_ID']; ?>">
                                     <?php echo $profesores['PER_NOMBRE'] ?>
@@ -431,11 +431,11 @@ include_once "./vistas/administrador/component/header.php";
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Imagen:</label>
-                        <input type="file" class="form-control" name="CURS_IMAGEN" id="CURS_IMAGEN">
+                        <input type="file" class="form-control" name="CURS_IMAGEN" id="edit_CURS_IMAGEN">
                     </div>
                     <div class="form-group">
                         <label for="imagen" class="col-form-label">Video:</label>
-                        <textarea class="form-control" name="CURS_URL_VIDEO" id="CURS_URL_VIDEO"></textarea>
+                        <textarea class="form-control" name="CURS_URL_VIDEO" id="edit_CURS_URL_VIDEO"></textarea>
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="edit_estado" name="CURS_ESTADO">
@@ -486,12 +486,12 @@ include_once "./vistas/administrador/component/header.php";
             dataType: 'json',
             success: function(json) {
                 console.log(json)
-                $('#CURS_NOMBRE').val(json.CURS_NOMBRE)
-                $('#CURS_DESCRIPCION').val(json.CURS_DESCRIPCION)
-                $('#CURS_PRECIO').val(json.CURS_PRECIO)
-                $('#CAT_ID').val(json.CAT_ID)
-                $('#PROF_ID').val(json.PROF_ID)
-                $('#CURS_URL_VIDEO').val(json.CURS_URL_VIDEO)
+                $('#edit_CURS_NOMBRE').val(json.CURS_NOMBRE)
+                $('#edit_CURS_DESCRIPCION').val(json.CURS_DESCRIPCION)
+                $('#edit_CURS_PRECIO').val(json.CURS_PRECIO)
+                $('#edit_CAT_ID').val(json.CAT_ID)
+                $('#edit_PROF_ID').val(json.PROF_ID)
+                $('#edit_CURS_URL_VIDEO').val(json.CURS_URL_VIDEO)
                 $('#edit_estado').val(json.CURS_ESTADO)
                 $('#edit_id').val(json.CURS_ID)
 
