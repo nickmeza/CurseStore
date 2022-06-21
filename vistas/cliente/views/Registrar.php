@@ -402,23 +402,22 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
             <script>
-                    $("#form_registrar").submit(function(event) {
-                        event.preventDefault();
-                        console.log(new FormData(this))
-                        $.ajax({
-                            type: 'POST',
-                            url: url + "admin/usuario/cliente/RegistrarCliente",
-                            data: new FormData(this),
-                            contentType: false,
-                            cache: false,
-                            processData: false,
-                            success: function(msg) {
-                                console.log(msg)
+                $("#form_registrar").submit(function(event) {
+                    event.preventDefault();
+                    console.log(new FormData(this))
+                    $.ajax({
+                        type: 'POST',
+                        url: url + "admin/usuario/cliente/RegistrarCliente",
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(msg) {
+                            console.log(msg)
 
-                                location.href = url;
-                            }
-                        });
-                    })
+                            location.href = url;
+                        }
+                    });
                 })
             </script>
 </body>
