@@ -240,7 +240,7 @@ include_once "./vistas/administrador/component/header.php";
 }
 </style>
 <span class="spinner"></span>
-<div class="container">
+<div class="container" style="margin-top: 2%; margin-bottom: 2%;">
     <div class="row">
         <div class="col-xs-12 ">
             <nav>

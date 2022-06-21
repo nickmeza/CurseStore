@@ -74,36 +74,35 @@ include_once "./vistas/cliente/component/headerPerfil.php";
 
 <br>
 <div class="content__aprendizaje">
-<div class="container">
-        
+    <div class="container">
+
     </div>
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
-    var formdata = new FormData() 
-    formdata.append('usuario',<?php echo $idUsuario?>)
+    var formdata = new FormData()
+    formdata.append('usuario', <?php echo $idUsuario ?>)
     $.ajax({
-            type: 'POST',
-            url: url + "admin/curso/getCursosByidUser",
-            data:formdata, 
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(json) {
-                console.log(JSON.parse(json))
-                JSON.parse(json).map((valores, idx) => {
+        type: 'POST',
+        url: url + "admin/curso/getCursosByidUser",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(json) {
+            console.log(JSON.parse(json))
+            JSON.parse(json).map((valores, idx) => {
                 $(".container").append(`
                     <div class="card">
-                    <img src=${valores.CURS_IMAGEN}">
+                    <center><img src="${url + valores.CURS_IMAGEN}"></center>
                     <h4>${valores.CURS_NOMBRE}</h4>
                     <p>${valores.CURS_DESCRIPCION}</p>
-                    <a href=${url+"curso/progreso/"+valores.CURS_NOMBRE}>Leer mas </a>
+                    <a href=${url+"curso/progreso/"+valores.CURS_NOMBRE}>Leer más</a>
                     </div>
                 `)
             })
-            }
-        });
-
+        }
+    });
 </script>
 <?php
 include_once "./vistas/cliente/component/footerPerfil.php";

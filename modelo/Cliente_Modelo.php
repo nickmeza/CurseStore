@@ -12,8 +12,8 @@ class Cliente_Modelo
     public static function insertCliente($cliente)
     { 
             Database::queryChange(
-                "CALL AB_AGREGARCLIENTE(?, ?, ?, ?, ?);",
-                array($cliente["NOMBRE"], $cliente["APELLIDO"], $cliente["DIRECCION"], $cliente["USUARIO"], $cliente["CONTRASENA"])
+                "CALL AB_AGREGARCLIENTE(?, ?, ?, ?, ?, ?);",
+                array($cliente["NOMBRE"], $cliente["APELLIDO"], $cliente["DIRECCION"], $cliente["USUARIO"], $cliente["CORREO"], $cliente["CONTRASENA"])
             );
         
     }

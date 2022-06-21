@@ -160,9 +160,43 @@
             border-bottom: 2px solid #5fbae9;
         }
 
+<<<<<<< HEAD
         input[type=text]:placeholder {
             color: #cccccc;
         }
+=======
+    input[type=text]:placeholder {
+        color: #cccccc;
+    }
+    input[type=password] {
+        background-color: #f6f6f6;
+        border: none;
+        color: #0d0d0d;
+        padding: 15px 32px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px;
+        width: 85%;
+        border: 2px solid #f6f6f6;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    input[type=password]:focus {
+        background-color: #fff;
+        border-bottom: 2px solid #5fbae9;
+    }
+
+    input[type=password]:placeholder {
+        color: #cccccc;
+    }
+>>>>>>> b82e59a09344d71699491eba7a3d9a5eac52c2f0
 
 
         /* ANIMATIONS */
@@ -324,6 +358,7 @@
             <!-- Icon -->
 
 
+<<<<<<< HEAD
             <!-- Login Form -->
             <form id="form_registrar">
                 <input type="text" id="name" class="fadeIn second" name="NOMBRE" placeholder="Nombre completo">
@@ -344,6 +379,60 @@
                             $('#contrasena').attr('type', 'password');
                         }
                     });
+=======
+    /* OTHERS */
+
+    *:focus {
+        outline: none;
+    }
+
+    #icon {
+        width: 60%;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+</style>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 onclick="window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="inactive underlineHover"> Iniciar Sesión</h2>
+        <h2 class="active">Registrarse </h2>
+
+        <!-- Icon -->
+
+
+        <!-- Login Form -->
+        <form id="form_registrar">
+            <input type="text" id="name" class="fadeIn second" name="NOMBRE" placeholder="Nombre completo">
+            <input type="text" id="apellido" class="fadeIn second" name="APELLIDO" placeholder="Apellido">
+            <input type="text" id="direccion" class="fadeIn second" name="DIRECCION" placeholder="Dirección">
+            <input type="text" id="usuario" class="fadeIn third" name="USUARIO" placeholder="Usuario">
+            <input type="text" id="correo" class="fadeIn third" name="CORREO" placeholder="Correo electronico">
+            <input type="password" id="contrasena" class="fadeIn third" name="CONTRASENA" placeholder=" Contraseña">
+            <input type="submit" class="fadeIn fourth" value="Registrate">
+        </form>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
+        <script>
+            $("#form_registrar").submit(function(event) {
+                event.preventDefault();
+                console.log(new FormData(this))
+                $.ajax({
+                    type: 'POST',
+                    url: url + "admin/usuario/cliente/RegistrarCliente",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(msg) {
+                        console.log(msg)
+
+                        location.href = url;
+                    }
+>>>>>>> b82e59a09344d71699491eba7a3d9a5eac52c2f0
                 });
                 $("#form_registrar").submit(function(event) {
                     event.preventDefault();
