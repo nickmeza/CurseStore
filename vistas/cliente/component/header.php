@@ -5,6 +5,7 @@
     <title>Edugate | Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/icon.png" />
     <!-- LIBRARY FONT-->
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,900,300">
     <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>assets/font/font-icon/font-awesome-4.4.0/css/font-awesome.css">
@@ -61,7 +62,11 @@
 
 <body>
     <!-- HEADER-->
-
+    <style>
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
     <header>
         <div class="logo">
             <img src="https://logodownload.org/wp-content/uploads/2019/07/udemy-logo.png" onclick="window.location.href=url+'views/Inicio.php'">

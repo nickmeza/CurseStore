@@ -1,4 +1,8 @@
 <style>
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+
   ul {
     margin: 0px;
     padding: 0px;
@@ -219,9 +223,9 @@
               <h3>Enlaces directos</h3>
             </div>
             <ul>
-              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>">Inicio</a></li>
-              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>nosotros">Nosotros</a></li>
-              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>nosotros">Contáctanos</a></li>
+              <li><a href="<?php echo $GLOBALS['BASE_URL']   ?>">Inicio</a></li>
+              <li><a href="<?php echo $GLOBALS['BASE_URL']   ?>nosotros">Nosotros</a></li>
+              <li><a href="<?php echo $GLOBALS['BASE_URL']   ?>nosotros">Contáctanos</a></li>
 
             </ul>
           </div>
@@ -256,11 +260,11 @@
         <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
           <div class="footer-menu">
             <ul>
-              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>">Inicio</a></li>
+              <li><a href="<?php echo $GLOBALS['BASE_URL']   ?>">Inicio</a></li>
               <li><a href="#">Términos</a></li>
               <li><a href="#">Privacidad</a></li>
               <li><a href="#">Política</a></li>
-              <li><a href="<?php  echo $GLOBALS['BASE_URL']   ?>nosotros">Contáctanos</a></li>
+              <li><a href="<?php echo $GLOBALS['BASE_URL']   ?>nosotros">Contáctanos</a></li>
             </ul>
           </div>
         </div>
@@ -308,8 +312,8 @@
 <!-- HEADER JS -->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>publico/js/search.js"></script>
 <script>
-  var contador=JSON.parse(localStorage.getItem("idcurso")).length 
-  $('.contador').after("<p> "+contador+" </p>")
+  var contador = JSON.parse(localStorage.getItem("idcurso")).length
+  $('.contador').after("<p> " + contador + " </p>")
 </script>
 </body>
 
