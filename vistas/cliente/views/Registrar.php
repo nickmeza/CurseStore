@@ -160,11 +160,9 @@
             border-bottom: 2px solid #5fbae9;
         }
 
-<<<<<<< HEAD
         input[type=text]:placeholder {
             color: #cccccc;
         }
-=======
     input[type=text]:placeholder {
         color: #cccccc;
     }
@@ -196,7 +194,6 @@
     input[type=password]:placeholder {
         color: #cccccc;
     }
->>>>>>> b82e59a09344d71699491eba7a3d9a5eac52c2f0
 
 
         /* ANIMATIONS */
@@ -358,28 +355,6 @@
             <!-- Icon -->
 
 
-<<<<<<< HEAD
-            <!-- Login Form -->
-            <form id="form_registrar">
-                <input type="text" id="name" class="fadeIn second" name="NOMBRE" placeholder="Nombre completo">
-                <input type="text" id="apellido" class="fadeIn second" name="APELLIDO" placeholder="Apellido">
-                <input type="text" id="direccion" class="fadeIn second" name="DIRECCION" placeholder="Dirección">
-                <input type="text" id="usuario" class="fadeIn third" name="USUARIO" placeholder="Usuario">
-                <input type="password" id="contrasena" class="fadeIn third" name="CONTRASENA" placeholder=" Contraseña">
-                <input type="submit" class="fadeIn fourth" value="Registrate">
-            </form>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $('#contrasena').click(function() {
-                        if ($('#mostrar_contrasena').is(':checked')) {
-                            $('#contrasena').attr('type', 'text');
-                        } else {
-                            $('#contrasena').attr('type', 'password');
-                        }
-                    });
-=======
     /* OTHERS */
 
     *:focus {
@@ -432,7 +407,6 @@
 
                         location.href = url;
                     }
->>>>>>> b82e59a09344d71699491eba7a3d9a5eac52c2f0
                 });
                 $("#form_registrar").submit(function(event) {
                     event.preventDefault();
