@@ -83,7 +83,7 @@ include_once "./vistas/cliente/component/header.php";
   }
 
   .half-input-table td:first-of-type {
-    border-right: 10px solid #4488dd;
+    border-right: 10px solid #3d3d3d;
     width: 50%;
   }
 
@@ -121,7 +121,7 @@ include_once "./vistas/cliente/component/header.php";
     position: absolute;
     right: 0px;
     font-size: 15px;
-    color: #4488dd;
+    color: #3d3d3d;
   }
 
   .order-table td:first-of-type {
@@ -156,7 +156,7 @@ include_once "./vistas/cliente/component/header.php";
 
   .pay-btn {
     border: none;
-    background: #22b877;
+    background: #ea5252;
     line-height: 2em;
     border-radius: 10px;
     font-size: 19px;
@@ -208,7 +208,7 @@ include_once "./vistas/cliente/component/header.php";
   }
 
   .credit-info {
-    background: #4488dd;
+    background: #3d3d3d;
     height: 100%;
     width: 50%;
     color: #eee;
@@ -305,6 +305,59 @@ include_once "./vistas/cliente/component/header.php";
       border-radius: 0px;
     }
   }
+
+  .content-select {
+    max-width: 250px;
+    position: relative;
+  }
+
+  .content-select select {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 7px 10px;
+    height: 42px;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #7b7b7b;
+    font-size: 2em;
+    color: #999;
+    font-family:
+      'Quicksand', sans-serif;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+  }
+
+  .content-select select:hover {
+    background: #f0f0f0;
+  }
+
+  /* 
+Creamos la fecha que aparece a la izquierda del select.
+Realmente este elemento es un cuadrado que sólo tienen
+dos bordes con color y que giramos con transform: rotate(-45deg);
+*/
+  .content-select i {
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 13px);
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-left: 4px solid #2AC176;
+    border-bottom: 4px solid #2AC176;
+    transform: rotate(-45deg);
+    /* Giramos el cuadrado */
+    transition: all 0.25s ease;
+  }
+
+  .content-select:hover i {
+    margin-top: 3px;
+  }
 </style>
 <?php
 $datos = array();
@@ -327,8 +380,8 @@ if (isset($metodo_pago)) {
       <div class='credit-info-content'>
         <table class='half-input-table'>
           <tr>
-            <td>Selecciona el método de pago: </td>
-            <td>
+            <td style="font-size: 1.5rem;">Selecciona el método de pago: </td>
+            <td class="content-select">
               <select onchange="setImagen()" id="metodo_pago">
                 <option value="-1">
                   seleccione una opción
@@ -339,16 +392,6 @@ if (isset($metodo_pago)) {
                   </option>
                 <?php } ?>
               </select>
-
-              <div class='dropdown' id='card-dropdown'>
-                <div class='dropdown-btn' id='current-card'>Visa</div>
-                <div class='dropdown-select'>
-                  <ul>
-                    <li>Master Card</li>
-                    <li>American Express</li>
-                  </ul>
-                </div>
-              </div>
             </td>
           </tr>
         </table>
@@ -360,6 +403,7 @@ if (isset($metodo_pago)) {
             </div>
           </div>
           <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
+
           <h4 id="dato_metodo">
           </h4>
 
@@ -367,9 +411,9 @@ if (isset($metodo_pago)) {
         <form id="form_solicitud">
           <label for="imagen">Card Holder</label>
           <input id="imagen" type="file" class='input-field inputimg'></input>
-
-          <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" height="220px" style="object-fit: cover;" class="rounded mx-auto d-block">
-
+          <div style="overflow-y: auto;height: 180px;">
+            <img id="img" src="<?php echo $GLOBALS['BASE_URL'] . "publico/img/imagen_default.png" ?>" width="100%" style="object-fit: cover;" class="rounded mx-auto d-block">
+          </div>
           <button class='pay-btn' type="submit">Enviar</button>
 
         </form>
@@ -398,24 +442,14 @@ if (isset($metodo_pago)) {
         input.replaceWith(this);
       } else {
         var image = URL.createObjectURL(file);
-        $(".inputimg").parent().children('img').attr("src", image);
+        $('#img').attr("src", image);
       }
     } else {
-      $(".inputimg").parent().children('#img').attr("src", url + "publico/img/imagen_default.png");
+      $('#img').attr("src", url + "publico/img/imagen_default.png");
     }
   });
   var cardDrop = document.getElementById('card-dropdown');
   var activeDropdown;
-  cardDrop.addEventListener('click', function() {
-    var node;
-    for (var i = 0; i < this.childNodes.length - 1; i++)
-      node = this.childNodes[i];
-    if (node.className === 'dropdown-select') {
-      node.classList.add('visible');
-      activeDropdown = node;
-    };
-  })
-
   //
   function getCursos() {
     var idcurso = localStorage.getItem('idcurso') ? JSON.parse(localStorage.getItem('idcurso')) : [];
@@ -476,6 +510,28 @@ if (isset($metodo_pago)) {
 
 
   }
+  async function CrearDetalleOrden(formdataorder) {
+    const resultado = await $.ajax({
+      type: 'POST',
+      url: url + "admin/ventas/insertOrderDetalle",
+      data: formdataorder,
+      contentType: false,
+      cache: false,
+      processData: false,
+    });
+    return resultado
+  }
+  async function CrearDetalle(orderCreated) {
+    for (let i = 0; i < idsProductos.length; i++) {
+      const producto = idsProductos[i];
+      var formdata2 = new FormData()
+      formdata2.append('ORD_ID', orderCreated.ORD_ID)
+      formdata2.append('CURS_ID', producto.idprducto)
+      formdata2.append('ODT_STATUS', "1")
+      formdata2.append('ODT_SUBTOTAL', producto.subprecio)
+      await CrearDetalleOrden(formdata2)
+    }
+  }
 
   function CalcularPrecio(precio, subprecio, idprducto) {
     precioTotal = Number(precio) + Number(precioTotal)
@@ -511,81 +567,22 @@ if (isset($metodo_pago)) {
       processData: false,
       success: function(msg) {
         const orderCreated = JSON.parse(msg)
-        console.log(msg)
-        idsProductos.map(
-          (valor) => {
-            console.log(valor)
-            console.log(orderCreated)
-            var formdata2 = new FormData()
-            formdata2.append('ORD_ID', orderCreated.ORD_ID)
-            formdata2.append('CURS_ID', valor.idprducto)
-            formdata2.append('ODT_STATUS', "1")
-            formdata2.append('ODT_SUBTOTAL', valor.subprecio)
-            $.ajax({
-              type: 'POST',
-              url: url + "admin/ventas/insertOrderDetalle",
-              data: formdata2,
-              contentType: false,
-              cache: false,
-              processData: false,
-              success: function(msg) {
-                console.log(msg)
-              }
-            });
-            Swal.fire(
-              'Enviado',
-              'Correctamente',
-              'success'
-            )
-            //location.href = url;
-          }
-        )
+        CrearDetalle(orderCreated).then(() => {
+          Swal.fire({
+            title: 'Correcto',
+            text: 'Se Guardo Correctamente',
+            imageUrl: url + 'publico/img/success.gif',
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            background: '#ececf2'
+          })
+          localStorage.removeItem("idcurso")
+          //location.href = url;
+        })
+
       }
     });
-
-    /* idsProductos.map(
-      (valor) => {
-        $.ajax({
-          type: 'POST',
-          url: url + "admin/categoria/update",
-          data: formdata,
-          contentType: false,
-          cache: false,
-          processData: false,
-          success: function(msg) {
-            console.log(msg)
-            location.href = url + "admin/categoria";
-          }
-        });
-      }
-    ) */
   })
-  window.onclick = function(e) {
-    if (e.target.tagName === 'LI' && activeDropdown) {
-      if (e.target.innerHTML === 'Master Card') {
-        document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/2vbqk5lcpi7hjoc/MasterCard_Logo.svg.png';
-        activeDropdown.classList.remove('visible');
-        activeDropdown = null;
-        e.target.innerHTML = document.getElementById('current-card').innerHTML;
-        document.getElementById('current-card').innerHTML = 'Master Card';
-      } else if (e.target.innerHTML === 'American Express') {
-        document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/f5hyn6u05ktql8d/amex-icon-6902.png';
-        activeDropdown.classList.remove('visible');
-        activeDropdown = null;
-        e.target.innerHTML = document.getElementById('current-card').innerHTML;
-        document.getElementById('current-card').innerHTML = 'American Express';
-      } else if (e.target.innerHTML === 'Visa') {
-        document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png';
-        activeDropdown.classList.remove('visible');
-        activeDropdown = null;
-        e.target.innerHTML = document.getElementById('current-card').innerHTML;
-        document.getElementById('current-card').innerHTML = 'Visa';
-      }
-    } else if (e.target.className !== 'dropdown-btn' && activeDropdown) {
-      activeDropdown.classList.remove('visible');
-      activeDropdown = null;
-    }
-  }
 </script>
 <?php
 

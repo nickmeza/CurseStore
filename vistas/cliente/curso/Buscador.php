@@ -171,11 +171,14 @@
             idfavorito.push(id)
             localStorage.setItem('idfavorito', JSON.stringify(idfavorito))
             console.log(localStorage.getItem('idfavorito'));
-            Swal.fire(
-                'Añadido',
-                'Correctamente',
-                'success'
-            )
+            Swal.fire({
+                title: 'Correcto',
+                text: 'Se Guardo Correctamente',
+                imageUrl: url + 'publico/img/success.gif',
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+                background: '#ececf2'
+            })
         } else {
             Swal.fire(
                 'Ya se Añadido',

@@ -125,7 +125,6 @@ class Routes
 
             $idclient = $cliente['CLI_ID'];
             $metodo_pago = MetodoPago_Modelo::getbystatus();
-            var_dump($idclient);
             include_once "./vistas/cliente/pago/MetodoPago.php";
         } else {
             header("Location:" . $GLOBALS['BASE_URL'] . "login");

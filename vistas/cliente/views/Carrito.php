@@ -1,7 +1,7 @@
 <?php
 include_once "./vistas/cliente/component/header.php";
 ?>
-<div class="container">
+<div class="container" style="margin-top: 6%; margin-bottom: 6%;">
     <h1>Cesta</h1>
     <div class="carrito__compras">
         <div class="carrito__derecha">
@@ -133,7 +133,7 @@ include_once "./vistas/cliente/component/header.php";
         console.log(carrito.indexOf(idCurso))
         carrito.splice(carrito.indexOf(idCurso), 1)
         localStorage.setItem('idcurso', JSON.stringify(carrito))
-        //location.reload()
+        location.reload()
 
     }
 </script>
