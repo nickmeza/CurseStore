@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="<?php echo $GLOBALS['BASE_URL'] ?>publico/img/icon.png" />
-    <title>Document</title>
+    <title>Registrar</title>
+    <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['BASE_URL'] ?>assets/font/font-icon/font-awesome-4.4.0/css/font-awesome.css">
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/jquery/jquery-2.1.4.min.js"></script>
     <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/js-cookie/js.cookie.js"></script>
     <script>
@@ -46,6 +47,40 @@
         }
 
         /* STRUCTURE */
+        .button-48 {
+            appearance: none;
+            background-color: #d4e3eaeb;
+            border: 1px solid #ff00003b;
+            width: 100%;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Clarkson, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 1em;
+            margin: 0;
+            opacity: 1;
+            outline: 0;
+            padding: 1em 2.2em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            text-rendering: geometricprecision;
+            text-transform: uppercase;
+            transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
+
+        .button-48:after {
+            background-color: #FFFFFF;
+        }
 
         .wrapper {
             display: flex;
@@ -168,6 +203,17 @@
             color: #cccccc;
         }
 
+        .div_password_content {
+            border: none;
+            color: #0d0d0d;
+            padding: 15px 32px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            width: 95%;
+        }
+
         input[type=password] {
             background-color: #f6f6f6;
             border: none;
@@ -176,8 +222,7 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin: 5px;
-            width: 85%;
+            width: 90%;
             border: 2px solid #f6f6f6;
             -webkit-transition: all 0.5s ease-in-out;
             -moz-transition: all 0.5s ease-in-out;
@@ -346,6 +391,18 @@
         * {
             box-sizing: border-box;
         }
+
+        *:focus {
+            outline: none;
+        }
+
+        #icon {
+            width: 60%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
     </style>
 
     <div class="wrapper fadeInDown">
@@ -355,53 +412,48 @@
             <h2 class="active">Registrarse </h2>
 
             <!-- Icon -->
-            <style>
-                /* OTHERS */
-
-                *:focus {
-                    outline: none;
-                }
-
-                #icon {
-                    width: 60%;
-                }
-
-                * {
-                    box-sizing: border-box;
-                }
-            </style>
-
-            <div class="wrapper fadeInDown">
-                <div id="formContent">
-                    <!-- Tabs Titles -->
-                    <h2 onclick="window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="inactive underlineHover"> Iniciar Sesión</h2>
-                    <h2 class="active">Registrarse </h2>
-
-                    <!-- Icon -->
 
 
-                    <!-- Login Form -->
-                    <form id="form_registrar">
-                        <input type="text" id="name" class="fadeIn second" name="NOMBRE" placeholder="Nombre completo">
-                        <input type="text" id="apellido" class="fadeIn second" name="APELLIDO" placeholder="Apellido">
-                        <input type="text" id="direccion" class="fadeIn second" name="DIRECCION" placeholder="Dirección">
-                        <input type="text" id="usuario" class="fadeIn third" name="USUARIO" placeholder="Usuario">
-                        <input type="text" id="correo" class="fadeIn third" name="CORREO" placeholder="Correo electronico">
-                        <input type="password" id="contrasena" class="fadeIn third" name="CONTRASENA" placeholder=" Contraseña">
-                        <input type="submit" class="fadeIn fourth" value="Registrate">
-                    </form>
-
-                    <div id="formFooter">
-                        <a onclick="window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="underlineHover"> ¿Ya tienes una cuenta? Inicia sesión</a>
+            <!-- Login Form -->
+            <form id="form_registrar">
+                <input type="text" id="name" class="fadeIn second" name="NOMBRE" placeholder="Nombre completo">
+                <input type="text" id="apellido" class="fadeIn second" name="APELLIDO" placeholder="Apellido">
+                <input type="text" id="direccion" class="fadeIn second" name="DIRECCION" placeholder="Dirección">
+                <input type="text" id="usuario" class="fadeIn third" name="USUARIO" placeholder="Usuario">
+                <input type="text" id="correo" class="fadeIn third" name="CORREO" placeholder="Correo electronico">
+                <div style="display: flex;" class="div_password_content">
+                    <input type="password" id="contrasena" class="fadeIn third" name="CONTRASENA" placeholder=" Contraseña">
+                    <div style="height:52px;">
+                        <button onclick="mostrarPassword()" style="height:52px;" class="button-48" type="button"><i id="pass_eye" class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
-
-
-
                 </div>
+                <input type="submit" class="fadeIn fourth" value="Registrate">
+            </form>
+
+            <div id="formFooter">
+                <a onclick="window.location='<?php echo $GLOBALS['BASE_URL'] ?>login'" class="underlineHover"> ¿Ya tienes una cuenta? Inicia sesión</a>
             </div>
+
+
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
             <script>
+                function mostrarPassword() {
+                    var cambio = document.getElementById("contrasena");
+                    if (cambio.type == "password") {
+                        cambio.type = "text";
+                        $('#pass_eye').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                    } else {
+                        cambio.type = "password";
+                        $('#pass_eye').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                    }
+                }
+                $(document).ready(function() {
+                    //CheckBox mostrar contraseña
+                    $('#ShowPassword').click(function() {
+                        $('#contrasena').attr('type', $(this).is(':checked') ? 'text' : 'password');
+                    });
+                });
                 $("#form_registrar").submit(function(event) {
                     event.preventDefault();
                     console.log(new FormData(this))

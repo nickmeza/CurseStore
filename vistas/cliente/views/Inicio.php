@@ -79,15 +79,20 @@ include_once "./vistas/cliente/component/header.php";
     <?php } ?>
 </div>
 <!-- Categorias -->
-<div class="main__categoria">
+<div class="content__categorias">
+    <div class="title_categoria">
+        <h2>Categorias</h2>
+    </div>
 
+    <div class="main__categoria">
+
+    </div>
 </div>
-
 
 
 <!-- Ofertas -->
 <div class="cards__ofert">
-    
+
 </div>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 

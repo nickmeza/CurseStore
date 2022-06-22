@@ -140,6 +140,7 @@
             'Añadido',
             'Correctamente',
             'success')
+        location.reload()
 
     }
 

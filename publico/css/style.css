@@ -39,6 +39,14 @@
     padding: 20px 10px;
 }
 
+.title_categoria {
+    margin-left: 20px;
+}
+
+h2 {
+    color: black !important;
+}
+
 .details__ofert>h3 {
     color: #ffffff;
     font-weight: 600;
@@ -93,7 +101,7 @@
 }
 
 .content__categoria:hover::after {
-    opacity: 0.2;
+    opacity: 1;
 }
 
 .content__categoria {
@@ -121,7 +129,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: #555;
+    color: rgb(0, 0, 0);
 }
 
 .navigation__categoria li a:hover {

@@ -93,7 +93,7 @@
                 <?php
                 if (isset($_SESSION['user'])) { ?>
                     <div class="dropdown">
-                        <button class="nav_item nav_item_login nav_item_iniciar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button style="padding: 10px;" class="nav_item nav_item_login nav_item_iniciar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php echo $_SESSION["user"] ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

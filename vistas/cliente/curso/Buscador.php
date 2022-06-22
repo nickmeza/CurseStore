@@ -212,6 +212,7 @@
                 'info'
             )
         }
+        location.reload()
     }
 
     function search__detail_curse(date__search) {
