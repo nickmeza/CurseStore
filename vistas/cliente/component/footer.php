@@ -326,9 +326,9 @@
             console.log(msg)
             let json= JSON.parse(msg)
             console.log(json)
-            $("#fb").val(json[0].EMP_FACEBOOK)
+            $("#fb").attr("href",json[0].EMP_FACEBOOK)
             $("#ig").attr("href",json[0].EMP_INSTAGRAM)
-            $("#lk").val(json[0].EMP_LINKEDIN)
+            $("#lk").attr("href",json[0].EMP_LINKEDIN)
 
 
         },
