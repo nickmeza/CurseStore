@@ -1,4 +1,8 @@
 <style>
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+
   ul {
     margin: 0px;
     padding: 0px;
@@ -333,6 +337,8 @@
   var contador = JSON.parse(localStorage.getItem("idcurso")).length
   $('.contador').after("<p> " + contador + " </p>")
 
+  var contador = JSON.parse(localStorage.getItem("idcurso")).length
+  $('.contador').after("<p> " + contador + " </p>")
 </script>
 </body>
 
