@@ -211,9 +211,11 @@
             </div>
             <div class="footer-social-icon">
               <span>Siguénos</span>
-              <a href="https://www.facebook.com/"><i class="fab fa-facebook-f facebook-bg"></i></a>
-              <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-              <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+              <a href="" id ="fb" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+              <a href="" id ="ig" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+              <a href="" id ="lk" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+
+
             </div>
           </div>
         </div>
@@ -290,6 +292,10 @@
   } else if ((Cookies.get('color-skin') == undefined) || (Cookies.get('color-skin') == 'color-1')) {
     $('.logo .header-logo img').attr('src', 'assets/images/logo-color-1.png');
   }
+
+  
+
+
 </script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>assets/libs/smooth-scroll/jquery-smoothscroll.js"></script>
@@ -312,6 +318,25 @@
 <!-- HEADER JS -->
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>publico/js/search.js"></script>
 <script>
+  
+  $.ajax({
+        type: "GET",
+        url: url + "admin/empresa/getAll",
+        success: function(msg) {
+            console.log(msg)
+            let json= JSON.parse(msg)
+            console.log(json)
+            $("#fb").val(json[0].EMP_FACEBOOK)
+            $("#ig").attr("href",json[0].EMP_INSTAGRAM)
+            $("#lk").val(json[0].EMP_LINKEDIN)
+
+
+        },
+    })
+
+  var contador = JSON.parse(localStorage.getItem("idcurso")).length
+  $('.contador').after("<p> " + contador + " </p>")
+
   var contador = JSON.parse(localStorage.getItem("idcurso")).length
   $('.contador').after("<p> " + contador + " </p>")
 </script>

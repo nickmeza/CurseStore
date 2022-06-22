@@ -82,6 +82,7 @@ class Usuario
             $cliente["APELLIDO"] = $_REQUEST['APELLIDO'];
             $cliente["DIRECCION"] = $_REQUEST['DIRECCION'];
             $cliente["USUARIO"] = $_REQUEST['USUARIO'];
+            $cliente["CORREO"] = $_REQUEST['CORREO'];
             $cliente["CONTRASENA"] = $_REQUEST['CONTRASENA'];
             Cliente_Modelo::insertCliente($cliente);
             $usuario_found = Usuario_Modelo::getUser($cliente["USUARIO"], $cliente["CONTRASENA"]);
