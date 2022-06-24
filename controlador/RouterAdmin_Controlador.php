@@ -92,4 +92,8 @@ class RoutesAdmin
     {
         include_once "./vistas/administrador/tienda/Metodo_Pagos.php";
     }
+    public static function loginAdmin()
+    {
+        include_once "./vistas/administrador/usuario/LoginAdmin.php";
+    }
 }

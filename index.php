@@ -361,6 +361,13 @@ if (isset($ruta_split[1])) {
                             echo "error 404";
                         }
                         break;
+                    case 'loginAdmin':
+                        if (method_exists(new RoutesAdmin(), $controlador) && !isset($ruta_split[3])) {
+                            RoutesAdmin::$controlador($ruta_split);
+                        } else {
+                            echo "error 404";
+                        }
+                        break;
                     default:
                         RoutesAdmin::index();
                         break;

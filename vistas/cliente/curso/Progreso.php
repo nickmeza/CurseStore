@@ -3,7 +3,9 @@ include_once "./vistas/cliente/component/header.php";
 ?>
 <style>
     .content__progreso {
-        margin-top: 100px;
+        margin-top: 120px;
+        margin-bottom: 50px;
+        padding: 0 100px 0 100px;
     }
 
     .titulo__progreso {
