@@ -78,6 +78,10 @@ class Usuario_modelo
     {
         return $data = Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=? AND USR_STATUS=1", array($usuario, $password));
     }
+    public static function getUserAcces($id_usuario)
+    {
+        return $data = Database::query("SELECT * FROM usuario WHERE USR_ID=? USR_STATUS=1", array($id_usuario));
+    }
     public static function getClientbyUser($usuario)
     {
         return $data = Database::queryOne("SELECT p.*, c.*,u.USR_USUARIO from cliente c, usuario u, persona p 
