@@ -256,6 +256,34 @@ class Usuario
             }
         }
     }
+    public static function LoginAdmin($args = array())
+    {
+        $Session = new UsuarioSession();
+        if (isset($_SESSION['userAdmin'])) {
+            echo $_SESSION['userAdmin'];
+            return true;
+        } else {
+            if (isset($_REQUEST["usuario"]) && isset($_REQUEST["password"])) {
+                $usuarioAdmin = $_REQUEST["usuario"];
+                $passwordAdmin = $_REQUEST["password"];
+                if (Usuario_Modelo::findUser($usuarioAdmin, $passwordAdmin)) {
+                    $usuario_found = Usuario_Modelo::getUser($usuarioAdmin, $passwordAdmin);
+                    $usuario_acces = Usuario_Modelo::getUserAcces($usuario_found[0]["USR_ID"]);
+                    UsuarioSession::setCurrentUserAdmin($usuarioAdmin, $usuario_acces,$usuario_found);
+                    $mensaje["mensaje"] = "correcto";
+                    $mensaje["status"] = "200";
+                    $mensaje["usuario"] = $usuario_found;
+                    echo json_encode($mensaje);
+                } else {
+                    $mensaje["mensaje"] = "usuario incorrecto";
+                    $mensaje["status"] = "404";
+                    echo json_encode($mensaje);
+                }
+            } else {
+                echo "error 404";
+            }
+        }
+    }
     public static function logout()
     {
         $Session = new UsuarioSession();
@@ -282,6 +310,5 @@ class Usuario
         }
         include_once("./excel/usuarioExcel.php");
     }
-
 }
 ?>
