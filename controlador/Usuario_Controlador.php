@@ -5,12 +5,13 @@ class Usuario
 {
     public static function createUsuarioProfesor($ruta)
     {
-        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
+        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['CORREO']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['PASSWORD'])) {
             $profesor["NOMBRE"] = $_REQUEST['NOMBRE'];
             $profesor["APELLIDO"] = $_REQUEST['APELLIDO'];
             $profesor["DIRECCION"] = $_REQUEST['DIRECCION'];
+            $profesor["CORREO"] = $_REQUEST['CORREO'];
             $profesor["USUARIO"] = $_REQUEST['USUARIO'];
-            $profesor["CONTRASENA"] = $_REQUEST['CONTRASENA'];
+            $profesor["PASSWORD"] = $_REQUEST['PASSWORD'];
             Profesor_Modelo::insertProfesor($profesor);
             echo "creado correctamente";
         } else {
@@ -21,11 +22,14 @@ class Usuario
     {
         //var_dump($_REQUEST);
         session_start();
-        if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['direccion']) && isset($_REQUEST['usuario'])) {
+        if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['direccion'])&& isset($_REQUEST['correo']) && isset($_REQUEST['usuario'])&& isset($_REQUEST['contrasena'])) {
             $usuario["nombre"] = $_REQUEST['nombre'];
             $usuario["apellido"] = $_REQUEST['apellido'];
             $usuario["direccion"] = $_REQUEST['direccion'];
+            $usuario["correo"] = $_REQUEST['correo'];
             $usuario["usuario"] = $_REQUEST['usuario'];
+            $usuario["contrasena"] = $_REQUEST['contrasena'];
+
             //var_dump($usuario);
             if (isset($_REQUEST['admin'])) {
                 $usuario["admin"] = true;
@@ -96,12 +100,13 @@ class Usuario
 
     public static function createUsuarioCliente($ruta)
     {
-        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASENA'])) {
+        if (isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDO']) && isset($_REQUEST['DIRECCION'])&& isset($_REQUEST['CORREO']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['PASSWORD'])) {
             $cliente["NOMBRE"] = $_REQUEST['NOMBRE'];
             $cliente["APELLIDO"] = $_REQUEST['APELLIDO'];
             $cliente["DIRECCION"] = $_REQUEST['DIRECCION'];
+            $cliente["CORREO"] = $_REQUEST['CORREO'];
             $cliente["USUARIO"] = $_REQUEST['USUARIO'];
-            $cliente["CONTRASENA"] = $_REQUEST['CONTRASENA'];
+            $cliente["PASSWORD"] = $_REQUEST['PASSWORD'];
             Cliente_Modelo::insertCliente($cliente);
             echo "creado correctamente";
         } else {
@@ -167,6 +172,17 @@ class Usuario
         if (isset($id) && isset($id[5]) && strlen($id[5]) > 0) {
             $persona = array();
             $persona = Usuario_Modelo::getClientbyId($id[5]);
+            echo json_encode($persona);
+        } else {
+            echo "fallo al buscar";
+        }
+    }
+    public static function getProfesorbyId($id)
+    {
+
+        if (isset($id) && isset($id[5]) && strlen($id[5]) > 0) {
+            $persona = array();
+            $persona = Profesor_Modelo::getProfesorbyId($id[5]);
             echo json_encode($persona);
         } else {
             echo "fallo al buscar";

@@ -13,7 +13,7 @@ class Cliente_Modelo
     { 
             Database::queryChange(
                 "CALL AB_AGREGARCLIENTE(?, ?, ?, ?, ?, ?);",
-                array($cliente["NOMBRE"], $cliente["APELLIDO"], $cliente["DIRECCION"], $cliente["USUARIO"], $cliente["CORREO"], $cliente["CONTRASENA"])
+                array($cliente["NOMBRE"], $cliente["APELLIDO"], $cliente["DIRECCION"], $cliente["CORREO"], $cliente["USUARIO"], $cliente["PASSWORD"])
             );
         
     }

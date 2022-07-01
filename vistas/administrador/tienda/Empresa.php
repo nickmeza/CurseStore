@@ -210,7 +210,7 @@ include_once "./vistas/administrador/component/header.php";
         overflow-y: hidden;
     }
 
-    .centrarrr{
+    .centrarrr {
         text-align: center;
     }
 
@@ -236,7 +236,7 @@ include_once "./vistas/administrador/component/header.php";
         }
     }
 </style>
-<div class="container__admin container">
+<!-- <div class="container__admin container">
     <form id="form_crearEmpresa" method="POST" enctype="multipart/form-data">
         <div class="content__admin ">
             <div class="izquierda__modulo">
@@ -312,7 +312,9 @@ include_once "./vistas/administrador/component/header.php";
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
     </form>
-</div>
+</div> -->
+
+
 
 <script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
@@ -321,7 +323,7 @@ include_once "./vistas/administrador/component/header.php";
         url: url + "admin/empresa/getAll",
         success: function(msg) {
             console.log(msg)
-            let json= JSON.parse(msg)
+            let json = JSON.parse(msg)
             console.log(json)
             $("#EMP_RUC").val(json[0].EMP_RUC)
             $("#EMP_NOMBRE").val(json[0].EMP_NOMBRE)
@@ -342,7 +344,7 @@ include_once "./vistas/administrador/component/header.php";
     $("#form_crearEmpresa").submit(function(event) {
         event.preventDefault();
         console.log("llegamos")
-        let id= $("#EMP_ID").val()
+        let id = $("#EMP_ID").val()
         $.ajax({
             type: 'POST',
             url: url + "admin/empresa/update/" + id,
@@ -362,7 +364,7 @@ include_once "./vistas/administrador/component/header.php";
     $("#form_crearEmpresa").submit(function(event) {
         event.preventDefault();
         console.log("llegamos")
-        let id= $("#EMP_ID").val()
+        let id = $("#EMP_ID").val()
         $.ajax({
             type: 'POST',
             url: url + "admin/empresa/update/" + id,

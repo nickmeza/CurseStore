@@ -12,8 +12,8 @@ class Profesor_Modelo
     public static function insertProfesor($profesor)
     {
         Database::queryChange(
-            "CALL AB_AGREGARPROFESOR(?, ?, ?, ?, ?);",
-            array($profesor["NOMBRE"], $profesor["APELLIDO"], $profesor["DIRECCION"], $profesor["USUARIO"], $profesor["CONTRASENA"])
+            "CALL AB_AGREGARPROFESOR(?, ?, ?, ?, ?, ?);",
+            array($profesor["NOMBRE"], $profesor["APELLIDO"], $profesor["DIRECCION"],$profesor["CORREO"], $profesor["USUARIO"], $profesor["PASSWORD"])
         );
     }
     public static function updateProfesor($profesor, $id)
@@ -23,6 +23,11 @@ class Profesor_Modelo
     public static function delete($id)
     {
         Database::queryChange("DELETE FROM persona WHERE  PER_ID=?;", array($id));
+    }
+    public static function getProfesorbyId($usuario)
+    {
+        return $data = Database::queryOne("SELECT p.*, pr.*,u.* from profesor pr, usuario u, persona p 
+        WHERE p.PER_ID=u.PER_ID AND pr.USR_ID=u.USR_ID AND p.PER_ID = ?", array($usuario));
     }
     public static function getProfesorData()
     {

@@ -326,7 +326,7 @@ include_once "./vistas/administrador/component/header.php";
 
                     <div class="form-group">
                         <label for="name" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="NOMBRE" id="name">
+                        <input type="text" class="form-control" name="NOMBRE" id="nombre">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Apellido:</label>
@@ -337,12 +337,16 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="DIRECCION" id="direccion">
                     </div>
                     <div class="form-group">
+                        <label for="description" class="col-form-label">Correo:</label>
+                        <input type="text" class="form-control" name="CORREO" id="correo">
+                    </div>
+                    <div class="form-group">
                         <label for="description" class="col-form-label">usuario:</label>
                         <input type="text" class="form-control" name="USUARIO" id="usuario">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">contraseña:</label>
-                        <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
+                        <input type="password" class="form-control" name="PASSWORD" id="password">
                     </div>
 
                 </div>
@@ -382,8 +386,16 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="direccion" id="edit_direccion">
                     </div>
                     <div class="form-group">
+                        <label for="description" class="col-form-label">Correo:</label>
+                        <input type="text" class="form-control" name="correo" id="edit_correo">
+                    </div>
+                    <div class="form-group">
                         <label for="description" class="col-form-label">usuario:</label>
                         <input type="text" class="form-control" name="usuario" id="edit_usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">contraseña:</label>
+                        <input type="text" class="form-control" name="password" id="edit_password">
                     </div>
 
 
@@ -509,8 +521,9 @@ include_once "./vistas/administrador/component/header.php";
                 $("#edit_name").val(json.PER_NOMBRE)
                 $("#edit_apellido").val(json.PER_APELLIDO)
                 $("#edit_direccion").val(json.PER_DIRECCION)
+                $("#edit_correo").val(json.PER_CORREO)
                 $("#edit_usuario").val(json.USR_USUARIO)
-                $("#edit_contraseña").val(json.USR_PASSWORD)
+                $("#edit_password").val(json.USR_PASSWORD)
                 $("#edit_id").val(json.PER_ID)
 
                 //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
