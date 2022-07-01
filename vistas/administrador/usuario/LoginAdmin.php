@@ -396,7 +396,7 @@
             console.log(new FormData(this))
             $.ajax({
                 type: 'POST',
-                url: url + "admin/usuario/cliente/GoInside",
+                url: url + "admin/usuario/admin/LoginAdmin",
                 data: new FormData(this),
                 contentType: false,
                 cache: false,

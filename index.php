@@ -307,6 +307,13 @@ if (isset($ruta_split[1])) {
                                     echo "error 404";
                                 }
                                 break;
+                            case 'admin':
+                                if (method_exists(new Usuario(), $submetodo)) {
+                                    Usuario::$submetodo($ruta_split);
+                                } else {
+                                    echo "error 404";
+                                }
+                                break;
                             default:
                                 //echo "error 404";
                                 RoutesAdmin::index();

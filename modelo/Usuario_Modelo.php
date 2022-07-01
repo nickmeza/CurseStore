@@ -74,9 +74,29 @@ class Usuario_modelo
             return false;
         }
     }
+
+    public static function findUserAdmin($usuario, $password)
+    {
+        $data = Database::query("SELECT * FROM usuario u, rol r, usuario_rol ur 
+        WHERE USR_USUARIO=? AND USR_PASSWORD=?
+        AND USR_STATUS=1 AND r.ROL_ID=ur.ROL_ID AND ur.USR_ID=u.USR_ID
+        AND r.ROL_NOMBRE<>'Cliente'", array($usuario, $password));
+        if (count($data) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static function getUser($usuario, $password)
     {
         return $data = Database::query("SELECT * FROM usuario WHERE USR_USUARIO=? AND USR_PASSWORD=? AND USR_STATUS=1", array($usuario, $password));
+    }
+    public static function getUserAdmin($usuario, $password)
+    {
+        return $data = Database::query("SELECT u.*,r.ROL_NOMBRE FROM usuario u, rol r, usuario_rol ur 
+        WHERE USR_USUARIO=? AND USR_PASSWORD=?
+        AND USR_STATUS=1 AND r.ROL_ID=ur.ROL_ID AND ur.USR_ID=u.USR_ID
+        AND r.ROL_NOMBRE<>'Cliente'", array($usuario, $password));
     }
     public static function getUserAcces($id_usuario)
     {

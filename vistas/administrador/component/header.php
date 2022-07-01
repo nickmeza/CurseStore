@@ -125,6 +125,14 @@
                     <li><a href="<?php echo $GLOBALS['BASE_URL'] ?>admin/metodo_pagos">Método de pagos</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="iocn-link">
+                    <a onclick="logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <span class="link_name">Cerrar Sesion</span>
+                    </a>
+                </div>
+            </li>
         </ul>
     </div>
     <section class="home-section">

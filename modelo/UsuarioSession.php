@@ -5,11 +5,11 @@ class UsuarioSession
     {
         session_start();
     }
-    public static function setCurrentUserAdmin($usuario, $acces, $user)
+    public static function setCurrentUserAdmin($usuario, $rol, $user)
     {
         $_SESSION['userAdmin'] = $usuario; //nickname
-        $_SESSION['acces'] = $acces;       //accesps
-        $_SESSION['escogidoAdmin'] = $user;//objeto con los datos del usuario
+        $_SESSION['rol'] = $rol;       //accesps
+        $_SESSION['escogidoAdmin'] = $user; //objeto con los datos del usuario
     }
     public static function setCurrentUser($usuario, $user)
     {
@@ -27,10 +27,14 @@ class UsuarioSession
     public static function closeSession()
     {
         unset($_SESSION['user']);
-        unset($_SESSION['acces']);
+        unset($_SESSION['rol']);
         unset($_SESSION['escogido']);
+        unset($_SESSION['userAdmin']);
+        unset($_SESSION['escogidoAdmin']);
         if (count($_SESSION) == 0) {
             session_destroy();
+        } else {
+            var_dump($_SESSION);
         }
     }
 }

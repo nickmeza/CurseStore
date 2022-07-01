@@ -1,5 +1,6 @@
 </div>
 </section>
+<script src="<?php echo $GLOBALS['BASE_URL'] ?>/direccion.js"></script>
 <script>
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {
@@ -15,6 +16,19 @@
     sidebarBtn.addEventListener("click", () => {
         sidebar.classList.toggle("close__admin");
     });
+
+    function logout() {
+
+        alert("hola")
+        $.ajax({
+            type: 'GET',
+            url: url + "admin/usuario/admin/logout",
+            success: function(msg) {
+                console.log(msg)
+                location.href = url;
+            }
+        });
+    }
 </script>
 </body>
 
