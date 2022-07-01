@@ -22,9 +22,9 @@ class Usuario_modelo
     public static function updatePerfilUsuario($usuario, $id)
     {
         if (isset($usuario['admin'])) {
-            Database::queryChange("CALL AB_EDITARPERFILADMIN(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
+            Database::queryChange("CALL AB_EDITARPERFILADMIN(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["correo"], $usuario["usuario"], $usuario["contrasena"], $id));
         } else {
-            Database::queryChange("CALL AB_EDITARPERFILCLIENT(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"], $usuario["usuario"], $id));
+            Database::queryChange("CALL AB_EDITARPERFILCLIENT(?,?,?,?,?)", array($usuario["nombre"], $usuario["apellido"], $usuario["direccion"],$usuario["correo"], $usuario["usuario"], $usuario["contrasena"], $id));
         }
     }
     public static function updateContraseña($usuario, $id)
@@ -109,7 +109,7 @@ class Usuario_modelo
     }
     public static function getClientbyId($usuario)
     {
-        return $data = Database::queryOne("SELECT p.*, c.*,u.USR_USUARIO from cliente c, usuario u, persona p 
+        return $data = Database::queryOne("SELECT p.*, c.*,u.* from cliente c, usuario u, persona p 
         WHERE p.PER_ID=u.PER_ID AND c.USR_ID=u.USR_ID AND p.PER_ID = ?", array($usuario));
     }
 }

@@ -325,12 +325,16 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="DIRECCION" id="direccion">
                     </div>
                     <div class="form-group">
+                        <label for="description" class="col-form-label">correo:</label>
+                        <input type="text" class="form-control" name="CORREO" id="correo">
+                    </div>
+                    <div class="form-group">
                         <label for="description" class="col-form-label">usuario:</label>
                         <input type="text" class="form-control" name="USUARIO" id="usuario">
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">contraseña:</label>
-                        <input type="password" class="form-control" name="CONTRASENA" id="contrasena">
+                        <input type="password" class="form-control" name="PASSWORD" id="password">
                     </div>
 
                 </div>
@@ -370,11 +374,17 @@ include_once "./vistas/administrador/component/header.php";
                         <input type="text" class="form-control" name="DIRECCION" id="edit_direccion">
                     </div>
                     <div class="form-group">
+                        <label for="description" class="col-form-label">Correo:</label>
+                        <input type="text" class="form-control" name="CORREO" id="edit_correo">
+                    </div>
+                    <div class="form-group">
                         <label for="description" class="col-form-label">usuario:</label>
                         <input type="text" class="form-control" name="USUARIO" id="edit_usuario">
                     </div>
-
-
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">contraseña:</label>
+                        <input type="text" class="form-control" name="PASSWORD" id="edit_password">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -459,7 +469,7 @@ include_once "./vistas/administrador/component/header.php";
         id = valores;
         console.log(valores);
         $.ajax({
-            url: url + 'admin/usuario/profesor/getClientbyId/' + valores,
+            url: url + 'admin/usuario/profesor/getProfesorbyId/' + valores,
             type: 'GET',
             dataType: 'json',
             success: function(json) {
@@ -467,8 +477,9 @@ include_once "./vistas/administrador/component/header.php";
                 $("#edit_name").val(json.PER_NOMBRE)
                 $("#edit_apellido").val(json.PER_APELLIDO)
                 $("#edit_direccion").val(json.PER_DIRECCION)
+                $("#edit_correo").val(json.PER_CORREO)
                 $("#edit_usuario").val(json.USR_USUARIO)
-                $("#edit_contraseña").val(json.USR_PASSWORD)
+                $("#edit_password").val(json.USR_PASSWORD)
                 $("#edit_id").val(json.PER_ID)
 
                 //json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
@@ -502,21 +513,6 @@ include_once "./vistas/administrador/component/header.php";
         })
     }
 
-    function mostrarDatos(valores) {
-        console.log(valores);
-        $.ajax({
-            url: url + 'admin/categoria/getById/' + valores,
-            type: 'GET',
-            dataType: 'json',
-            success: function(json) {
-                $("#edit_name").val(json.CAT_NAME)
-                $("#edit_description").val(json.CAT_DESCRIPCION)
-                $("#edit_imagen").val(json.CAT_IMAGEN)
-                $("#edit_id").val(json.CAT_ID)
-                json.CAT_ESTADO == "1" ? $("#edit_estado").prop('checked', true) : $("#edit_estado").prop('checked', false);
-            },
-        })
-    }
     $("#form_editar_profesor").submit(function(event) {
         event.preventDefault();
         $("#edit_estado").val() == "on" ? $("#edit_estado").val(1) : $("#edit_estado").val(0)
