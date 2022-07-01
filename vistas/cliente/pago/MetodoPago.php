@@ -577,7 +577,7 @@ if (isset($metodo_pago)) {
             background: '#ececf2'
           })
           localStorage.removeItem("idcurso")
-          //location.href = url;
+          location.href = url + "perfil/aprendizaje";
         })
 
       }
