@@ -370,7 +370,7 @@
                     <p>Usuario o Contraseña Incorrectas </p>
                     <p>Asegúrese de que este Habilitado esta Cuenta</p>
                 </div>
-                <img src="https://www.pngitem.com/pimgs/m/80-800194_transparent-users-icon-png-flat-user-icon-png.png" height="250px" id="icon" alt="User Icon" />
+                <img src="https://cdn-icons-png.flaticon.com/512/206/206855.png" height="250px" id="icon" alt="User Icon" />
             </div>
 
             <!-- Login Form -->
@@ -408,6 +408,7 @@
                     } else {
                         location.href = url;
                     }
+                    console.log("paso por aqui")
 
                 }
             });

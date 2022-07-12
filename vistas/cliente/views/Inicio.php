@@ -139,7 +139,7 @@ include_once "./vistas/cliente/component/header.php";
                 $(".main__categoria").append(`
                 <div class="card__categoria" onclick="location.href='${url +'categoria/'+ valores.CAT_NAME.replace(' ','-')}'">
                     <div class="content__categoria" style="--urlimg: url('${url + valores.CAT_IMAGEN}');">
-                        <h2> ${valores.CAT_NAME} <br><span>${valores.CAT_DESCRIPCION}</span></h2>
+                        <h3> ${valores.CAT_NAME} <br><span>${valores.CAT_DESCRIPCION}</span></h3>
                     </div>
                 </div>
                 `)
